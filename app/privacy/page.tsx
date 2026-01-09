@@ -7,7 +7,7 @@ export default function PrivacyPage() {
       <header className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center overflow-hidden border border-gray-100">
+            <div className="w-16 h-16 rounded-xl bg-white shadow-lg flex items-center justify-center overflow-hidden border border-gray-100 p-1">
               <img src="/logo.jpg" alt="Klinchapp" className="w-full h-full object-contain" />
             </div>
             <span className="text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
