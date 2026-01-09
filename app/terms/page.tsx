@@ -7,7 +7,9 @@ export default function TermsPage() {
       <header className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <img src="/logo.jpg" alt="Klinchapp" className="w-10 h-10 rounded-xl object-cover" />
+            <div className="w-12 h-12 rounded-xl bg-white shadow-md flex items-center justify-center overflow-hidden">
+              <img src="/logo.jpg" alt="Klinchapp" className="w-full h-full object-contain" />
+            </div>
             <span className="text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
           </Link>
           <Link href="/login" className="px-4 py-2 bg-[#6B2C6B] text-white rounded-lg font-semibold hover:bg-[#5a245a] transition-colors">
