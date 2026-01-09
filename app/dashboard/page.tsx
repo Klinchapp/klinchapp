@@ -595,6 +595,17 @@ export default function Dashboard() {
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-200 bg-white/50 mt-8">
+        <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-gray-500 text-sm">© 2026 Klinchapp. All rights reserved.</p>
+          <div className="flex gap-6">
+            <a href="/terms" className="text-[#6B2C6B] text-sm font-medium hover:underline">Terms of Service</a>
+            <a href="/privacy" className="text-[#6B2C6B] text-sm font-medium hover:underline">Privacy Policy</a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
