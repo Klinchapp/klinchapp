@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       </header>
 
       {/* Content */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <main className="max-w-4xl mx-auto px-6 py-12 flex-1">
         <h1 className="text-4xl font-extrabold text-[#6B2C6B] mb-8">Privacy Policy</h1>
         
         <div className="prose prose-lg max-w-none">
@@ -95,6 +95,17 @@ export default function PrivacyPage() {
           </Link>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-200 bg-white/50">
+        <div className="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-gray-500 text-sm">© 2026 Klinchapp. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link href="/terms" className="text-[#6B2C6B] text-sm font-medium hover:underline">Terms of Service</Link>
+            <Link href="/privacy" className="text-[#6B2C6B] text-sm font-medium hover:underline">Privacy Policy</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
