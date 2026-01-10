@@ -24,21 +24,21 @@ const LogOutIcon = () => (
   </svg>
 )
 
-const CameraIcon = ({ className = "" }: { className?: string }) => (
-  <svg className={`w-8 h-8 ${className}`} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+const CameraIcon = ({ className = "w-8 h-8" }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
     <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
   </svg>
 )
 
-const PencilIcon = ({ className = "" }: { className?: string }) => (
-  <svg className={`w-8 h-8 ${className}`} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+const PencilIcon = ({ className = "w-8 h-8" }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
   </svg>
 )
 
-const UploadIcon = ({ className = "" }: { className?: string }) => (
-  <svg className={`w-10 h-10 ${className}`} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+const UploadIcon = ({ className = "w-10 h-10" }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
   </svg>
 )
@@ -86,8 +86,8 @@ const LoaderIcon = ({ className = "w-5 h-5" }) => (
   </svg>
 )
 
-const AlertIcon = ({ className = "" }: { className?: string }) => (
-  <svg className={`w-5 h-5 ${className}`} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+const AlertIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
   </svg>
 )
