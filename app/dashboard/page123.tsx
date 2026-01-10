@@ -601,11 +601,11 @@ export default function Dashboard() {
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Platform</label>
                     <select value={platform} onChange={(e) => handlePlatformChange(e.target.value)} className="w-full p-3 border-2 border-gray-200 rounded-xl">
-                      <option value="instagram">Instagram</option>
-                      <option value="twitter">Twitter/X</option>
-                      <option value="linkedin">LinkedIn</option>
-                      <option value="facebook">Facebook</option>
-                      <option value="tiktok">TikTok</option>
+                      <option value="instagram">📷 Instagram</option>
+                      <option value="twitter">✖ Twitter/X</option>
+                      <option value="linkedin">💼 LinkedIn</option>
+                      <option value="facebook">📘 Facebook</option>
+                      <option value="tiktok">🎵 TikTok</option>
                     </select>
                     <p className="text-xs text-gray-500 mt-1">Max {platformConfig[platform]?.charLimit.toLocaleString()} characters</p>
                   </div>
