@@ -1,0 +1,21 @@
+{
+  "name": "Klinchapp - AI Social Media Post Generator",
+  "short_name": "Klinchapp",
+  "description": "Create engaging social media posts in seconds with AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDFAFF",
+  "theme_color": "#6B2C6B",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
