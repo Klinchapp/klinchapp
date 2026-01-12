@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -93,11 +94,6 @@ export const metadata: Metadata = {
   // App info
   applicationName: 'Klinchapp',
   category: 'Technology',
-  
-  // Verification (add your codes when you have them)
-  // verification: {
-  //   google: 'your-google-verification-code',
-  // },
 }
 
 // ===========================================
@@ -170,7 +166,23 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-NX5T2DB7CL"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NX5T2DB7CL');
+          `}
+        </Script>
+      </body>
     </html>
   )
 }
