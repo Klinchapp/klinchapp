@@ -1,14 +1,20 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = 'https://www.klinchapp.com'
+  
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/dashboard/', '/auth/'],
+        disallow: [
+          '/api/',
+          '/dashboard/',
+          '/auth/',
+        ],
       },
     ],
-    sitemap: 'https://www.klinchapp.com/sitemap.xml',
+    sitemap: `${baseUrl}/sitemap.xml`,
   }
 }

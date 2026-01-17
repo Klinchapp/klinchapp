@@ -1,43 +1,22 @@
-import type { Metadata, Viewport } from 'next'
+import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-// ===========================================
-// SEO METADATA
-// ===========================================
+const siteUrl = 'https://www.klinchapp.com'
+
 export const metadata: Metadata = {
-  // Basic
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Klinchapp - AI-Powered Social Media Post Generator',
     template: '%s | Klinchapp'
   },
-  description: 'Create engaging social media posts in seconds with AI. Generate platform-optimized content for Instagram, Twitter/X, LinkedIn, Facebook & TikTok. Free 60 posts/month.',
-  keywords: [
-    'social media post generator',
-    'AI content creator',
-    'Instagram post generator',
-    'Twitter post generator',
-    'LinkedIn post generator',
-    'Facebook post generator',
-    'TikTok caption generator',
-    'AI marketing tool',
-    'social media automation',
-    'free social media tool'
-  ],
-  authors: [{ name: 'Klinchapp', url: 'https://www.klinchapp.com' }],
+  description: 'Create stunning social media posts in seconds. Upload your product image and let AI generate engaging content for Instagram, Twitter, LinkedIn, Facebook, and TikTok.',
+  keywords: ['social media', 'AI content generator', 'Instagram posts', 'Twitter posts', 'LinkedIn posts', 'content creator', 'marketing tool'],
+  authors: [{ name: 'Klinchapp' }],
   creator: 'Klinchapp',
   publisher: 'Klinchapp',
-  
-  // Canonical URL
-  metadataBase: new URL('https://www.klinchapp.com'),
-  alternates: {
-    canonical: '/',
-  },
-  
-  // Robots
   robots: {
     index: true,
     follow: true,
@@ -49,107 +28,32 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  
-  // Open Graph (Facebook, LinkedIn, WhatsApp, etc.)
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.klinchapp.com',
+    url: siteUrl,
     siteName: 'Klinchapp',
     title: 'Klinchapp - AI-Powered Social Media Post Generator',
-    description: 'Create engaging social media posts in seconds with AI. Works with Instagram, Twitter/X, LinkedIn, Facebook & TikTok.',
+    description: 'Create stunning social media posts in seconds with AI. Upload your product image and generate engaging content for all platforms.',
     images: [
       {
-        url: '/og-image.png',
+        url: `${siteUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Klinchapp - AI Social Media Post Generator',
-      }
+      },
     ],
   },
-  
-  // Twitter/X
   twitter: {
     card: 'summary_large_image',
     title: 'Klinchapp - AI-Powered Social Media Post Generator',
-    description: 'Create engaging social media posts in seconds with AI. Free to start!',
-    images: ['/og-image.png'],
+    description: 'Create stunning social media posts in seconds with AI.',
+    images: [`${siteUrl}/og-image.jpg`],
     creator: '@klinchapp',
   },
-  
-  // Icons
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-  },
-  
-  // Manifest
-  manifest: '/manifest.json',
-  
-  // App info
-  applicationName: 'Klinchapp',
-  category: 'Technology',
-}
-
-// ===========================================
-// VIEWPORT
-// ===========================================
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  themeColor: '#6B2C6B',
-}
-
-// ===========================================
-// STRUCTURED DATA (JSON-LD)
-// ===========================================
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Organization',
-      '@id': 'https://www.klinchapp.com/#organization',
-      name: 'Klinchapp',
-      url: 'https://www.klinchapp.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://www.klinchapp.com/logo.jpg',
-      },
-      sameAs: [
-        'https://twitter.com/klinchapp',
-        'https://www.instagram.com/klinchapp',
-      ],
-    },
-    {
-      '@type': 'WebSite',
-      '@id': 'https://www.klinchapp.com/#website',
-      url: 'https://www.klinchapp.com',
-      name: 'Klinchapp',
-      description: 'AI-Powered Social Media Post Generator',
-      publisher: {
-        '@id': 'https://www.klinchapp.com/#organization',
-      },
-    },
-    {
-      '@type': 'SoftwareApplication',
-      name: 'Klinchapp',
-      description: 'AI-powered social media post generator for Instagram, Twitter/X, LinkedIn, Facebook, and TikTok.',
-      url: 'https://www.klinchapp.com',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Web Browser',
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-        description: 'Free tier with 60 posts per month',
-      },
-    },
-  ],
 }
 
 export default function RootLayout({
@@ -160,29 +64,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/logo.jpg" />
       </head>
-      <body className={inter.className}>
-        {children}
-        
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-NX5T2DB7CL"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-NX5T2DB7CL');
-          `}
-        </Script>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   )
 }

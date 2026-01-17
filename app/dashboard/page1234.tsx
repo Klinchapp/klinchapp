@@ -166,6 +166,7 @@ export default function Dashboard() {
   const [originalPlatform, setOriginalPlatform] = useState('instagram')
   const [mood, setMood] = useState('professional')
   const [language, setLanguage] = useState('english')
+  const [generatedLanguage, setGeneratedLanguage] = useState<string | null>(null) // Track language of generated content
   const [category, setCategory] = useState('')
   const [brandName, setBrandName] = useState('')
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([])
@@ -212,8 +213,9 @@ export default function Dashboard() {
     const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single()
     setProfile(profile)
     // Updated to 60 posts per month
-    const postsLimit = 60
-    setRemainingPosts(profile ? postsLimit - profile.posts_this_month : postsLimit)
+    const postsLimit = profile?.posts_limit || 60
+    const postsUsed = profile?.posts_this_month || 0
+    setRemainingPosts(postsLimit - postsUsed)
     
     const { data: posts } = await supabase.from('posts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).limit(10)
     if (posts) setPostHistory(posts)
@@ -236,6 +238,7 @@ export default function Dashboard() {
     setBookTitle('')
     setBookAuthor('')
     setGeneratedContent('')
+    setGeneratedLanguage(null)
     setError('')
     setPostType(newType)
     setShowPlatformWarning(false)
@@ -354,9 +357,10 @@ export default function Dashboard() {
       if (!response.ok) { setError(data.message || 'Failed to generate'); setIsGenerating(false); return }
 
       setGeneratedContent(data.content)
+      setGeneratedLanguage(language) // Store the language used for this generation
       setRemainingPosts(data.remainingPosts)
       setOriginalPlatform(platform)
-      checkUser()
+      checkUser() // Refresh user data to get updated post count
     } catch (err: any) {
       setError(err.message || 'Something went wrong')
     } finally {
@@ -387,8 +391,9 @@ export default function Dashboard() {
   const isOverLimit = charCount > charLimit
   const isNearLimit = charPercentage > 80 && !isOverLimit
 
-  // Check if current language is RTL
-  const isRTL = languageConfig[language]?.rtl || false
+  // RTL only applies to generated content, based on the language it was generated in (not current selection)
+  const isGeneratedRTL = generatedLanguage ? (languageConfig[generatedLanguage]?.rtl || false) : false
+  const isNonEnglishGenerated = generatedLanguage && generatedLanguage !== 'english'
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#FDFAFF] to-[#F3E8FF]">
@@ -404,7 +409,7 @@ export default function Dashboard() {
           <a href="/" className="text-2xl font-bold text-[#6B2C6B]">Klinchapp</a>
           <div className="flex items-center gap-4">
             <div className="px-4 py-2 bg-[#F3E8FF] rounded-full text-sm font-semibold text-[#6B2C6B]">
-              {remainingPosts}/60 posts left
+              {remainingPosts !== null ? remainingPosts : '...'}/60 posts left
             </div>
             <button onClick={() => setShowHistory(!showHistory)} className="p-2 text-gray-600 hover:text-[#6B2C6B] transition-colors" title="History">
               <ClockIcon />
@@ -479,10 +484,10 @@ export default function Dashboard() {
         {/* Main Grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {/* Input Panel */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
             <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2"><CameraIcon className="w-5 h-5" /> Product Details</h3>
             
-            <div className="mb-6">
+            <div className="flex-1 overflow-y-auto mb-4">
             {postType === 'product' ? (
               <>
                 {/* Image Upload */}
@@ -578,8 +583,8 @@ export default function Dashboard() {
 
             {(postType === 'text' || postType === 'product') && (
               <>
-                {/* Platform, Mood, Language Selection */}
-                <div className="grid grid-cols-3 gap-3 mb-4">
+                {/* Platform and Mood Selection */}
+                <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Platform</label>
                     <select value={platform} onChange={(e) => handlePlatformChange(e.target.value)} className="w-full p-3 border-2 border-gray-200 rounded-xl">
@@ -601,27 +606,24 @@ export default function Dashboard() {
                       <option value="inspirational">Inspirational</option>
                     </select>
                   </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-1">
-                      <GlobeIcon className="w-4 h-4" /> Language
-                    </label>
-                    <select value={language} onChange={(e) => setLanguage(e.target.value)} className="w-full p-3 border-2 border-gray-200 rounded-xl">
-                      {Object.entries(languageConfig).map(([key, lang]) => (
-                        <option key={key} value={key}>{lang.flag} {lang.name}</option>
-                      ))}
-                    </select>
-                  </div>
                 </div>
 
-                {/* Language hint for non-English */}
-                {language !== 'english' && (
-                  <div className="mb-4 p-2 bg-[#F3E8FF] rounded-lg">
-                    <p className="text-xs text-[#6B2C6B] flex items-center gap-1">
-                      <GlobeIcon className="w-3 h-3" />
+                {/* Language Selection - Separate row */}
+                <div className="mb-4">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-1">
+                    <GlobeIcon className="w-4 h-4" /> Language
+                  </label>
+                  <select value={language} onChange={(e) => setLanguage(e.target.value)} className="w-full p-3 border-2 border-gray-200 rounded-xl">
+                    {Object.entries(languageConfig).map(([key, lang]) => (
+                      <option key={key} value={key}>{lang.flag} {lang.name}</option>
+                    ))}
+                  </select>
+                  {language !== 'english' && (
+                    <p className="text-xs text-[#6B2C6B] mt-1">
                       Post will be generated in {languageConfig[language].name} with localized hashtags
                     </p>
-                  </div>
-                )}
+                  )}
+                </div>
 
                 {/* Platform Change Warning */}
                 {showPlatformWarning && (
@@ -649,24 +651,26 @@ export default function Dashboard() {
             {error && <div className="mb-4 p-4 bg-[#F3E8FF] border border-[#6B2C6B]/20 rounded-xl text-[#6B2C6B] text-sm">{error}</div>}
             </div>
 
-            <button onClick={handleGenerate} disabled={isGenerating || (postType === 'product' && imageCheckStatus !== 'passed') || (postType === 'text' && !textPrompt.trim())} className="w-full p-4 bg-gradient-to-r from-[#6B2C6B] via-[#8B3A8B] to-[#6B2C6B] text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-xl transition-all disabled:opacity-50">
+            {/* Generate Button - Fixed at bottom */}
+            <button onClick={handleGenerate} disabled={isGenerating || (postType === 'product' && imageCheckStatus !== 'passed') || (postType === 'text' && !textPrompt.trim())} className="w-full p-4 bg-gradient-to-r from-[#6B2C6B] via-[#8B3A8B] to-[#6B2C6B] text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-xl transition-all disabled:opacity-50 flex-shrink-0">
               {isGenerating ? <><LoaderIcon /> Generating...</> : <><WandIcon /> Generate Post</>}
             </button>
           </div>
 
           {/* Output Panel */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 min-h-[550px]">
-            <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2"><WandIcon /> Generated Content</h3>
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 min-h-[550px] flex flex-col">
+            <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2 flex-shrink-0"><WandIcon /> Generated Content</h3>
             
             {generatedContent ? (
-              <>
-                <div className="mb-4 flex items-center justify-between">
+              <div className="flex flex-col flex-1">
+                {/* Header info - fixed */}
+                <div className="mb-4 flex items-center justify-between flex-shrink-0">
                   <div className="flex items-center gap-2">
                     <span className="text-[#6B2C6B]">{platformConfig[platform]?.icon}</span>
                     <span className="font-semibold text-[#6B2C6B]">{platformConfig[platform]?.name}</span>
-                    {language !== 'english' && (
+                    {isNonEnglishGenerated && generatedLanguage && (
                       <span className="text-xs bg-[#F3E8FF] text-[#6B2C6B] px-2 py-1 rounded-full">
-                        {languageConfig[language].flag} {languageConfig[language].name}
+                        {languageConfig[generatedLanguage].flag} {languageConfig[generatedLanguage].name}
                       </span>
                     )}
                   </div>
@@ -678,8 +682,8 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-                {/* Character limit bar */}
-                <div className="mb-4 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                {/* Character limit bar - fixed */}
+                <div className="mb-4 h-1.5 bg-gray-100 rounded-full overflow-hidden flex-shrink-0">
                   <div 
                     className={`h-full transition-all ${isOverLimit ? 'bg-[#6B2C6B]' : isNearLimit ? 'bg-[#8B3A8B]' : 'bg-[#6B2C6B]/50'}`}
                     style={{ width: `${Math.min(charPercentage, 100)}%` }}
@@ -687,32 +691,34 @@ export default function Dashboard() {
                 </div>
 
                 {isOverLimit && (
-                  <div className="mb-4 p-3 bg-[#F3E8FF] border border-[#6B2C6B]/20 rounded-xl flex items-start gap-2">
+                  <div className="mb-4 p-3 bg-[#F3E8FF] border border-[#6B2C6B]/20 rounded-xl flex items-start gap-2 flex-shrink-0">
                     <AlertIcon className="text-[#6B2C6B] flex-shrink-0 mt-0.5" />
                     <p className="text-sm text-[#6B2C6B]">Content exceeds {platformConfig[platform]?.name} limit by {(charCount - charLimit).toLocaleString()} characters. Consider regenerating or editing.</p>
                   </div>
                 )}
                 
+                {/* Content area - scrollable */}
                 <div 
-                  className="bg-gray-50 rounded-xl p-4 mb-4 min-h-[200px]"
+                  className="bg-gray-50 rounded-xl p-4 mb-4 min-h-[150px] max-h-[200px] overflow-y-auto flex-shrink-0"
                   style={{ 
-                    direction: isRTL ? 'rtl' : 'ltr',
-                    textAlign: isRTL ? 'right' : 'left'
+                    direction: isGeneratedRTL ? 'rtl' : 'ltr',
+                    textAlign: isGeneratedRTL ? 'right' : 'left'
                   }}
                 >
                   <p className="whitespace-pre-wrap text-gray-700 leading-relaxed">{generatedContent}</p>
                 </div>
 
-                {/* Non-English disclaimer */}
-                {language !== 'english' && (
-                  <div className="mb-4 p-2 bg-yellow-50 border border-yellow-200 rounded-lg">
+                {/* Non-English disclaimer - only shows after generation in non-English */}
+                {isNonEnglishGenerated && generatedLanguage && (
+                  <div className="mb-4 p-2 bg-yellow-50 border border-yellow-200 rounded-lg flex-shrink-0">
                     <p className="text-xs text-yellow-800">
-                      ⚠️ AI-generated {languageConfig[language].name} content. Native speaker review recommended for professional use.
+                      ⚠️ AI-generated {languageConfig[generatedLanguage].name} content. Native speaker review recommended for professional use.
                     </p>
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-3">
+                {/* Action buttons - fixed */}
+                <div className="grid grid-cols-2 gap-3 flex-shrink-0">
                   <button onClick={handleCopy} className="p-3 bg-white border-2 border-gray-200 rounded-xl font-semibold flex items-center justify-center gap-2 hover:border-[#6B2C6B] transition-all">
                     {copySuccess ? <><CheckIcon className="text-[#6B2C6B]" /> Copied!</> : <><CopyIcon /> Copy</>}
                   </button>
@@ -721,8 +727,8 @@ export default function Dashboard() {
                   </button>
                 </div>
 
-                {/* Share Button - Platform Specific */}
-                <div className="mt-4">
+                {/* Share Button - fixed at bottom */}
+                <div className="mt-4 flex-shrink-0">
                   <button 
                     onClick={() => handleShare(platform)}
                     className={`w-full p-4 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all ${platformConfig[platform]?.color}`}
@@ -734,9 +740,9 @@ export default function Dashboard() {
                     }
                   </button>
                 </div>
-              </>
+              </div>
             ) : (
-              <div className="flex flex-col items-center justify-center h-[350px] text-gray-400">
+              <div className="flex flex-col items-center justify-center flex-1 text-gray-400">
                 <WandIcon /><WandIcon /><WandIcon />
                 <p className="font-medium mt-4">Your post will appear here</p>
                 <p className="text-sm mt-1">Fill in details and click Generate</p>

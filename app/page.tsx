@@ -1,127 +1,147 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase-browser'
 import Link from 'next/link'
 
-// Monoline SVG Icons
-const RocketIcon = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-  </svg>
-)
+// Icons
+const CheckIcon = () => (<svg className="w-5 h-5 text-[#6B2C6B]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>)
+const SparklesIcon = () => (<svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>)
+const LoaderIcon = () => (<svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>)
 
-const BoltIcon = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-  </svg>
-)
+export default function Home() {
+  const router = useRouter()
+  const supabase = createClient()
+  const [checkingAuth, setCheckingAuth] = useState(true)
 
-const ChartIcon = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-  </svg>
-)
+  useEffect(() => {
+    // Check if user is already logged in
+    const checkAuth = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        // User is logged in, redirect to dashboard
+        router.push('/dashboard')
+      } else {
+        setCheckingAuth(false)
+      }
+    }
+    checkAuth()
+  }, [router, supabase])
 
-export default function HomePage() {
+  // Show loading while checking auth
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#FDFAFF] to-[#FDF2F8]">
+        <LoaderIcon />
+      </div>
+    )
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#4A1D4A] via-[#6B2C6B] to-[#4A1D4A] relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute top-[-50%] right-[-50%] w-full h-full bg-[radial-gradient(circle,rgba(236,72,153,0.15)_0%,transparent_70%)] rounded-full" />
-      <div className="absolute bottom-[-30%] left-[-30%] w-[80%] h-[80%] bg-[radial-gradient(circle,rgba(249,112,102,0.1)_0%,transparent_70%)] rounded-full" />
-      
-      {/* Navigation */}
-      <nav className="relative z-10 max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-xl bg-white shadow-lg flex items-center justify-center overflow-hidden">
-            <img 
-              src="/logo.jpg" 
-              alt="Klinchapp" 
-              className="w-full h-full object-contain"
-            />
+    <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8]">
+      {/* Header */}
+      <header className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img src="/logo.jpg" alt="Klinchapp" className="w-12 h-12 rounded-xl object-contain shadow-sm bg-white" />
+            <span className="text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
           </div>
-          <span className="text-2xl font-extrabold text-white">Klinchapp</span>
+          <div className="flex items-center gap-4">
+            <Link href="/login" className="text-[#6B2C6B] font-semibold hover:underline">Login</Link>
+            <Link href="/login" className="px-6 py-2.5 bg-[#6B2C6B] text-white rounded-xl font-semibold hover:bg-[#8B3A8B] transition-all shadow-lg shadow-[#6B2C6B]/20">
+              Get Started Free
+            </Link>
+          </div>
         </div>
-        <div className="flex items-center gap-4">
-          <Link 
-            href="/login" 
-            className="px-6 py-2.5 text-white font-semibold hover:bg-white/10 rounded-lg transition-all"
-          >
-            Sign In
-          </Link>
-          <Link 
-            href="/login" 
-            className="px-6 py-2.5 bg-white text-[#6B2C6B] font-bold rounded-xl hover:shadow-xl transition-all"
-          >
-            Get Started Free
-          </Link>
-        </div>
-      </nav>
+      </header>
 
       {/* Hero Section */}
-      <main className="relative z-10 max-w-7xl mx-auto px-6 py-20">
-        <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-            Create. Post.<br />
-            <span className="bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
-              Nail It.
-            </span>
-          </h1>
-          
-          <p className="text-xl text-white/80 leading-relaxed mb-10 max-w-2xl">
-            Upload your product, pick your platform, and let AI craft scroll-stopping content. 
-            Then post directly — no copy-paste needed.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <Link 
-              href="/login" 
-              className="px-8 py-4 bg-white text-[#6B2C6B] font-bold text-lg rounded-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2"
-            >
-              <RocketIcon />
-              Start Creating Free
-            </Link>
-            <a 
-              href="#features" 
-              className="px-8 py-4 border-2 border-white/30 text-white font-semibold text-lg rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-2"
-            >
-              See How It Works
-            </a>
-          </div>
-
-          {/* Features - MONOLINE ICONS */}
-          <div id="features" className="space-y-4">
-            <div className="flex items-center gap-4 text-white/90">
-              <div className="w-12 h-12 bg-white/15 rounded-xl flex items-center justify-center">
-                <RocketIcon />
-              </div>
-              <span className="text-lg">Direct posting to all major platforms</span>
-            </div>
-            <div className="flex items-center gap-4 text-white/90">
-              <div className="w-12 h-12 bg-white/15 rounded-xl flex items-center justify-center">
-                <BoltIcon />
-              </div>
-              <span className="text-lg">AI-powered content in seconds</span>
-            </div>
-            <div className="flex items-center gap-4 text-white/90">
-              <div className="w-12 h-12 bg-white/15 rounded-xl flex items-center justify-center">
-                <ChartIcon />
-              </div>
-              <span className="text-lg">Track all your posts in one place</span>
-            </div>
-          </div>
+      <section className="max-w-7xl mx-auto px-6 py-20 text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#F3E8FF] rounded-full text-[#6B2C6B] text-sm font-semibold mb-6">
+          <SparklesIcon />
+          AI-Powered Social Media Content
         </div>
-      </main>
+        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+          Create Stunning Social Posts<br />
+          <span className="text-[#6B2C6B]">In Seconds</span>
+        </h1>
+        <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+          Upload your product image, select your style, and let AI generate engaging social media content for Instagram, Twitter, LinkedIn, and more.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/login" className="px-8 py-4 bg-[#6B2C6B] text-white rounded-xl font-bold text-lg hover:bg-[#8B3A8B] transition-all shadow-xl shadow-[#6B2C6B]/30">
+            Start Creating Free →
+          </Link>
+          <a href="#how-it-works" className="px-8 py-4 bg-white text-[#6B2C6B] rounded-xl font-bold text-lg border-2 border-[#6B2C6B] hover:bg-[#F3E8FF] transition-all">
+            See How It Works
+          </a>
+        </div>
+        <p className="mt-6 text-gray-500 text-sm">No credit card required • 60 free posts/month</p>
+      </section>
+
+      {/* Features */}
+      <section className="max-w-7xl mx-auto px-6 py-20">
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Why Choose Klinchapp?</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { title: 'AI-Powered', desc: 'Advanced AI analyzes your product and creates engaging, platform-optimized content.' },
+            { title: 'Multi-Platform', desc: 'Generate content tailored for Instagram, Twitter, LinkedIn, Facebook, and TikTok.' },
+            { title: 'Multi-Language', desc: 'Create posts in English, Spanish, Portuguese, French, Arabic, and Hindi.' },
+          ].map((feature, i) => (
+            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-[#F3E8FF] rounded-xl flex items-center justify-center mb-4">
+                <CheckIcon />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+              <p className="text-gray-600">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how-it-works" className="max-w-7xl mx-auto px-6 py-20 bg-white rounded-3xl my-10">
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">How It Works</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { step: '1', title: 'Upload', desc: 'Upload your product image or describe your content.' },
+            { step: '2', title: 'Customize', desc: 'Choose platform, mood, language, and features to highlight.' },
+            { step: '3', title: 'Generate', desc: 'Get AI-generated content ready to post in seconds.' },
+          ].map((item, i) => (
+            <div key={i} className="text-center">
+              <div className="w-16 h-16 bg-[#6B2C6B] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                {item.step}
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+              <p className="text-gray-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="max-w-7xl mx-auto px-6 py-20 text-center">
+        <div className="bg-gradient-to-r from-[#6B2C6B] to-[#8B3A8B] rounded-3xl p-12 text-white">
+          <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Social Media?</h2>
+          <p className="text-lg opacity-90 mb-8">Join thousands of creators and businesses using Klinchapp.</p>
+          <Link href="/login" className="inline-block px-8 py-4 bg-white text-[#6B2C6B] rounded-xl font-bold text-lg hover:bg-gray-100 transition-all">
+            Get Started Free →
+          </Link>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="relative z-10 max-w-7xl mx-auto px-6 py-8 border-t border-white/10">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/60 text-sm">
-            © 2026 Klinchapp. All rights reserved.
-          </p>
+      <footer className="border-t border-gray-200 bg-white/50">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-3">
+            <img src="/logo.jpg" alt="Klinchapp" className="w-8 h-8 rounded-lg" />
+            <span className="font-bold text-[#6B2C6B]">Klinchapp</span>
+          </div>
+          <p className="text-gray-500 text-sm">© 2026 Klinchapp. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/terms" className="text-white/60 hover:text-white text-sm transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="/privacy" className="text-white/60 hover:text-white text-sm transition-colors">
-              Privacy Policy
-            </Link>
+            <Link href="/terms" className="text-[#6B2C6B] text-sm font-medium hover:underline">Terms</Link>
+            <Link href="/privacy" className="text-[#6B2C6B] text-sm font-medium hover:underline">Privacy</Link>
           </div>
         </div>
       </footer>

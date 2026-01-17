@@ -1,60 +1,74 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+  description: 'Klinchapp Terms of Service - Read our terms and conditions for using our AI-powered social media post generator.',
+  alternates: {
+    canonical: 'https://www.klinchapp.com/terms',
+  },
+  openGraph: {
+    title: 'Terms of Service | Klinchapp',
+    description: 'Klinchapp Terms of Service',
+    url: 'https://www.klinchapp.com/terms',
+  },
+}
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8]">
       <header className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <img src="/logo.jpg" alt="Klinchapp" className="w-12 h-12 rounded-xl object-contain shadow-sm bg-white" />
+            <img src="/logo.jpg" alt="Klinchapp" className="w-10 h-10 rounded-xl object-contain shadow-sm bg-white" />
             <span className="text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
           </Link>
-          <Link href="/login" className="px-5 py-2.5 bg-[#6B2C6B] text-white rounded-xl font-semibold hover:bg-[#5a245a] transition-colors">
-            Sign In
-          </Link>
+          <Link href="/" className="text-[#6B2C6B] font-semibold hover:underline">← Home</Link>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 py-12 flex-1">
-        <h1 className="text-4xl font-extrabold text-[#6B2C6B] mb-8">Terms of Service</h1>
-        <p className="text-gray-600 mb-6">Last updated: January 2026</p>
-        
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">1. Acceptance of Terms</h2>
-          <p className="text-gray-600 leading-relaxed">By accessing and using Klinchapp, you accept and agree to be bound by the terms and conditions of this agreement.</p>
-        </section>
+      <main className="max-w-4xl mx-auto px-6 py-12">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Terms of Service</h1>
+          <p className="text-gray-500 mb-8">Last updated: January 2026</p>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">2. Description of Service</h2>
-          <p className="text-gray-600 leading-relaxed">Klinchapp provides an AI-powered platform for creating and managing social media content.</p>
-        </section>
+          <div className="prose prose-gray max-w-none">
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">1. Acceptance of Terms</h2>
+            <p className="text-gray-600 mb-4">By accessing and using Klinchapp ("the Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our Service.</p>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">3. User Responsibilities</h2>
-          <p className="text-gray-600 leading-relaxed">You are responsible for maintaining the confidentiality of your account and for all activities that occur under your account.</p>
-        </section>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">2. Description of Service</h2>
+            <p className="text-gray-600 mb-4">Klinchapp is an AI-powered social media content generation tool that helps users create engaging posts for various platforms including Instagram, Twitter, LinkedIn, Facebook, and TikTok.</p>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">4. Content Policy</h2>
-          <p className="text-gray-600 leading-relaxed">Users must not upload content that is offensive, inappropriate, or violates any laws.</p>
-        </section>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">3. User Accounts</h2>
+            <p className="text-gray-600 mb-4">To use certain features of the Service, you must create an account. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">5. Contact Us</h2>
-          <p className="text-gray-600 leading-relaxed">If you have any questions, please contact us at support@klinchapp.com.</p>
-        </section>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">4. Acceptable Use</h2>
+            <p className="text-gray-600 mb-4">You agree not to: upload inappropriate, offensive, or illegal content; use the Service for spam or misleading purposes; attempt to circumvent usage limits or security measures; violate any applicable laws or regulations; infringe on intellectual property rights of others.</p>
 
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <Link href="/" className="text-[#6B2C6B] font-semibold hover:underline">← Back to Home</Link>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">5. Content Ownership</h2>
+            <p className="text-gray-600 mb-4">You retain ownership of content you upload. By using our Service, you grant Klinchapp a limited license to process your content for the purpose of providing the Service. Generated content is provided for your use, and you are responsible for how you use it.</p>
+
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">6. Usage Limits</h2>
+            <p className="text-gray-600 mb-4">Free accounts are limited to 60 posts per month. Usage limits reset on the first day of each calendar month. We reserve the right to modify these limits with notice.</p>
+
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">7. AI-Generated Content</h2>
+            <p className="text-gray-600 mb-4">Content generated by our AI is provided "as is." You are responsible for reviewing and editing generated content before publishing. We do not guarantee the accuracy, appropriateness, or effectiveness of AI-generated content.</p>
+
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">8. Limitation of Liability</h2>
+            <p className="text-gray-600 mb-4">Klinchapp is provided "as is" without warranties of any kind. We are not liable for any damages arising from your use of the Service.</p>
+
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">9. Contact</h2>
+            <p className="text-gray-600 mb-4">For questions about these Terms, please contact us at support@klinchapp.com.</p>
+          </div>
         </div>
       </main>
 
-      <footer className="border-t border-gray-200 bg-white/50">
+      <footer className="border-t border-gray-200 bg-white/50 mt-12">
         <div className="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">© 2026 Klinchapp. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/terms" className="text-[#6B2C6B] text-sm font-medium hover:underline">Terms of Service</Link>
-            <Link href="/privacy" className="text-[#6B2C6B] text-sm font-medium hover:underline">Privacy Policy</Link>
+            <Link href="/terms" className="text-[#6B2C6B] text-sm font-medium hover:underline">Terms</Link>
+            <Link href="/privacy" className="text-[#6B2C6B] text-sm font-medium hover:underline">Privacy</Link>
           </div>
         </div>
       </footer>
