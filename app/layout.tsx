@@ -4,55 +4,34 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const siteUrl = 'https://www.klinchapp.com'
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL('https://www.klinchapp.com'),
   title: {
-    default: 'Klinchapp - AI-Powered Social Media Post Generator',
+    default: 'Klinchapp - AI-Powered Social Media Post Creator',
     template: '%s | Klinchapp'
   },
-  description: 'Create stunning social media posts in seconds. Upload your product image and let AI generate engaging content for Instagram, Twitter, LinkedIn, Facebook, and TikTok.',
-  keywords: ['social media', 'AI content generator', 'Instagram posts', 'Twitter posts', 'LinkedIn posts', 'content creator', 'marketing tool'],
-  authors: [{ name: 'Klinchapp' }],
-  creator: 'Klinchapp',
-  publisher: 'Klinchapp',
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  alternates: {
-    canonical: siteUrl,
-  },
+  description: 'Create scroll-stopping social media posts in seconds. Upload your product image and let AI craft engaging content for Instagram, Twitter, LinkedIn, Facebook, and TikTok.',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: siteUrl,
+    url: 'https://www.klinchapp.com',
     siteName: 'Klinchapp',
-    title: 'Klinchapp - AI-Powered Social Media Post Generator',
-    description: 'Create stunning social media posts in seconds with AI. Upload your product image and generate engaging content for all platforms.',
+    title: 'Klinchapp - Create. Post. Nail It.',
+    description: 'Upload your product, pick your platform, and let AI craft scroll-stopping content.',
     images: [
       {
-        url: `${siteUrl}/og-image.jpg`,
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Klinchapp - AI Social Media Post Generator',
+        alt: 'Klinchapp - AI Social Media Post Creator',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Klinchapp - AI-Powered Social Media Post Generator',
-    description: 'Create stunning social media posts in seconds with AI.',
-    images: [`${siteUrl}/og-image.jpg`],
-    creator: '@klinchapp',
+    title: 'Klinchapp - Create. Post. Nail It.',
+    description: 'Upload your product, pick your platform, and let AI craft scroll-stopping content.',
+    images: ['/og-image.png'],
   },
 }
 
@@ -63,10 +42,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/logo.jpg" />
-      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
