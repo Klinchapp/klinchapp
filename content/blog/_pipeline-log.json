@@ -98,5 +98,11 @@
         "tokens_out": 31
       }
     ]
+  },
+  {
+    "date": "2026-04-17T14:00:20.722Z",
+    "stage": "publish",
+    "file": "ai-content-quality-over-quantity.mdx",
+    "status": "published"
   }
 ]
