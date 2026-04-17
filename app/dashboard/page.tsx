@@ -303,6 +303,7 @@ export default function Dashboard() {
             <span className="text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
           </div>
           <div className="flex items-center gap-3">
+            <a href="/blog" className="text-[#6B2C6B] font-semibold hover:underline text-sm">Blog</a>
             {remainingPosts !== null && (<div className="px-4 py-2 bg-[#F3E8FF] rounded-full text-sm font-semibold text-[#6B2C6B]">{remainingPosts}/60 posts left</div>)}
             <button onClick={() => setShowHistory(!showHistory)} className={`p-2.5 rounded-lg transition-all ${showHistory ? 'bg-[#6B2C6B] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="History"><ClockIcon /></button>
             <button onClick={() => setShowSettings(!showSettings)} className={`p-2.5 rounded-lg transition-all ${showSettings ? 'bg-[#6B2C6B] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Settings"><CogIcon /></button>
