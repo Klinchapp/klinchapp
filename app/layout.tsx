@@ -46,6 +46,8 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/logo.jpg" />
         <link rel="alternate" type="application/rss+xml" title="Klinchapp Blog" href="/blog/rss.xml" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NX5T2DB7CL"></script>
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NX5T2DB7CL');` }} />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
