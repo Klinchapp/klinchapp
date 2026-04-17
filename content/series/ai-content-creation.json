@@ -1,0 +1,63 @@
+{
+  "slug": "ai-content-creation",
+  "title": "AI Content Creation: The Complete Playbook",
+  "description": "Everything creators and marketers need to know about using AI to produce better content faster, without sacrificing quality or authenticity.",
+  "totalPosts": 6,
+  "tags": ["content-creation", "ai-writing", "marketing"],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "AI-Generated Content: Why Quality Beats Quantity Every Time",
+      "topicBrief": "The case against content farms. Why publishing 2 great AI-assisted articles beats 20 mediocre ones. Cover: Google's stance on AI content, what 'quality' actually means for SEO in 2026, and how to use AI as a research and drafting partner rather than a replacement writer.",
+      "targetSlug": "ai-content-quality-over-quantity",
+      "targetKeyword": "AI generated content quality",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "How to Train AI on Your Writing Style",
+      "topicBrief": "Step-by-step guide to getting AI to write in YOUR voice. Cover: collecting writing samples, crafting style guides for AI, using system prompts effectively, iterating on output. Include a template style prompt readers can copy and customise.",
+      "targetSlug": "train-ai-your-writing-style",
+      "targetKeyword": "train AI to write in your style",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "AI for Blog Writing: A Workflow That Actually Works",
+      "topicBrief": "A practical workflow: research with AI, outline with AI, draft with AI, edit as a human. Show each step with real examples. Emphasise that the human editing step is what separates good AI content from generic slop.",
+      "targetSlug": "ai-blog-writing-workflow",
+      "targetKeyword": "AI blog writing workflow",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "Creating Social Media Content with AI: Platform by Platform",
+      "topicBrief": "How AI content needs differ across Instagram, X, LinkedIn, TikTok, and Facebook. Cover character limits, tone expectations, hashtag strategies, and which platforms are most receptive to AI-assisted content. Reference Klinchapp's multi-platform approach.",
+      "targetSlug": "ai-social-media-platform-guide",
+      "targetKeyword": "AI social media content creation",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "The Ethics of AI Content: Transparency, Attribution, and Trust",
+      "topicBrief": "Should you disclose AI use? What readers and customers actually think. Cover: transparency best practices, legal considerations, building trust with AI-generated content, the Klinchapp approach of open AI authorship.",
+      "targetSlug": "ethics-of-ai-content",
+      "targetKeyword": "AI content ethics transparency",
+      "format": "opinion",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "AI Content in 2027: What's Coming and How to Prepare",
+      "topicBrief": "Forward-looking piece on where AI content creation is heading. Cover: multimodal content, personalisation at scale, AI video and audio, evolving search algorithms, and what skills content creators should develop now.",
+      "targetSlug": "ai-content-future-2027",
+      "targetKeyword": "future of AI content creation",
+      "format": "opinion",
+      "status": "pending"
+    }
+  ]
+}

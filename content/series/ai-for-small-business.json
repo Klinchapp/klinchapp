@@ -1,0 +1,81 @@
+{
+  "slug": "ai-for-small-business",
+  "title": "AI for Small Business: A Practical Guide",
+  "description": "A no-nonsense series helping small business owners understand, evaluate, and adopt AI tools that actually save time and money.",
+  "totalPosts": 8,
+  "tags": ["small-business", "ai-tools", "productivity"],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "AI for Small Business: Where to Start Without the Hype",
+      "topicBrief": "Cut through the noise. What AI actually means for a small business owner today. Focus on practical categories: content creation, customer service, bookkeeping, scheduling. Include 3 real examples of small businesses using AI tools right now.",
+      "targetSlug": "ai-small-business-where-to-start",
+      "targetKeyword": "AI for small business",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "5 AI Tools That Pay for Themselves in Week One",
+      "topicBrief": "Specific, named tools that deliver immediate ROI for small businesses. Cover: AI writing assistants, chatbot builders, invoice/receipt processors, social media schedulers with AI, and email automation. Include pricing and time-saved estimates.",
+      "targetSlug": "ai-tools-that-pay-for-themselves",
+      "targetKeyword": "best AI tools for small business",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "How to Write AI Prompts That Actually Work for Your Business",
+      "topicBrief": "Practical prompt engineering for non-technical people. Show before/after examples for common business tasks: writing product descriptions, drafting customer emails, creating social posts, summarising meeting notes. Keep it simple.",
+      "targetSlug": "ai-prompts-for-business",
+      "targetKeyword": "AI prompts for business",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "AI Customer Service: Chatbots That Don't Annoy Your Customers",
+      "topicBrief": "When chatbots help vs when they hurt. How to set up AI customer support that handles the easy stuff and escalates the rest. Cover specific tools, setup tips, and what customers actually think about AI support.",
+      "targetSlug": "ai-customer-service-chatbots",
+      "targetKeyword": "AI chatbot for customer service",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "Using AI for Social Media Without Losing Your Brand Voice",
+      "topicBrief": "How small businesses can use AI to generate social content while keeping it authentic. Cover: training AI on your brand voice, editing AI output, mixing AI and human content, platforms that integrate AI natively. Reference Klinchapp as an example.",
+      "targetSlug": "ai-social-media-brand-voice",
+      "targetKeyword": "AI social media content generator",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "The Real Cost of AI: What Small Businesses Actually Spend",
+      "topicBrief": "Break down actual costs: free tiers, paid plans, API costs, hidden fees. Compare DIY AI tools vs hiring someone. Include a monthly budget template for a small business AI stack. Be honest about what's worth paying for.",
+      "targetSlug": "real-cost-of-ai-small-business",
+      "targetKeyword": "cost of AI tools for business",
+      "format": "research-breakdown",
+      "status": "pending"
+    },
+    {
+      "order": 7,
+      "topicTitle": "AI Mistakes Small Businesses Make (And How to Avoid Them)",
+      "topicBrief": "Common pitfalls: over-automating, ignoring quality checks, not reading AI output before sending, choosing complex tools over simple ones, trying to do everything at once. Real examples of what goes wrong.",
+      "targetSlug": "ai-mistakes-small-businesses",
+      "targetKeyword": "AI mistakes to avoid",
+      "format": "opinion",
+      "status": "pending"
+    },
+    {
+      "order": 8,
+      "topicTitle": "Your 30-Day AI Adoption Plan: From Zero to Productive",
+      "topicBrief": "A concrete, week-by-week plan for a small business to go from 'I've heard of ChatGPT' to 'AI handles 20% of my routine work'. Week 1: audit tasks. Week 2: pick 2 tools. Week 3: integrate. Week 4: measure results. Include a checklist.",
+      "targetSlug": "30-day-ai-adoption-plan",
+      "targetKeyword": "AI adoption plan small business",
+      "format": "how-to-guide",
+      "status": "pending"
+    }
+  ]
+}

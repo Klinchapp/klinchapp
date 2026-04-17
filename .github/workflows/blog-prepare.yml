@@ -1,0 +1,46 @@
+name: Blog Pipeline - Prepare
+
+on:
+  schedule:
+    # Monday and Thursday at 9am UTC (24h before publish on Tue/Fri)
+    - cron: '0 9 * * 1,4'
+  workflow_dispatch: {}
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run prepare stage
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GOOGLE_AI_API_KEY: ${{ secrets.GOOGLE_AI_API_KEY }}
+        run: node scripts/blog-pipeline.mjs prepare
+
+      - name: Commit and push
+        run: |
+          git config user.name "Kira (Blog Pipeline)"
+          git config user.email "kira@klinchapp.com"
+          git add content/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "blog: prepare scheduled post"
+            git push
+          fi

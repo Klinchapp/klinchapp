@@ -1,0 +1,63 @@
+{
+  "slug": "understanding-ai",
+  "title": "Understanding AI: From Zero to Informed",
+  "description": "A foundational series that explains artificial intelligence from the ground up. No technical background needed — just curiosity.",
+  "totalPosts": 6,
+  "tags": ["ai-fundamentals", "explainer", "beginners"],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "What Is AI, Really? A No-Nonsense Explainer",
+      "topicBrief": "Strip away the sci-fi. Explain what AI actually is in plain language: pattern recognition, machine learning, neural networks, and large language models. Use everyday analogies. Cover what AI can and cannot do today. Address common misconceptions.",
+      "targetSlug": "what-is-ai-really",
+      "targetKeyword": "what is artificial intelligence",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "ChatGPT, Claude, Gemini: What's the Difference and Which Should You Use?",
+      "topicBrief": "A practical comparison of the major AI assistants. Cover strengths, weaknesses, pricing, and best use cases for each. Include specific examples of tasks where one outperforms the others. Be honest and fair — no vendor bias.",
+      "targetSlug": "chatgpt-claude-gemini-compared",
+      "targetKeyword": "ChatGPT vs Claude vs Gemini comparison",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "How AI Actually Learns: The Simple Version",
+      "topicBrief": "Explain training data, weights, fine-tuning, and reinforcement learning without maths. Use the analogy of learning a language vs studying a textbook. Cover why AI hallucinates and why it sometimes gets things spectacularly wrong.",
+      "targetSlug": "how-ai-learns-simple",
+      "targetKeyword": "how does AI learn",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "AI Hallucinations: Why AI Lies and How to Catch It",
+      "topicBrief": "What hallucinations are, why they happen, real examples of AI getting things wrong with consequences. How to fact-check AI output. When to trust AI and when to verify. Practical verification techniques anyone can use.",
+      "targetSlug": "ai-hallucinations-why-ai-lies",
+      "targetKeyword": "AI hallucinations explained",
+      "format": "research-breakdown",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "The AI Ethics Debate: What You Should Actually Worry About",
+      "topicBrief": "Cut through the noise on AI ethics. Cover the real concerns: bias in training data, job displacement, privacy, deepfakes, concentration of power. Skip the Terminator scenarios. Focus on what's happening now, not hypothetical futures.",
+      "targetSlug": "ai-ethics-what-to-worry-about",
+      "targetKeyword": "AI ethics concerns",
+      "format": "opinion",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "Your AI Literacy Checklist: What Every Person Should Know in 2026",
+      "topicBrief": "A wrap-up post with a concrete checklist of AI knowledge everyone should have. Cover: how to evaluate AI claims in the news, how to spot AI-generated content, how to use AI tools safely, and where to keep learning. Include a downloadable checklist.",
+      "targetSlug": "ai-literacy-checklist-2026",
+      "targetKeyword": "AI literacy guide 2026",
+      "format": "how-to-guide",
+      "status": "pending"
+    }
+  ]
+}

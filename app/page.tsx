@@ -48,6 +48,7 @@ export default function Home() {
             <span className="text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
           </div>
           <div className="flex items-center gap-4">
+            <Link href="/blog" className="text-[#6B2C6B] font-semibold hover:underline">Blog</Link>
             <Link href="/login" className="text-[#6B2C6B] font-semibold hover:underline">Login</Link>
             <Link href="/login" className="px-6 py-2.5 bg-[#6B2C6B] text-white rounded-xl font-semibold hover:bg-[#8B3A8B] transition-all shadow-lg shadow-[#6B2C6B]/20">
               Get Started Free
