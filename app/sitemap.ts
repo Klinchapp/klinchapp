@@ -1,8 +1,26 @@
 import { MetadataRoute } from 'next'
+import { getAllPosts, getAllSeries } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.klinchapp.com'
-  
+
+  const posts = getAllPosts()
+  const series = getAllSeries().filter(s => s.posts.some(p => p.status === 'published'))
+
+  const blogEntries = posts.map(post => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.publishedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  const seriesEntries = series.map(s => ({
+    url: `${baseUrl}/blog/series/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }))
+
   return [
     {
       url: baseUrl,
@@ -10,6 +28,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    ...blogEntries,
+    ...seriesEntries,
     {
       url: `${baseUrl}/login`,
       lastModified: new Date(),
