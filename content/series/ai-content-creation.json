@@ -3,7 +3,11 @@
   "title": "AI Content Creation: The Complete Playbook",
   "description": "Everything creators and marketers need to know about using AI to produce better content faster, without sacrificing quality or authenticity.",
   "totalPosts": 6,
-  "tags": ["content-creation", "ai-writing", "marketing"],
+  "tags": [
+    "content-creation",
+    "ai-writing",
+    "marketing"
+  ],
   "posts": [
     {
       "order": 1,
@@ -12,7 +16,7 @@
       "targetSlug": "ai-content-quality-over-quantity",
       "targetKeyword": "AI generated content quality",
       "format": "deep-analysis",
-      "status": "pending"
+      "status": "published"
     },
     {
       "order": 2,

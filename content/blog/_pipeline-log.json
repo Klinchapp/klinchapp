@@ -1,0 +1,102 @@
+[
+  {
+    "date": "2026-04-17T13:58:57.443Z",
+    "stage": "prepare",
+    "series": "ai-content-creation",
+    "post": "ai-content-quality-over-quantity",
+    "title": "AI-Generated Content: Why Quality Beats Quantity Every Time",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 7,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24341,
+        "tokens_in": 752,
+        "tokens_out": 2178
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16962,
+        "tokens_in": 2350,
+        "tokens_out": 1817
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16795,
+        "tokens_in": 2069,
+        "tokens_out": 1732
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1124,
+        "tokens_in": 1802,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 25208,
+        "tokens_in": 752,
+        "tokens_out": 2132
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18103,
+        "tokens_in": 2304,
+        "tokens_out": 1930
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17630,
+        "tokens_in": 2182,
+        "tokens_out": 1853
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1043,
+        "tokens_in": 2011,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 7541,
+        "tokens_in": 454,
+        "tokens_out": 685
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 870,
+        "tokens_in": 279,
+        "tokens_out": 31
+      }
+    ]
+  }
+]
