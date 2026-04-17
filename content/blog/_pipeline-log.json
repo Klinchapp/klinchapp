@@ -104,5 +104,79 @@
     "stage": "publish",
     "file": "ai-content-quality-over-quantity.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-04-17T14:04:18.923Z",
+    "stage": "prepare",
+    "series": "ai-content-creation",
+    "post": "train-ai-your-writing-style",
+    "title": "How to Train AI on Your Writing Style",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 9,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24625,
+        "tokens_in": 809,
+        "tokens_out": 2392
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18704,
+        "tokens_in": 2564,
+        "tokens_out": 2176
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17628,
+        "tokens_in": 2428,
+        "tokens_out": 2188
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 802,
+        "tokens_in": 2346,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6055,
+        "tokens_in": 433,
+        "tokens_out": 611
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 835,
+        "tokens_in": 277,
+        "tokens_out": 35
+      }
+    ]
+  },
+  {
+    "date": "2026-04-17T14:04:18.923Z",
+    "stage": "publish",
+    "file": "train-ai-your-writing-style.mdx",
+    "status": "published"
   }
 ]
