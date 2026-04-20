@@ -178,5 +178,73 @@
     "stage": "publish",
     "file": "train-ai-your-writing-style.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-04-20T10:28:07.043Z",
+    "stage": "prepare",
+    "series": "ai-content-creation",
+    "post": "ai-blog-writing-workflow",
+    "title": "AI for Blog Writing: A Workflow That Actually Works",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 9,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 28369,
+        "tokens_in": 833,
+        "tokens_out": 2553
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22686,
+        "tokens_in": 2725,
+        "tokens_out": 2248
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20188,
+        "tokens_in": 2500,
+        "tokens_out": 2247
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 836,
+        "tokens_in": 2405,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6907,
+        "tokens_in": 431,
+        "tokens_out": 603
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 776,
+        "tokens_in": 272,
+        "tokens_out": 30
+      }
+    ]
   }
 ]
