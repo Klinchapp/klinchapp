@@ -79,13 +79,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <img src="/logo.jpg" alt="Klinchapp" className="w-10 h-10 rounded-xl object-contain shadow-sm bg-white" />
-            <span className="text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3">
+            <img src="/logo.jpg" alt="Klinchapp" className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-contain shadow-sm bg-white" />
+            <span className="text-lg sm:text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/blog" className="text-[#6B2C6B] font-semibold hover:underline">← Blog</Link>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link href="/blog" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">← Blog</Link>
           </div>
         </div>
       </header>
