@@ -156,12 +156,36 @@ Each series object must follow this exact structure:
   try {
     const jsonMatch = text.match(/\[[\s\S]*\]/)
     if (!jsonMatch) throw new Error('No JSON array found in response')
-    const blueprints = JSON.parse(jsonMatch[0])
+    // Clean common JSON issues from LLM output
+    let cleaned = jsonMatch[0]
+      .replace(/,\s*}/g, '}')       // trailing commas before }
+      .replace(/,\s*\]/g, ']')      // trailing commas before ]
+      .replace(/[\x00-\x1F\x7F]/g, (ch) => ch === '\n' || ch === '\t' ? ch : '') // remove control chars except newline/tab
+    const blueprints = JSON.parse(cleaned)
     log(`  ✅ Generated ${blueprints.length} series blueprints`)
     return blueprints
-  } catch (err) {
-    log(`  ❌ Failed to parse blueprints: ${err.message}`)
-    throw err
+  } catch (firstErr) {
+    // Retry: ask the LLM to fix its own JSON
+    log(`  ⚠️ JSON parse failed, asking LLM to fix...`)
+    const fixResponse = await client.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 4096,
+      messages: [{
+        role: 'user',
+        content: `The following JSON has a syntax error. Fix it and return ONLY the corrected JSON array, nothing else:\n\n${text}`
+      }],
+    })
+    const fixText = fixResponse.content[0].type === 'text' ? fixResponse.content[0].text : ''
+    try {
+      const fixMatch = fixText.match(/\[[\s\S]*\]/)
+      if (!fixMatch) throw new Error('No JSON in fix response')
+      const blueprints = JSON.parse(fixMatch[0])
+      log(`  ✅ Generated ${blueprints.length} series blueprints (after JSON fix)`)
+      return blueprints
+    } catch (secondErr) {
+      log(`  ❌ Failed to parse blueprints even after fix: ${secondErr.message}`)
+      throw secondErr
+    }
   }
 }
 
