@@ -246,5 +246,11 @@
         "tokens_out": 30
       }
     ]
+  },
+  {
+    "date": "2026-04-21T10:07:25.418Z",
+    "stage": "publish",
+    "file": "ai-blog-writing-workflow.mdx",
+    "status": "published"
   }
 ]
