@@ -1,0 +1,45 @@
+name: Blog Pipeline - Planner
+
+on:
+  schedule:
+    # 1st of every month at 9am UTC
+    - cron: '0 9 1 * *'
+  workflow_dispatch: {}
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run planner
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: node scripts/blog-planner.mjs
+
+      - name: Commit and push
+        run: |
+          git config user.name "Kira (Blog Pipeline)"
+          git config user.email "kira@klinchapp.com"
+          git add content/series/
+          if git diff --staged --quiet; then
+            echo "No new blueprints to commit"
+          else
+            git commit -m "blog: auto-generated new series blueprints"
+            git push
+          fi
