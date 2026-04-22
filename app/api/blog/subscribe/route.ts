@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
+import { Resend } from 'resend'
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,6 +44,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Send welcome email
+    console.log('Attempting welcome email to:', cleanEmail)
     await sendWelcomeEmail(cleanEmail)
 
     return NextResponse.json({ message: 'Subscribed successfully' })
@@ -54,13 +56,17 @@ export async function POST(request: NextRequest) {
 
 async function sendWelcomeEmail(email: string) {
   const apiKey = process.env.RESEND_API_KEY
-  if (!apiKey) return
+  console.log('RESEND_API_KEY present:', !!apiKey)
+
+  if (!apiKey) {
+    console.error('No RESEND_API_KEY found in environment')
+    return
+  }
 
   try {
-    const { Resend } = await import('resend')
     const resend = new Resend(apiKey)
 
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: 'Kira @ Klinchapp Blog <kira@klinchapp.com>',
       to: [email],
       subject: 'Welcome to the Klinchapp Blog',
@@ -80,6 +86,8 @@ async function sendWelcomeEmail(email: string) {
         </div>
       `,
     })
+
+    console.log('Resend response:', JSON.stringify(result))
   } catch (err) {
     console.error('Welcome email failed:', err)
   }
