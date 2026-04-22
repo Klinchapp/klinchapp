@@ -807,6 +807,7 @@ async function sendPublishNotification(title, slug) {
     const { Resend } = await import('resend')
     const resend = new Resend(apiKey)
 
+    // 1. Send admin notification
     await resend.emails.send({
       from: 'Kira <kira@klinchapp.com>',
       to: ['klinchapp.info@gmail.com'],
@@ -823,9 +824,82 @@ async function sendPublishNotification(title, slug) {
         </div>
       `,
     })
-    log(`📧 Notification sent to klinchapp.info@gmail.com`)
+    log(`📧 Admin notification sent`)
+
+    // 2. Send subscriber notifications
+    await notifySubscribers(resend, title, postUrl)
   } catch (err) {
     log(`  ⚠️ Email notification failed: ${err.message}`)
+  }
+}
+
+async function notifySubscribers(resend, title, postUrl) {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!supabaseUrl || !supabaseKey) {
+    log('  ⚠️ No Supabase credentials — skipping subscriber notifications')
+    return
+  }
+
+  try {
+    // Fetch active subscribers from Supabase via REST API
+    const response = await fetch(
+      `${supabaseUrl}/rest/v1/blog_subscribers?active=eq.true&select=email`,
+      {
+        headers: {
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+        },
+      }
+    )
+
+    if (!response.ok) {
+      log(`  ⚠️ Failed to fetch subscribers: ${response.status}`)
+      return
+    }
+
+    const subscribers = await response.json()
+    if (subscribers.length === 0) {
+      log('  📭 No subscribers to notify')
+      return
+    }
+
+    log(`  📬 Sending to ${subscribers.length} subscriber(s)...`)
+
+    // Send in batches of 50 (Resend batch limit)
+    const batchSize = 50
+    for (let i = 0; i < subscribers.length; i += batchSize) {
+      const batch = subscribers.slice(i, i + batchSize)
+      const emails = batch.map(sub => ({
+        from: 'Kira @ Klinchapp Blog <kira@klinchapp.com>',
+        to: [sub.email],
+        subject: `New post: ${title}`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 500px;">
+            <div style="margin-bottom: 20px;">
+              <img src="https://www.klinchapp.com/logo.jpg" alt="Klinchapp" style="width: 40px; height: 40px; border-radius: 8px;" />
+            </div>
+            <p style="color: #333; margin: 0 0 16px 0;">Hi there,</p>
+            <p style="color: #333; margin: 0 0 16px 0;">A new post just went live on the Klinchapp blog:</p>
+            <div style="background: #F3E8FF; border-radius: 12px; padding: 20px; margin: 20px 0;">
+              <p style="font-weight: bold; color: #1a1a1a; margin: 0 0 8px 0; font-size: 18px;">${title}</p>
+              <a href="${postUrl}" style="color: #6B2C6B; font-weight: 600;">Read it here →</a>
+            </div>
+            <p style="color: #999; font-size: 13px; margin-top: 24px;">You're receiving this because you subscribed to the Klinchapp blog. <a href="https://www.klinchapp.com/api/blog/unsubscribe?email=${encodeURIComponent(sub.email)}" style="color: #6B2C6B;">Unsubscribe</a></p>
+          </div>
+        `,
+      }))
+
+      try {
+        await resend.batch.send(emails)
+      } catch (batchErr) {
+        log(`  ⚠️ Batch send failed: ${batchErr.message}`)
+      }
+    }
+
+    log(`  ✅ Subscriber notifications sent to ${subscribers.length} recipient(s)`)
+  } catch (err) {
+    log(`  ⚠️ Subscriber notification failed: ${err.message}`)
   }
 }
 

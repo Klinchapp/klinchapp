@@ -204,8 +204,8 @@ export default function BlogPage({
         {!seriesFilter && !tagFilter && (
           <div className="mt-12 bg-gradient-to-r from-[#6B2C6B] to-[#8B3A8B] rounded-2xl p-8 md:p-10 text-white">
             <div className="max-w-lg mx-auto text-center">
-              <h2 className="text-2xl font-bold mb-2">Don't miss a post</h2>
-              <p className="text-white/80 mb-6">Get Kira's latest AI insights delivered to your inbox. Two posts a week, no spam, unsubscribe anytime.</p>
+              <h2 className="text-2xl font-bold mb-2">Get blog updates in your inbox</h2>
+              <p className="text-white/80 mb-6">Subscribe to receive a short email every time a new blog post is published. That's it — just the post title and a link. Two per week, no spam, no account needed, unsubscribe anytime.</p>
               <SubscribeForm />
             </div>
           </div>
