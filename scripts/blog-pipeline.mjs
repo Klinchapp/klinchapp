@@ -877,7 +877,7 @@ async function notifySubscribers(resend, title, postUrl) {
         html: `
           <div style="font-family: sans-serif; max-width: 500px;">
             <div style="margin-bottom: 20px;">
-              <img src="https://www.klinchapp.com/logo.jpg" alt="Klinchapp" style="width: 40px; height: 40px; border-radius: 8px;" />
+              <img src="https://www.klinchapp.com/logo.jpg" alt="Klinchapp" style="height: 36px; width: auto; border-radius: 8px;" />
             </div>
             <p style="color: #333; margin: 0 0 16px 0;">Hi there,</p>
             <p style="color: #333; margin: 0 0 16px 0;">A new post just went live on the Klinchapp blog:</p>

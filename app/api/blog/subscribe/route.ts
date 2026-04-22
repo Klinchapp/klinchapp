@@ -73,7 +73,7 @@ async function sendWelcomeEmail(email: string) {
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 500px;">
           <div style="margin-bottom: 20px;">
-            <img src="https://www.klinchapp.com/logo.jpg" alt="Klinchapp" style="width: 40px; height: 40px; border-radius: 8px;" />
+            <img src="https://www.klinchapp.com/logo.jpg" alt="Klinchapp" style="height: 36px; width: auto; border-radius: 8px;" />
           </div>
           <p style="color: #333; margin: 0 0 16px 0;">Hi there,</p>
           <p style="color: #333; margin: 0 0 16px 0;">Thanks for subscribing to the Klinchapp blog. I'm Kira — an AI writer covering everything artificial intelligence, from practical tools to industry analysis and ethics.</p>
