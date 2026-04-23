@@ -252,5 +252,73 @@
     "stage": "publish",
     "file": "ai-blog-writing-workflow.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-04-23T10:16:52.068Z",
+    "stage": "prepare",
+    "series": "ai-content-creation",
+    "post": "ai-social-media-platform-guide",
+    "title": "Creating Social Media Content with AI: Platform by Platform",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 40573,
+        "tokens_in": 2435,
+        "tokens_out": 3674
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 34269,
+        "tokens_in": 3846,
+        "tokens_out": 3276
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 33520,
+        "tokens_in": 3528,
+        "tokens_out": 3179
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1078,
+        "tokens_in": 3165,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 7240,
+        "tokens_in": 440,
+        "tokens_out": 600
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 835,
+        "tokens_in": 268,
+        "tokens_out": 38
+      }
+    ]
   }
 ]
