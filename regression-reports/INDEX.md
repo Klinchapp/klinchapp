@@ -4,5 +4,4 @@ Auto-generated. Most recent first. New reports prepend.
 
 | Date (UTC) | Trigger | Commit | Status | Duration | Report |
 |---|---|---|---|---|---|
-
-_No reports yet. The first will be written on the next push to `main` or the daily 03:00 UTC scheduled run._
+| 2026-04-27 11:30 | post-merge | `7aec6ea` | PASS | 31s | [view](2026-04-27T11-30-52Z_7aec6ea.md) |
