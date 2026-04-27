@@ -39,5 +39,6 @@
         }
       ]
     }
-  ]
+  ],
+  "ignoreCommand": "git diff HEAD^ HEAD --quiet -- ':(exclude)regression-reports'"
 }
