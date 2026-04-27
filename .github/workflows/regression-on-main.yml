@@ -1,0 +1,105 @@
+name: Regression
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: regression-main
+  cancel-in-progress: false
+
+jobs:
+  regression:
+    name: Build, Test & Report
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      # Placeholder values — the build needs these to be non-empty so the
+      # Supabase SDK initialises during prerendering, but no real network
+      # calls are made at build time. Real secrets stay in Vercel only.
+      NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key
+      SUPABASE_SERVICE_ROLE_KEY: placeholder-service-role-key
+      ANTHROPIC_API_KEY: placeholder
+      RESEND_API_KEY: placeholder
+      NEXT_PUBLIC_APP_URL: https://www.klinchapp.com
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Phase 1 — Build
+        id: build
+        continue-on-error: true
+        run: |
+          set +e
+          start=$(date +%s)
+          npm run build
+          code=$?
+          echo "duration=$(($(date +%s) - start))" >> $GITHUB_OUTPUT
+          exit $code
+
+      - name: Phase 1 — Type check
+        id: tsc
+        continue-on-error: true
+        run: |
+          set +e
+          start=$(date +%s)
+          npx tsc --noEmit
+          code=$?
+          echo "duration=$(($(date +%s) - start))" >> $GITHUB_OUTPUT
+          exit $code
+
+      - name: Determine trigger
+        id: trigger
+        run: |
+          case "${{ github.event_name }}" in
+            push) echo "trigger=post-merge" >> $GITHUB_OUTPUT ;;
+            schedule) echo "trigger=scheduled" >> $GITHUB_OUTPUT ;;
+            workflow_dispatch) echo "trigger=manual" >> $GITHUB_OUTPUT ;;
+            *) echo "trigger=${{ github.event_name }}" >> $GITHUB_OUTPUT ;;
+          esac
+
+      - name: Write regression report
+        if: always()
+        env:
+          BUILD_STATUS: ${{ steps.build.outcome }}
+          BUILD_DURATION: ${{ steps.build.outputs.duration }}
+          TSC_STATUS: ${{ steps.tsc.outcome }}
+          TSC_DURATION: ${{ steps.tsc.outputs.duration }}
+          TRIGGER: ${{ steps.trigger.outputs.trigger }}
+          COMMIT_SHA: ${{ github.sha }}
+          GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: node scripts/write-regression-report.mjs
+
+      - name: Commit report
+        if: always()
+        run: |
+          git config user.name "Klinchapp CI"
+          git config user.email "klinchapp.info@gmail.com"
+          git pull --rebase --autostash origin main
+          git add regression-reports/
+          if git diff --cached --quiet; then
+            echo "No report changes to commit"
+          else
+            git commit -m "ci: regression report ${{ github.sha }}"
+            git push origin HEAD:main
+          fi
+
+      - name: Fail job if any phase failed
+        if: steps.build.outcome == 'failure' || steps.tsc.outcome == 'failure'
+        run: |
+          echo "One or more phases failed. See report in regression-reports/."
+          exit 1
