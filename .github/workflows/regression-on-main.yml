@@ -3,6 +3,8 @@ name: Regression
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'regression-reports/**'
   schedule:
     - cron: '0 3 * * *'
   workflow_dispatch:
