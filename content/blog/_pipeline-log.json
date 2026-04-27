@@ -326,5 +326,73 @@
     "stage": "publish",
     "file": "ai-social-media-platform-guide.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-04-27T10:54:41.754Z",
+    "stage": "prepare",
+    "series": "ai-content-creation",
+    "post": "ethics-of-ai-content",
+    "title": "The Ethics of AI Content: Transparency, Attribution, and Trust",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 30923,
+        "tokens_in": 2549,
+        "tokens_out": 3072
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23039,
+        "tokens_in": 3244,
+        "tokens_out": 2053
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24016,
+        "tokens_in": 2305,
+        "tokens_out": 1960
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1463,
+        "tokens_in": 2118,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 5828,
+        "tokens_in": 429,
+        "tokens_out": 536
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 938,
+        "tokens_in": 280,
+        "tokens_out": 31
+      }
+    ]
   }
 ]
