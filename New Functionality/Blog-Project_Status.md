@@ -284,6 +284,87 @@ GitHub Actions Cron
 
 ---
 
+## Operational Improvements (2026-04-27)
+
+A focused work session that started with a Search Console "Duplicate without user-selected canonical" warning and expanded into a full hardening of the production environment around the autonomous blog engine. See `Regression-Strategy.md` for the strategy doc and `Blog-Audio-Video-Research.md` for the parked audio/video discovery work.
+
+### Changes deployed
+
+| Area | Change | Status |
+|---|---|---|
+| SEO | Server-component split for `/` and `/login` so `<link rel="canonical">` and `robots: noindex` can be exported | Live |
+| SEO | `/login` removed from `app/sitemap.ts` (login pages should not be indexed) | Live |
+| Routing | New `middleware.ts` redirects `*.vercel.app` → `www.klinchapp.com` (production env only; preview deploys preserved for testing) | Live |
+| Vercel | Orphan duplicate Vercel project (`klinchapp` → `klinchapp.vercel.app`) deleted — was double-building every push and exposing duplicate-content URL to Google | Live |
+| Vercel | `vercel.json` `ignoreCommand` skips deploys for `regression-reports/`-only commits | Live |
+| GitHub | Branch protection ruleset on `main` — require PR + status check, block force pushes, admin bypass for bot commits (Kira, Klinchapp CI) | Live |
+| CI | Phase 1 regression infrastructure: `Build & Type Check` required on every PR | Live |
+| CI | `regression-on-main` workflow: triggers on push to main (excluding `regression-reports/**`), daily 03:00 UTC, and manual dispatch | Live |
+| Audit trail | Every regression run writes a Markdown report committed to `regression-reports/` as `Klinchapp CI <klinchapp.info@gmail.com>`; `INDEX.md` auto-updated | Live |
+| Node version | Vercel + local on Node 24, all GitHub Actions workflows on Node 20 | Live |
+
+### Incident resolved during go-live
+
+**Self-triggering workflow loop (P1)** — within minutes of regression infrastructure going live, `regression-on-main` recursed on its own commits for ~37 iterations over 30 minutes (the workflow pushed regression reports to `main`, which re-fired the workflow). Caught manually by observing Vercel queue. Fixed in commit `b81c121` by adding `paths-ignore: ['regression-reports/**']` to the workflow trigger; reinforced with `vercel.json` `ignoreCommand` as defense in depth. Full incident write-up in `Regression-Strategy.md` → "Incidents & Lessons".
+
+The audit trail itself helped catch and diagnose this — the recursion was immediately visible in `git log`. The reporting design that protects the system also helped expose its first failure.
+
+### Phase status (regression strategy)
+
+| Phase | Status | Trigger to next |
+|---|---|---|
+| Phase 1 — Pre-merge build & typecheck | **Live** | — |
+| Phase 2 — Critical-path smoke tests | Planned | Before paid traffic OR audio/video pilot launch |
+| Phase 3 — Synthetic monitoring | Planned | Before publishing subscribe form widely |
+| Phase 4 — Subscriber-path canary | Planned | After first 10 subscribers |
+| Phase 5 — Branch protection + reviews | Partial — protection live, reviews deferred | When >1 dev contributes |
+
+### Files added
+
+| File | Purpose |
+|---|---|
+| `middleware.ts` | Production-only redirect of `*.vercel.app` → `www.klinchapp.com` |
+| `app/home-client.tsx` | Extracted client logic from `/` so `page.tsx` can export metadata server-side |
+| `app/login/login-client.tsx` | Same pattern for `/login` |
+| `.github/workflows/ci.yml` | Pre-merge build + typecheck on PRs |
+| `.github/workflows/regression-on-main.yml` | Post-merge + scheduled regression with audit-trail commit |
+| `scripts/write-regression-report.mjs` | Generates per-run Markdown report and updates `INDEX.md` |
+| `regression-reports/INDEX.md` | Auto-updated reverse-chronological index of all regression runs |
+| `New Functionality/Regression-Strategy.md` | 5-phase regression strategy, risk model, audit-trail spec, incident log |
+| `New Functionality/Blog-Audio-Video-Research.md` | Discovery doc for parked audio/video distribution work |
+
+### Files modified
+
+| File | Change |
+|---|---|
+| `app/page.tsx` | Server-component wrapper with canonical metadata; renders `home-client.tsx` |
+| `app/login/page.tsx` | Server-component wrapper with canonical + `robots: noindex`; renders `login-client.tsx` |
+| `app/sitemap.ts` | Removed `/login` entry |
+| `vercel.json` | Added `ignoreCommand` for regression-reports-only commits |
+
+### Steady-state behaviour after this session
+
+- Every PR runs `Build & Type Check` (~3-5 min) before merge is allowed
+- Every push to `main` (except regression-reports/-only) triggers regression → produces an audit report
+- Daily 03:00 UTC scheduled regression run produces a heartbeat report → no Vercel build (ignoreCommand)
+- Regression-only commits trigger zero workflows AND zero Vercel builds (two-layer protection)
+- Manual regression run available via Actions UI for ad-hoc verification
+
+### Cost impact
+
+Negligible additional ongoing cost beyond the existing $0.25/mo blog pipeline:
+- GitHub Actions: ~3-5 min per PR + ~50s per regression run (well within free tier)
+- Vercel: regression-only commits skipped via ignoreCommand → zero added build minutes in steady state
+- One-time spike on 2026-04-27 from the loop incident: ~37 wasted Vercel builds (recovered)
+
+### Cross-references
+
+- Strategy + risk model + incident log → `New Functionality/Regression-Strategy.md`
+- Parked work (audio/video distribution research) → `New Functionality/Blog-Audio-Video-Research.md`
+- Live audit trail → `regression-reports/INDEX.md`
+
+---
+
 ## Deferred Items (Future Phases)
 
 | Item | Description | Trigger to Start |
