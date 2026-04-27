@@ -377,10 +377,46 @@ Reserve `git revert` for cases where the bad code must never reach production ag
 
 ---
 
+## Incidents & Lessons
+
+Append entries chronologically. Each entry captures: date, severity, what happened, root cause, fix, and lesson — so future maintainers can avoid repeating the failure mode.
+
+### 2026-04-27 — Self-triggering workflow loop (P1)
+
+**What happened:** Within minutes of the regression infrastructure going live, `regression-on-main` produced ~37 commits over 30 minutes recursing on itself. Each run pushed a regression report to `main`, which re-fired the workflow, which wrote another report, ad infinitum. ~37 wasted Vercel deploys followed before the loop was caught.
+
+**Root cause:** `regression-on-main.yml` was configured with:
+```yaml
+on:
+  push:
+    branches: [main]
+```
+…and the workflow's "Commit report" step also pushed to `main`. Nothing filtered the workflow's own commits out of its own trigger, so it recursed.
+
+**Detection:** Manual. Observed by noticing the Vercel dashboard fill with deploys. The system was silent until that.
+
+**Fix (commit `b81c121`):** Added `paths-ignore` to the push trigger:
+```yaml
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'regression-reports/**'
+```
+Workflow no longer fires when a commit modifies only `regression-reports/`.
+
+**Defense in depth (commit on cleanup branch):** Added `vercel.json` `ignoreCommand` so Vercel also skips deploys for regression-only commits, in case the workflow trigger ever misfires.
+
+**Lesson — for any future workflow that commits to its own trigger branch:** filter the workflow's own writes out of its triggers. Pattern: `paths-ignore: ['<folder-the-workflow-writes-to>/**']`. Also helpful: a `concurrency` group prevents *parallel* loops; `paths-ignore` prevents *sequential* loops. Use both.
+
+**What worked well:** The audit trail itself caught this fast — once `git log` was checked, the recursion was immediately visible. The reporting/audit-trail design (every run leaves a Markdown trace) is part of *why* the loop was diagnosable at all. Without it, this might have run silently for hours.
+
+---
+
 ## Maintenance
 
 This document is reviewed and updated:
 
 - **Each time a phase moves from Planned → Live** (update the status badge)
-- **After every P0 or P1 incident** — add the lesson to the relevant section
+- **After every P0 or P1 incident** — add an entry to the **Incidents & Lessons** section above
 - **Quarterly** at minimum — confirm thresholds and triggers still match project state
