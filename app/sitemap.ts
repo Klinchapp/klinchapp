@@ -37,12 +37,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...blogEntries,
     ...seriesEntries,
     {
-      url: `${baseUrl}/login`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/terms`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
