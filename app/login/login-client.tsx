@@ -104,12 +104,16 @@ export default function LoginClient() {
             <span className="text-3xl font-extrabold text-white">Klinchapp</span>
           </div>
 
-          <h1 className="text-4xl font-extrabold text-white leading-tight mb-6">
+          <h1 className="text-4xl font-extrabold text-white leading-tight mb-4">
             Create. Post.<br />
             <span className="bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
               Nail It.
             </span>
           </h1>
+
+          <p className="mb-6 text-xl font-bold leading-snug bg-gradient-to-r from-[#7E22CE] via-[#A21CAF] to-[#DB2777] bg-clip-text text-transparent">
+            Instagram, LinkedIn, X, Facebook &amp; TikTok
+          </p>
 
           <p className="text-lg text-white/80 leading-relaxed mb-12">
             Upload your product, pick your platform, and let AI craft scroll-stopping content.
