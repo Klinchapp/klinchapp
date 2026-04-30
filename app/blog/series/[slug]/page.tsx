@@ -114,9 +114,14 @@ export default function SeriesPage({ params }: { params: { slug: string } }) {
       {/* Footer */}
       <footer className="border-t border-gray-200 bg-white/50 mt-12">
         <div className="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-3">
+            <img src="/logo.jpg" alt="Klinchapp" className="w-16 h-16 rounded-xl object-contain shadow-sm bg-white" />
+            <span className="font-bold text-[#6B2C6B]">Klinchapp</span>
+          </div>
           <p className="text-gray-500 text-sm">© 2026 Klinchapp. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/blog" className="text-[#6B2C6B] text-sm font-medium hover:underline">Blog</Link>
+            <Link href="/contact" className="text-[#6B2C6B] text-sm font-medium hover:underline">Contact</Link>
             <Link href="/terms" className="text-[#6B2C6B] text-sm font-medium hover:underline">Terms</Link>
             <Link href="/privacy" className="text-[#6B2C6B] text-sm font-medium hover:underline">Privacy</Link>
           </div>

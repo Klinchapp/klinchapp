@@ -44,7 +44,7 @@ export default function HomeClient() {
       <header className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-3">
-            <img src="/logo.jpg" alt="Klinchapp" className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl object-contain shadow-sm bg-white" />
+            <img src="/logo.jpg" alt="Klinchapp" className="w-14 h-14 sm:w-20 sm:h-20 rounded-xl object-contain shadow-sm bg-white" />
             <span className="text-lg sm:text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
@@ -137,11 +137,12 @@ export default function HomeClient() {
       <footer className="border-t border-gray-200 bg-white/50">
         <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
-            <img src="/logo.jpg" alt="Klinchapp" className="w-8 h-8 rounded-lg" />
+            <img src="/logo.jpg" alt="Klinchapp" className="w-14 h-14 sm:w-20 sm:h-20 rounded-xl object-contain shadow-sm bg-white" />
             <span className="font-bold text-[#6B2C6B]">Klinchapp</span>
           </div>
           <p className="text-gray-500 text-sm">© 2026 Klinchapp. All rights reserved.</p>
           <div className="flex gap-6">
+            <Link href="/contact" className="text-[#6B2C6B] text-sm font-medium hover:underline">Contact</Link>
             <Link href="/terms" className="text-[#6B2C6B] text-sm font-medium hover:underline">Terms</Link>
             <Link href="/privacy" className="text-[#6B2C6B] text-sm font-medium hover:underline">Privacy</Link>
           </div>
