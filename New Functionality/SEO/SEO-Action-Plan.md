@@ -20,19 +20,21 @@ Before acting on any recommendation, here's what's actually in the codebase as o
 
 | Area | State |
 |------|-------|
-| Rendering | Next.js App Router, server components on `/` and `/login`. Marketing surface is server-rendered. |
+| Rendering — `<head>` | Server-rendered on all routes. Title, meta, canonical, OG all present in SSR'd HTML. |
+| Rendering — homepage `<body>` | **Was gated behind a client-side auth-check loader** (SSR'd HTML was just a spinner — H1, hero, features all hidden from crawlers). Fixed 2026-04-30 by moving auth check to background; marketing content now in SSR. The Claude report's "near-empty HTML shell" finding was correct on this. |
 | `robots.txt` | Present via `app/robots.ts`. Allows `/`, disallows `/api`, `/dashboard`, `/auth`. References sitemap. |
 | `sitemap.xml` | Present via `app/sitemap.ts`. |
 | Canonicals | Present on `/` and `/login` (`alternates.canonical`). |
 | Title tag | `"Klinchapp - AI-Powered Social Media Post Creator"` — has primary keyword, decent. |
 | Meta description | Present in `app/layout.tsx`. Reasonable length, contains keyword + benefit. |
 | OpenGraph + Twitter Card | Present, with `og-image.png`. |
-| Homepage H1 | `"Create Stunning Social Posts In Seconds"` — **no keyword signal**. |
-| Homepage H2s | "Why Choose Klinchapp?", "How It Works", "Ready to Transform…" — generic. |
-| JSON-LD schema | `Article` on blog post pages only. No `Organization`, `WebSite`, `SoftwareApplication`. |
+| Homepage H1 | Updated 2026-04-30 to `"AI Social Media Post Generator"` (keyword-led). |
+| Homepage H2s | Still generic ("Why Choose Klinchapp?", "How It Works", "Ready to Transform…"). Outstanding. |
+| JSON-LD schema | `Article` on blog posts. `SoftwareApplication` + `FAQPage` on `/ai-instagram-post-generator`. Sitewide `Organization` / `WebSite` still missing. |
 | Image alt text | Inconsistent — needs audit. |
 | Blog | Live, autonomous (Kira), 2-stage publish, Article schema present. |
-| Use Cases / `/for-X` pages | Not built. Scoped in `Use-Cases-Track-Research.md`. |
+| Platform pages (`/ai-X-post-generator`) | **Instagram in flight (V1) on branch `feat-platform-page-instagram`** — full SSR, schema, FAQ, sample post mocks. LinkedIn / X / Facebook / TikTok deferred until Instagram has data. |
+| Use Cases / `/for-X` pages | Not built. Scoped in `Use-Cases-Track-Research.md`. **Reprioritized behind platform pages** — see decision log below. |
 | Comparison pages (`/vs/X`) | Not built. |
 | Free tools | Not built. |
 | Search Console / Bing Webmaster | Setup status unverified — assume needs work. |
@@ -88,7 +90,7 @@ Kira already produces content. Recommendation is to align her topic generation w
 
 ## What we are explicitly not doing (and why)
 
-- **Tier 1 "eight feature landing pages"** (`/ai-instagram-post-generator`, `/ai-linkedin-post-generator`, etc.) — recommended by Claude and Gemini. Sounds cheap, isn't. Eight pages × differentiated copy × screenshots × FAQ × ongoing maintenance is a real content commitment. **Deferred** until Use Cases pages have shipped and we know what the cost actually looks like.
+- **The other four platform pages** (`/ai-linkedin-post-generator`, `/ai-twitter-post-generator`, `/ai-facebook-post-generator`, `/ai-tiktok-caption-generator`) — Instagram ships first as the experiment. The remaining four are deferred until Instagram has measurable GSC impressions/clicks. Reasoning: if the model works, scaling to the next platform is mostly a copy-and-customize. If it doesn't, we haven't built five pages we'd have to throw away.
 - **Free tools (`/free-instagram-caption-generator`, etc.)** — recommended as link magnets. High-leverage, but each is a real product (UI, infra, abuse protection, attribution back to paid). **Deferred** until we have a clear bandwidth window.
 - **Pillar content** (3,000-word "Complete Guide" posts) — Wren-specific recommendation. Kira's existing series structure already does this organically. No separate effort needed.
 - **PR / "Meet Kira" pitches** — Wren and Gemini both flag the AI-author-transparency angle. Genuinely good, but PR is a calendar-commitment activity, not a checklist item. **Deferred** until we have a launch moment to anchor it to.
@@ -117,11 +119,12 @@ Sum: roughly half a day if batched. None of it requires new pages, new content, 
 - Directory submissions — drip over weeks, no rush
 
 ### Deferred (don't pretend these are next)
-- Tier 1 platform-specific landing pages
+- LinkedIn / X / Facebook / TikTok platform pages (gated on Instagram data)
+- Use Cases / `/for-X` audience pages (gated on at least one platform-page validation)
 - Free tools
 - Comparison pages (`/vs/X`)
 - `aggregateRating` schema (needs real reviews)
-- `FAQPage` schema (needs real FAQ section on page)
+- Sitewide `FAQPage` schema (needs real FAQ section on homepage; the Instagram page has its own valid FAQPage schema)
 - International / hreflang
 
 ---
@@ -140,8 +143,16 @@ Sum: roughly half a day if batched. None of it requires new pages, new content, 
 
 For honesty and so we don't relitigate later:
 - The three reports converge on the items above, which is the real signal.
-- They diverge on details (Wren is most accurate on what's currently on the site; Claude leaned on incorrect assumptions about rendering; Gemini had product-premise drift). Where they disagree, this doc trusts what's verified in the codebase, not the reports.
+- The Claude report's headline finding — "near-empty HTML shell on the homepage" — was correct: the marketing content was gated behind a client-side auth-check loader, so SSR'd HTML for `/` was just a spinner. Initial assessment of this doc dismissed that finding; that was wrong. Fixed 2026-04-30.
+- Wren is most accurate on the rest of the current site state (Kira, multi-language, blog). Gemini had product-premise drift in places. Where the reports disagree, this doc trusts what's verified in the codebase.
 - Several recommendations across the reports cite metrics or examples (review counts, traffic baselines, version numbers) that the LLMs could not actually know. None of those have been carried into this plan.
+
+## Decision log
+
+| Date | Decision | Rationale |
+|------|----------|-----------|
+| 2026-04-30 | Platform pages prioritized over Use Cases (audience) pages. Instagram first. | Differentiated content for platform pages already exists as product features. ~10× higher search volume → faster GSC signal. MVP-able with one page. Lower brand risk. |
+| 2026-04-30 | Homepage SSR auth-check loader removed. | Marketing content was hidden from crawlers behind a client-side gate. Trade-off: logged-in users briefly see marketing page before redirect (~150–300ms). Standard SaaS pattern. |
 
 ---
 
