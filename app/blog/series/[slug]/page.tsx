@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllSeries, getSeriesBySlug, getPostsBySeries } from '@/lib/blog'
 import { notFound } from 'next/navigation'
+import SiteHeader from '../../../components/site-header'
+import SiteFooter from '../../../components/site-footer'
 
 export async function generateStaticParams() {
   const series = getAllSeries()
@@ -34,18 +36,7 @@ export default function SeriesPage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8]">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 sm:gap-3">
-            <img src="/logo.jpg" alt="Klinchapp" className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-contain shadow-sm bg-white" />
-            <span className="text-lg sm:text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
-          </Link>
-          <div className="flex items-center gap-2 sm:gap-4">
-            <Link href="/blog" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">← Blog</Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader variant="back-blog" />
 
       <main className="max-w-4xl mx-auto px-6 py-12">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
@@ -111,22 +102,7 @@ export default function SeriesPage({ params }: { params: { slug: string } }) {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-200 bg-white/50 mt-12">
-        <div className="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-3">
-            <img src="/logo.jpg" alt="Klinchapp" className="w-16 h-16 rounded-xl object-contain shadow-sm bg-white" />
-            <span className="font-bold text-[#6B2C6B]">Klinchapp</span>
-          </div>
-          <p className="text-gray-500 text-sm">© 2026 Klinchapp. All rights reserved.</p>
-          <div className="flex gap-6">
-            <Link href="/blog" className="text-[#6B2C6B] text-sm font-medium hover:underline">Blog</Link>
-            <Link href="/contact" className="text-[#6B2C6B] text-sm font-medium hover:underline">Contact</Link>
-            <Link href="/terms" className="text-[#6B2C6B] text-sm font-medium hover:underline">Terms</Link>
-            <Link href="/privacy" className="text-[#6B2C6B] text-sm font-medium hover:underline">Privacy</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
