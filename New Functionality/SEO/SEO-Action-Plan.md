@@ -21,23 +21,27 @@ Before acting on any recommendation, here's what's actually in the codebase as o
 | Area | State |
 |------|-------|
 | Rendering — `<head>` | Server-rendered on all routes. Title, meta, canonical, OG all present in SSR'd HTML. |
-| Rendering — homepage `<body>` | **Was gated behind a client-side auth-check loader** (SSR'd HTML was just a spinner — H1, hero, features all hidden from crawlers). Fixed 2026-04-30 by moving auth check to background; marketing content now in SSR. The Claude report's "near-empty HTML shell" finding was correct on this. |
+| Rendering — homepage `<body>` | ✅ Fixed 2026-04-30. Auth-check loader moved to background; marketing content now in SSR. The Claude report's "near-empty HTML shell" finding was correct; now resolved. |
+| Header / Footer (sitewide) | ✅ Refactored 2026-04-30 to shared `SiteHeader` / `SiteFooter` in `app/components/`. Consistent logo size, brand mark, link list (Blog \| Contact \| Terms \| Privacy), and width (`max-w-7xl`) across all pages. |
 | `robots.txt` | Present via `app/robots.ts`. Allows `/`, disallows `/api`, `/dashboard`, `/auth`. References sitemap. |
-| `sitemap.xml` | Present via `app/sitemap.ts`. |
-| Canonicals | Present on `/` and `/login` (`alternates.canonical`). |
+| `sitemap.xml` | Present via `app/sitemap.ts`. Includes `/`, `/blog`, `/ai-instagram-post-generator`, `/contact`, plus blog posts/series. |
+| Canonicals | Present on `/`, `/login`, `/contact`, `/privacy`, `/terms`, `/ai-instagram-post-generator`, blog routes. |
 | Title tag | `"Klinchapp - AI-Powered Social Media Post Creator"` — has primary keyword, decent. |
 | Meta description | Present in `app/layout.tsx`. Reasonable length, contains keyword + benefit. |
 | OpenGraph + Twitter Card | Present, with `og-image.png`. |
-| Homepage H1 | Updated 2026-04-30 to `"AI Social Media Post Generator"` (keyword-led). |
-| Homepage H2s | Still generic ("Why Choose Klinchapp?", "How It Works", "Ready to Transform…"). Outstanding. |
-| JSON-LD schema | `Article` on blog posts. `SoftwareApplication` + `FAQPage` on `/ai-instagram-post-generator`. Sitewide `Organization` / `WebSite` still missing. |
+| Homepage H1 | ✅ Updated 2026-04-30 to `"AI Social Media Post Generator"` (keyword-led). |
+| Homepage H2s | ⏳ Still generic ("Why Choose Klinchapp?", "How It Works", "Ready to Transform…"). **Outstanding** — next-session item. |
+| JSON-LD schema | `Article` on blog posts. `SoftwareApplication` + `FAQPage` on `/ai-instagram-post-generator`. ⏳ Sitewide `Organization` / `WebSite` still missing — next-session item. |
 | Image alt text | Inconsistent — needs audit. |
 | Blog | Live, autonomous (Kira), 2-stage publish, Article schema present. |
-| Platform pages (`/ai-X-post-generator`) | **Instagram in flight (V1) on branch `feat-platform-page-instagram`** — full SSR, schema, FAQ, sample post mocks. LinkedIn / X / Facebook / TikTok deferred until Instagram has data. |
-| Use Cases / `/for-X` pages | Not built. Scoped in `Use-Cases-Track-Research.md`. **Reprioritized behind platform pages** — see decision log below. |
+| Platform pages (`/ai-X-post-generator`) | ✅ **Instagram live** on main as of 2026-04-30 (full SSR, schema, FAQ, three IG-styled sample post mocks). LinkedIn / FB / X / TikTok queued in that order, one per session. |
+| Contact page (`/contact`) | ✅ Shipped 2026-04-30. Form posts to `/api/contact` → Resend → `klinchapp.info@gmail.com`. Replaces dead `privacy@`/`support@` mailto links on Privacy and Terms. |
+| Login hero | ✅ Platform names line ("Instagram, LinkedIn, X, Facebook & TikTok") added 2026-04-30 in plum-to-pink gradient mirroring the logo's speech-bubble colours. |
+| Use Cases / `/for-X` pages | Not built. Scoped in `Use-Cases-Track-Research.md`. **Reprioritised behind platform pages** — see decision log below. |
 | Comparison pages (`/vs/X`) | Not built. |
 | Free tools | Not built. |
-| Search Console / Bing Webmaster | Setup status unverified — assume needs work. |
+| Cross-link from homepage → Instagram page | ⏳ Outstanding. Page is currently reachable only via sitemap. Next-session item. |
+| Search Console / Bing Webmaster | GSC verified (canonical work earlier in week). Bing Webmaster not yet set up — last in priority queue. |
 
 This table is the baseline. Anything below this is gap-closing, not greenfield.
 
@@ -100,19 +104,29 @@ Kira already produces content. Recommendation is to align her topic generation w
 
 ## Sequencing
 
-### Now (cheap wins, no scope-creep)
-| Item | Where | Effort |
-|------|-------|--------|
-| `Organization` + `WebSite` JSON-LD | `app/layout.tsx` | ~30 min |
-| `SoftwareApplication` JSON-LD | `app/page.tsx` (or component imported in) | ~30 min |
-| H1 rewrite with keyword | `app/home-client.tsx:67` | ~10 min + design eye |
-| H2 rewrites for first two H2s | `app/home-client.tsx:87, 107` | ~10 min |
-| Title tag tightening (optional, A/B) | `app/layout.tsx:10` | ~5 min |
-| Bing Webmaster Tools — verify + submit sitemap | External | ~15 min |
-| Search Console — confirm sitemap submitted, indexation healthy | External | ~10 min |
-| Image alt text audit | `app/home-client.tsx`, blog templates | ~30–60 min |
+### Done (shipped 2026-04-30)
+- ✅ Homepage H1 keyword-led rewrite
+- ✅ Homepage SSR fix (auth-check no longer blocks marketing content)
+- ✅ Instagram landing page with `SoftwareApplication` + `FAQPage` JSON-LD
+- ✅ Sitewide `SiteHeader` / `SiteFooter` extraction (kills duplicated markup, fixes width and logo-size inconsistencies)
+- ✅ Contact form (`/contact` + `/api/contact` via Resend)
+- ✅ Privacy/Terms now link to `/contact` instead of dead emails
+- ✅ Login hero platform names line (plum→pink gradient from logo)
+- ✅ Sitemap entries for new pages
 
-Sum: roughly half a day if batched. None of it requires new pages, new content, or design work beyond H1 framing.
+### Next session (in agreed order)
+| # | Item | Where | Effort |
+|---|------|-------|--------|
+| 1 | Cross-link homepage → Instagram page | `app/home-client.tsx` | ~5 min |
+| 2 | Homepage H2 rewrites (keyword-aligned) | `app/home-client.tsx` | ~15 min |
+| 3 | Sitewide `Organization` + `WebSite` JSON-LD | `app/layout.tsx` | ~30 min |
+| 4 | LinkedIn platform page | `app/ai-linkedin-post-generator/page.tsx` | ~1 hr (template from Instagram) |
+| 5 | Facebook platform page | `app/ai-facebook-post-generator/page.tsx` | ~1 hr |
+| 6 | X platform page | `app/ai-twitter-post-generator/page.tsx` | ~1 hr |
+| 7 | TikTok platform page | `app/ai-tiktok-caption-generator/page.tsx` | ~1 hr |
+| 8 | Bing Webmaster Tools setup | External | ~15 min |
+
+User's call confirmed for: JSON-LD before Bing (JSON-LD pays back faster, especially for LLM-search discovery on an AI product); platform-page order (LinkedIn → FB → X → TikTok).
 
 ### Soon (scoped elsewhere)
 - Use Cases track — owned by `Use-Cases-Track-Research.md`
@@ -151,8 +165,12 @@ For honesty and so we don't relitigate later:
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
-| 2026-04-30 | Platform pages prioritized over Use Cases (audience) pages. Instagram first. | Differentiated content for platform pages already exists as product features. ~10× higher search volume → faster GSC signal. MVP-able with one page. Lower brand risk. |
+| 2026-04-30 | Platform pages prioritised over Use Cases (audience) pages. Instagram first. | Differentiated content for platform pages already exists as product features. ~10× higher search volume → faster GSC signal. MVP-able with one page. Lower brand risk. |
 | 2026-04-30 | Homepage SSR auth-check loader removed. | Marketing content was hidden from crawlers behind a client-side gate. Trade-off: logged-in users briefly see marketing page before redirect (~150–300ms). Standard SaaS pattern. |
+| 2026-04-30 | Contact form via Resend instead of inbound email forwarding. | Sidesteps DNS/MX work entirely. Reuses existing Resend setup. Modern SaaS pattern. Replies still come from the user's Gmail (acceptable for V1; can layer "Send mail as" via Resend SMTP later if/when reply attribution matters). |
+| 2026-04-30 | Extracted `SiteHeader` and `SiteFooter` as shared components. | Inlined headers/footers across 8 pages had drifted (3 different logo sizes, 2 different widths, missing Contact link on most). Fixing each page individually is a maintenance trap; future header/footer changes (e.g., "What we do" dropdown when 2+ platform pages exist) now touch one file. 220 lines deleted, 32 added. |
+| 2026-04-30 | Subsequent platform-page order: LinkedIn → Facebook → X → TikTok. | LinkedIn is the highest-value B2B audience after Instagram for social posting. Each page reuses the Instagram template; one per session. |
+| 2026-04-30 | JSON-LD scheduled before Bing Webmaster setup. | JSON-LD pays back faster (LLM crawlers parse it for AI-search discovery, which matters disproportionately for an AI product). Bing's standalone search share is small but its index powers ChatGPT search / Copilot / DuckDuckGo / Yahoo / Perplexity — still worth doing, just last. |
 
 ---
 
