@@ -400,5 +400,73 @@
     "stage": "publish",
     "file": "ethics-of-ai-content.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-04-30T10:47:32.310Z",
+    "stage": "prepare",
+    "series": "ai-content-creation",
+    "post": "ai-content-future-2027",
+    "title": "AI Content in 2027: What's Coming and How to Prepare",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 29419,
+        "tokens_in": 2624,
+        "tokens_out": 2838
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 26881,
+        "tokens_in": 3010,
+        "tokens_out": 2264
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22522,
+        "tokens_in": 2516,
+        "tokens_out": 2094
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1037,
+        "tokens_in": 2252,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 5962,
+        "tokens_in": 431,
+        "tokens_out": 643
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 938,
+        "tokens_in": 281,
+        "tokens_out": 37
+      }
+    ]
   }
 ]
