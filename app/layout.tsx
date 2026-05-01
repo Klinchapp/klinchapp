@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Klinchapp - AI-Powered Social Media Post Creator',
     template: '%s | Klinchapp'
   },
-  description: 'Create scroll-stopping social media posts in seconds. Upload your product image and let AI craft engaging content for Instagram, Twitter, LinkedIn, Facebook, and TikTok.',
+  description: 'AI social media post generator for Instagram, LinkedIn, X, Facebook & TikTok. Generate scroll-stopping captions in seconds. Free plan, no credit card.',
   openGraph: {
     type: 'website',
     locale: 'en_US',
