@@ -104,7 +104,7 @@ export default function HomeClient() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {[
             { name: 'Instagram', href: '/ai-instagram-post-generator', Icon: InstagramIcon, live: true  },
-            { name: 'LinkedIn',  href: null,                            Icon: LinkedInIcon,  live: false },
+            { name: 'LinkedIn',  href: '/ai-linkedin-post-generator',  Icon: LinkedInIcon,  live: true  },
             { name: 'X',         href: null,                            Icon: XIcon,         live: false },
             { name: 'Facebook',  href: null,                            Icon: FacebookIcon,  live: false },
             { name: 'TikTok',    href: null,                            Icon: TikTokIcon,    live: false },
