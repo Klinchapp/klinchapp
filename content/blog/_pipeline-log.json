@@ -468,5 +468,11 @@
         "tokens_out": 37
       }
     ]
+  },
+  {
+    "date": "2026-05-01T10:12:58.331Z",
+    "stage": "publish",
+    "file": "ai-content-future-2027.mdx",
+    "status": "published"
   }
 ]
