@@ -46,6 +46,27 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/logo.jpg" />
         <link rel="alternate" type="application/rss+xml" title="Klinchapp Blog" href="/blog/rss.xml" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Klinchapp',
+            url: 'https://www.klinchapp.com',
+            logo: 'https://www.klinchapp.com/logo.jpg',
+            description: 'AI social media post generator for Instagram, LinkedIn, X, Facebook & TikTok. Generate scroll-stopping captions in seconds.',
+          }) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'Klinchapp',
+            url: 'https://www.klinchapp.com',
+            description: 'AI social media post generator for Instagram, LinkedIn, X, Facebook & TikTok.',
+          }) }}
+        />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-NX5T2DB7CL"></script>
         <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NX5T2DB7CL');` }} />
       </head>
