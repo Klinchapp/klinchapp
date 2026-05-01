@@ -57,7 +57,7 @@ export default function HomeClient() {
 
       {/* Features */}
       <section className="max-w-7xl mx-auto px-6 py-20">
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Why Choose Klinchapp?</h2>
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Why creators choose Klinchapp&apos;s AI post generator</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {[
             { title: 'AI-Powered', desc: 'Advanced AI analyzes your product and creates engaging, platform-optimized content.' },
@@ -77,7 +77,7 @@ export default function HomeClient() {
 
       {/* How It Works */}
       <section id="how-it-works" className="max-w-7xl mx-auto px-6 py-20 bg-white rounded-3xl my-10">
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">How It Works</h2>
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">How to create AI social media posts in 3 steps</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {[
             { step: '1', title: 'Upload', desc: 'Upload your product image or describe your content.' },
