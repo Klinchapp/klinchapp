@@ -11,6 +11,13 @@ import SiteFooter from './components/site-footer'
 const CheckIcon = () => (<svg className="w-5 h-5 text-[#6B2C6B]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>)
 const SparklesIcon = () => (<svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>)
 
+// Platform icons — monoline stroke, matches site icon language
+const InstagramIcon = () => (<svg className="w-5 h-5 text-[#6B2C6B]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" ry="5" strokeLinecap="round" strokeLinejoin="round" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" strokeLinecap="round" strokeLinejoin="round" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeLinecap="round" strokeLinejoin="round" /></svg>)
+const LinkedInIcon = () => (<svg className="w-5 h-5 text-[#6B2C6B]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" strokeLinecap="round" strokeLinejoin="round" /><rect x="2" y="9" width="4" height="12" strokeLinecap="round" strokeLinejoin="round" /><circle cx="4" cy="4" r="2" strokeLinecap="round" strokeLinejoin="round" /></svg>)
+const XIcon = () => (<svg className="w-5 h-5 text-[#6B2C6B]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" /></svg>)
+const FacebookIcon = () => (<svg className="w-5 h-5 text-[#6B2C6B]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" strokeLinecap="round" strokeLinejoin="round" /></svg>)
+const TikTokIcon = () => (<svg className="w-5 h-5 text-[#6B2C6B]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>)
+
 export default function HomeClient() {
   const router = useRouter()
   const supabase = createClient()
@@ -85,6 +92,42 @@ export default function HomeClient() {
               <p className="text-gray-600">{item.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Platform pages grid */}
+      <section className="max-w-7xl mx-auto px-6 py-20">
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">Built for every platform</h2>
+        <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12">
+          Pick your platform — Klinchapp tailors captions, hashtags, and tone to where you&apos;re posting.
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          {[
+            { name: 'Instagram', href: '/ai-instagram-post-generator', Icon: InstagramIcon, live: true  },
+            { name: 'LinkedIn',  href: null,                            Icon: LinkedInIcon,  live: false },
+            { name: 'X',         href: null,                            Icon: XIcon,         live: false },
+            { name: 'Facebook',  href: null,                            Icon: FacebookIcon,  live: false },
+            { name: 'TikTok',    href: null,                            Icon: TikTokIcon,    live: false },
+          ].map((p) => {
+            const card = (
+              <div className={`relative h-full bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center ${p.live ? 'group-hover:shadow-md group-hover:border-[#6B2C6B]/30 transition-all' : 'opacity-70'}`}>
+                <div className="w-12 h-12 bg-[#F3E8FF] rounded-xl flex items-center justify-center mb-4 mx-auto">
+                  <p.Icon />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-1">{p.name}</h3>
+                {p.live ? (
+                  <p className="text-sm text-[#6B2C6B] font-semibold">Explore →</p>
+                ) : (
+                  <p className="text-sm text-gray-400">Coming soon</p>
+                )}
+              </div>
+            )
+            return p.href ? (
+              <Link key={p.name} href={p.href} className="group">{card}</Link>
+            ) : (
+              <div key={p.name}>{card}</div>
+            )
+          })}
         </div>
       </section>
 
