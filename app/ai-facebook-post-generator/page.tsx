@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { PlatformPage } from '@/app/components/platform-page'
-import { instagramConfig as config } from '@/lib/platforms/instagram'
+import { facebookConfig as config } from '@/lib/platforms/facebook'
 
 export const metadata: Metadata = {
   title: config.metaTitle,
