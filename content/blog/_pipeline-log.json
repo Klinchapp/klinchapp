@@ -474,5 +474,73 @@
     "stage": "publish",
     "file": "ai-content-future-2027.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-05-04T10:57:05.816Z",
+    "stage": "prepare",
+    "series": "ai-for-small-business",
+    "post": "ai-small-business-where-to-start",
+    "title": "AI for Small Business: Where to Start Without the Hype",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 8,
+      "accuracy": 5,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 29187,
+        "tokens_in": 2324,
+        "tokens_out": 2609
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 21277,
+        "tokens_in": 2781,
+        "tokens_out": 1938
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22646,
+        "tokens_in": 2190,
+        "tokens_out": 2060
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 844,
+        "tokens_in": 2218,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6075,
+        "tokens_in": 437,
+        "tokens_out": 646
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1056,
+        "tokens_in": 273,
+        "tokens_out": 32
+      }
+    ]
   }
 ]

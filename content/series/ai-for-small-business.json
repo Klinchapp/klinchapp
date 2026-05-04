@@ -3,7 +3,11 @@
   "title": "AI for Small Business: A Practical Guide",
   "description": "A no-nonsense series helping small business owners understand, evaluate, and adopt AI tools that actually save time and money.",
   "totalPosts": 8,
-  "tags": ["small-business", "ai-tools", "productivity"],
+  "tags": [
+    "small-business",
+    "ai-tools",
+    "productivity"
+  ],
   "posts": [
     {
       "order": 1,
@@ -12,7 +16,7 @@
       "targetSlug": "ai-small-business-where-to-start",
       "targetKeyword": "AI for small business",
       "format": "deep-analysis",
-      "status": "pending"
+      "status": "published"
     },
     {
       "order": 2,
