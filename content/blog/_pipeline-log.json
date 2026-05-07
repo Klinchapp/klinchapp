@@ -548,5 +548,73 @@
     "stage": "publish",
     "file": "ai-small-business-where-to-start.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-05-07T11:02:42.839Z",
+    "stage": "prepare",
+    "series": "ai-for-small-business",
+    "post": "ai-tools-that-pay-for-themselves",
+    "title": "5 AI Tools That Pay for Themselves in Week One",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 45186,
+        "tokens_in": 2347,
+        "tokens_out": 4096
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 32035,
+        "tokens_in": 4271,
+        "tokens_out": 2783
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 27998,
+        "tokens_in": 3035,
+        "tokens_out": 2805
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1103,
+        "tokens_in": 2963,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 5795,
+        "tokens_in": 437,
+        "tokens_out": 570
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1019,
+        "tokens_in": 273,
+        "tokens_out": 33
+      }
+    ]
   }
 ]
