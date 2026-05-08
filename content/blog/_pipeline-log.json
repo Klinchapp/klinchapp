@@ -616,5 +616,11 @@
         "tokens_out": 33
       }
     ]
+  },
+  {
+    "date": "2026-05-08T10:13:22.686Z",
+    "stage": "publish",
+    "file": "ai-tools-that-pay-for-themselves.mdx",
+    "status": "published"
   }
 ]
