@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Klinchapp V2 — Homepage Mockup (English)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { font-family: 'Inter', system-ui, sans-serif; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #FDFAFF 0%, #FDF2F8 50%, #FFF8F8 100%); }
+    .ig-gradient { background: linear-gradient(135deg, #feda75 0%, #d62976 50%, #962fbf 100%); }
+    .candle-bg { background: linear-gradient(135deg, #f4e4c1 0%, #c89968 50%, #5d3a1a 100%); }
+    .li-blue { color: #0a66c2; }
+    .li-blue-bg { background: #0a66c2; }
+    .x-bg { background: #000; }
+    .fb-blue { color: #1877f2; }
+    .fb-blue-bg { background: #1877f2; }
+    .tt-bg { background: #000; }
+    [dir="rtl"] { text-align: right; }
+    .mockup-banner { position: fixed; top: 0; left: 0; right: 0; background: #1f1f1f; color: #fff; font-size: 12px; padding: 6px 16px; text-align: center; z-index: 100; font-family: ui-monospace, monospace; }
+    .ai-sample-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; padding: 2px 10px; border-radius: 9999px; background: #f3f4f6; color: #6b7280; font-family: ui-monospace, monospace; letter-spacing: 0.05em; }
+    .ai-sample-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #d4a574; display: inline-block; }
+  </style>
+</head>
+<body class="gradient-bg min-h-screen text-gray-900">
+
+  <div class="mockup-banner">
+    KLINCHAPP V2 MOCKUP — homepage-en.html — not for shipping. Review locally only.
+  </div>
+
+  <!-- Header -->
+  <header class="pt-12 px-6 max-w-7xl mx-auto">
+    <nav class="flex items-center justify-between py-4">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-[#6B2C6B] flex items-center justify-center text-white font-bold">K</div>
+        <span class="font-extrabold text-xl">Klinchapp</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-700">
+        <a href="#how" class="hover:text-[#6B2C6B]">How it works</a>
+        <a href="#tones" class="hover:text-[#6B2C6B]">Voices</a>
+        <a href="#platforms" class="hover:text-[#6B2C6B]">Platforms</a>
+        <a href="#faq" class="hover:text-[#6B2C6B]">FAQ</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <select class="text-sm border-2 border-gray-200 rounded-lg px-2 py-1.5 font-medium" disabled>
+          <option>EN</option><option>ES</option><option>PT</option><option>FR</option><option>AR</option><option>HI</option>
+        </select>
+        <a href="#" class="text-sm font-semibold text-gray-700 hover:text-[#6B2C6B]">Log in</a>
+        <a href="#" class="text-sm font-bold px-4 py-2 bg-[#6B2C6B] text-white rounded-lg hover:bg-[#8B3A8B]">Start free</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== HERO: invitation, no demo ===== -->
+  <section class="max-w-7xl mx-auto px-6 pt-12 pb-12 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#F3E8FF] rounded-full text-[#6B2C6B] text-sm font-semibold mb-6">
+      AI vision · 5 platforms · 9 voices · 6 languages
+    </div>
+    <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.05] mb-6 max-w-4xl mx-auto">
+      Upload your product.<br>
+      <span class="text-[#6B2C6B]">Klinchapp writes the posts.</span>
+    </h1>
+    <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+      AI sees what you sell. Then writes captions tuned to every platform, every voice, every language — in seconds.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-3">
+      <a href="#" class="px-8 py-4 bg-[#6B2C6B] text-white rounded-xl font-bold text-lg hover:bg-[#8B3A8B] transition-all shadow-xl shadow-[#6B2C6B]/30">Try free →</a>
+      <a href="#how" class="px-8 py-4 bg-white text-[#6B2C6B] rounded-xl font-bold text-lg border-2 border-[#6B2C6B] hover:bg-[#F3E8FF] transition-all">See how it works</a>
+    </div>
+    <p class="text-sm text-gray-500">Free plan: 60 posts/month · No credit card</p>
+  </section>
+
+  <!-- ===== HOW IT WORKS: 4-step capability tour + reveal ===== -->
+  <section id="how" class="max-w-6xl mx-auto px-6 py-16">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#F3E8FF] rounded-full text-[#6B2C6B] text-sm font-semibold mb-6">How it works</div>
+      <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+        From product photo to platform-ready posts<br>
+        <span class="text-[#6B2C6B]">in four steps.</span>
+      </h2>
+      <p class="text-lg text-gray-600">
+        Each step exists because Klinchapp does something most AI post generators don't.
+      </p>
+    </div>
+
+    <!-- ===== STEP 1: Upload ===== -->
+    <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-center mb-20">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-12 h-12 rounded-full bg-[#6B2C6B] text-white flex items-center justify-center font-extrabold text-xl">1</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Upload</span>
+        </div>
+        <h3 class="text-3xl md:text-4xl font-extrabold leading-tight mb-4">Show us what you sell.</h3>
+        <p class="text-lg text-gray-600 leading-relaxed mb-3">
+          Drag in a product image. Klinchapp's AI vision sees what's distinctive — colors, shape, brand cues, mood — without you typing a word.
+        </p>
+        <p class="text-sm text-gray-500 italic">No image yet? Type a description instead — Klinchapp handles both flows.</p>
+      </div>
+      <div>
+        <div class="bg-white rounded-2xl shadow-sm border-2 border-dashed border-[#6B2C6B]/30 p-5">
+          <div class="grid grid-cols-2 gap-4 items-start">
+            <div>
+              <div class="aspect-square candle-bg rounded-xl flex items-center justify-center relative overflow-hidden">
+                <span class="absolute top-3 left-4 text-2xl opacity-40">🕯️</span>
+                <span class="absolute top-6 right-5 text-xl opacity-30 rotate-12">✨</span>
+                <span class="absolute bottom-10 left-6 text-xl opacity-30">🌿</span>
+                <span class="absolute w-2/3 aspect-square rounded-full bg-white/30 blur-2xl"></span>
+                <span class="relative text-7xl drop-shadow-lg">🕯️</span>
+                <span class="absolute bottom-3 left-0 right-0 text-center text-white font-bold tracking-[0.25em] text-[10px] uppercase opacity-90">Maison Brûlée</span>
+              </div>
+              <div class="mt-2 flex items-center gap-1.5 text-[11px] text-gray-500 font-mono">
+                <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                saffron-cedar.jpg
+              </div>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold uppercase tracking-wider text-[#6B2C6B] mb-3 flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
+                What Klinchapp sees
+              </div>
+              <ul class="space-y-2 text-xs">
+                <li class="flex justify-between border-b border-gray-100 pb-1.5"><span class="text-gray-500">Category</span><span class="font-semibold">Candle</span></li>
+                <li class="flex justify-between border-b border-gray-100 pb-1.5"><span class="text-gray-500">Vessel</span><span class="font-semibold">8oz amber jar</span></li>
+                <li class="flex justify-between border-b border-gray-100 pb-1.5"><span class="text-gray-500">Cues</span><span class="font-semibold">Hand-poured</span></li>
+                <li class="flex justify-between"><span class="text-gray-500">Mood</span><span class="font-semibold">Warm · premium</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STEP 2: Platform ===== -->
+    <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-center mb-20">
+      <div class="md:order-2">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-12 h-12 rounded-full bg-[#6B2C6B] text-white flex items-center justify-center font-extrabold text-xl">2</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Platform</span>
+        </div>
+        <h3 class="text-3xl md:text-4xl font-extrabold leading-tight mb-4">Pick a platform. Or all five.</h3>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Each platform gets its own caption — character limits, hashtag conventions, and structural quirks tuned to how Instagram, LinkedIn, X, Facebook, and TikTok actually reward content.
+        </p>
+      </div>
+      <div class="md:order-1">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-3">Choose platforms</div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 p-3 rounded-lg border-2 border-[#6B2C6B] bg-[#F3E8FF]">
+              <div class="w-8 h-8 ig-gradient rounded-md shrink-0"></div>
+              <div class="flex-1 min-w-0">
+                <div class="text-sm font-bold">Instagram</div>
+                <div class="text-[10px] text-gray-500">2,200 chars · 5–10 hashtags</div>
+              </div>
+              <span class="text-[#6B2C6B] font-bold text-lg">✓</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-lg border border-gray-200">
+              <div class="w-8 h-8 li-blue-bg rounded-md shrink-0"></div>
+              <div class="flex-1 min-w-0"><div class="text-sm font-bold">LinkedIn</div><div class="text-[10px] text-gray-500">3,000 chars · 2–3 hashtags</div></div>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-lg border border-gray-200">
+              <div class="w-8 h-8 x-bg rounded-md shrink-0"></div>
+              <div class="flex-1 min-w-0"><div class="text-sm font-bold">X</div><div class="text-[10px] text-gray-500">280 chars · 1–2 hashtags</div></div>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-lg border border-gray-200">
+              <div class="w-8 h-8 fb-blue-bg rounded-md shrink-0"></div>
+              <div class="flex-1 min-w-0"><div class="text-sm font-bold">Facebook</div><div class="text-[10px] text-gray-500">63,206 chars · 0–2 hashtags</div></div>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-lg border border-gray-200">
+              <div class="w-8 h-8 tt-bg rounded-md shrink-0"></div>
+              <div class="flex-1 min-w-0"><div class="text-sm font-bold">TikTok</div><div class="text-[10px] text-gray-500">2,200 chars · 3–5 hashtags</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STEP 3: Tone ===== -->
+    <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-center mb-20">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-12 h-12 rounded-full bg-[#6B2C6B] text-white flex items-center justify-center font-extrabold text-xl">3</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Tone</span>
+        </div>
+        <h3 class="text-3xl md:text-4xl font-extrabold leading-tight mb-4">Choose your voice.</h3>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Nine tones — same product, very different captions. Pick Professional for the brand channel, Founder for LinkedIn, Witty for the X account.
+        </p>
+      </div>
+      <div>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-3">Choose voice</div>
+          <div class="grid grid-cols-3 gap-2">
+            <button class="px-3 py-2 rounded-lg text-xs font-semibold border-2 border-[#6B2C6B] bg-[#F3E8FF] text-[#6B2C6B]">Professional</button>
+            <button class="px-3 py-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-600">Casual</button>
+            <button class="px-3 py-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-600">Enthusiastic</button>
+            <button class="px-3 py-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-600">Humorous</button>
+            <button class="px-3 py-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-600">Inspirational</button>
+            <button class="px-3 py-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-600">Luxe</button>
+            <button class="px-3 py-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-600">Witty</button>
+            <button class="px-3 py-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-600">Founder</button>
+            <button class="px-3 py-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-600">Bold</button>
+          </div>
+          <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-700 leading-relaxed">
+            "Introducing Saffron &amp; Cedar — Maison Brûlée's first scent. Hand-poured in Brooklyn, single batch, 60 hours of clean burn."
+          </div>
+          <div class="mt-2 text-[10px] text-gray-400 font-mono">↑ Professional voice · AI sample</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STEP 4: Language ===== -->
+    <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-center mb-20">
+      <div class="md:order-2">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-12 h-12 rounded-full bg-[#6B2C6B] text-white flex items-center justify-center font-extrabold text-xl">4</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Language</span>
+        </div>
+        <h3 class="text-3xl md:text-4xl font-extrabold leading-tight mb-4">Write in your audience's language.</h3>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Six languages — English, Spanish, Portuguese, French, Arabic (right-to-left), Hindi. Hashtags localize too. Posts generated directly in the target language, not translated from English.
+        </p>
+      </div>
+      <div class="md:order-1">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-3">Choose language</div>
+          <div class="grid grid-cols-3 gap-2">
+            <button class="px-2 py-3 rounded-lg border border-gray-200 text-gray-600">
+              <div class="font-extrabold text-base">EN</div><div class="text-[9px] mt-0.5 font-medium">English</div>
+            </button>
+            <button class="px-2 py-3 rounded-lg border border-gray-200 text-gray-600">
+              <div class="font-extrabold text-base">ES</div><div class="text-[9px] mt-0.5 font-medium">Español</div>
+            </button>
+            <button class="px-2 py-3 rounded-lg border border-gray-200 text-gray-600">
+              <div class="font-extrabold text-base">PT</div><div class="text-[9px] mt-0.5 font-medium">Português</div>
+            </button>
+            <button class="px-2 py-3 rounded-lg border border-gray-200 text-gray-600">
+              <div class="font-extrabold text-base">FR</div><div class="text-[9px] mt-0.5 font-medium">Français</div>
+            </button>
+            <button class="px-2 py-3 rounded-lg border-2 border-[#6B2C6B] bg-[#F3E8FF] text-[#6B2C6B] relative">
+              <div class="font-extrabold text-base">AR</div><div class="text-[9px] mt-0.5 font-medium">العربية</div>
+              <span class="absolute -top-1.5 -right-1.5 text-[8px] bg-[#6B2C6B] text-white px-1.5 py-0.5 rounded-full font-bold">RTL</span>
+            </button>
+            <button class="px-2 py-3 rounded-lg border border-gray-200 text-gray-600">
+              <div class="font-extrabold text-base">HI</div><div class="text-[9px] mt-0.5 font-medium">हिन्दी</div>
+            </button>
+          </div>
+          <div dir="rtl" class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-700 leading-relaxed">
+            نقدم زعفران وأرز — أول عطر من ميزون برولي. مصنوعة يدوياً في بروكلين، دفعة واحدة.
+          </div>
+          <div class="mt-2 text-[10px] text-gray-400 font-mono">↑ Arabic, right-to-left · AI sample</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STEP 5 / REVEAL ===== -->
+    <div class="text-center max-w-3xl mx-auto mb-10 mt-24">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <span class="w-14 h-14 rounded-full bg-gradient-to-br from-[#6B2C6B] to-[#8B3A8B] text-white flex items-center justify-center font-extrabold text-2xl shadow-lg shadow-[#6B2C6B]/30">5</span>
+      </div>
+      <h3 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Hit generate. Done.</h3>
+      <p class="text-lg text-gray-600 mb-3">
+        One image. Five platforms. Nine voices. Six languages.
+      </p>
+      <p class="text-2xl md:text-3xl font-extrabold text-[#6B2C6B] mb-4">
+        270 unique posts from a single upload.
+      </p>
+      <p class="text-sm text-gray-500 max-w-xl mx-auto mb-3">
+        Below: the same Saffron &amp; Cedar candle, written natively for all 5 platforms.
+      </p>
+      <span class="ai-sample-badge">AI sample output</span>
+    </div>
+
+    <!-- The 5 platform mockups (the matrix payoff) -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+
+      <!-- Instagram -->
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
+        <div class="flex items-center gap-2 px-3 py-2 border-b border-gray-100">
+          <div class="w-7 h-7 rounded-full ig-gradient p-[2px]">
+            <div class="w-full h-full rounded-full bg-white flex items-center justify-center text-[10px] font-bold text-[#6B2C6B]">M</div>
+          </div>
+          <span class="text-xs font-semibold">@maisonbrulee</span>
+          <span class="ml-auto text-gray-400">⋯</span>
+        </div>
+        <div class="aspect-square candle-bg flex items-center justify-center relative">
+          <span class="absolute top-3 left-4 text-xl opacity-40">🕯️</span>
+          <span class="absolute top-6 right-5 text-base opacity-30 rotate-12">✨</span>
+          <span class="absolute bottom-8 left-6 text-base opacity-30">🌿</span>
+          <span class="absolute w-2/3 aspect-square rounded-full bg-white/30 blur-2xl"></span>
+          <span class="relative text-6xl drop-shadow-lg">🕯️</span>
+          <span class="absolute bottom-3 left-0 right-0 text-center text-white font-bold tracking-[0.25em] text-[9px] uppercase opacity-90">Maison Brûlée</span>
+        </div>
+        <div class="px-3 py-2 text-base">♡ 💬 ↗</div>
+        <div class="px-3 pb-3 text-xs leading-relaxed flex-1">
+          <span class="font-semibold">@maisonbrulee</span> Cedar smoke and saffron warmth — meet our first scent of 2026. 🕯️ Hand-poured in Brooklyn, single batch, 60 hours of clean burn. Eighteen months in the making.
+          <p class="text-[#6B2C6B] mt-1.5 leading-snug">#SaffronAndCedar #CandleLaunch #SmallBatchCandles #BrooklynMakers #SlowBrand #FirstScent #HandPoured</p>
+        </div>
+        <div class="px-3 py-2 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-400 font-mono">
+          <span>Instagram</span><span>312/2200 · 7 tags</span>
+        </div>
+      </article>
+
+      <!-- LinkedIn -->
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
+        <div class="flex items-start gap-2 px-3 py-3">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-[#6B2C6B] to-[#8B3A8B] flex items-center justify-center text-white font-bold text-xs shrink-0">SC</div>
+          <div class="flex-1 min-w-0">
+            <p class="text-xs font-semibold truncate">Sarah Chen</p>
+            <p class="text-[10px] text-gray-500 truncate">Founder, Maison Brûlée</p>
+            <p class="text-[10px] text-gray-400 mt-0.5">2h · 🌐</p>
+          </div>
+        </div>
+        <div class="px-3 pb-3 text-xs leading-relaxed flex-1 space-y-1.5">
+          <p class="font-medium">Eighteen months. Eighty burned prototypes. One scent.</p>
+          <p>We just shipped Maison Brûlée's first candle: Saffron &amp; Cedar.</p>
+          <p>The thing nobody tells you about making something physical:</p>
+          <p>→ The first attempt is rarely the product</p>
+          <p>→ The fortieth attempt usually isn't either</p>
+          <p>→ Somewhere around the seventieth, you stop chasing perfection and start chasing the version you'd actually buy</p>
+          <p>Today's the day. One scent. Eighteen months. Worth it.</p>
+          <p class="li-blue">#SmallBusiness #FounderJourney</p>
+        </div>
+        <div class="px-3 py-1.5 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-500">
+          <span>👍❤️💡 1,247</span><span>184 · 36</span>
+        </div>
+        <div class="grid grid-cols-4 gap-1 px-1.5 py-1.5 border-t border-gray-100 text-[9px] font-semibold text-gray-600">
+          <button class="py-1 hover:bg-gray-50 rounded">👍 Like</button>
+          <button class="py-1 hover:bg-gray-50 rounded">💬 Comment</button>
+          <button class="py-1 hover:bg-gray-50 rounded">🔄 Repost</button>
+          <button class="py-1 hover:bg-gray-50 rounded">📤 Send</button>
+        </div>
+        <div class="px-3 py-2 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-400 font-mono">
+          <span>LinkedIn</span><span>504/3000 · 2 tags</span>
+        </div>
+      </article>
+
+      <!-- X (Twitter) -->
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
+        <div class="flex items-start gap-2 px-3 py-3">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center text-white font-bold text-xs shrink-0">SC</div>
+          <div class="flex-1 min-w-0">
+            <p class="text-xs font-semibold truncate">Sarah Chen <span class="text-gray-400 font-normal">@maisonbrulee · 2h</span></p>
+          </div>
+          <span class="text-gray-400">⋯</span>
+        </div>
+        <div class="px-3 pb-3 text-xs leading-relaxed flex-1 space-y-1.5">
+          <p>made a candle.</p>
+          <p>eighteen months. eighty prototypes. one scent.</p>
+          <p>it's saffron and cedar. it doesn't smell like a campfire — that took longer than you'd think.</p>
+          <p class="text-blue-500">#firstscent</p>
+        </div>
+        <div class="px-3 py-2 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+          <span>💬 47</span><span>♻ 128</span><span>♡ 892</span><span>📊 12k</span>
+        </div>
+        <div class="px-3 py-2 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-400 font-mono">
+          <span>X</span><span>165/280 · 1 tag</span>
+        </div>
+      </article>
+
+      <!-- Facebook -->
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
+        <div class="flex items-start gap-2 px-3 py-3">
+          <div class="w-9 h-9 rounded-full fb-blue-bg flex items-center justify-center text-white font-bold text-xs shrink-0">MB</div>
+          <div class="flex-1 min-w-0">
+            <p class="text-xs font-semibold truncate">Maison Brûlée</p>
+            <p class="text-[10px] text-gray-500">2h · 🌐</p>
+          </div>
+        </div>
+        <div class="px-3 pb-3 text-xs leading-relaxed flex-1 space-y-1.5">
+          <p>Big news, friends 🕯️ — our very first scent is finally here.</p>
+          <p>Saffron &amp; Cedar. Hand-poured in Brooklyn. Eighteen months in the making. We burned through eighty prototypes to get here, and somewhere around month nine we almost gave up.</p>
+          <p>Sixty hours of clean burn. Single batch. $42.</p>
+          <p class="font-medium">What scents would you want us to try next? Drop them in the comments 👇</p>
+        </div>
+        <div class="px-3 py-2 border-t border-gray-100 grid grid-cols-3 gap-1 text-[10px] text-gray-600 font-semibold">
+          <button class="py-1 hover:bg-gray-50 rounded">👍 Like</button>
+          <button class="py-1 hover:bg-gray-50 rounded">💬 Comment</button>
+          <button class="py-1 hover:bg-gray-50 rounded">↗ Share</button>
+        </div>
+        <div class="px-3 py-2 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-400 font-mono">
+          <span>Facebook</span><span>425/63206 · 0 tags</span>
+        </div>
+      </article>
+
+      <!-- TikTok -->
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
+        <div class="aspect-[9/16] candle-bg relative flex items-center justify-center">
+          <span class="absolute top-3 left-3 text-xl opacity-40">🕯️</span>
+          <span class="absolute bottom-12 right-3 text-base opacity-30">✨</span>
+          <span class="text-7xl relative drop-shadow-lg">🕯️</span>
+          <div class="absolute right-2 bottom-3 flex flex-col gap-2 text-white text-[10px] font-semibold">
+            <div class="flex flex-col items-center"><span class="text-base">♡</span><span>14k</span></div>
+            <div class="flex flex-col items-center"><span class="text-base">💬</span><span>823</span></div>
+            <div class="flex flex-col items-center"><span class="text-base">↗</span><span>2.1k</span></div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-12 p-3 text-white text-[10px] leading-snug">
+            <p class="font-bold mb-1">@maisonbrulee</p>
+            <p>POV: 18 months and 80 prototypes later, your first scent is here 🕯️</p>
+            <p class="font-medium mt-1">#candlemaking #smallbiz #founderpov #brooklynmade #firstscent</p>
+            <p class="opacity-80 mt-1">♪ original sound</p>
+          </div>
+        </div>
+        <div class="px-3 py-2 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-400 font-mono">
+          <span>TikTok</span><span>148/2200 · 5 tags</span>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- ===== TONE DEEP-DIVE ===== -->
+  <section id="tones" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#F3E8FF] rounded-full text-[#6B2C6B] text-sm font-semibold mb-6">
+        Step 3 · Voice deep-dive
+      </div>
+      <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+        Same image. Same platform.<br>
+        <span class="text-[#6B2C6B]">Nine visibly different voices.</span>
+      </h2>
+      <p class="text-lg text-gray-600 mb-3">
+        The Saffron &amp; Cedar candle — written nine ways for Instagram. The voice you choose is the voice you ship.
+      </p>
+      <span class="ai-sample-badge">AI sample output</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Professional</span>
+          <span class="text-[10px] text-gray-400 font-mono">Mandatory</span>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-900">Introducing Saffron &amp; Cedar — Maison Brûlée's first scent. Hand-poured in Brooklyn, single batch, 60 hours of clean burn. 8oz, $42. Available today.</p>
+        <p class="text-xs text-[#6B2C6B] mt-3 leading-snug">#SaffronAndCedar #CandleLaunch #MaisonBrulee</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Casual</span>
+          <span class="text-[10px] text-gray-400 font-mono">Mandatory</span>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-900">ok so we made a candle. it took 18 months and a lot of swearing. it smells like cedar and saffron and not at all like a campfire (we tried). available now if you're into that kind of thing 🕯️</p>
+        <p class="text-xs text-[#6B2C6B] mt-3 leading-snug">#candle #brooklynmade #smallbiz</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Enthusiastic</span>
+          <span class="text-[10px] text-gray-400 font-mono">Mandatory</span>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-900">IT'S HERE!! 🕯️🕯️🕯️ Our Saffron &amp; Cedar candle just launched and we're losing it. Eighteen months, eighty prototypes, sixty hours of clean burn — finally yours. Go light one!!</p>
+        <p class="text-xs text-[#6B2C6B] mt-3 leading-snug">#FirstScent #LaunchDay #SmallBatchCandles</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Humorous</span>
+          <span class="text-[10px] text-gray-400 font-mono">Mandatory</span>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-900">we burned $40k of wax to bring you this candle. eighty prototypes. eighteen months. one scent that didn't smell like a tire fire. you're welcome.</p>
+        <p class="text-xs text-[#6B2C6B] mt-3 leading-snug">#CandleScience #SmallBatchSuffering #BrooklynMakers</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Inspirational</span>
+          <span class="text-[10px] text-gray-400 font-mono">Mandatory</span>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-900">Eighteen months ago this was a hobby in our kitchen. Today it's our first product. The candle isn't the point. Showing up for eighty prototypes — that's the point. Make the thing. 🕯️</p>
+        <p class="text-xs text-[#6B2C6B] mt-3 leading-snug">#FirstScent #MakeTheThing #SlowBrand</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Luxe</span>
+          <span class="text-[10px] text-gray-400 font-mono">Klinchapp</span>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-900">Cedar. Saffron. Slow burn. Hand-poured. Single batch. Sixty hours. One scent.</p>
+        <p class="text-xs text-[#6B2C6B] mt-3 leading-snug">#MaisonBrulee #SaffronAndCedar #Considered</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Witty</span>
+          <span class="text-[10px] text-gray-400 font-mono">Klinchapp</span>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-900">It's a candle. It smells expensive. We took 18 months to make it which seems excessive but here we are. (We are absolutely going to oversell this.)</p>
+        <p class="text-xs text-[#6B2C6B] mt-3 leading-snug">#SaffronAndCedar #SmallBatchCandles #Overselling</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Founder</span>
+          <span class="text-[10px] text-gray-400 font-mono">Klinchapp</span>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-900">I almost gave up in month nine. The wax cracked, eighty units gone, and I wasn't sure I had another month in me. This candle is the one that didn't crack.</p>
+        <p class="text-xs text-[#6B2C6B] mt-3 leading-snug">#FirstScent #FounderStory #SmallBatch</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Bold</span>
+          <span class="text-[10px] text-gray-400 font-mono">Klinchapp</span>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-900">Most candles are perfume in a jar. This one isn't. Cedar. Saffron. Eighteen months. One scent we'll actually defend.</p>
+        <p class="text-xs text-[#6B2C6B] mt-3 leading-snug">#SaffronAndCedar #NotPerfumeInAJar #MaisonBrulee</p>
+      </article>
+    </div>
+
+    <p class="text-center text-gray-500 text-sm mt-8 max-w-2xl mx-auto">
+      "Mandatory" = available in the dashboard mood selector today. "Klinchapp" = additional voices unique to v2.
+    </p>
+  </section>
+
+  <!-- ===== LANGUAGE DEEP-DIVE ===== -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#F3E8FF] rounded-full text-[#6B2C6B] text-sm font-semibold mb-6">
+        Step 4 · Language deep-dive
+      </div>
+      <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+        AI-generated, in six languages.<br>
+        <span class="text-[#6B2C6B]">Including right-to-left Arabic.</span>
+      </h2>
+      <p class="text-lg text-gray-600 mb-3">
+        Same image, six languages. Klinchapp writes directly in your audience's language — hashtags localize too.
+      </p>
+      <span class="ai-sample-badge">AI sample output</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">English</span>
+          <span class="text-[10px] text-gray-400 font-mono">EN · LTR</span>
+        </div>
+        <p class="text-xs leading-relaxed text-gray-900 flex-1">Introducing Saffron &amp; Cedar — Maison Brûlée's first scent. Hand-poured in Brooklyn, single-batch, 60 hours of clean burn. 8oz, $42. Available today.</p>
+        <p class="text-[11px] text-[#6B2C6B] mt-3 leading-snug">#SaffronAndCedar #CandleLaunch</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Español</span>
+          <span class="text-[10px] text-gray-400 font-mono">ES · LTR</span>
+        </div>
+        <p class="text-xs leading-relaxed text-gray-900 flex-1">Presentamos Azafrán y Cedro — la primera fragancia de Maison Brûlée. Hecha a mano en Brooklyn, lote único, 60 horas de combustión limpia. 240ml, $42. Disponible hoy.</p>
+        <p class="text-[11px] text-[#6B2C6B] mt-3 leading-snug">#AzafránYCedro #LanzamientoVela</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Português</span>
+          <span class="text-[10px] text-gray-400 font-mono">PT · LTR</span>
+        </div>
+        <p class="text-xs leading-relaxed text-gray-900 flex-1">Apresentamos Açafrão e Cedro — a primeira fragrância da Maison Brûlée. Feita à mão no Brooklyn, lote único, 60 horas de queima limpa. 240ml, $42. Disponível hoje.</p>
+        <p class="text-[11px] text-[#6B2C6B] mt-3 leading-snug">#AçafrãoECedro #LançamentoVela</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Français</span>
+          <span class="text-[10px] text-gray-400 font-mono">FR · LTR</span>
+        </div>
+        <p class="text-xs leading-relaxed text-gray-900 flex-1">Découvrez Safran &amp; Cèdre — la première bougie de Maison Brûlée. Coulée à la main à Brooklyn, en lot unique, 60 heures de combustion propre. 240ml, 42$. Disponible dès aujourd'hui.</p>
+        <p class="text-[11px] text-[#6B2C6B] mt-3 leading-snug">#SafranEtCèdre #LancementBougie</p>
+      </article>
+      <article dir="rtl" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col">
+        <div class="flex items-center justify-between mb-3" dir="ltr">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">العربية</span>
+          <span class="text-[10px] text-gray-400 font-mono">AR · RTL</span>
+        </div>
+        <p class="text-xs leading-relaxed text-gray-900 flex-1">نقدم زعفران وأرز — أول عطر من ميزون برولي. مصنوعة يدوياً في بروكلين، دفعة واحدة، 60 ساعة من الاحتراق النظيف. 240مل، $42. متوفرة اليوم.</p>
+        <p class="text-[11px] text-[#6B2C6B] mt-3 leading-snug">#زعفران_وأرز #إطلاق_شمعة</p>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">हिन्दी</span>
+          <span class="text-[10px] text-gray-400 font-mono">HI · LTR</span>
+        </div>
+        <p class="text-xs leading-relaxed text-gray-900 flex-1">प्रस्तुत है केसर और देवदार — Maison Brûlée की पहली खुशबू। ब्रुकलिन में हाथ से बनी, एकल बैच, 60 घंटे की साफ जलन। 240ml, $42। आज से उपलब्ध।</p>
+        <p class="text-[11px] text-[#6B2C6B] mt-3 leading-snug">#केसरऔरदेवदार #मोमबत्तीलॉन्च</p>
+      </article>
+    </div>
+
+    <div class="text-center mt-8 max-w-2xl mx-auto">
+      <p class="text-gray-500 text-sm">Captions shown are placeholder translations for layout review. Native-speaker review before launch.</p>
+    </div>
+  </section>
+
+  <!-- ===== PLATFORM DEEP-DIVES ===== -->
+  <section id="platforms" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#F3E8FF] rounded-full text-[#6B2C6B] text-sm font-semibold mb-6">
+        Step 2 · Platform deep-dives
+      </div>
+      <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">Go deeper on each platform.</h2>
+      <p class="text-lg text-gray-600">
+        Each platform page shows the tone gallery, anatomy of a high-performing caption, and platform-specific FAQs.
+      </p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <a href="/v2/en/ai-instagram-post-generator" class="group">
+        <div class="h-full bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center group-hover:shadow-md group-hover:border-[#6B2C6B]/30 transition-all">
+          <div class="w-12 h-12 ig-gradient rounded-xl mb-4 mx-auto"></div>
+          <h3 class="text-base font-bold mb-1">Instagram</h3>
+          <p class="text-xs text-[#6B2C6B] font-semibold">Explore →</p>
+        </div>
+      </a>
+      <a href="/v2/en/ai-linkedin-post-generator" class="group">
+        <div class="h-full bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center group-hover:shadow-md group-hover:border-[#6B2C6B]/30 transition-all">
+          <div class="w-12 h-12 li-blue-bg rounded-xl mb-4 mx-auto"></div>
+          <h3 class="text-base font-bold mb-1">LinkedIn</h3>
+          <p class="text-xs text-[#6B2C6B] font-semibold">Explore →</p>
+        </div>
+      </a>
+      <div>
+        <div class="h-full bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center opacity-70">
+          <div class="w-12 h-12 x-bg rounded-xl mb-4 mx-auto"></div>
+          <h3 class="text-base font-bold mb-1">X</h3>
+          <p class="text-xs text-gray-400">Coming soon</p>
+        </div>
+      </div>
+      <div>
+        <div class="h-full bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center opacity-70">
+          <div class="w-12 h-12 fb-blue-bg rounded-xl mb-4 mx-auto"></div>
+          <h3 class="text-base font-bold mb-1">Facebook</h3>
+          <p class="text-xs text-gray-400">Coming soon</p>
+        </div>
+      </div>
+      <div>
+        <div class="h-full bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center opacity-70">
+          <div class="w-12 h-12 tt-bg rounded-xl mb-4 mx-auto"></div>
+          <h3 class="text-base font-bold mb-1">TikTok</h3>
+          <p class="text-xs text-gray-400">Coming soon</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="max-w-4xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Frequently asked questions</h2>
+    </div>
+    <div class="space-y-3">
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 group" open>
+        <summary class="cursor-pointer list-none flex items-center justify-between p-5 font-semibold">
+          <span>What if I don't have a product image?</span>
+          <span class="text-[#6B2C6B] text-2xl leading-none transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 leading-relaxed">Klinchapp accepts a text description as well. Image input gets you stronger captions because the AI sees what's visually distinctive about your product — colors, materials, mood — and writes copy that leads with it. Text-only works fine for announcements, milestones, or content where there's no product to photograph.</div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 group">
+        <summary class="cursor-pointer list-none flex items-center justify-between p-5 font-semibold">
+          <span>Is Klinchapp free to use?</span>
+          <span class="text-[#6B2C6B] text-2xl leading-none transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 leading-relaxed">Yes. The free plan includes 60 AI-generated posts per month across all 5 platforms. No credit card required to start.</div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 group">
+        <summary class="cursor-pointer list-none flex items-center justify-between p-5 font-semibold">
+          <span>Will my posts sound like AI?</span>
+          <span class="text-[#6B2C6B] text-2xl leading-none transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 leading-relaxed">The output is AI-generated — Klinchapp doesn't pretend otherwise. The voice you choose (Professional, Founder, Witty, etc.) shapes how the caption reads, and you can edit, regenerate, or rewrite before posting. Klinchapp drafts; you ship.</div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 group">
+        <summary class="cursor-pointer list-none flex items-center justify-between p-5 font-semibold">
+          <span>Which platforms does Klinchapp support?</span>
+          <span class="text-[#6B2C6B] text-2xl leading-none transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 leading-relaxed">Five — Instagram, LinkedIn, X, Facebook, and TikTok. Each post is tuned to the platform's character limits, hashtag conventions, and structural quirks. Currently Instagram and LinkedIn have dedicated landing pages; X, Facebook, and TikTok pages launch in upcoming sessions.</div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 group">
+        <summary class="cursor-pointer list-none flex items-center justify-between p-5 font-semibold">
+          <span>How many languages does Klinchapp support?</span>
+          <span class="text-[#6B2C6B] text-2xl leading-none transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 leading-relaxed">Six — English, Spanish, Portuguese, French, Arabic (right-to-left), and Hindi. Posts are generated directly in the target language, not translated from English. Hashtags localize too. Hinglish style is supported for Hindi where appropriate.</div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 group">
+        <summary class="cursor-pointer list-none flex items-center justify-between p-5 font-semibold">
+          <span>Can I edit captions before posting?</span>
+          <span class="text-[#6B2C6B] text-2xl leading-none transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 leading-relaxed">Yes. Every generated caption is editable. Regenerate, swap hashtags, change tone, or rewrite manually — all in one place.</div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 group">
+        <summary class="cursor-pointer list-none flex items-center justify-between p-5 font-semibold">
+          <span>What happens to my data?</span>
+          <span class="text-[#6B2C6B] text-2xl leading-none transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 leading-relaxed">Your prompts, uploaded images, and generated content stay in your account. We don't sell or share your data, and we don't use your inputs to train models.</div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 group">
+        <summary class="cursor-pointer list-none flex items-center justify-between p-5 font-semibold">
+          <span>Can I switch tones across posts?</span>
+          <span class="text-[#6B2C6B] text-2xl leading-none transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 leading-relaxed">Yes. Pick a different voice for each post, or set a default brand voice and override per-platform.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="bg-gradient-to-r from-[#6B2C6B] to-[#8B3A8B] rounded-3xl p-12 text-white text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Try it free.</h2>
+      <p class="text-lg opacity-90 mb-8">Free plan: 60 posts a month across all platforms. No credit card required.</p>
+      <a href="#" class="inline-block px-8 py-4 bg-white text-[#6B2C6B] rounded-xl font-bold text-lg hover:bg-gray-100 transition-all">Get started free →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="max-w-7xl mx-auto px-6 py-12 border-t border-gray-200 mt-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-[#6B2C6B] flex items-center justify-center text-white font-bold text-xs">K</div>
+        <span>Klinchapp · 2026</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-[#6B2C6B]">Privacy</a>
+        <a href="#" class="hover:text-[#6B2C6B]">Terms</a>
+        <a href="#" class="hover:text-[#6B2C6B]">Contact</a>
+        <a href="#" class="hover:text-[#6B2C6B]">Blog</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
