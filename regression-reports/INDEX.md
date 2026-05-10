@@ -4,7 +4,11 @@ Auto-generated. Most recent first. New reports prepend.
 
 | Date (UTC) | Trigger | Commit | Status | Duration | Report |
 |---|---|---|---|---|---|
+<<<<<<< Updated upstream
 | 2026-05-10 12:58 | post-merge | `409cb92` | PASS | 33s | [view](2026-05-10T12-58-32Z_409cb92.md) |
+=======
+| 2026-05-10 12:59 | post-merge | `f8d857e` | PASS | 34s | [view](2026-05-10T12-59-28Z_f8d857e.md) |
+>>>>>>> Stashed changes
 | 2026-05-10 05:55 | scheduled | `f567ffe` | PASS | 32s | [view](2026-05-10T05-55-25Z_f567ffe.md) |
 | 2026-05-09 05:40 | scheduled | `fe0c62b` | PASS | 34s | [view](2026-05-09T05-40-23Z_fe0c62b.md) |
 | 2026-05-08 10:14 | post-merge | `b4a2d68` | PASS | 33s | [view](2026-05-08T10-14-24Z_b4a2d68.md) |
