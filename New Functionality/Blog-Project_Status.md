@@ -6,7 +6,9 @@
 **Go-Live Date:** 2026-04-17
 **Status:** LIVE - Fully Autonomous
 **First Post:** [AI-Generated Content: Why Quality Beats Quantity Every Time](https://www.klinchapp.com/blog/ai-content-quality-over-quantity)
-**GitHub PR:** [#1 - Autonomous AI Blog Engine](https://github.com/Klinchapp/klinchapp/pull/1) (merged)
+**GitHub PRs:**
+- [#1 - Autonomous AI Blog Engine](https://github.com/Klinchapp/klinchapp/pull/1) (merged 2026-04-17)
+- [#17 - Auto-syndicate Kira posts to Blogger via API](https://github.com/Klinchapp/klinchapp/pull/17) (merged 2026-05-10)
 
 ---
 
@@ -148,6 +150,22 @@
 - [x] **5.9** Verified Vercel auto-rebuild on pipeline git push
 - [x] **5.10** Blog link added to dashboard header (logged-in state)
 
+### Phase 6: External Syndication (Blogger) - COMPLETE 2026-05-10
+
+Goal: every published Kira post auto-syndicates to a free external blog (Blogger) for backlink diversification, with no third-party SaaS in the link path.
+
+- [x] **6.1** Tried IFTTT (RSS → Blogger). Abandoned — Pro paywall on the Blogger trigger and the URL-shortener override was buried.
+- [x] **6.2** Tried dlvr.it (RSS → Blogger). Worked technically but defaulted to `dlvr.it/xxx` shortlinks instead of direct backlinks; the shortener-disable setting was inaccessible. Setup deactivated 2026-05-10.
+- [x] **6.3** Pivoted to direct Blogger API call from GitHub Actions — full control, version-controlled, no SaaS in the link path.
+- [x] **6.4** New script `scripts/syndicate-to-blogger.mjs`: reads latest published MDX, extracts ~3 paragraph teaser, OAuth refresh → Blogger API v3 POST.
+- [x] **6.5** New workflow step `Syndicate to Blogger` added to `.github/workflows/blog-publish.yml`. Gated on `if: steps.commit.outputs.published == 'true'` and uses `continue-on-error: true` so a syndication failure cannot break the publish flow.
+- [x] **6.6** Setup doc at `scripts/BLOGGER_API_SETUP.md` (Google Cloud OAuth dance + 4 GitHub secrets).
+- [x] **6.7** OAuth setup completed in existing `Klinchapp` Google Cloud project (Blogger API enabled, scope added under OAuth consent → Data Access, test user added under Audience).
+- [x] **6.8** Four GitHub secrets added: `BLOGGER_CLIENT_ID`, `BLOGGER_CLIENT_SECRET`, `BLOGGER_REFRESH_TOKEN`, `BLOGGER_BLOG_ID`.
+- [x] **6.9** Security review run on PR #17 — no high-confidence findings. Hardcoded Google endpoints, OAuth via standard refresh_token flow, all inputs trusted (env vars + own MDX content).
+- [x] **6.10** PR #17 merged (commit `409cb92`).
+- [x] **6.11** End-to-end test: post `ai-prompts-for-business` syndicated successfully → https://klinchapp.blogspot.com/2026/05/how-to-write-ai-prompts-that-actually.html. Direct klinchapp.com link in body, ~3-paragraph teaser, "by Kira" footer.
+
 ---
 
 ## Architecture
@@ -172,6 +190,11 @@ GitHub Actions Cron
         → Commit + push → Vercel rebuilds → post goes live
         → Send confirmation email via Resend
         → If no scheduled post → fallback: run prepare + publish same-day
+        → Syndicate to Blogger (NEW 2026-05-10)
+            • Read latest published MDX
+            • Extract ~3 paragraph teaser + canonical klinchapp.com link
+            • OAuth refresh → POST to Blogger API v3
+            • continue-on-error: true (cannot break publish)
 ```
 
 **LLM Failover Chain (3 attempts each: immediate → 5 min → 10 min):**
@@ -224,6 +247,11 @@ GitHub Actions Cron
 | `ANTHROPIC_API_KEY` | Vercel env vars | Done (existing) |
 | `blog_subscribers` table | Supabase | Done (2026-04-16) |
 | GitHub Actions workflow permissions | Read and write | Done (2026-04-17) |
+| `BLOGGER_CLIENT_ID` | GitHub repo secret (Blogger syndication OAuth) | Done (2026-05-10) |
+| `BLOGGER_CLIENT_SECRET` | GitHub repo secret (Blogger syndication OAuth) | Done (2026-05-10) |
+| `BLOGGER_REFRESH_TOKEN` | GitHub repo secret (Blogger syndication OAuth) | Done (2026-05-10) |
+| `BLOGGER_BLOG_ID` | GitHub repo secret (target Blogger blog ID) | Done (2026-05-10) |
+| Google Cloud project `Klinchapp` | Blogger API v3 enabled, OAuth client `klinchapp-syndicator` | Done (2026-05-10) |
 
 ---
 
@@ -249,6 +277,8 @@ GitHub Actions Cron
 | `content/series/understanding-ai.json` | Series blueprint: 6 posts with keywords + formats |
 | `content/blog/*.mdx` | Blog posts (pipeline-generated, committed by Kira) |
 | `content/blog/_pipeline-log.json` | Pipeline execution log with full attempt details |
+| `scripts/syndicate-to-blogger.mjs` | Blogger API v3 syndication: reads latest published MDX, builds 3-paragraph HTML teaser + canonical link-back, OAuth refresh → POST. Added 2026-05-10. |
+| `scripts/BLOGGER_API_SETUP.md` | One-time OAuth setup guide (Google Cloud project, Blogger API enable, OAuth consent + scopes, OAuth Playground for refresh token, GitHub secrets). Added 2026-05-10. |
 
 ## Files Modified
 
@@ -261,6 +291,7 @@ GitHub Actions Cron
 | `app/layout.tsx` | Added RSS auto-discovery `<link>` tag, favicon, apple-touch-icon |
 | `app/sitemap.ts` | Added dynamic blog post + series entries |
 | `.env.example` | Added notes for OPENAI_API_KEY, GOOGLE_AI_API_KEY |
+| `.github/workflows/blog-publish.yml` | Added `Syndicate to Blogger` step after publish (2026-05-10). Gated on `published == 'true'` from commit step output. `continue-on-error: true`. |
 
 ---
 
@@ -271,6 +302,13 @@ GitHub Actions Cron
 3. **GitHub Actions push permission denied** - Default GITHUB_TOKEN lacked write access. Created fine-grained PAT (`PAT_TOKEN`) with Contents + Workflows read/write on klinchapp repo.
 4. **Blog link missing in logged-in state** - Dashboard header didn't have Blog link. Added to `app/dashboard/page.tsx`.
 
+## Issues Resolved During Blogger Syndication (2026-05-10)
+
+1. **IFTTT Pro paywall** - The Blogger trigger required Pro tier and the UI funneled into payment without a free-tier escape. Abandoned.
+2. **dlvr.it shortlinks** - dlvr.it's free tier defaults to posting `dlvr.it/xxx` shortlinks instead of direct klinchapp.com links, undermining the entire backlink play. Per-route override appeared locked behind global account settings that the UI made hard to reach. Abandoned and deactivated 2026-05-10.
+3. **Approach pivot** - Switched from third-party SaaS to a direct Blogger API call from GitHub Actions. Removes the SaaS link path entirely; full control over post body and outbound URLs.
+4. **Google Cloud OAuth UI reorg** - "Edit App" / Scopes flow has moved into separate sub-tabs (Data Access, Audience, Clients) under the new Google Auth Platform UI. Updated setup doc steps to match.
+
 ---
 
 ## Automated Schedule (Live)
@@ -278,9 +316,9 @@ GitHub Actions Cron
 | Day | Time (UTC) | Action | Status |
 |-----|-----------|--------|--------|
 | Monday | 9:00 AM | Prepare post (research + write + verify) | Automated |
-| Tuesday | 9:00 AM | Publish post (go live + email notification) | Automated |
+| Tuesday | 9:00 AM | Publish post (go live + email notification + syndicate to Blogger) | Automated |
 | Thursday | 9:00 AM | Prepare post (research + write + verify) | Automated |
-| Friday | 9:00 AM | Publish post (go live + email notification) | Automated |
+| Friday | 9:00 AM | Publish post (go live + email notification + syndicate to Blogger) | Automated |
 
 ---
 
@@ -291,7 +329,11 @@ GitHub Actions Cron
 | Featured images (DALL-E) | AI-generated hero image per post (~$0.50/mo) | After 10+ posts live |
 | "Week in AI" roundup | Monthly standalone roundup post | Add blueprint entry when ready |
 | Health check alerts | Alert if no post published for 5+ days | Add GitHub Action |
-| Social API automation | Auto-post to X, LinkedIn via Buffer/X API | When manual copy-paste is tedious |
+| WordPress.com auto-syndication | Mirror of Blogger syndication for second free backlink source. Blog already exists at `kirasaiblog.wordpress.com`. New script `syndicate-to-wordpress.mjs` + 4 new GitHub secrets, same pattern as Blogger. | Next session per user request |
+| Backfill existing 6 Kira posts to Blogger | One-off script to POST already-published MDX posts to Blogger so it's not just future posts | Low priority — new posts are what matter for backlink momentum |
+| Bump GitHub Actions runner versions | `actions/checkout@v4` and `actions/setup-node@v4` warned as Node 20 deprecated (forced to Node 24 from June 2026, removed Sep 2026) | Before June 2026 |
+| Social API automation | Auto-post to X, LinkedIn via Buffer/X API | When manual copy-paste is tedious. Note: blog-to-Blogger syndication shipped 2026-05-10 (separate from social platforms) |
+| WordPress.com auto-syndication | Mirror of Blogger syndication for a second free backlink source | Open follow-up after Blogger validated |
 | Analytics feedback loop | GA4 data into topic selection | After 1,000+ monthly visitors |
 | Social listening | Monitor mentions, AI-generated replies | After social presence established |
 | Monthly auto-planning | Auto-generate new series blueprints from AI news trends | After current 20 topics used (~10 weeks) |
