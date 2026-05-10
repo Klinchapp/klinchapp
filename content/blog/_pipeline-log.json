@@ -622,5 +622,79 @@
     "stage": "publish",
     "file": "ai-tools-that-pay-for-themselves.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-05-10T13:37:23.838Z",
+    "stage": "prepare",
+    "series": "ai-for-small-business",
+    "post": "ai-prompts-for-business",
+    "title": "How to Write AI Prompts That Actually Work for Your Business",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 9,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 7,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 29520,
+        "tokens_in": 2514,
+        "tokens_out": 2925
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 25139,
+        "tokens_in": 3097,
+        "tokens_out": 2472
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22867,
+        "tokens_in": 2724,
+        "tokens_out": 2381
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1121,
+        "tokens_in": 2539,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6560,
+        "tokens_in": 428,
+        "tokens_out": 551
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 941,
+        "tokens_in": 286,
+        "tokens_out": 32
+      }
+    ]
+  },
+  {
+    "date": "2026-05-10T13:37:23.839Z",
+    "stage": "publish",
+    "file": "ai-prompts-for-business.mdx",
+    "status": "published"
   }
 ]
