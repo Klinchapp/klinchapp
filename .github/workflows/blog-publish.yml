@@ -37,13 +37,26 @@ jobs:
         run: node scripts/blog-pipeline.mjs publish
 
       - name: Commit and push
+        id: commit
         run: |
           git config user.name "Kira (Blog Pipeline)"
           git config user.email "kira@klinchapp.com"
           git add content/
           if git diff --staged --quiet; then
             echo "No changes to commit"
+            echo "published=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "blog: publish post"
             git push
+            echo "published=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Syndicate to Blogger
+        if: steps.commit.outputs.published == 'true'
+        continue-on-error: true
+        env:
+          BLOGGER_CLIENT_ID: ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET: ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
+        run: node scripts/syndicate-to-blogger.mjs
