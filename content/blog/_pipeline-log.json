@@ -696,5 +696,73 @@
     "stage": "publish",
     "file": "ai-prompts-for-business.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-05-11T11:59:25.271Z",
+    "stage": "prepare",
+    "series": "ai-for-small-business",
+    "post": "ai-customer-service-chatbots",
+    "title": "AI Customer Service: Chatbots That Don't Annoy Your Customers",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 9,
+      "actionability": 8,
+      "engagement": 9,
+      "accuracy": 5,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 34696,
+        "tokens_in": 2468,
+        "tokens_out": 3356
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 27883,
+        "tokens_in": 3528,
+        "tokens_out": 2548
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 28283,
+        "tokens_in": 2800,
+        "tokens_out": 2588
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 964,
+        "tokens_in": 2746,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6709,
+        "tokens_in": 435,
+        "tokens_out": 608
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1345,
+        "tokens_in": 288,
+        "tokens_out": 32
+      }
+    ]
   }
 ]
