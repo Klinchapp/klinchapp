@@ -323,7 +323,7 @@ ${previousContext}
 ${researchContext}
 
 Requirements:
-- 800-1200 words
+- 700-900 words
 - Use ## for section headings that include relevant search terms where natural
 - Include at least 3-5 data points with specific numbers
 - Include at least 3-5 references to real sources with URLs

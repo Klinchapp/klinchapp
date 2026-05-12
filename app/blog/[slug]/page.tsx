@@ -108,7 +108,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           {/* Content */}
-          <div className="prose prose-gray max-w-none prose-headings:text-gray-900 prose-h2:text-xl prose-h2:font-semibold prose-h2:mt-8 prose-h2:mb-4 prose-p:text-gray-600 prose-p:mb-4 prose-a:text-[#6B2C6B] prose-a:font-medium prose-strong:text-gray-900 prose-li:text-gray-600 prose-blockquote:border-[#6B2C6B] prose-blockquote:text-gray-500">
+          <div className="blog-content prose prose-gray max-w-none prose-headings:text-gray-900 prose-h2:text-xl prose-h2:font-semibold prose-h2:mt-8 prose-h2:mb-4 prose-p:text-gray-600 prose-p:mb-4 prose-a:text-[#6B2C6B] prose-a:font-medium prose-strong:text-gray-900 prose-li:text-gray-600 prose-blockquote:border-[#6B2C6B] prose-blockquote:text-gray-500">
             <MDXRemote source={post.content} />
           </div>
 

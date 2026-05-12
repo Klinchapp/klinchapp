@@ -29,3 +29,17 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #a78bfa;
 }
+
+/* Blog post References section — smaller + italic for aesthetics */
+.blog-content > h2:last-of-type,
+.blog-content > h2:last-of-type ~ * {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: #6b7280;
+}
+.blog-content > h2:last-of-type {
+  font-weight: 500;
+}
+.blog-content > h2:last-of-type ~ p a {
+  font-size: 0.875rem;
+}
