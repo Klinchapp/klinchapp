@@ -764,5 +764,79 @@
         "tokens_out": 32
       }
     ]
+  },
+  {
+    "date": "2026-05-12T11:10:27.671Z",
+    "stage": "prepare",
+    "series": "ai-for-small-business",
+    "post": "ai-social-media-brand-voice",
+    "title": "Using AI for Social Media Without Losing Your Brand Voice",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22795,
+        "tokens_in": 2377,
+        "tokens_out": 2140
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16168,
+        "tokens_in": 2312,
+        "tokens_out": 1786
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13860,
+        "tokens_in": 2038,
+        "tokens_out": 1676
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1022,
+        "tokens_in": 1758,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10643,
+        "tokens_in": 855,
+        "tokens_out": 864
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1148,
+        "tokens_in": 283,
+        "tokens_out": 29
+      }
+    ]
+  },
+  {
+    "date": "2026-05-12T11:10:27.674Z",
+    "stage": "publish",
+    "file": "ai-social-media-brand-voice.mdx",
+    "status": "published"
   }
 ]
