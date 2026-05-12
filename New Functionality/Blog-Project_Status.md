@@ -9,6 +9,7 @@
 **GitHub PRs:**
 - [#1 - Autonomous AI Blog Engine](https://github.com/Klinchapp/klinchapp/pull/1) (merged 2026-04-17)
 - [#17 - Auto-syndicate Kira posts to Blogger via API](https://github.com/Klinchapp/klinchapp/pull/17) (merged 2026-05-10)
+- [#18 - Auto-syndicate Kira posts to WordPress.com via API](https://github.com/Klinchapp/klinchapp/pull/18) (open as of 2026-05-12)
 
 ---
 
@@ -166,6 +167,20 @@ Goal: every published Kira post auto-syndicates to a free external blog (Blogger
 - [x] **6.10** PR #17 merged (commit `409cb92`).
 - [x] **6.11** End-to-end test: post `ai-prompts-for-business` syndicated successfully → https://klinchapp.blogspot.com/2026/05/how-to-write-ai-prompts-that-actually.html. Direct klinchapp.com link in body, ~3-paragraph teaser, "by Kira" footer.
 
+### Phase 7: External Syndication (WordPress.com) - COMPLETE 2026-05-12
+
+Goal: second free backlink destination at `kirasaiblog.wordpress.com`, mirroring the Blogger approach. Diversifies the backlink source domain (different root domain than blogspot.com).
+
+- [x] **7.1** New script `scripts/syndicate-to-wordpress.mjs` — same shape as Blogger script: reads latest published MDX, extracts ~3 paragraph teaser, POSTs to `public-api.wordpress.com/rest/v1.1/sites/{site}/posts/new` with Bearer auth.
+- [x] **7.2** Auth simpler than Blogger: WordPress.com issues long-lived access tokens via password grant (`grant_type=password`) using an Application Password — no refresh dance, no token expiry. Only 2 secrets at runtime vs Blogger's 4.
+- [x] **7.3** New workflow step `Syndicate to WordPress` added to `.github/workflows/blog-publish.yml`. Runs after the Blogger step. Same gating (`if: published == 'true'`) and same safety (`continue-on-error: true`).
+- [x] **7.4** Setup doc at `scripts/WORDPRESS_API_SETUP.md` (app registration at developer.wordpress.com, Application Password generation, token mint via PowerShell `Invoke-RestMethod` or curl, 2 GitHub secrets).
+- [x] **7.5** App registered at developer.wordpress.com as `klinchapp-syndicator`. Redirect URL set to `https://www.klinchapp.com/` (WP.com rejects redirect URLs containing the word "wordpress").
+- [x] **7.6** 2FA enabled on the Klinchapp WP.com account (required for Application Passwords). Application Password generated and used once to mint the access token, then discarded.
+- [x] **7.7** Two GitHub secrets added: `WORDPRESS_ACCESS_TOKEN`, `WORDPRESS_SITE_ID` (set to `kirasaiblog.wordpress.com`).
+- [x] **7.8** Security review run on PR #18 — no high-confidence findings. Identical security profile to PR #17 (hardcoded WP.com endpoint, bearer auth, `encodeURIComponent` on site ID).
+- [x] **7.9** End-to-end test: workflow run on `feat-wordpress-syndication` branch syndicated successfully to both Blogger AND WordPress.com simultaneously. Confirmed posts visible on both `klinchapp.blogspot.com` and `kirasaiblog.wordpress.com`.
+
 ---
 
 ## Architecture
@@ -195,6 +210,10 @@ GitHub Actions Cron
             • Extract ~3 paragraph teaser + canonical klinchapp.com link
             • OAuth refresh → POST to Blogger API v3
             • continue-on-error: true (cannot break publish)
+        → Syndicate to WordPress (NEW 2026-05-12)
+            • Same teaser + canonical link-back as Blogger
+            • Long-lived Bearer token → POST to WordPress.com REST API v1.1
+            • continue-on-error: true (cannot break publish or Blogger step)
 ```
 
 **LLM Failover Chain (3 attempts each: immediate → 5 min → 10 min):**
@@ -252,6 +271,9 @@ GitHub Actions Cron
 | `BLOGGER_REFRESH_TOKEN` | GitHub repo secret (Blogger syndication OAuth) | Done (2026-05-10) |
 | `BLOGGER_BLOG_ID` | GitHub repo secret (target Blogger blog ID) | Done (2026-05-10) |
 | Google Cloud project `Klinchapp` | Blogger API v3 enabled, OAuth client `klinchapp-syndicator` | Done (2026-05-10) |
+| `WORDPRESS_ACCESS_TOKEN` | GitHub repo secret (long-lived Bearer for WP.com REST API) | Done (2026-05-12) |
+| `WORDPRESS_SITE_ID` | GitHub repo secret (target WP.com blog domain `kirasaiblog.wordpress.com`) | Done (2026-05-12) |
+| WordPress.com app `klinchapp-syndicator` | Registered at developer.wordpress.com/apps. 2FA enabled on account. | Done (2026-05-12) |
 
 ---
 
@@ -279,6 +301,8 @@ GitHub Actions Cron
 | `content/blog/_pipeline-log.json` | Pipeline execution log with full attempt details |
 | `scripts/syndicate-to-blogger.mjs` | Blogger API v3 syndication: reads latest published MDX, builds 3-paragraph HTML teaser + canonical link-back, OAuth refresh → POST. Added 2026-05-10. |
 | `scripts/BLOGGER_API_SETUP.md` | One-time OAuth setup guide (Google Cloud project, Blogger API enable, OAuth consent + scopes, OAuth Playground for refresh token, GitHub secrets). Added 2026-05-10. |
+| `scripts/syndicate-to-wordpress.mjs` | WordPress.com REST API v1.1 syndication: same MDX → 3-paragraph teaser pipeline, Bearer auth, posts to `kirasaiblog.wordpress.com`. Added 2026-05-12. |
+| `scripts/WORDPRESS_API_SETUP.md` | One-time setup guide (developer.wordpress.com app, Application Password, password-grant token mint, GitHub secrets). Added 2026-05-12. |
 
 ## Files Modified
 
@@ -291,7 +315,7 @@ GitHub Actions Cron
 | `app/layout.tsx` | Added RSS auto-discovery `<link>` tag, favicon, apple-touch-icon |
 | `app/sitemap.ts` | Added dynamic blog post + series entries |
 | `.env.example` | Added notes for OPENAI_API_KEY, GOOGLE_AI_API_KEY |
-| `.github/workflows/blog-publish.yml` | Added `Syndicate to Blogger` step after publish (2026-05-10). Gated on `published == 'true'` from commit step output. `continue-on-error: true`. |
+| `.github/workflows/blog-publish.yml` | Added `Syndicate to Blogger` step after publish (2026-05-10) and `Syndicate to WordPress` step (2026-05-12). Both gated on `published == 'true'`, both `continue-on-error: true`. |
 
 ---
 
@@ -309,6 +333,14 @@ GitHub Actions Cron
 3. **Approach pivot** - Switched from third-party SaaS to a direct Blogger API call from GitHub Actions. Removes the SaaS link path entirely; full control over post body and outbound URLs.
 4. **Google Cloud OAuth UI reorg** - "Edit App" / Scopes flow has moved into separate sub-tabs (Data Access, Audience, Clients) under the new Google Auth Platform UI. Updated setup doc steps to match.
 
+## Issues Resolved During WordPress.com Syndication (2026-05-12)
+
+1. **Redirect URL rejection** - developer.wordpress.com rejects any redirect URL containing the word "wordpress". Worked around by using `https://www.klinchapp.com/` instead. The redirect URL is irrelevant for password-grant auth anyway, but the field is required.
+2. **2FA prerequisite for Application Passwords** - WP.com requires two-step authentication to be enabled before Application Passwords can be generated. Set up authenticator-app 2FA on the Klinchapp WP.com account.
+3. **Google-login account confusion** - The Klinchapp WP.com account signs in via Google OAuth, not native password. Resolved: Application Passwords are independent of the underlying sign-in method, and the OAuth password-grant username can be the Google email address.
+4. **PowerShell hides 400-error response body by default** - When the OAuth token mint failed, `Invoke-RestMethod` showed only "Bad Request" without the actual error JSON. Added try/catch with `StreamReader` workaround to the setup doc for diagnosis.
+5. **`grant_type=password` is a literal string, not the user's password** - Naming collision in OAuth 2.0 spec. Clarified in the setup doc.
+
 ---
 
 ## Automated Schedule (Live)
@@ -316,9 +348,9 @@ GitHub Actions Cron
 | Day | Time (UTC) | Action | Status |
 |-----|-----------|--------|--------|
 | Monday | 9:00 AM | Prepare post (research + write + verify) | Automated |
-| Tuesday | 9:00 AM | Publish post (go live + email notification + syndicate to Blogger) | Automated |
+| Tuesday | 9:00 AM | Publish post (go live + email notification + syndicate to Blogger + WordPress.com) | Automated |
 | Thursday | 9:00 AM | Prepare post (research + write + verify) | Automated |
-| Friday | 9:00 AM | Publish post (go live + email notification + syndicate to Blogger) | Automated |
+| Friday | 9:00 AM | Publish post (go live + email notification + syndicate to Blogger + WordPress.com) | Automated |
 
 ---
 
@@ -329,11 +361,11 @@ GitHub Actions Cron
 | Featured images (DALL-E) | AI-generated hero image per post (~$0.50/mo) | After 10+ posts live |
 | "Week in AI" roundup | Monthly standalone roundup post | Add blueprint entry when ready |
 | Health check alerts | Alert if no post published for 5+ days | Add GitHub Action |
-| WordPress.com auto-syndication | Mirror of Blogger syndication for second free backlink source. Blog already exists at `kirasaiblog.wordpress.com`. New script `syndicate-to-wordpress.mjs` + 4 new GitHub secrets, same pattern as Blogger. | Next session per user request |
-| Backfill existing 6 Kira posts to Blogger | One-off script to POST already-published MDX posts to Blogger so it's not just future posts | Low priority — new posts are what matter for backlink momentum |
+| Backfill existing Kira posts to Blogger + WordPress | One-off script to POST the already-published MDX posts to both destinations so it's not just future posts | Low priority — new posts are what matter for backlink momentum |
 | Bump GitHub Actions runner versions | `actions/checkout@v4` and `actions/setup-node@v4` warned as Node 20 deprecated (forced to Node 24 from June 2026, removed Sep 2026) | Before June 2026 |
-| Social API automation | Auto-post to X, LinkedIn via Buffer/X API | When manual copy-paste is tedious. Note: blog-to-Blogger syndication shipped 2026-05-10 (separate from social platforms) |
-| WordPress.com auto-syndication | Mirror of Blogger syndication for a second free backlink source | Open follow-up after Blogger validated |
+| Third backlink destination (Tumblr?) | Same pattern as Blogger/WP. Skipped initially — only add if Blogger+WP underperform on Search Console after a few weeks. | Only if needed |
+| Social API automation | Auto-post to X, LinkedIn via Buffer/X API | When manual copy-paste is tedious. Note: blog-to-Blogger + blog-to-WordPress syndication shipped 2026-05-10 to 2026-05-12 (separate from social platforms) |
+| WordPress.com auto-syndication | Mirror of Blogger syndication for a second free backlink source | Done — see Phase 7 |
 | Analytics feedback loop | GA4 data into topic selection | After 1,000+ monthly visitors |
 | Social listening | Monitor mentions, AI-generated replies | After social presence established |
 | Monthly auto-planning | Auto-generate new series blueprints from AI news trends | After current 20 topics used (~10 weeks) |
