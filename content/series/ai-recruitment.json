@@ -1,0 +1,77 @@
+{
+  "slug": "ai-recruitment",
+  "title": "AI for Recruitment: What's Actually Changing",
+  "description": "A practical, honest look at how AI is reshaping recruitment and job hunting in 2026 — from the recruiter's stack to the candidate's resume. Real tools, real bias risks, no hype.",
+  "totalPosts": 7,
+  "tags": [
+    "recruitment",
+    "hr",
+    "ai-tools",
+    "hiring"
+  ],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "The AI-Powered Recruiter's Stack in 2026: Tools That Actually Work",
+      "topicBrief": "A practical roundup of the AI tools modern recruiters actually use day-to-day. Cover the core categories: sourcing (hireEZ, Fetcher, Gem), screening and conversational AI (Paradox), end-to-end talent intelligence (Eightfold, Beamery), and outreach (LinkedIn Recruiter AI). Include pricing tiers where available, what each does well, and what to avoid. Be honest about which tools are hype vs which deliver. Target audience: HR leaders, in-house recruiters, agency recruiters.",
+      "targetSlug": "ai-recruiting-tools-stack-2026",
+      "targetKeyword": "AI recruiting tools",
+      "format": "roundup",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "AI Resume Screening: Honest Pros, Real Bias Risks",
+      "topicBrief": "Deep-analysis post on AI resume screening. Cover how it actually works (NLP + ML on parsed resume data), the productivity wins (recruiters cite 60-70%% time savings on initial screening), and the very real bias risks. Specifically address: Amazon's 2018 scrapped AI hiring tool case study, the NYC AEDT bias audit law (effective 2023), EEOC's 2023 guidance on AI employment tools, and the EU AI Act's classification of HR AI as high-risk. End with practical guidance: what to audit before deploying, what disclosures to give candidates.",
+      "targetSlug": "ai-resume-screening-bias-risks",
+      "targetKeyword": "AI resume screening",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "AI Candidate Sourcing vs Boolean Search: When Each Wins",
+      "topicBrief": "How-to guide comparing traditional boolean LinkedIn/Google sourcing with AI-driven candidate matching (hireEZ, SeekOut, Eightfold). Show concrete examples: a boolean string for 'senior backend engineer with Rust experience in Berlin' vs how the same intent gets handled by AI sourcing tools. Explain when AI matching wins (large talent pools, fuzzy requirements, passive candidates) and when boolean still wins (precise niche roles, security clearances, exact tool experience). Include time-to-shortlist comparisons from real recruiter case studies if available.",
+      "targetSlug": "ai-candidate-sourcing-vs-boolean",
+      "targetKeyword": "AI candidate sourcing",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "AI Interview Tools: What HR Is Actually Deploying in 2026",
+      "topicBrief": "Tool review covering the AI interview category. Cover async video AI scoring (HireVue, Modern Hire), AI-driven structured interview platforms (Pymetrics, Sapia.ai), and AI interview note-takers/transcription (Metaview, Notably, Hireflix). Be specific about what each evaluates (speech patterns, facial expression, response content) and the legitimate concerns: Illinois AI Video Interview Act disclosure requirements, candidate experience friction, validity studies. Include what candidates actually think — cite survey data from sources like Talview, SHRM, or LinkedIn's Workplace Learning reports.",
+      "targetSlug": "ai-interview-tools-hr-uses",
+      "targetKeyword": "AI interview tools",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "AI Scheduling and Candidate Experience: Automate the Busywork Without Losing the Human Touch",
+      "topicBrief": "How-to guide on using AI for the operational layer of recruiting: scheduling (Paradox/Olivia, GoodTime, Calendly AI), automated candidate updates and rejection emails, AI chatbot FAQ handlers on careers pages. Focus on practical setup. Stress where automation should stop — final offer conversations, sensitive feedback, anything involving negotiation. Cite real examples from companies that publicized their candidate-experience AI deployments (Unilever, McDonald's). Include 3-5 specific implementation tips, like always offering an escape-hatch to a human within 2 interactions.",
+      "targetSlug": "ai-recruiting-automation-scheduling",
+      "targetKeyword": "AI recruiting automation",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "AI Resume Builders That Actually Beat ATS in 2026",
+      "topicBrief": "Tool review flipping perspective from recruiter to candidate. Cover the real AI resume tools: Rezi, Teal, Jobscan, Enhancv, Kickresume, plus the AI rewriters built into LinkedIn (Premium) and Indeed. Explain what ATS systems (Workday, Greenhouse, Lever, iCIMS) actually parse and how AI resume tools claim to optimize for that. Be honest about limitations — these tools help with keyword matching and formatting, but cannot fake fit. Include concrete tips: how to use ChatGPT/Claude to tailor a resume to a specific job description (the prompt structure), what to avoid (over-stuffed keywords), and the new 'human-in-loop' approach that works best.",
+      "targetSlug": "ai-resume-builders-beat-ats",
+      "targetKeyword": "AI resume builder",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 7,
+      "topicTitle": "Will AI Replace Recruiters? An Honest Analysis",
+      "topicBrief": "Opinion piece taking a clear position: AI will not replace recruiters, but it will replace the recruiters who don't use AI. Build the argument with specifics. What AI handles well today (sourcing, screening, scheduling, FAQ — the high-volume low-judgment work). What AI is still bad at (assessing executive-level fit, navigating compensation negotiation, reading organizational politics during placement, building long-term candidate relationships). Cite real data on recruiter headcount trends — LinkedIn's 2025 Future of Recruiting report is a good source. End with a practical takeaway: the skills recruiters should develop now to stay essential, and what employers should be hiring recruiters FOR in 2026.",
+      "targetSlug": "will-ai-replace-recruiters",
+      "targetKeyword": "Will AI replace recruiters",
+      "format": "opinion",
+      "status": "pending"
+    }
+  ]
+}
