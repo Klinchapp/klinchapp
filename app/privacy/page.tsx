@@ -24,7 +24,7 @@ export default function PrivacyPage() {
       <main className="max-w-4xl mx-auto px-6 py-12">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
-          <p className="text-gray-500 mb-8">Last updated: January 2026</p>
+          <p className="text-gray-500 mb-8">Last updated: May 2026</p>
 
           <div className="prose prose-gray max-w-none">
             <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">1. Information We Collect</h2>
@@ -48,16 +48,23 @@ export default function PrivacyPage() {
             <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">7. Your Rights</h2>
             <p className="text-gray-600 mb-4">You have the right to: access your personal data; request correction of your data; request deletion of your account and data; and opt out of marketing communications.</p>
 
-            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">8. Data Retention</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">8. International Users and GDPR</h2>
+            <p className="text-gray-600 mb-4">If you access the Service from the European Economic Area (EEA), the United Kingdom, or Switzerland, you have additional rights under the General Data Protection Regulation (GDPR) and equivalent laws, including: the right to be informed about how your data is processed; the right of access to your personal data; the right to rectification of inaccurate data; the right to erasure (the &quot;right to be forgotten&quot;); the right to restrict processing; the right to data portability; the right to object to processing; and the right to lodge a complaint with your local data protection authority.</p>
+            <p className="text-gray-600 mb-4">We process your data on the legal bases of legitimate interest (operating and improving the Service), contract performance (delivering the Service you signed up for), and consent (where required, such as for marketing communications). Where personal data is transferred outside the EEA, UK, or Switzerland, we rely on adequate safeguards such as Standard Contractual Clauses with our service providers.</p>
+
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">9. California Privacy Rights (CCPA/CPRA)</h2>
+            <p className="text-gray-600 mb-4">If you are a California resident, you have rights under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA), including: the right to know what personal information we collect, use, and disclose; the right to delete your personal information; the right to correct inaccurate personal information; the right to opt out of the sale or sharing of your personal information; and the right to non-discrimination for exercising these rights. We do not sell your personal information, and we do not knowingly collect personal information from California residents under 16 without affirmative consent.</p>
+
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">10. Data Retention</h2>
             <p className="text-gray-600 mb-4">We retain your account information as long as your account is active. Generated content history is retained for your reference. You can request deletion of your data at any time.</p>
 
-            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">9. Children's Privacy</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">11. Children&apos;s Privacy</h2>
             <p className="text-gray-600 mb-4">Our Service is not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
 
-            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">10. Changes to This Policy</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">12. Changes to This Policy</h2>
             <p className="text-gray-600 mb-4">We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
 
-            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">11. Contact Us</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">13. Contact Us</h2>
             <p className="text-gray-600 mb-4">If you have questions about this Privacy Policy, please <Link href="/contact" className="text-[#6B2C6B] hover:underline">contact us</Link>.</p>
           </div>
         </div>
