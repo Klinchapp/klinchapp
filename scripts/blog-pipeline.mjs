@@ -489,30 +489,39 @@ URL: ${postUrl}
 Generate a snippet for EACH platform. Follow these rules strictly:
 
 X/TWITTER (under 260 chars, leave room for link):
-- Punchy hook, intriguing not clickbait
-- 1-2 relevant hashtags
+- Lead with a question, contrarian claim, or stop-scrolling hook — not a summary
+- Optimise for replies (questions outperform statements on X in 2026)
+- 1-2 relevant hashtags max (more reads as spam on X)
 - Do NOT include the URL (it will be added automatically)
 
-LINKEDIN (2-3 paragraphs):
-- Professional but engaging
-- Use line breaks and numbered lists
-- 2-3 hashtags
-- End with "Read more on the Klinchapp blog" (URL added automatically)
+LINKEDIN (4-5 short paragraphs, ~1000-1500 chars):
+- Professional but human — write like a thoughtful peer, not a press release
+- Use line breaks generously (every 1-2 sentences gets a break — dwell time matters)
+- Include a numbered list or bullets in the body
+- Deliver ONE concrete insight or stat in the post itself — readers should get value without clicking
+- End with a question to drive comments (LinkedIn algorithm weights comments heavily)
+- Then "Read more on the Klinchapp blog" (URL added automatically)
+- 2-3 hashtags after the link
 
-INSTAGRAM (with emojis):
-- Visual, engaging, use emojis and line breaks
-- 5-8 hashtags at the end
-- Say "Link in bio" (not the URL)
+INSTAGRAM (80-150 words, with emojis):
+- Open with a scroll-stopping question or contrast in the first 1-2 lines (only those lines show before the "more" truncation)
+- Deliver ONE concrete tip or insight IN the caption — don't just tease, give real value
+- End with an engagement CTA: ask readers to save the post, comment with their answer, or tag someone (saves and comments boost reach much more than likes)
+- Then "Link in bio" (not the URL)
+- 8-12 hashtags after the CTA, MIXED volume: 3-4 broad (>1M posts), 4-5 medium-niche (50k-500k), 2-3 small-niche (<50k). Avoid generic mega-tags as the only tags.
 
-FACEBOOK (conversational):
-- Conversational, encourage engagement
-- 1-2 paragraphs
+FACEBOOK (conversational, 2-3 short paragraphs):
+- Open with a question to drive comments (Facebook suppresses outbound-link reach; comment engagement is the only lever)
+- Deliver ONE concrete takeaway in the body — same principle as Instagram, give value before asking for a click
+- Encourage tagging or commenting near the end
+- 0-2 hashtags max (Facebook doesn't reward hashtags)
 - End with "👉 Read the full post on the Klinchapp blog" (URL added automatically)
 
-TIKTOK (Gen-Z friendly):
-- Casual, trendy, use emojis
-- 3-5 hashtags
-- Short and punchy
+TIKTOK (80-150 char caption, Gen-Z friendly):
+- Lead with a hook framing like "POV:", "Hot take:", "Real talk:", or a question
+- Casual and conversational, emojis welcome but not excessive
+- Tease the value rather than spoiling it (TikTok captions are hooks for the video, not summaries)
+- 4-6 hashtags: include one broad-reach tag like #FYP or #ForYou plus 3-5 topic-specific tags
 
 Return ONLY a valid JSON object with this exact structure, no other text:
 {"twitter": "...", "linkedin": "...", "instagram": "...", "facebook": "...", "tiktok": "..."}`
