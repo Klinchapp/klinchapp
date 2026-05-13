@@ -9,7 +9,10 @@
 **GitHub PRs:**
 - [#1 - Autonomous AI Blog Engine](https://github.com/Klinchapp/klinchapp/pull/1) (merged 2026-04-17)
 - [#17 - Auto-syndicate Kira posts to Blogger via API](https://github.com/Klinchapp/klinchapp/pull/17) (merged 2026-05-10)
-- [#18 - Auto-syndicate Kira posts to WordPress.com via API](https://github.com/Klinchapp/klinchapp/pull/18) (open as of 2026-05-12)
+- [#18 - Auto-syndicate Kira posts to WordPress.com via API](https://github.com/Klinchapp/klinchapp/pull/18) (merged 2026-05-12)
+- [#19 - Tighter Kira blog posts (700-900 words) + smaller italicized References](https://github.com/Klinchapp/klinchapp/pull/19) (merged 2026-05-12)
+- [#20 - AI for Recruitment series blueprint (7 posts)](https://github.com/Klinchapp/klinchapp/pull/20) (merged 2026-05-12)
+- [#21 - Stronger social snippet prompts (engagement CTAs, value-in-caption, mixed hashtags)](https://github.com/Klinchapp/klinchapp/pull/21) (merged 2026-05-12)
 
 ---
 
@@ -181,6 +184,20 @@ Goal: second free backlink destination at `kirasaiblog.wordpress.com`, mirroring
 - [x] **7.8** Security review run on PR #18 — no high-confidence findings. Identical security profile to PR #17 (hardcoded WP.com endpoint, bearer auth, `encodeURIComponent` on site ID).
 - [x] **7.9** End-to-end test: workflow run on `feat-wordpress-syndication` branch syndicated successfully to both Blogger AND WordPress.com simultaneously. Confirmed posts visible on both `klinchapp.blogspot.com` and `kirasaiblog.wordpress.com`.
 
+### Phase 8: Post-launch Tuning - COMPLETE 2026-05-12
+
+Goal: refine the live blog based on reader-feedback and engagement data — tighter posts, better social snippets, cleaner References styling. Plus a new series queued for autonomous publishing.
+
+- [x] **8.1** Word count reduced from **800-1200 → 700-900** in both `lib/blog-persona.ts` (system prompt) and `scripts/blog-pipeline.mjs` (per-post user prompt). Driven by external feedback that current posts felt long for 2026 reading patterns. Tighter posts have better completion rates without losing SEO depth (PR #19).
+- [x] **8.2** References section styled smaller + italic + muted grey for aesthetic. Added `blog-content` class to MDX wrapper in `app/blog/[slug]/page.tsx` and a CSS rule in `app/globals.css` that targets the last h2 (which is always References per Kira's prompt) and following siblings (PR #19).
+- [x] **8.3** Social snippet prompts strengthened across all 5 platforms in `scripts/blog-pipeline.mjs:491-516` (PR #21):
+  - X/Twitter: lead with question/contrarian hook (optimised for replies, not RTs)
+  - LinkedIn: 4-5 paragraphs (was 2-3), in-caption value, closing question to drive comments
+  - Instagram: in-caption tip (not just tease), save/comment/tag CTA, 8-12 mixed-volume hashtags (broad + medium-niche + small-niche)
+  - Facebook: opens with question, in-caption takeaway
+  - TikTok: clarified captions are hooks for video, not summaries
+- [x] **8.4** New 7-post series **AI for Recruitment** queued via `content/series/ai-recruitment.json` (PR #20). Slots alphabetically after `ai-for-small-business` and before `understanding-ai` — first post lands ~2026-05-26. Series covers AI in recruiting (sourcing, screening, interview tools, scheduling) plus candidate-side (AI resume builders) plus a bridging opinion piece. Designed to ride LinkedIn momentum on the AI-in-hiring topic.
+
 ---
 
 ## Architecture
@@ -227,12 +244,13 @@ GitHub Actions Cron
 
 ## Series Blueprints
 
-| Series | Posts | Topics | Status |
+| Series | Posts | Topics | Status (as of 2026-05-13) |
 |--------|-------|--------|--------|
-| AI Content Creation: The Complete Playbook | 6 | Quality vs quantity, training AI on your style, blog writing workflow, social media platforms, ethics, future of AI content | 1 published, 5 pending |
-| AI for Small Business: A Practical Guide | 8 | Where to start, 5 tools, prompts, chatbots, social media, costs, mistakes, 30-day plan | All pending |
+| AI Content Creation: The Complete Playbook | 6 | Quality vs quantity, training AI on your style, blog writing workflow, social media platforms, ethics, future of AI content | All 6 published |
+| AI for Small Business: A Practical Guide | 8 | Where to start, 5 tools, prompts, chatbots, social media, costs, mistakes, 30-day plan | 4 published, 4 pending |
+| AI for Recruitment: What's Actually Changing | 7 | Recruiter stack, AI resume screening, candidate sourcing, interview tools, scheduling, AI resume builders for candidates, AI-replacing-recruiters debate | All pending — runs after Small Business series (~2026-05-26 onwards) |
 | Understanding AI: From Zero to Informed | 6 | What is AI, ChatGPT vs Claude vs Gemini, how AI learns, hallucinations, ethics, AI literacy | All pending |
-| **Total** | **20** | | **1 published, 19 pending** |
+| **Total** | **27** | | **10 published, 17 pending** |
 
 ---
 
@@ -303,6 +321,7 @@ GitHub Actions Cron
 | `scripts/BLOGGER_API_SETUP.md` | One-time OAuth setup guide (Google Cloud project, Blogger API enable, OAuth consent + scopes, OAuth Playground for refresh token, GitHub secrets). Added 2026-05-10. |
 | `scripts/syndicate-to-wordpress.mjs` | WordPress.com REST API v1.1 syndication: same MDX → 3-paragraph teaser pipeline, Bearer auth, posts to `kirasaiblog.wordpress.com`. Added 2026-05-12. |
 | `scripts/WORDPRESS_API_SETUP.md` | One-time setup guide (developer.wordpress.com app, Application Password, password-grant token mint, GitHub secrets). Added 2026-05-12. |
+| `content/series/ai-recruitment.json` | Series blueprint: 7-post AI for Recruitment series (recruiter-side + candidate-side + bridging opinion). Added 2026-05-12. |
 
 ## Files Modified
 
@@ -316,6 +335,10 @@ GitHub Actions Cron
 | `app/sitemap.ts` | Added dynamic blog post + series entries |
 | `.env.example` | Added notes for OPENAI_API_KEY, GOOGLE_AI_API_KEY |
 | `.github/workflows/blog-publish.yml` | Added `Syndicate to Blogger` step after publish (2026-05-10) and `Syndicate to WordPress` step (2026-05-12). Both gated on `published == 'true'`, both `continue-on-error: true`. |
+| `lib/blog-persona.ts` | Word count target reduced from 800-1200 to 700-900 (2026-05-12, PR #19). |
+| `scripts/blog-pipeline.mjs` | Word count target reduced to 700-900 (PR #19); social snippet prompts strengthened across all 5 platforms — engagement CTAs, value-in-caption, mixed-volume hashtags (PR #21). Both 2026-05-12. |
+| `app/blog/[slug]/page.tsx` | Added `blog-content` CSS class to MDX wrapper to enable References-section styling (2026-05-12, PR #19). |
+| `app/globals.css` | Added CSS rule targeting last h2 in `.blog-content` and following siblings — renders References section smaller, italic, muted grey (2026-05-12, PR #19). |
 
 ---
 
