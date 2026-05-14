@@ -838,5 +838,73 @@
     "stage": "publish",
     "file": "ai-social-media-brand-voice.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-05-14T11:10:14.872Z",
+    "stage": "prepare",
+    "series": "ai-for-small-business",
+    "post": "real-cost-of-ai-small-business",
+    "title": "The Real Cost of AI: What Small Businesses Actually Spend",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23765,
+        "tokens_in": 2522,
+        "tokens_out": 2383
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17240,
+        "tokens_in": 2555,
+        "tokens_out": 1654
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14984,
+        "tokens_in": 1906,
+        "tokens_out": 1677
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 962,
+        "tokens_in": 1835,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8987,
+        "tokens_in": 856,
+        "tokens_out": 796
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 869,
+        "tokens_in": 287,
+        "tokens_out": 28
+      }
+    ]
   }
 ]
