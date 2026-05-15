@@ -32,7 +32,12 @@ function check(name, fn) {
 }
 
 console.log(`fetching ${url} ...`)
-const res = await fetch(url, { redirect: 'follow' })
+const headers = {}
+if (process.env.VERCEL_PROTECTION_BYPASS) {
+  headers['x-vercel-protection-bypass'] = process.env.VERCEL_PROTECTION_BYPASS
+  headers['x-vercel-set-bypass-cookie'] = 'true'
+}
+const res = await fetch(url, { redirect: 'follow', headers })
 const html = await res.text()
 const finalUrl = res.url
 

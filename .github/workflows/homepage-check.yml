@@ -55,4 +55,10 @@ jobs:
           esac
 
       - name: Run homepage checks
+        env:
+          # Optional: lets the script bypass Vercel Deployment Protection on
+          # preview URLs. Configure this in Vercel project settings →
+          # Deployment Protection → "Protection Bypass for Automation", then
+          # add the generated token as a GitHub secret with the same name.
+          VERCEL_PROTECTION_BYPASS: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: node scripts/check-homepage.mjs "${{ steps.target.outputs.url }}"
