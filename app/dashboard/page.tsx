@@ -124,6 +124,21 @@ const platformConfig: Record<string, { name: string; icon: React.ReactNode; char
   tiktok: { name: 'TikTok', icon: <TikTokIcon />, charLimit: 2200, color: 'bg-[#6B2C6B]' }
 }
 
+// First day of current calendar month in UTC (used to count posts this month)
+function getMonthStartISO(): string {
+  const now = new Date()
+  return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString()
+}
+
+// Friendly display: "Resets June 1 (in 17 days)"
+function getResetInfo(): string {
+  const now = new Date()
+  const nextReset = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1))
+  const days = Math.ceil((nextReset.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
+  const date = nextReset.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
+  return `Resets ${date} (in ${days} day${days === 1 ? '' : 's'})`
+}
+
 export default function Dashboard() {
   const router = useRouter()
   const supabase = createClient()
@@ -185,8 +200,13 @@ export default function Dashboard() {
     const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single()
     setProfile(profile)
     const postsLimit = profile?.posts_limit || 60
-    const postsUsed = profile?.posts_this_month || 0
-    setRemainingPosts(postsLimit - postsUsed)
+    // Source of truth: count posts created in the current calendar month (self-resets each month)
+    const { count: monthCount } = await supabase
+      .from('posts')
+      .select('*', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .gte('created_at', getMonthStartISO())
+    setRemainingPosts(postsLimit - (monthCount || 0))
     const { data: posts } = await supabase.from('posts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).limit(10)
     if (posts) setPostHistory(posts)
     setLoading(false)
@@ -265,7 +285,16 @@ export default function Dashboard() {
       if (!response.ok) { setError(data.message || 'Failed to generate'); setIsGenerating(false); return }
       setGeneratedContent(data.content); setGeneratedLanguage(language); setRemainingPosts(data.remainingPosts); setOriginalPlatform(platform)
       const { data: updatedProfile } = await supabase.from('profiles').select('*').eq('id', user.id).single()
-      if (updatedProfile) { setProfile(updatedProfile); setRemainingPosts((updatedProfile.posts_limit || 60) - (updatedProfile.posts_this_month || 0)) }
+      if (updatedProfile) {
+        setProfile(updatedProfile)
+        // Re-derive from posts table (source of truth) rather than the stale posts_this_month field
+        const { count: monthCount } = await supabase
+          .from('posts')
+          .select('*', { count: 'exact', head: true })
+          .eq('user_id', user.id)
+          .gte('created_at', getMonthStartISO())
+        setRemainingPosts((updatedProfile.posts_limit || 60) - (monthCount || 0))
+      }
       const { data: posts } = await supabase.from('posts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).limit(10)
       if (posts) setPostHistory(posts)
     } catch (err: any) { setError(err.message || 'Something went wrong') } finally { setIsGenerating(false) }
@@ -304,7 +333,7 @@ export default function Dashboard() {
           </div>
           <div className="flex items-center gap-3">
             <a href="/blog" className="text-[#6B2C6B] font-semibold hover:underline text-sm">Blog</a>
-            {remainingPosts !== null && (<div className="px-4 py-2 bg-[#F3E8FF] rounded-full text-sm font-semibold text-[#6B2C6B]">{remainingPosts}/60 posts left</div>)}
+            {remainingPosts !== null && (<div title={getResetInfo()} className="px-4 py-2 bg-[#F3E8FF] rounded-full text-sm font-semibold text-[#6B2C6B] cursor-help">{remainingPosts} posts left</div>)}
             <button onClick={() => setShowHistory(!showHistory)} className={`p-2.5 rounded-lg transition-all ${showHistory ? 'bg-[#6B2C6B] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="History"><ClockIcon /></button>
             <button onClick={() => setShowSettings(!showSettings)} className={`p-2.5 rounded-lg transition-all ${showSettings ? 'bg-[#6B2C6B] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Settings"><CogIcon /></button>
             <div className="flex items-center gap-2 pl-3 border-l border-gray-200">
@@ -344,7 +373,12 @@ export default function Dashboard() {
           </div>
           <div className="p-6">
             <p className="text-gray-600 mb-2"><strong>Email:</strong> {user?.email}</p>
-            <p className="text-gray-600 mb-4"><strong>Posts this month:</strong> {profile?.posts_this_month || 0} / 60</p>
+            {remainingPosts !== null && (
+              <>
+                <p className="text-gray-600 mb-1"><strong>{remainingPosts}</strong> of {profile?.posts_limit || 60} posts left this month</p>
+                <p className="text-xs text-gray-400 mb-4">{getResetInfo()}</p>
+              </>
+            )}
             <button onClick={signOut} className="w-full px-4 py-2 bg-[#6B2C6B] text-white rounded-lg hover:bg-[#8B3A8B] transition-colors">Sign Out</button>
           </div>
         </div>
