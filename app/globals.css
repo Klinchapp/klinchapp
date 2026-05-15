@@ -8,6 +8,10 @@
   --plum-light: #F3E8FF;
 }
 
+html {
+  scroll-padding-top: 6rem;
+}
+
 body {
   min-height: 100vh;
 }
