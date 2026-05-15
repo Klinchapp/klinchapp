@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const LOGO_CLASSES = 'w-14 h-14 sm:w-20 sm:h-20 rounded-xl object-contain shadow-sm bg-white'
+const LOGO_CLASSES = 'w-14 h-14 sm:w-20 sm:h-20 rounded-xl object-contain'
 
 export default function SiteFooter() {
   return (
