@@ -1,10 +1,32 @@
-'use client'
-
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase-browser'
+// v3 staging homepage — Option 2 tightening of v2 (single-line H2s, single-paragraph subtitles)
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import './v2/v2.css'
+import { notFound } from 'next/navigation'
+import { LOCALE_CODES, isLocale, getDirection, type Locale } from '../../v2/_configs/locales'
+
+export async function generateStaticParams() {
+  return LOCALE_CODES.map((locale) => ({ locale }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string }
+}): Promise<Metadata> {
+  if (!isLocale(params.locale)) return {}
+  return {
+    title: 'Klinchapp V3 — Homepage (staging)',
+    description:
+      'AI social media post generator. Drop a product image. Get captions tuned to 5 platforms, 9 voices, 6 languages — in seconds.',
+    robots: { index: false, follow: false },
+    alternates: {
+      languages: LOCALE_CODES.reduce(
+        (acc, l) => ({ ...acc, [l]: `/v3/${l}` }),
+        {} as Record<string, string>
+      ),
+    },
+  }
+}
 
 /* ===== Platform icons (mirroring app/home-client.tsx so visual identity stays consistent) ===== */
 const InstagramIcon = ({ className = 'w-5 h-5 text-[#6B2C6B]' }: { className?: string }) => (
@@ -42,15 +64,11 @@ function ProductCard({
   )
 }
 
-export default function HomeClient() {
-  const router = useRouter()
-  const supabase = createClient()
+export default function V2HomePage({ params }: { params: { locale: string } }) {
+  if (!isLocale(params.locale)) notFound()
 
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) router.push('/dashboard')
-    })
-  }, [router, supabase])
+  const locale = params.locale as Locale
+  const dir = getDirection(locale)
 
   const softwareAppJsonLd = {
     '@context': 'https://schema.org',
@@ -68,17 +86,17 @@ export default function HomeClient() {
       'Localized hashtags',
       'Free plan with 60 posts per month',
     ],
-    url: 'https://www.klinchapp.com/',
+    url: `https://www.klinchapp.com/v3/${locale}`,
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8] text-gray-900">
+    <div dir={dir} className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8] text-gray-900">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }} />
 
       {/* Header */}
       <header className="pt-6 px-6 max-w-7xl mx-auto">
         <nav className="flex items-center justify-between py-4">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href={`/v3/${locale}`} className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-[#6B2C6B] flex items-center justify-center text-white font-bold">K</div>
             <span className="font-extrabold text-xl">Klinchapp</span>
           </Link>
