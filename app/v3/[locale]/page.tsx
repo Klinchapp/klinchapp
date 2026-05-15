@@ -86,7 +86,7 @@ export default function V2HomePage({ params }: { params: { locale: string } }) {
       'Localized hashtags',
       'Free plan with 60 posts per month',
     ],
-    url: `https://www.klinchapp.com/v2/${locale}`,
+    url: `https://www.klinchapp.com/v3/${locale}`,
   }
 
   return (
@@ -96,7 +96,7 @@ export default function V2HomePage({ params }: { params: { locale: string } }) {
       {/* Header */}
       <header className="pt-6 px-6 max-w-7xl mx-auto">
         <nav className="flex items-center justify-between py-4">
-          <Link href={`/v2/${locale}`} className="flex items-center gap-2">
+          <Link href={`/v3/${locale}`} className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-[#6B2C6B] flex items-center justify-center text-white font-bold">K</div>
             <span className="font-extrabold text-xl">Klinchapp</span>
           </Link>
@@ -468,11 +468,8 @@ export default function V2HomePage({ params }: { params: { locale: string } }) {
       {/* AUDIENCE TARGETING — 3 cards */}
       <section id="audiences" className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#F3E8FF] rounded-full text-[#6B2C6B] text-sm font-semibold mb-6">
-            Who it&apos;s for
-          </div>
           <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-            Built for people who post <span className="text-[#6B2C6B]">across platforms, in multiple languages.</span>
+            Built for people posting <span className="text-[#6B2C6B]">across platforms and languages.</span>
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -509,9 +506,6 @@ export default function V2HomePage({ params }: { params: { locale: string } }) {
       {/* COMPARISON TABLE — vs text-only generators (brand-tinted) */}
       <section className="max-w-5xl mx-auto px-6 py-20">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#F3E8FF] rounded-full text-[#6B2C6B] text-sm font-semibold mb-6">
-            How Klinchapp differs
-          </div>
           <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
             Not another text-only <span className="text-[#6B2C6B]">caption generator.</span>
           </h2>
@@ -558,10 +552,10 @@ export default function V2HomePage({ params }: { params: { locale: string } }) {
       <section id="tones" className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#F3E8FF] rounded-full text-[#6B2C6B] text-sm font-semibold mb-6">
-            Step 3 · Voice deep-dive
+            Voice deep-dive
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-            Same image. Same platform. <span className="text-[#6B2C6B]">Nine visibly different voices.</span>
+            Same image. Same platform. <span className="text-[#6B2C6B]">Nine distinct voices.</span>
           </h2>
           <p className="text-lg text-gray-600 mb-3">
             One white slip-on sneaker, written nine ways for Instagram — the voice you choose is the voice you ship.
@@ -601,13 +595,13 @@ export default function V2HomePage({ params }: { params: { locale: string } }) {
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#F3E8FF] rounded-full text-[#6B2C6B] text-sm font-semibold mb-6">
-            Step 4 · Language deep-dive
+            Language deep-dive
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
             AI-generated, in six languages. <span className="text-[#6B2C6B]">Including right-to-left Arabic.</span>
           </h2>
           <p className="text-lg text-gray-600 mb-3">
-            Same image, six languages — Klinchapp writes directly in your audience&apos;s language, hashtags localize too.
+            Same image, six languages. Klinchapp writes like a local — hashtags included.
           </p>
           <span className="v2-ai-sample-badge">AI sample output</span>
         </div>
@@ -649,11 +643,11 @@ export default function V2HomePage({ params }: { params: { locale: string } }) {
         </p>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {[
-            { name: 'Instagram', href: `/v2/${locale}/ai-instagram-post-generator`, Icon: InstagramIcon, live: true },
-            { name: 'LinkedIn',  href: `/v2/${locale}/ai-linkedin-post-generator`,  Icon: LinkedInIcon,  live: true },
-            { name: 'X',         href: null, Icon: XIcon,        live: false },
-            { name: 'Facebook',  href: null, Icon: FacebookIcon, live: false },
-            { name: 'TikTok',    href: null, Icon: TikTokIcon,   live: false },
+            { name: 'Instagram', href: `/ai-instagram-post-generator`,    Icon: InstagramIcon, live: true },
+            { name: 'LinkedIn',  href: `/ai-linkedin-post-generator`,     Icon: LinkedInIcon,  live: true },
+            { name: 'X',         href: `/ai-twitter-post-generator`,      Icon: XIcon,         live: true },
+            { name: 'Facebook',  href: `/ai-facebook-post-generator`,     Icon: FacebookIcon,  live: true },
+            { name: 'TikTok',    href: `/ai-tiktok-caption-generator`,    Icon: TikTokIcon,    live: true },
           ].map((p) => {
             const card = (
               <div className={`relative h-full bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center ${p.live ? 'group-hover:shadow-md group-hover:border-[#6B2C6B]/30 transition-all' : 'opacity-70'}`}>
