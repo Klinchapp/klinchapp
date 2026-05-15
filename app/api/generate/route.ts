@@ -12,9 +12,18 @@ export async function POST(request: NextRequest) {
     const { data: { user }, error: authError } = await supabase.auth.getUser()
     if (authError || !user) { return NextResponse.json({ error: 'Unauthorized' }, { status: 401 }) }
 
-    const { data: profile } = await supabase.from('profiles').select('posts_this_month, posts_limit, plan').eq('id', user.id).single()
+    const { data: profile } = await supabase.from('profiles').select('posts_limit, plan').eq('id', user.id).single()
     const postsLimit = profile?.posts_limit || 60
-    const postsThisMonth = profile?.posts_this_month || 0
+
+    // Count posts created in the current calendar month (UTC) — single source of truth, self-resets each month
+    const now = new Date()
+    const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString()
+    const { count: monthCount } = await supabase
+      .from('posts')
+      .select('*', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .gte('created_at', monthStart)
+    const postsThisMonth = monthCount || 0
 
     if (postsThisMonth >= postsLimit) {
       return NextResponse.json({ error: 'Post limit reached', message: `You've used all ${postsLimit} posts for this month. Upgrade to get more!`, upgrade: true }, { status: 403 })
@@ -50,14 +59,12 @@ export async function POST(request: NextRequest) {
 
     if (postError) { console.error('Error saving post:', postError) }
 
-    // INCREMENT posts_this_month
-    const newPostCount = postsThisMonth + 1
-    const { error: updateError } = await supabase.from('profiles').update({ posts_this_month: newPostCount }).eq('id', user.id)
-    if (updateError) { console.error('Error updating post count:', updateError) }
+    // Counter increment removed — count is now derived from the posts table itself (self-resets each calendar month).
+    // The post we just inserted at line above becomes part of next request's count automatically.
 
     await supabase.from('usage_logs').insert({ user_id: user.id, action: 'generate', post_id: post?.id, platform, language: language || 'english', tokens_used: response.usage?.output_tokens || 0 })
 
-    return NextResponse.json({ success: true, content: generatedContent, postId: post?.id, charCount: generatedContent.length, charLimit, language: language || 'english', remainingPosts: postsLimit - newPostCount })
+    return NextResponse.json({ success: true, content: generatedContent, postId: post?.id, charCount: generatedContent.length, charLimit, language: language || 'english', remainingPosts: postsLimit - (postsThisMonth + 1) })
   } catch (error: any) {
     console.error('Generation error:', error)
     return NextResponse.json({ error: 'Failed to generate content', message: error.message }, { status: 500 })
