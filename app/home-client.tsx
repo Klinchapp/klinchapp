@@ -77,7 +77,7 @@ export default function HomeClient() {
     <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8] text-gray-900">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }} />
 
-      <SiteHeader variant="marketing" />
+      <SiteHeader variant="marketing-home" />
 
       <main>
       {/* HERO */}
