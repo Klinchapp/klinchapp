@@ -63,6 +63,54 @@ The phases below match project stage. Each phase unlocks the next. Don't over-bu
 
 **Cost:** $0 (GitHub Actions free tier covers this), ~3–5 minutes per PR.
 
+### Phase 1.5 — Rendered-HTML gate (homepage)
+
+**Status:** LIVE 2026-05-15 (PR #28)
+**Trigger to start:** Was triggered retroactively by the Phase 2 cutover incident — see Incidents & Lessons below.
+
+**Scope:** structural assertions against the *rendered HTML* of the homepage, on every successful Vercel deployment plus a daily prod canary.
+
+**Implementation:**
+- `scripts/check-homepage.mjs` — fetches a URL, parses the HTML, runs 13 assertions
+- `.github/workflows/homepage-check.yml` — three triggers:
+  - `deployment_status` (state=success, environment=Production) — runs on every prod deploy
+  - `schedule` — daily at 04:00 UTC against `https://www.klinchapp.com`
+  - `workflow_dispatch` — ad-hoc against any URL (preview or prod)
+- Preview deployments are skipped by default because Vercel SSO-gates them. Optional re-enable: add `VERCEL_AUTOMATION_BYPASS_SECRET` to repo secrets (token minted in Vercel → Settings → Deployment Protection → Protection Bypass for Automation) and flip the workflow filter to also fire on `Preview` environment.
+
+**The 13 assertions** (all must pass for the workflow to be green):
+
+| # | Check | Catches |
+|---|---|---|
+| 1 | HTTP 200 | Routing/build failure |
+| 2 | `<img src="/logo.jpg">` present | Logo replaced or removed (Phase 2 cutover failure mode) |
+| 3 | Brand name "Klinchapp" in HTML | Header swapped to a placeholder |
+| 4 | Footer copyright line `© 20YY Klinchapp` present | Footer swapped or removed |
+| 5 | `<link rel="canonical">` points at `https://www.klinchapp.com` | Wrong host shipped to prod |
+| 6 | `<meta name="robots">` is NOT `noindex` | Staging → prod leak |
+| 7 | No staging banner text (`V2 MOCKUP`, `V3.*Staging`, `noindex,nofollow`) | Staging artifact shipped |
+| 8 | At least one `<script type="application/ld+json">` block | Schema removed entirely |
+| 9 | All JSON-LD blocks parse as valid JSON | Malformed schema (e.g., trailing comma) |
+| 10 | JSON-LD contains an Organization entity | Org schema removed |
+| 11 | JSON-LD contains a WebSite entity | WebSite schema removed |
+| 12 | Organization `logo` references `/logo.jpg` | Logo URL drift |
+| 13 | Organization `url` is `https://www.klinchapp.com` | Schema points at wrong host |
+
+**Catches:** the specific failure modes from the 2026-05-15 cutover (see Incidents). Cheap to run (~10 seconds per check) and free.
+
+**What it deliberately does NOT catch** (and is the reason Phase 2 exists):
+- Visual regressions (cropped images, broken layouts, colors wrong)
+- Interactive flows (clicking anchors actually scrolls to the right section; the menu opens; the form submits)
+- Anchor-target alignment (an anchor in the header without a matching `id` in the body — would pass HTML checks but break UX)
+- Mobile-specific regressions (everything currently runs against the desktop HTML)
+
+**Cost:** $0, ~10 seconds per run, zero per-PR friction.
+
+**Manual invocation:**
+```
+gh workflow run homepage-check.yml -f url=<any-url>
+```
+
 ### Phase 2 — Critical-path smoke tests
 
 **Status:** Planned
@@ -410,6 +458,43 @@ Workflow no longer fires when a commit modifies only `regression-reports/`.
 **Lesson — for any future workflow that commits to its own trigger branch:** filter the workflow's own writes out of its triggers. Pattern: `paths-ignore: ['<folder-the-workflow-writes-to>/**']`. Also helpful: a `concurrency` group prevents *parallel* loops; `paths-ignore` prevents *sequential* loops. Use both.
 
 **What worked well:** The audit trail itself caught this fast — once `git log` was checked, the recursion was immediately visible. The reporting/audit-trail design (every run leaves a Markdown trace) is part of *why* the loop was diagnosable at all. Without it, this might have run silently for hours.
+
+### 2026-05-15 — Phase 2 cutover shipped three regressions undetected (P1)
+
+**What happened:** PR #25 replaced the live homepage with the v3 design. Three problems hit production before being caught — each by a different mechanism, none by automated tests:
+
+1. **Brand logo disappeared.** The v3 staging file used a hand-coded purple "K" letter tile as a placeholder header. When `home-client.tsx` was rebuilt from v3, the placeholder header was kept and the real logo `<img src="/logo.jpg">` was never wired back in. User noticed visually after merge.
+2. **Five in-page nav anchors disappeared.** Hotfix PR #26 (which restored the logo) swapped the v3 bespoke header for `SiteHeader` — but `SiteHeader`'s `marketing` variant only renders Blog / Login / Get Started Free. The five section anchors (How it works / Who it's for / Voices / Platforms / FAQ) silently disappeared. User noticed when testing nav.
+3. **Duplicate SoftwareApplication schema.** The follow-up JSON-LD enrichment (PR #29) added a SoftwareApplication block to `app/layout.tsx`'s sitewide schema, not realising `app/home-client.tsx` already emitted a richer one. Both fired on the homepage. Caught locally during dev-server check before going to prod.
+
+**Root cause:** every automated check was green throughout.
+- Type-check (`tsc --noEmit`): passed — placeholder JSX is structurally valid.
+- Build (`next build`): passed — no compile errors.
+- Existing regression reports (Phase 1): passed — nothing checks what the rendered HTML actually contains.
+- Vercel preview link was visible on the PR, but no human nor any automated step opened it.
+
+In short: the gate was "did the build succeed" and not "did the page render the things we expect to see." A green CI told the maintainer the change was safe to merge. Visual / content sanity was left implicit.
+
+**Fix:** Phase 1.5 (above) — a rendered-HTML check that fetches the homepage and runs 13 structural assertions covering all three failure modes:
+- Logo missing → check #2 (`<img src="/logo.jpg">` present)
+- Anchors missing → not directly covered yet; planned follow-up to add "homepage contains expected anchor hrefs" assertion
+- Duplicate / missing schema → checks #8–13
+
+The check runs on every prod deploy via `deployment_status`, plus a daily canary, plus on-demand via `workflow_dispatch`. PRs #28 (the gate) and #29 (the schema fix) and #30 (the layout/anchor fix) shipped in sequence the same session.
+
+**Defense in depth:** ad-hoc preview validation is now possible without merging — `gh workflow run homepage-check.yml -f url=<preview-url>` runs all 13 checks against any URL. Combined with `VERCEL_AUTOMATION_BYPASS_SECRET` (now configured), preview deployments can be validated before merge.
+
+**Lessons:**
+
+- **CI signals "build succeeded," not "page works."** Anything more depends on the project adding it explicitly. Without rendered-HTML / browser-level checks, every cutover that changes shared layout will carry this risk again.
+- **Visual placeholders in staging are dangerous if not labelled as such.** The v3 "K" tile read as design intent to a reviewer who hadn't built v3. A `TODO: placeholder` comment or a render-time warning would have helped.
+- **Shared components win over inline duplication, but their variants must be the unit of test coverage.** `SiteHeader`'s `marketing` variant was inherited as "the safe default" during the hotfix — but it had never been compared to the v3 nav requirements. New variants (here: `marketing-home`) need to be reasoned about as separate UX surfaces.
+- **One PR fixes one problem.** PR #26 (logo restore) introduced the anchor regression. If the test plan on PR #26 had included "verify all v3 nav items still present," the cascade would have stopped there.
+- **Honest debriefs are cheap.** The user explicitly asked "how did we make such a blunder, what did all the regression testing do?" — answering that question concretely (rather than defensively) is what produced Phase 1.5. The retro is the lesson; the doc entry is the durable form.
+
+**What's still parked:**
+- Mobile nav menu for the marketing-home variant — anchors are `hidden md:flex`, invisible below 768px. Saved as deferred work in memory. Will revisit when mobile traffic share or user feedback justifies the build cost (see `project_homepage_marketing_home_tbd.md`).
+- Visual regression / screenshot diff — would catch a class of issues these structural checks don't (image cropping, layout breakage, color drift). Still in the deferred list at the bottom of this doc; remains there until project scale justifies the setup cost.
 
 ---
 
