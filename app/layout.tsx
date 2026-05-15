@@ -50,21 +50,31 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: 'Klinchapp',
-            url: 'https://www.klinchapp.com',
-            logo: 'https://www.klinchapp.com/logo.jpg',
-            description: 'AI social media post generator for Instagram, LinkedIn, X, Facebook & TikTok. Generate scroll-stopping captions in seconds.',
-          }) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'WebSite',
-            name: 'Klinchapp',
-            url: 'https://www.klinchapp.com',
-            description: 'AI social media post generator for Instagram, LinkedIn, X, Facebook & TikTok.',
+            '@graph': [
+              {
+                '@type': 'Organization',
+                '@id': 'https://www.klinchapp.com/#organization',
+                name: 'Klinchapp',
+                url: 'https://www.klinchapp.com',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://www.klinchapp.com/logo.jpg',
+                },
+                description: 'AI social media post generator for Instagram, LinkedIn, X, Facebook & TikTok. Generate scroll-stopping captions in seconds.',
+                sameAs: [
+                  'https://klinchapp.blogspot.com',
+                  'https://kirasaiblog.wordpress.com',
+                ],
+              },
+              {
+                '@type': 'WebSite',
+                '@id': 'https://www.klinchapp.com/#website',
+                url: 'https://www.klinchapp.com',
+                name: 'Klinchapp',
+                description: 'AI social media post generator for Instagram, LinkedIn, X, Facebook & TikTok.',
+                publisher: { '@id': 'https://www.klinchapp.com/#organization' },
+              },
+            ],
           }) }}
         />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-NX5T2DB7CL"></script>

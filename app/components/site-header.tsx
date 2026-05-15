@@ -1,12 +1,30 @@
 import Link from 'next/link'
 
-type Variant = 'marketing' | 'blog-index' | 'back-home' | 'back-blog'
+type Variant = 'marketing' | 'marketing-home' | 'blog-index' | 'back-home' | 'back-blog'
 
 const LOGO_CLASSES = 'w-14 h-14 sm:w-20 sm:h-20 rounded-xl object-contain'
 
 function MarketingNav() {
   return (
     <div className="flex items-center gap-2 sm:gap-4">
+      <Link href="/blog" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">Blog</Link>
+      <Link href="/login" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">Login</Link>
+      <Link href="/login" className="px-3 sm:px-6 py-2 sm:py-2.5 bg-[#6B2C6B] text-white rounded-xl font-semibold hover:bg-[#8B3A8B] transition-all shadow-lg shadow-[#6B2C6B]/20 text-xs sm:text-base">
+        <span className="hidden sm:inline">Get Started Free</span>
+        <span className="sm:hidden">Start</span>
+      </Link>
+    </div>
+  )
+}
+
+function MarketingHomeNav() {
+  return (
+    <div className="flex items-center gap-2 sm:gap-4">
+      <a href="#how" className="hidden md:inline text-[#6B2C6B] font-semibold hover:underline text-sm">How it works</a>
+      <a href="#audiences" className="hidden md:inline text-[#6B2C6B] font-semibold hover:underline text-sm">Who it&apos;s for</a>
+      <a href="#tones" className="hidden md:inline text-[#6B2C6B] font-semibold hover:underline text-sm">Voices</a>
+      <a href="#platforms" className="hidden md:inline text-[#6B2C6B] font-semibold hover:underline text-sm">Platforms</a>
+      <a href="#faq" className="hidden md:inline text-[#6B2C6B] font-semibold hover:underline text-sm">FAQ</a>
       <Link href="/blog" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">Blog</Link>
       <Link href="/login" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">Login</Link>
       <Link href="/login" className="px-3 sm:px-6 py-2 sm:py-2.5 bg-[#6B2C6B] text-white rounded-xl font-semibold hover:bg-[#8B3A8B] transition-all shadow-lg shadow-[#6B2C6B]/20 text-xs sm:text-base">
@@ -46,6 +64,7 @@ export default function SiteHeader({ variant = 'marketing' }: { variant?: Varian
           <span className="text-lg sm:text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
         </Link>
         {variant === 'marketing' && <MarketingNav />}
+        {variant === 'marketing-home' && <MarketingHomeNav />}
         {variant === 'blog-index' && <BlogIndexNav />}
         {variant === 'back-home' && <BackLink href="/" label="← Home" />}
         {variant === 'back-blog' && <BackLink href="/blog" label="← Blog" />}
