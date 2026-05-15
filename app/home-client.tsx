@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase-browser'
 import Link from 'next/link'
+import SiteHeader from './components/site-header'
+import SiteFooter from './components/site-footer'
 import './v2/v2.css'
 
 /* ===== Platform icons (mirroring app/home-client.tsx so visual identity stays consistent) ===== */
@@ -75,26 +77,7 @@ export default function HomeClient() {
     <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8] text-gray-900">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }} />
 
-      {/* Header */}
-      <header className="pt-6 px-6 max-w-7xl mx-auto">
-        <nav className="flex items-center justify-between py-4">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-[#6B2C6B] flex items-center justify-center text-white font-bold">K</div>
-            <span className="font-extrabold text-xl">Klinchapp</span>
-          </Link>
-          <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-700">
-            <a href="#how" className="hover:text-[#6B2C6B]">How it works</a>
-            <a href="#audiences" className="hover:text-[#6B2C6B]">Who it&apos;s for</a>
-            <a href="#tones" className="hover:text-[#6B2C6B]">Voices</a>
-            <a href="#platforms" className="hover:text-[#6B2C6B]">Platforms</a>
-            <a href="#faq" className="hover:text-[#6B2C6B]">FAQ</a>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link href="/login" className="text-sm font-semibold text-gray-700 hover:text-[#6B2C6B]">Log in</Link>
-            <Link href="/login" className="text-sm font-bold px-4 py-2 bg-[#6B2C6B] text-white rounded-lg hover:bg-[#8B3A8B]">Start free</Link>
-          </div>
-        </nav>
-      </header>
+      <SiteHeader variant="marketing" />
 
       <main>
       {/* HERO */}
@@ -694,21 +677,7 @@ export default function HomeClient() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="max-w-7xl mx-auto px-6 py-12 border-t border-gray-200 mt-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded bg-[#6B2C6B] flex items-center justify-center text-white font-bold text-xs">K</div>
-            <span>Klinchapp · 2026</span>
-          </div>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy" className="hover:text-[#6B2C6B]">Privacy</Link>
-            <Link href="/terms" className="hover:text-[#6B2C6B]">Terms</Link>
-            <Link href="/contact" className="hover:text-[#6B2C6B]">Contact</Link>
-            <Link href="/blog" className="hover:text-[#6B2C6B]">Blog</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
