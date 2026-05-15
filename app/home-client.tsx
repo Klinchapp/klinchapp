@@ -6,7 +6,6 @@ import { createClient } from '@/lib/supabase-browser'
 import Link from 'next/link'
 import SiteHeader from './components/site-header'
 import SiteFooter from './components/site-footer'
-import './v2/v2.css'
 
 /* ===== Platform icons (mirroring app/home-client.tsx so visual identity stays consistent) ===== */
 const InstagramIcon = ({ className = 'w-5 h-5 text-[#6B2C6B]' }: { className?: string }) => (
