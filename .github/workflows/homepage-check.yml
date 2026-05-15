@@ -27,14 +27,12 @@ concurrency:
 jobs:
   check:
     name: Homepage assertions
-    # For deployment_status: only run on successful Production deploys.
-    # Preview deployments are SSO-gated (401) and need the Vercel Protection
-    # Bypass token to be readable — until that's wired up, we skip them and
-    # rely on the daily scheduled prod check + workflow_dispatch for ad-hoc.
+    # Run on every successful Vercel deployment — preview AND production.
+    # Preview deployments are SSO-gated; the script bypasses that using the
+    # VERCEL_AUTOMATION_BYPASS_SECRET configured in repo secrets.
     if: |
       github.event_name != 'deployment_status' ||
-      (github.event.deployment_status.state == 'success' &&
-       github.event.deployment_status.environment == 'Production')
+      github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
