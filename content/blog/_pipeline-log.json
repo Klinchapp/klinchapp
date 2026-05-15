@@ -906,5 +906,11 @@
         "tokens_out": 28
       }
     ]
+  },
+  {
+    "date": "2026-05-15T11:09:00.598Z",
+    "stage": "publish",
+    "file": "real-cost-of-ai-small-business.mdx",
+    "status": "published"
   }
 ]
