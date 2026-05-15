@@ -1,0 +1,68 @@
+name: Homepage Check
+
+# Runs `scripts/check-homepage.mjs` against:
+#   - every successful Vercel deployment (preview + production), via deployment_status
+#   - prod URL daily on schedule, as a canary
+#   - any URL on demand via workflow_dispatch
+#
+# A failed check appears on the PR's check list, blocking merge if branch
+# protection is set to require it. The check is deliberately read-only: it
+# fetches the deployed HTML and runs structural assertions only.
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to check'
+        required: false
+        default: 'https://www.klinchapp.com'
+  schedule:
+    - cron: '0 4 * * *'
+
+concurrency:
+  group: homepage-check-${{ github.event.deployment_status.target_url || github.event.inputs.url || 'prod' }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Homepage assertions
+    # For deployment_status: only run on successful Production deploys.
+    # Preview deployments are SSO-gated (401) and need the Vercel Protection
+    # Bypass token to be readable — until that's wired up, we skip them and
+    # rely on the daily scheduled prod check + workflow_dispatch for ad-hoc.
+    if: |
+      github.event_name != 'deployment_status' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment_status.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Determine target URL
+        id: target
+        run: |
+          case "${{ github.event_name }}" in
+            deployment_status)
+              echo "url=${{ github.event.deployment_status.target_url }}" >> $GITHUB_OUTPUT
+              ;;
+            workflow_dispatch)
+              echo "url=${{ github.event.inputs.url }}" >> $GITHUB_OUTPUT
+              ;;
+            schedule)
+              echo "url=https://www.klinchapp.com" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - name: Run homepage checks
+        env:
+          # Optional: lets the script bypass Vercel Deployment Protection on
+          # preview URLs. Configure this in Vercel project settings →
+          # Deployment Protection → "Protection Bypass for Automation", then
+          # add the generated token as a GitHub secret with the same name.
+          VERCEL_PROTECTION_BYPASS: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: node scripts/check-homepage.mjs "${{ steps.target.outputs.url }}"
