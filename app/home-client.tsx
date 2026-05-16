@@ -165,7 +165,7 @@ export default function HomeClient() {
               <span className="w-12 h-12 rounded-full bg-[#6B2C6B] text-white flex items-center justify-center font-extrabold text-xl">2</span>
               <span className="text-xs font-bold uppercase tracking-wider text-[#6B2C6B]">Platform</span>
             </div>
-            <h3 className="text-3xl md:text-4xl font-extrabold leading-tight mb-4">Pick a platform. Or all five.</h3>
+            <h3 className="text-3xl md:text-4xl font-extrabold leading-tight mb-4">Pick a platform.</h3>
             <p className="text-lg text-gray-600 leading-relaxed">
               Each platform gets its own caption — character limits, hashtag conventions, and structural quirks tuned to how Instagram, LinkedIn, X, Facebook, and TikTok actually reward content.
             </p>
