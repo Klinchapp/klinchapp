@@ -912,5 +912,73 @@
     "stage": "publish",
     "file": "real-cost-of-ai-small-business.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-05-18T12:22:34.642Z",
+    "stage": "prepare",
+    "series": "ai-for-small-business",
+    "post": "ai-mistakes-small-businesses",
+    "title": "AI Mistakes Small Businesses Make (And How to Avoid Them)",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 8,
+      "accuracy": 5,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23010,
+        "tokens_in": 2555,
+        "tokens_out": 2307
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18746,
+        "tokens_in": 2479,
+        "tokens_out": 2010
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18687,
+        "tokens_in": 2262,
+        "tokens_out": 1965
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 977,
+        "tokens_in": 1980,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9518,
+        "tokens_in": 849,
+        "tokens_out": 791
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1147,
+        "tokens_in": 285,
+        "tokens_out": 39
+      }
+    ]
   }
 ]
