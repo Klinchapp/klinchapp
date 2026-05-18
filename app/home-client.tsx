@@ -86,7 +86,7 @@ export default function HomeClient() {
         </p>
         <h1 className="font-extrabold leading-[1.05] mb-6 max-w-5xl mx-auto">
           <span className="block text-xl md:text-2xl lg:text-3xl text-gray-900 mb-3">
-            AI Social Media Post Generator.
+            AI Social Media Post Generator
           </span>
           <span className="block text-4xl md:text-5xl lg:text-6xl text-[#6B2C6B] tracking-tight lg:whitespace-nowrap">
             5 Platforms. 9 Voices. 6 Languages.
@@ -646,7 +646,7 @@ export default function HomeClient() {
             { q: "What if I don't have a product image?", a: "Klinchapp accepts a text description as well. Image input gets you stronger captions because the AI sees what's visually distinctive about your product — colors, materials, mood — and writes copy that leads with it. Text-only works fine for announcements, milestones, or content where there's no product to photograph." },
             { q: 'Is Klinchapp free to use?', a: 'Yes. The free plan includes 60 AI-generated posts per month across all 5 platforms. No credit card required to start.' },
             { q: 'Will my posts sound like AI?', a: "The output is AI-generated — Klinchapp doesn't pretend otherwise. The voice you choose (Professional, Founder, Witty, etc.) shapes how the caption reads, and you can edit, regenerate, or rewrite before posting. Klinchapp drafts; you ship." },
-            { q: 'Which platforms does Klinchapp support?', a: 'Five — Instagram, LinkedIn, X, Facebook, and TikTok. Each post is tuned to the platform\'s character limits, hashtag conventions, and structural quirks. Currently Instagram and LinkedIn have dedicated landing pages; X, Facebook, and TikTok pages launch in upcoming sessions.' },
+            { q: 'Which platforms does Klinchapp support?', a: 'Five — Instagram, LinkedIn, X, Facebook, and TikTok. Each post is tuned to the platform\'s character limits, hashtag conventions, and structural quirks. Each platform has its own dedicated page with platform-specific tips and sample posts.' },
             { q: 'How many languages does Klinchapp support?', a: 'Six — English, Spanish, Portuguese, French, Arabic (right-to-left), and Hindi. Posts are generated directly in the target language, not translated from English. Hashtags localize too. Hinglish style is supported for Hindi where appropriate.' },
             { q: 'Can I edit captions before posting?', a: 'Yes. Every generated caption is editable. Regenerate, swap hashtags, change tone, or rewrite manually — all in one place.' },
             { q: 'What happens to my data?', a: "Your prompts, uploaded images, and generated content stay in your account. We don't sell or share your data, and we don't use your inputs to train models." },

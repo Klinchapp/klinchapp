@@ -5,12 +5,12 @@ export const linkedinConfig: PlatformConfig = {
   routePath: 'ai-linkedin-post-generator',
   name: 'LinkedIn',
 
-  metaTitle: 'AI LinkedIn Post Generator | Hooks, Structure, Voice — Klinchapp',
+  metaTitle: 'AI LinkedIn Post Generator | Hooks, Structure, Voice',
   metaDescription:
     'Generate LinkedIn posts with AI. Upload a product, pick a voice, get hooks that earn the click. 9 voices · 6 languages · Free plan, no credit card.',
 
   hero: {
-    h1Top: 'AI LinkedIn Post Generator.',
+    h1Top: 'AI LinkedIn Post Generator',
     h1Bottom: 'Hooks, structure, voice — in seconds.',
     sub: '9 voices · 6 languages · Free plan, no credit card required.',
     ctaLabel: 'Start Creating Free',
