@@ -5,12 +5,12 @@ export const instagramConfig: PlatformConfig = {
   routePath: 'ai-instagram-post-generator',
   name: 'Instagram',
 
-  metaTitle: 'AI Instagram Post Generator | Captions, Hashtags, Voice — Klinchapp',
+  metaTitle: 'AI Instagram Post Generator | Captions, Hashtags, Voice',
   metaDescription:
     'Generate Instagram posts with AI. Upload your product, pick a voice, get captions and hashtags in seconds. 9 voices · 6 languages · Free plan, no credit card.',
 
   hero: {
-    h1Top: 'AI Instagram Post Generator.',
+    h1Top: 'AI Instagram Post Generator',
     h1Bottom: 'Captions, hashtags, voice — in seconds.',
     sub: '9 voices · 6 languages · Free plan, no credit card required.',
     ctaLabel: 'Start Creating Free',

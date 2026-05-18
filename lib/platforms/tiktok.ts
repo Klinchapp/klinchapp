@@ -6,12 +6,12 @@ export const tiktokConfig: PlatformConfig = {
   routePath: 'ai-tiktok-caption-generator',
   name: 'TikTok',
 
-  metaTitle: 'AI TikTok Caption Generator | Trendy Captions, Viral Hashtags — Klinchapp',
+  metaTitle: 'AI TikTok Caption Generator | Trendy Captions, Viral Hashtags',
   metaDescription:
     'Generate TikTok captions with AI. Upload a product, pick a voice, get trendy captions and viral hashtags. 9 voices · 6 languages · Free plan.',
 
   hero: {
-    h1Top: 'AI TikTok Caption Generator.',
+    h1Top: 'AI TikTok Caption Generator',
     h1Bottom: 'Trendy captions and hashtags — in seconds.',
     sub: '9 voices · 6 languages · Free plan, no credit card required.',
     ctaLabel: 'Start Creating Free',

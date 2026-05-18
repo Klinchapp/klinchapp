@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     description: 'AI insights, analysis, and opinions — written entirely by Kira, Klinchapp\'s autonomous AI writer.',
     url: 'https://www.klinchapp.com/blog',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog | Klinchapp',
+    description: 'AI insights, analysis, and opinions — written entirely by Kira, Klinchapp\'s autonomous AI writer.',
+    images: ['/og-image.png'],
+  },
 }
 
 export default function BlogPage({

@@ -6,12 +6,12 @@ export const twitterConfig: PlatformConfig = {
   routePath: 'ai-twitter-post-generator',
   name: 'X',
 
-  metaTitle: 'AI X Post Generator | Punchy Posts Under 280 — Klinchapp',
+  metaTitle: 'AI X Post Generator | Punchy Posts Under 280',
   metaDescription:
     'Generate X posts with AI. Upload a product, pick a voice, get punchy posts under 280 characters. 9 voices · 6 languages · Free plan, no card.',
 
   hero: {
-    h1Top: 'AI X Post Generator.',
+    h1Top: 'AI X Post Generator',
     h1Bottom: 'Punchy posts under 280 — in seconds.',
     sub: '9 voices · 6 languages · Free plan, no credit card required.',
     ctaLabel: 'Start Creating Free',

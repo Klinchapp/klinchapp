@@ -5,12 +5,12 @@ export const facebookConfig: PlatformConfig = {
   routePath: 'ai-facebook-post-generator',
   name: 'Facebook',
 
-  metaTitle: 'AI Facebook Post Generator | Conversational Posts That Earn Comments — Klinchapp',
+  metaTitle: 'AI Facebook Post Generator | Conversational Posts That Earn Comments',
   metaDescription:
     'Generate Facebook posts with AI. Upload a product, pick a voice, get posts that earn comments. 9 voices · 6 languages · Free plan, no credit card.',
 
   hero: {
-    h1Top: 'AI Facebook Post Generator.',
+    h1Top: 'AI Facebook Post Generator',
     h1Bottom: 'Conversational posts that earn comments.',
     sub: '9 voices · 6 languages · Free plan, no credit card required.',
     ctaLabel: 'Start Creating Free',
