@@ -32,7 +32,7 @@ Four GitHub repo secrets:
 4. Click **Save and Continue**.
 5. **Scopes** screen → click **Add or Remove Scopes** → search `blogger` → check `https://www.googleapis.com/auth/blogger` → Update → Save and Continue.
 6. **Test users** screen → click **Add Users** → add the Google account that owns Kira's Blog → Save and Continue.
-7. Click **Back to Dashboard**. The app will be in "Testing" mode — that's fine; the refresh token will work indefinitely as long as the project stays in Testing.
+7. Click **Back to Dashboard**. The app starts in "Testing" mode. **Important:** the Blogger scope (`auth/blogger`) is a *sensitive* scope, and Google expires refresh tokens after **7 days** while the OAuth app is in Testing publishing status. Before relying on the pipeline, move the app to production: **OAuth consent screen → Publishing status → Publish app → Confirm**. For a single-owner app posting to your own blog this needs no formal Google verification — you will just see an "unverified app" warning during the consent flow in Step 4, which is expected and safe to click through. In "In production" status the 7-day refresh-token expiry no longer applies.
 
 ## Step 3 — Create OAuth 2.0 credentials
 
@@ -95,7 +95,7 @@ Manual test before relying on the Tuesday/Friday cron:
 - **`OAuth token refresh failed: 400 invalid_grant`** — refresh token is invalid or revoked. Repeat step 4 to get a new one.
 - **`Blogger API failed: 403 insufficient permissions`** — the OAuth scope wasn't granted. Repeat step 4 and make sure you check the consent box for Blogger access.
 - **`Blogger API failed: 404`** — wrong `BLOGGER_BLOG_ID`. Verify in Blogger admin URL or via the `users/self/blogs` API call.
-- **App stuck in "Testing" mode and stops working after 7 days** — Google's Testing mode used to expire refresh tokens after 7 days for sensitive scopes. The Blogger scope is non-sensitive so it should not expire, but if it does: either repeat step 4 weekly, or push the OAuth consent screen to "In production" (no verification needed for non-sensitive scopes, just a click).
+- **App in "Testing" mode stops working after 7 days** — the Blogger scope (`auth/blogger`) is a *sensitive* scope, and Google expires refresh tokens after 7 days while the OAuth app is in Testing publishing status. (This caused the 2026-05-19 Blogger syndication outage — the earlier note here wrongly claimed the scope was non-sensitive.) Fix: **OAuth consent screen → Publishing status → Publish app**. For a single-owner app this needs no formal verification — just confirm. In "In production" status the 7-day expiry no longer applies. After publishing, regenerate the refresh token once (Step 4) because the old one is already dead, then update the `BLOGGER_REFRESH_TOKEN` secret.
 
 ## Adding WordPress.com later
 
