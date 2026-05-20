@@ -16,8 +16,7 @@ function log(msg) {
 }
 
 function fail(msg) {
-  console.error(`[syndicate-wordpress] ERROR: ${msg}`)
-  process.exit(1)
+  throw new Error(msg)
 }
 
 function getLatestPublishedPost() {
@@ -109,4 +108,36 @@ async function main() {
   log(`Posted to WordPress: ${result.URL || result.short_URL || result.ID}`)
 }
 
-main().catch(err => fail(err.message || String(err)))
+async function sendFailureAlert(errorMessage) {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) {
+    log('No RESEND_API_KEY — skipping failure alert email')
+    return
+  }
+  try {
+    const { Resend } = await import('resend')
+    const resend = new Resend(apiKey)
+    await resend.emails.send({
+      from: 'Kira <kira@klinchapp.com>',
+      to: ['klinchapp.info@gmail.com'],
+      subject: '❌ WordPress syndication FAILED',
+      html: `
+        <div style="font-family: sans-serif; max-width: 520px;">
+          <h2 style="color: #dc2626; margin-bottom: 4px;">WordPress syndication failed</h2>
+          <p>The latest post published to the site, but did not reach WordPress.com.</p>
+          <p style="background:#fef2f2;padding:12px;border-radius:6px;color:#991b1b;font-family:monospace;font-size:13px;">${errorMessage}</p>
+        </div>
+      `,
+    })
+    log('Failure alert email sent')
+  } catch (mailErr) {
+    log(`Could not send failure alert: ${mailErr.message}`)
+  }
+}
+
+main().catch(async (err) => {
+  const msg = err.message || String(err)
+  console.error(`[syndicate-wordpress] ERROR: ${msg}`)
+  await sendFailureAlert(msg)
+  process.exit(1)
+})

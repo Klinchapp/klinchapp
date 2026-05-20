@@ -59,6 +59,7 @@ jobs:
           BLOGGER_CLIENT_SECRET: ${{ secrets.BLOGGER_CLIENT_SECRET }}
           BLOGGER_REFRESH_TOKEN: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
           BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: node scripts/syndicate-to-blogger.mjs
 
       - name: Syndicate to WordPress
@@ -67,4 +68,5 @@ jobs:
         env:
           WORDPRESS_ACCESS_TOKEN: ${{ secrets.WORDPRESS_ACCESS_TOKEN }}
           WORDPRESS_SITE_ID: ${{ secrets.WORDPRESS_SITE_ID }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: node scripts/syndicate-to-wordpress.mjs
