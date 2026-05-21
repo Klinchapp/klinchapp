@@ -986,5 +986,73 @@
     "stage": "publish",
     "file": "ai-mistakes-small-businesses.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-05-21T12:02:55.831Z",
+    "stage": "prepare",
+    "series": "ai-for-small-business",
+    "post": "30-day-ai-adoption-plan",
+    "title": "Your 30-Day AI Adoption Plan: From Zero to Productive",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 9,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 7,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 29899,
+        "tokens_in": 2922,
+        "tokens_out": 2841
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23209,
+        "tokens_in": 3013,
+        "tokens_out": 2652
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 25999,
+        "tokens_in": 2904,
+        "tokens_out": 2650
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1974,
+        "tokens_in": 2808,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8259,
+        "tokens_in": 883,
+        "tokens_out": 787
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 941,
+        "tokens_in": 282,
+        "tokens_out": 34
+      }
+    ]
   }
 ]
