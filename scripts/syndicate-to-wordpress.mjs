@@ -3,6 +3,10 @@ import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
 
+// Load .env.local for local runs (e.g. manual `node scripts/syndicate-to-wordpress.mjs`).
+// In CI the file is absent and env vars come from the workflow's env block.
+try { process.loadEnvFile('.env.local') } catch {}
+
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog')
 const SITE_URL = 'https://www.klinchapp.com'
 
