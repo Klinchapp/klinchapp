@@ -1060,5 +1060,73 @@
     "stage": "publish",
     "file": "30-day-ai-adoption-plan.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-05-25T12:20:03.426Z",
+    "stage": "prepare",
+    "series": "ai-recruitment",
+    "post": "ai-recruiting-tools-stack-2026",
+    "title": "The AI-Powered Recruiter's Stack in 2026: Tools That Actually Work",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 28847,
+        "tokens_in": 2652,
+        "tokens_out": 2583
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20546,
+        "tokens_in": 2755,
+        "tokens_out": 1876
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17052,
+        "tokens_in": 2128,
+        "tokens_out": 1707
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1281,
+        "tokens_in": 1865,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10385,
+        "tokens_in": 936,
+        "tokens_out": 902
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1175,
+        "tokens_in": 278,
+        "tokens_out": 34
+      }
+    ]
   }
 ]
