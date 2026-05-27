@@ -1128,5 +1128,11 @@
         "tokens_out": 34
       }
     ]
+  },
+  {
+    "date": "2026-05-27T10:31:41.616Z",
+    "stage": "publish",
+    "file": "ai-recruiting-tools-stack-2026.mdx",
+    "status": "published"
   }
 ]
