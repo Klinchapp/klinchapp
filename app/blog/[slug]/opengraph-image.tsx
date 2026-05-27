@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og'
 import { getAllPosts, getPostBySlug, getSeriesBySlug } from '@/lib/blog'
+import { BLOG_HERO_VARIANTS, getHeroVariant } from '@/lib/blog-hero-variants'
 
 export const alt = 'Klinchapp blog post'
 export const size = { width: 1200, height: 630 }
@@ -23,7 +24,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
             justifyContent: 'center',
             width: '100%',
             height: '100%',
-            background: 'linear-gradient(135deg, #6B2C6B 0%, #8B3A8B 100%)',
+            background: BLOG_HERO_VARIANTS[0],
             color: 'white',
             fontSize: '96px',
             fontWeight: 800,
@@ -39,6 +40,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
   }
 
   const series = post.series ? getSeriesBySlug(post.series) : null
+  const background = getHeroVariant(post.slug)
 
   return new ImageResponse(
     (
@@ -49,7 +51,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
           justifyContent: 'space-between',
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(135deg, #6B2C6B 0%, #8B3A8B 100%)',
+          background,
           padding: '72px',
           color: 'white',
           fontFamily: 'sans-serif',
