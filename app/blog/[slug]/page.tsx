@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllPosts, getPostBySlug, getPostsBySeries, getSeriesBySlug } from '@/lib/blog'
 import { BLOG_PERSONA } from '@/lib/blog-persona'
+import { getHeroVariant } from '@/lib/blog-hero-variants'
 import { notFound } from 'next/navigation'
 import SocialSnippetsCard from './social-snippets'
 import ShareButtons from './share-buttons'
@@ -83,7 +84,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
       <main className="max-w-4xl mx-auto px-6 py-12">
         {/* Hero — same visual identity as the sibling opengraph-image route. Carries the H1. */}
-        <div className="aspect-[1200/630] bg-gradient-to-br from-[#6B2C6B] to-[#8B3A8B] rounded-2xl shadow-sm mb-6 p-6 md:p-10 lg:p-12 flex flex-col justify-between text-white">
+        {/* Background is a per-slug solid colour from BLOG_HERO_VARIANTS (Tailwind can't generate dynamic arbitrary values, so inline). */}
+        <div
+          className="aspect-[1200/630] rounded-2xl shadow-sm mb-6 p-6 md:p-10 lg:p-12 flex flex-col justify-between text-white"
+          style={{ background: getHeroVariant(post.slug) }}
+        >
           <div>
             {series && (
               <Link
