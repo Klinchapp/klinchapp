@@ -3,7 +3,8 @@ name: Blog Pipeline - Publish
 on:
   schedule:
     # Tuesday and Friday at 9am UTC
-    - cron: '0 9 * * 2,5'
+    # Off-the-hour minute is deliberate — :00 was dropped by GHA on 2026-05-26 due to top-of-hour contention.
+    - cron: '17 9 * * 2,5'
   workflow_dispatch: {}
 
 jobs:

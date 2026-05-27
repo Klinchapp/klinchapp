@@ -18,7 +18,8 @@ on:
         required: false
         default: 'https://www.klinchapp.com'
   schedule:
-    - cron: '0 4 * * *'
+    # Daily at 04:19 UTC. Off-the-hour minute is deliberate — GHA's :00 cron contention is known to drop runs.
+    - cron: '19 4 * * *'
 
 concurrency:
   group: homepage-check-${{ github.event.deployment_status.target_url || github.event.inputs.url || 'prod' }}

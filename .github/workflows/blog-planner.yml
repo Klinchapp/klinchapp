@@ -2,8 +2,9 @@ name: Blog Pipeline - Planner
 
 on:
   schedule:
-    # 1st of every month at 9am UTC
-    - cron: '0 9 1 * *'
+    # 1st of every month at 9am UTC.
+    # Off-the-hour minute is deliberate — GHA's :00 cron contention is known to drop runs.
+    - cron: '23 9 1 * *'
   workflow_dispatch: {}
 
 jobs:
