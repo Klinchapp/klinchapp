@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       publishedTime: post.publishedAt,
       authors: [post.author],
       tags: post.tags,
-      images: [{ url: 'https://www.klinchapp.com/og-image.png', width: 1200, height: 630 }],
+      // og:image is auto-wired by the sibling opengraph-image.tsx route — unique per slug.
     },
     twitter: {
       card: 'summary_large_image',
@@ -82,22 +82,28 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <SiteHeader variant="back-blog" />
 
       <main className="max-w-4xl mx-auto px-6 py-12">
-        <article className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
-          {/* Series badge */}
-          {series && (
-            <Link
-              href={`/blog/series/${series.slug}`}
-              className="inline-block px-3 py-1.5 bg-[#F3E8FF] text-[#6B2C6B] rounded-full text-sm font-medium mb-4 hover:bg-[#E9D5FF] transition-colors"
-            >
-              {series.title} · Part {post.seriesOrder} of {series.totalPosts}
-            </Link>
-          )}
-
-          {/* Title */}
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+        {/* Hero — same visual identity as the sibling opengraph-image route. Carries the H1. */}
+        <div className="aspect-[1200/630] bg-gradient-to-br from-[#6B2C6B] to-[#8B3A8B] rounded-2xl shadow-sm mb-6 p-6 md:p-10 lg:p-12 flex flex-col justify-between text-white">
+          <div>
+            {series && (
+              <Link
+                href={`/blog/series/${series.slug}`}
+                className="inline-block px-3 md:px-4 py-1 md:py-1.5 bg-white/20 hover:bg-white/30 rounded-full text-xs md:text-sm font-medium transition-colors"
+              >
+                {series.title} · Part {post.seriesOrder} of {series.totalPosts}
+              </Link>
+            )}
+          </div>
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
             {post.title}
           </h1>
+          <div className="flex items-end justify-between">
+            <div className="text-lg md:text-2xl font-extrabold tracking-tight">Klinchapp</div>
+            <div className="text-xs md:text-base opacity-85">by Kira</div>
+          </div>
+        </div>
 
+        <article className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
           {/* Meta */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-8 pb-8 border-b border-gray-100">
             <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
