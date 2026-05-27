@@ -2,8 +2,9 @@ name: Blog Pipeline - Prepare
 
 on:
   schedule:
-    # Monday and Thursday at 9am UTC (24h before publish on Tue/Fri)
-    - cron: '0 9 * * 1,4'
+    # Monday and Thursday at 9am UTC (24h before publish on Tue/Fri).
+    # Off-the-hour minute is deliberate — GHA's :00 cron contention is known to drop runs (see blog-publish 2026-05-26 incident).
+    - cron: '13 9 * * 1,4'
   workflow_dispatch: {}
 
 jobs:

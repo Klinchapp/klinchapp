@@ -6,7 +6,8 @@ on:
     paths-ignore:
       - 'regression-reports/**'
   schedule:
-    - cron: '0 3 * * *'
+    # Daily at 03:27 UTC. Off-the-hour minute is deliberate — GHA's :00 cron contention is known to drop runs.
+    - cron: '27 3 * * *'
   workflow_dispatch:
 
 concurrency:
