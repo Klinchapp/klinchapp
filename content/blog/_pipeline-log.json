@@ -1134,5 +1134,73 @@
     "stage": "publish",
     "file": "ai-recruiting-tools-stack-2026.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-05-28T12:46:01.734Z",
+    "stage": "prepare",
+    "series": "ai-recruitment",
+    "post": "ai-resume-screening-bias-risks",
+    "title": "AI Resume Screening: Honest Pros, Real Bias Risks",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 9,
+      "actionability": 8,
+      "engagement": 9,
+      "accuracy": 8,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 25646,
+        "tokens_in": 2717,
+        "tokens_out": 2469
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22347,
+        "tokens_in": 2641,
+        "tokens_out": 2140
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 27072,
+        "tokens_in": 2392,
+        "tokens_out": 2262
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1227,
+        "tokens_in": 2420,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10434,
+        "tokens_in": 941,
+        "tokens_out": 942
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1365,
+        "tokens_in": 291,
+        "tokens_out": 40
+      }
+    ]
   }
 ]
