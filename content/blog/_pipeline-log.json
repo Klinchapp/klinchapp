@@ -1208,5 +1208,73 @@
     "stage": "publish",
     "file": "ai-resume-screening-bias-risks.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-06-01T15:34:21.217Z",
+    "stage": "prepare",
+    "series": "ai-recruitment",
+    "post": "ai-candidate-sourcing-vs-boolean",
+    "title": "AI Candidate Sourcing vs Boolean Search: When Each Wins",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 26689,
+        "tokens_in": 2685,
+        "tokens_out": 2309
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19412,
+        "tokens_in": 2481,
+        "tokens_out": 1906
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17085,
+        "tokens_in": 2158,
+        "tokens_out": 1935
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1180,
+        "tokens_in": 2071,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10695,
+        "tokens_in": 930,
+        "tokens_out": 859
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 972,
+        "tokens_in": 270,
+        "tokens_out": 27
+      }
+    ]
   }
 ]
