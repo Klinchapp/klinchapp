@@ -594,9 +594,6 @@ export default function HomeClient() {
           ))}
         </div>
 
-        <div className="text-center mt-8 max-w-2xl mx-auto">
-          <p className="text-gray-500 text-sm">Captions shown are placeholder translations for layout review. Native-speaker review before launch.</p>
-        </div>
       </section>
 
       {/* PLATFORM DEEP-DIVES — live-site treatment */}
