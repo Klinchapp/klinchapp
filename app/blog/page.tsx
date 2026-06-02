@@ -4,6 +4,7 @@ import { getAllPosts, getAllSeries, getPostsBySeries, getPostsByTag, getUpcoming
 import SubscribeForm from './subscribe-form'
 import SiteHeader from '../components/site-header'
 import SiteFooter from '../components/site-footer'
+import RecentHighlightsCarousel from './recent-carousel'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -75,6 +76,13 @@ export default function BlogPage({
               </div>
             </div>
           </div>
+        )}
+
+        {/* Recent Highlights — every post as a colour-variant card in a horizontal scroller.
+            Replaces pagination as the discovery surface on /blog: no post gets hidden by recency
+            because they all sit one click away in the carousel. */}
+        {!seriesFilter && !tagFilter && (
+          <RecentHighlightsCarousel posts={posts} />
         )}
 
         {/* Page Title - shown when filtering */}

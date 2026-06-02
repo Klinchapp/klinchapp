@@ -23,6 +23,13 @@ export interface BlogPost {
   tags: string[]
   author: string
   social: SocialSnippets
+  /**
+   * Optional punchy editorial hook used as the lead text on Recent Highlights
+   * cards (`/blog`). Distinct from social.twitter — that one is formal and
+   * shareable; this one is Klinchapp's own punchy marketing copy.
+   * Falls back to social.twitter, then description, if not set.
+   */
+  hook?: string
   qualityScore: number
   status: string
   readingTime: string
@@ -73,6 +80,7 @@ function parseMdxFile(filePath: string): BlogPost | null {
     tags: data.tags || [],
     author: data.author || 'Kira',
     social: data.social || { twitter: data.tweet || '', linkedin: '', instagram: '', facebook: '', tiktok: '' },
+    hook: data.hook || undefined,
     qualityScore: data.qualityScore || 0,
     status: data.status,
     readingTime: stats.text,
@@ -111,6 +119,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     tags: data.tags || [],
     author: data.author || 'Kira',
     social: data.social || { twitter: data.tweet || '', linkedin: '', instagram: '', facebook: '', tiktok: '' },
+    hook: data.hook || undefined,
     qualityScore: data.qualityScore || 0,
     status: data.status || 'published',
     readingTime: stats.text,
