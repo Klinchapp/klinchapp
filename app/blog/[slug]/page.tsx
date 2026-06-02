@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllPosts, getPostBySlug, getPostsBySeries, getSeriesBySlug } from '@/lib/blog'
 import { BLOG_PERSONA } from '@/lib/blog-persona'
-import { getHeroVariant } from '@/lib/blog-hero-variants'
+import { getHeroVariant, getHeroTextColor } from '@/lib/blog-hero-variants'
 import { detectFAQ, detectHowTo } from '@/lib/blog-schema-detection'
 import { notFound } from 'next/navigation'
 import SocialSnippetsCard from './social-snippets'
@@ -118,15 +118,25 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <main className="max-w-4xl mx-auto px-6 py-12">
         {/* Hero — same visual identity as the sibling opengraph-image route. Carries the H1. */}
         {/* Background is a per-slug solid colour from BLOG_HERO_VARIANTS (Tailwind can't generate dynamic arbitrary values, so inline). */}
+        {/* Text colour adapts to the background brightness — some vibrant variants need dark text. */}
+        {(() => {
+          const heroBg = getHeroVariant(post.slug)
+          const isDarkText = getHeroTextColor(heroBg) === 'dark'
+          const textClass = isDarkText ? 'text-slate-900' : 'text-white'
+          const chipClass = isDarkText
+            ? 'bg-slate-900/15 hover:bg-slate-900/25'
+            : 'bg-white/20 hover:bg-white/30'
+          const opacityClass = isDarkText ? 'opacity-70' : 'opacity-85'
+          return (
         <div
-          className="aspect-[1200/630] rounded-2xl shadow-sm mb-6 p-6 md:p-10 lg:p-12 flex flex-col justify-between text-white"
-          style={{ background: getHeroVariant(post.slug) }}
+          className={`aspect-[1200/630] rounded-2xl shadow-sm mb-6 p-6 md:p-10 lg:p-12 flex flex-col justify-between ${textClass}`}
+          style={{ background: heroBg }}
         >
           <div>
             {series && (
               <Link
                 href={`/blog/series/${series.slug}`}
-                className="inline-block px-3 md:px-4 py-1 md:py-1.5 bg-white/20 hover:bg-white/30 rounded-full text-xs md:text-sm font-medium transition-colors"
+                className={`inline-block px-3 md:px-4 py-1 md:py-1.5 ${chipClass} rounded-full text-xs md:text-sm font-medium transition-colors`}
               >
                 {series.title} · Part {post.seriesOrder} of {series.totalPosts}
               </Link>
@@ -137,9 +147,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </h1>
           <div className="flex items-end justify-between">
             <div className="text-lg md:text-2xl font-extrabold tracking-tight">Klinchapp</div>
-            <div className="text-xs md:text-base opacity-85">by Kira</div>
+            <div className={`text-xs md:text-base ${opacityClass}`}>by Kira</div>
           </div>
         </div>
+          )
+        })()}
 
         <article className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
           {/* Meta */}

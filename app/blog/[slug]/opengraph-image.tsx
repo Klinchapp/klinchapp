@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 import { getAllPosts, getPostBySlug, getSeriesBySlug } from '@/lib/blog'
-import { BLOG_HERO_VARIANTS, getHeroVariant } from '@/lib/blog-hero-variants'
+import { BLOG_HERO_VARIANTS, getHeroVariant, getHeroTextColor } from '@/lib/blog-hero-variants'
 
 export const alt = 'Klinchapp blog post'
 export const size = { width: 1200, height: 630 }
@@ -41,6 +41,9 @@ export default async function Image({ params }: { params: { slug: string } }) {
 
   const series = post.series ? getSeriesBySlug(post.series) : null
   const background = getHeroVariant(post.slug)
+  const isDarkText = getHeroTextColor(background) === 'dark'
+  const fg = isDarkText ? '#0F172A' : '#FFFFFF'
+  const chipBg = isDarkText ? 'rgba(15, 23, 42, 0.12)' : 'rgba(255, 255, 255, 0.18)'
 
   return new ImageResponse(
     (
@@ -53,7 +56,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
           height: '100%',
           background,
           padding: '72px',
-          color: 'white',
+          color: fg,
           fontFamily: 'sans-serif',
         }}
       >
@@ -64,7 +67,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
               style={{
                 display: 'flex',
                 padding: '12px 28px',
-                background: 'rgba(255, 255, 255, 0.18)',
+                background: chipBg,
                 borderRadius: '999px',
                 fontSize: '26px',
                 fontWeight: 500,
@@ -94,7 +97,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
         {/* Bottom — brand */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', fontSize: '44px', fontWeight: 800, letterSpacing: '-0.02em' }}>Klinchapp</div>
-          <div style={{ display: 'flex', fontSize: '24px', opacity: 0.85 }}>by Kira</div>
+          <div style={{ display: 'flex', fontSize: '24px', opacity: isDarkText ? 0.7 : 0.85 }}>by Kira</div>
         </div>
       </div>
     ),
