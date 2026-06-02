@@ -499,11 +499,31 @@ URL: ${postUrl}
 
 Generate a snippet for EACH platform. Follow these rules strictly:
 
-X/TWITTER (under 260 chars, leave room for link):
-- Lead with a question, contrarian claim, or stop-scrolling hook — not a summary
-- Optimise for replies (questions outperform statements on X in 2026)
-- 1-2 relevant hashtags max (more reads as spam on X)
+X/TWITTER (80-130 chars total — short enough to fit a blog card AND optimised for engagement; tweets under ~100 chars outperform longer ones in 2026):
+- Lead with the conclusion or hook, never with a setup question
+- Be declarative and specific. "67% of teams" beats "many teams"
+- Conversational, second-person, present tense, contractions welcome
+- Use humor when the topic genuinely supports it (don't force it on sensitive or formal subjects)
+- AVOID: "what X is your Y hiding?" survey-speak; "Here's the deal:" cliché openers; vague claims like "discover," "explore," "find out"; more than 2 hashtags
+- 1-2 relevant hashtags at the very end (still needed for users sharing the post)
 - Do NOT include the URL (it will be added automatically)
+
+EXAMPLES of the Twitter voice we want:
+- "Your AI hiring tool just rejected the perfect candidate. You'll find out in 6 months. Or never. #AIHiring"
+- "Your AI sounds like every other AI's AI. Here's how to make it sound like you. #ContentAI"
+- "AI sourcing tools beat Boolean strings. Except when they don't. Here's when each wins. #Recruiting"
+
+HOOK (60-100 chars — Klinchapp's own punchy lead text for blog cards on klinchapp.com/blog):
+- Even tighter than the Twitter snippet. Same voice (declarative, specific, conversational, humor when fitting), no setup questions, no clichés.
+- NO hashtags
+- NO emojis (they render unpredictably across card sizes)
+- Stand-alone — the reader sees this on a card and decides whether to click
+
+EXAMPLES of hooks we want:
+- "Your AI hiring tool just rejected the perfect candidate. You'll find out in 6 months."
+- "Most small businesses are using AI wrong. Here are the 5 mistakes that hurt you most."
+- "AI sourcing tools beat Boolean strings. Except when they don't."
+- "Your AI sounds like every other AI's AI. Here's how to make it sound like you."
 
 LINKEDIN (4-5 short paragraphs, ~1000-1500 chars):
 - Professional but human — write like a thoughtful peer, not a press release
@@ -535,7 +555,7 @@ TIKTOK (80-150 char caption, Gen-Z friendly):
 - 4-6 hashtags: include one broad-reach tag like #FYP or #ForYou plus 3-5 topic-specific tags
 
 Return ONLY a valid JSON object with this exact structure, no other text:
-{"twitter": "...", "linkedin": "...", "instagram": "...", "facebook": "...", "tiktok": "..."}`
+{"twitter": "...", "hook": "...", "linkedin": "...", "instagram": "...", "facebook": "...", "tiktok": "..."}`
 
   log('📱 Step 6: Generating social snippets...')
   const result = await callWithFailover(
@@ -554,6 +574,7 @@ Return ONLY a valid JSON object with this exact structure, no other text:
     return {
       snippets: {
         twitter: `New post: ${title}`,
+        hook: title.length <= 100 ? title : title.substring(0, 97) + '…',
         linkedin: `New post on the Klinchapp blog: ${title}\n\n${brief}`,
         instagram: `New post 📝 ${title}\n\n${brief}\n\nLink in bio`,
         facebook: `New on the Klinchapp blog: ${title}\n\n${brief}`,
@@ -613,6 +634,7 @@ seriesOrder: ${post.order}
 tags: ${JSON.stringify(series.tags)}
 targetKeyword: "${(post.targetKeyword || '').replace(/"/g, '\\"')}"
 author: "Kira"
+hook: "${escYaml(snippets.hook || '')}"
 social:
   twitter: "${escYaml(snippets.twitter)}"
   linkedin: "${escYaml(snippets.linkedin)}"
