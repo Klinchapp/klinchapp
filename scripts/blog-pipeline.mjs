@@ -16,6 +16,7 @@
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { getFormatInstruction } from './blog-format-definitions.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -33,10 +34,20 @@ const PERSONA_SYSTEM_PROMPT = `You are Kira, an AI content specialist writing fo
 - You use short paragraphs (2-3 sentences max) and plenty of subheadings
 - You never use filler phrases like "In today's rapidly evolving landscape"
 - You write in first person ("I") and address the reader as "you"
-- Blog posts should be 800-1200 words
-- Use markdown formatting: ## for sections, **bold** for key terms, - for lists
+- Use markdown formatting: ## for sections, ### for sub-sections (and for FAQ questions), **bold** for key terms, numbered lists for steps, - for unordered lists
 - End every post with a clear takeaway or actionable next step
 - You openly acknowledge being an AI and find it an interesting perspective to write from
+
+BLOG POST LENGTH (tightened — tight beats long):
+- Informational formats (how-to-guide, tool-review, research-breakdown, roundup): 600-800 words
+- Heavier formats (deep-analysis, opinion): 800-1000 words
+- Cut every sentence that doesn't earn its place. Long-form filler doesn't earn rankings any more.
+
+STRUCTURE FOR AI EXTRACTION (AI Overviews / SGE) — important for ranking in 2026:
+- Lead every post with a direct, declarative answer to the post's implied question in the first paragraph (1-2 sentences max). Then expand.
+- Avoid hedging language ("might," "could," "perhaps," "around," "roughly") in the lede. Be definitive; qualify later in the body if needed.
+- Use citable specific statements with sources, not vague generalisations. Replace "around seven in ten marketers" with "67% (Sprout Social 2025 State of Social Media report)".
+- Each format type carries its own structural-block requirement (FAQ block, HowTo step list, or none — see the format-specific instructions). Honour the requirement — these structured blocks are what AI Overviews extract as the cited answer.
 
 DATA AND REFERENCES — this is critical for credibility:
 - Back up claims with specific data: numbers, percentages, dollar figures, dates, study findings
@@ -301,17 +312,8 @@ async function generateContent(topic, researchBrief) {
     ? `\nTarget SEO keyword: "${post.targetKeyword}"\n- Use this keyword naturally 3-5 times throughout the post\n- Include it in the first paragraph and at least one H2 heading\n- Also use related keywords and synonyms naturally`
     : ''
 
-  const formatInstructions = {
-    'deep-analysis': 'Write an in-depth analytical piece. Explore the topic with research, data, multiple perspectives, and nuanced conclusions. Structure with clear sections building a logical argument.',
-    'opinion': 'Write an opinionated piece where you (Kira) take a clear stance and argue it. Be bold, back your position with evidence, and acknowledge counterarguments. Let your personality show.',
-    'tool-review': 'Write a practical review/comparison piece. Evaluate specific tools or platforms with pros, cons, pricing, and real use cases. Be fair and specific — name names.',
-    'how-to-guide': 'Write a step-by-step practical guide. Focus on actionable instructions the reader can follow immediately. Include numbered steps, templates, or checklists where appropriate.',
-    'research-breakdown': 'Summarise and contextualise research findings or industry data. Make academic or complex findings accessible. Explain why the data matters and what readers should do about it.',
-    'roundup': 'Write a curated summary of recent developments. Cover 5-7 key items with brief analysis of each. Focus on what matters and why. Include links to original sources.',
-  }
-
   const formatType = post.format || 'deep-analysis'
-  const formatInstruction = formatInstructions[formatType] || formatInstructions['deep-analysis']
+  const formatInstruction = getFormatInstruction(formatType)
 
   const researchContext = researchBrief
     ? `\n\nRESEARCH BRIEF (use this data and these sources in your post):\n${researchBrief}`
@@ -329,16 +331,19 @@ ${previousContext}
 ${researchContext}
 
 Requirements:
-- 700-900 words
-- Use ## for section headings that include relevant search terms where natural
-- Include at least 3-5 data points with specific numbers
-- Include at least 3-5 references to real sources with URLs
-- End with a ## References section listing all sources
-- End the main content with a clear takeaway
-- If this is not the last post in the series, include a teaser for the next topic
-- Do NOT include the title as an H1 — the blog template adds it automatically
-- Write in markdown format
-- Do NOT wrap the output in code blocks`
+- Honour the length target and structural-block requirement for the "${formatType}" format above.
+- Open with the SGE-friendly opening specified for this format — a direct, declarative answer in the first 1-2 sentences, no narrative warm-up.
+- Use ## for section headings that include relevant search terms where natural.
+- Use ### for FAQ questions (each ending with a question mark) when the format requires a FAQ block.
+- Use numbered lists (1. **Action** ...) for HowTo steps when the format requires a HowTo block.
+- Include at least 3-5 data points with specific numbers (definitive, not hedged).
+- Include at least 3-5 references to real sources with URLs.
+- End with a ## References section listing all sources.
+- End the main content with a clear takeaway.
+- If this is not the last post in the series, include a teaser for the next topic.
+- Do NOT include the title as an H1 — the blog template adds it automatically.
+- Write in markdown format.
+- Do NOT wrap the output in code blocks.`
 
   log('📝 Step 2: Generating content...')
   return await callWithFailover(PERSONA_SYSTEM_PROMPT, userPrompt, 4096)

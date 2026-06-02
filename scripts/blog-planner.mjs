@@ -13,6 +13,7 @@
 
 import fs from 'fs'
 import path from 'path'
+import { formatDefinitionsForPrompt } from './blog-format-definitions.mjs'
 import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -119,7 +120,10 @@ REQUIREMENTS:
 - Each series should have 6-8 posts
 - Topics should be accessible to non-technical readers (small business owners, creators, general audience)
 - Each series needs a clear narrative arc (earlier posts set up later ones)
-- Mix of formats: deep-analysis, opinion, tool-review, how-to-guide, research-breakdown
+- Mix of formats — pick the format that genuinely fits each topic. Each format carries a structural contract (length, opening, required structured blocks). Available formats and what each requires:
+
+${formatDefinitionsForPrompt()}
+
 - Each post needs a target SEO keyword (something people actually search for)
 - Slugs must be URL-friendly (lowercase, hyphens, no special chars)
 - Do NOT overlap with existing series listed above

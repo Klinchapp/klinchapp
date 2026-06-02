@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllPosts, getPostBySlug, getPostsBySeries, getSeriesBySlug } from '@/lib/blog'
 import { BLOG_PERSONA } from '@/lib/blog-persona'
 import { getHeroVariant } from '@/lib/blog-hero-variants'
+import { detectFAQ, detectHowTo } from '@/lib/blog-schema-detection'
 import { notFound } from 'next/navigation'
 import SocialSnippetsCard from './social-snippets'
 import ShareButtons from './share-buttons'
@@ -76,9 +77,41 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     mainEntityOfPage: `https://www.klinchapp.com/blog/${post.slug}`,
   }
 
+  // Detect FAQ and HowTo blocks Kira may have written, emit matching schema.
+  // Detection is conservative — when nothing qualifies, no extra schema is emitted.
+  const faq = detectFAQ(post.content)
+  const faqJsonLd = faq && {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: answer },
+    })),
+  }
+
+  const howTo = detectHowTo(post.content)
+  const howToJsonLd = howTo && {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: howTo.name,
+    step: howTo.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {faqJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      )}
+      {howToJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
+      )}
 
       <SiteHeader variant="back-blog" />
 
