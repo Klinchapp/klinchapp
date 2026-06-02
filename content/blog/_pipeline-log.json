@@ -1276,5 +1276,11 @@
         "tokens_out": 27
       }
     ]
+  },
+  {
+    "date": "2026-06-02T12:52:53.825Z",
+    "stage": "publish",
+    "file": "ai-candidate-sourcing-vs-boolean.mdx",
+    "status": "published"
   }
 ]
