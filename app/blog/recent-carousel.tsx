@@ -125,7 +125,7 @@ export default function RecentHighlightsCarousel({ posts }: { posts: BlogPost[] 
               style={{ background: bg }}
             >
               {/* Hook as the lead — no title, no chip */}
-              <p className="text-xs leading-snug">
+              <p className="text-sm leading-snug">
                 {getCardSnippet(post)}
               </p>
               {/* Date and Read more → sit together at the bottom */}
