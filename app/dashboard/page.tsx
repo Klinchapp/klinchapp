@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase-browser'
 import { useRouter } from 'next/navigation'
+import SiteHeader from '../components/site-header'
 
 // Monoline SVG Icons
 const ClockIcon = () => (
@@ -18,11 +19,6 @@ const CogIcon = () => (
   </svg>
 )
 
-const LogOutIcon = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-  </svg>
-)
 
 const CameraIcon = ({ className = "" }: { className?: string }) => (
   <svg className={`w-8 h-8 ${className}`} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -170,7 +166,6 @@ export default function Dashboard() {
   const [remainingPosts, setRemainingPosts] = useState<number | null>(null)
   const [postHistory, setPostHistory] = useState<any[]>([])
   const [showPlatformWarning, setShowPlatformWarning] = useState(false)
-  const [avatarError, setAvatarError] = useState(false)
 
   const features: Record<string, string[]> = {
     footwear: ['Comfort', 'Style', 'Durability', 'Breathability', 'Lightweight', 'Versatility'],
@@ -314,37 +309,33 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8] flex flex-col">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src="/logo.jpg" alt="Klinchapp" className="w-12 h-12 rounded-xl object-contain shadow-sm bg-white" />
-            <span className="text-xl font-extrabold text-[#6B2C6B]">Klinchapp</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <a href="/blog" className="text-[#6B2C6B] font-semibold hover:underline text-sm">Blog</a>
-            {remainingPosts !== null && (<div title={getResetInfo()} className="px-4 py-2 bg-[#F3E8FF] rounded-full text-sm font-semibold text-[#6B2C6B] cursor-help">{remainingPosts} posts left</div>)}
-            <button onClick={() => setShowHistory(!showHistory)} className={`p-2.5 rounded-lg transition-all ${showHistory ? 'bg-[#6B2C6B] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="History"><ClockIcon /></button>
-            <button onClick={() => setShowSettings(!showSettings)} className={`p-2.5 rounded-lg transition-all ${showSettings ? 'bg-[#6B2C6B] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Settings"><CogIcon /></button>
-            <div className="flex items-center gap-2 pl-3 border-l border-gray-200">
-              {user?.user_metadata?.avatar_url && !avatarError ? (
-                <img
-                  src={user.user_metadata.avatar_url}
-                  alt="Profile"
-                  className="w-8 h-8 rounded-full"
-                  onError={() => setAvatarError(true)}
-                  referrerPolicy="no-referrer"
-                />
-              ) : (
-                <div className="w-8 h-8 rounded-full bg-[#6B2C6B] text-white flex items-center justify-center text-sm font-bold uppercase">
-                  {(user?.email?.[0] || '?').toUpperCase()}
-                </div>
-              )}
-              <button onClick={signOut} className="p-2.5 text-gray-600 hover:bg-gray-100 rounded-lg transition-all" title="Sign Out"><LogOutIcon /></button>
+      {/* Universal site header — identity, blog link, auth-aware right side (avatar + sign-out) */}
+      <SiteHeader />
+
+      {/* Dashboard-specific toolbar — page-level controls, sits below the header */}
+      <div className="bg-white/60 backdrop-blur-sm border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 sm:py-3 flex items-center justify-end gap-2 sm:gap-3">
+          {remainingPosts !== null && (
+            <div title={getResetInfo()} className="px-4 py-2 bg-[#F3E8FF] rounded-full text-sm font-semibold text-[#6B2C6B] cursor-help">
+              {remainingPosts} posts left
             </div>
-          </div>
+          )}
+          <button
+            onClick={() => { setShowHistory(!showHistory); setShowSettings(false) }}
+            className={`p-2.5 rounded-lg transition-all ${showHistory ? 'bg-[#6B2C6B] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+            title="History"
+          >
+            <ClockIcon />
+          </button>
+          <button
+            onClick={() => { setShowSettings(!showSettings); setShowHistory(false) }}
+            className={`p-2.5 rounded-lg transition-all ${showSettings ? 'bg-[#6B2C6B] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+            title="Settings"
+          >
+            <CogIcon />
+          </button>
         </div>
-      </header>
+      </div>
 
       {/* History Sidebar */}
       {showHistory && (
