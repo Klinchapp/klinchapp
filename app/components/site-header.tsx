@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import AuthAwareCTA from './auth-aware-cta'
 
 type Variant = 'marketing' | 'marketing-home' | 'blog-index' | 'back-home' | 'back-blog'
 
@@ -8,11 +9,7 @@ function MarketingNav() {
   return (
     <div className="flex items-center gap-2 sm:gap-4">
       <Link href="/blog" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">Blog</Link>
-      <Link href="/login" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">Login</Link>
-      <Link href="/login" className="px-3 sm:px-6 py-2 sm:py-2.5 bg-[#6B2C6B] text-white rounded-xl font-semibold hover:bg-[#8B3A8B] transition-all shadow-lg shadow-[#6B2C6B]/20 text-xs sm:text-base">
-        <span className="hidden sm:inline">Get Started Free</span>
-        <span className="sm:hidden">Start</span>
-      </Link>
+      <AuthAwareCTA />
     </div>
   )
 }
@@ -21,10 +18,7 @@ function BlogIndexNav() {
   return (
     <div className="flex items-center gap-2 sm:gap-4">
       <Link href="/blog" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">Blog</Link>
-      <Link href="/login" className="px-3 sm:px-6 py-2 sm:py-2.5 bg-[#6B2C6B] text-white rounded-xl font-semibold hover:bg-[#8B3A8B] transition-all shadow-lg shadow-[#6B2C6B]/20 text-xs sm:text-base">
-        <span className="hidden sm:inline">Get Started Free</span>
-        <span className="sm:hidden">Start</span>
-      </Link>
+      <AuthAwareCTA />
     </div>
   )
 }
@@ -55,11 +49,7 @@ export default function SiteHeader({ variant = 'marketing' }: { variant?: Varian
           </div>
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <Link href="/blog" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">Blog</Link>
-            <Link href="/login" className="text-[#6B2C6B] font-semibold hover:underline text-sm sm:text-base">Login</Link>
-            <Link href="/login" className="px-3 sm:px-6 py-2 sm:py-2.5 bg-[#6B2C6B] text-white rounded-xl font-semibold hover:bg-[#8B3A8B] transition-all shadow-lg shadow-[#6B2C6B]/20 text-xs sm:text-base">
-              <span className="hidden sm:inline">Get Started Free</span>
-              <span className="sm:hidden">Start</span>
-            </Link>
+            <AuthAwareCTA />
           </div>
         </div>
       </header>
