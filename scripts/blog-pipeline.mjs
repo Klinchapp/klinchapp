@@ -76,7 +76,7 @@ const PROVIDERS = [
   },
   {
     name: 'claude-sonnet',
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-4-6',
     provider: 'anthropic',
     envKey: 'ANTHROPIC_API_KEY',
   },
@@ -163,10 +163,21 @@ async function callLLM(provider, systemPrompt, userPrompt, maxTokens = 4096) {
 
 // ─── Failover Engine ────────────────────────────────────────
 
-async function callWithFailover(systemPrompt, userPrompt, maxTokens = 4096) {
+async function callWithFailover(systemPrompt, userPrompt, maxTokens = 4096, options = {}) {
   const attempts = []
 
-  for (const provider of PROVIDERS) {
+  // Allow callers (e.g. scripts/backfill-hooks.mjs) to override which provider
+  // is tried first. If preferredProviderName is set, that provider moves to the
+  // front of the list and the rest stay as fallbacks. Used to force Sonnet for
+  // editorial-quality work without rewriting the failover chain.
+  const orderedProviders = options.preferredProviderName
+    ? [
+        ...PROVIDERS.filter(p => p.name === options.preferredProviderName),
+        ...PROVIDERS.filter(p => p.name !== options.preferredProviderName),
+      ]
+    : PROVIDERS
+
+  for (const provider of orderedProviders) {
     // Skip providers without API keys configured
     if (!process.env[provider.envKey]) {
       log(`  ⏭ Skipping ${provider.name} — no API key configured`)
@@ -488,6 +499,64 @@ ${content}`
   }
 }
 
+// ─── Hook Prompt Spec ────────────────────────────────────────
+// Single source of truth for the Recent Highlights carousel-card hook.
+// Used by generateSocialSnippets() during pipeline runs AND by
+// scripts/backfill-hooks.mjs for upgrading existing posts in bulk.
+// Full rationale + voice guidance: scripts/HOOK_PROMPT_GUIDE.md
+export const HOOK_PROMPT_SECTION = `HOOK (80-130 chars — Klinchapp's witty lead text for blog cards on klinchapp.com/blog):
+- FRESH CANVAS — CRITICAL: Use ONLY what is explicitly written in the title, summary, and content excerpt above. Do NOT draw on training data, past blog posts you've seen, common stats about the topic, or "what posts like this usually say." If a number, percentage, dollar amount, time figure, or specific claim is not quoted verbatim in the content above, you CANNOT use it — even if you're 99% sure it's roughly true. Treat this single post as the only source of truth that exists. When you find yourself reaching for a specific stat or example, stop and ask: "Did I read that in the content above, or am I pattern-matching?" If pattern-matching, don't use it.
+- WIT IS THE GOAL. Find the cleverly amusing angle in the post's actual content — a sharp pivot, a layered observation, a precise word doing double duty, a "did they just say that" moment — and write a tweet-tone hook that lands the wit AND makes them want to click. Witty + clever > dry > slapstick. Think New Yorker cartoon caption, The Onion's sharpest headlines, or a stand-up setup that turns on a single precise word. Not "lol", not "🤣", not generic snark.
+- Wit MUST come from the post's specific subject as written above. NO invented brands, NO fake stats, NO made-up specific quantities (dollar amounts, percentages, post counts, hour figures, day counts, etc.) even as comedic shorthand. NO generic "everyone hates Mondays" jokes.
+- SENSITIVE-TOPIC CARVE-OUT: if the post is about ethics, layoffs, discrimination, bias, mental health, financial harm to vulnerable parties, or other genuinely sensitive subjects, DROP the wit entirely. Write a punchy-but-respectful declarative hook instead. When in doubt, default to declarative. Better to be flat than to land wrong.
+- NO hashtags. NO emojis (they render unpredictably across card sizes).
+- BANNED PHRASES anywhere in the hook (not just as openers): "Plot twist:", "Spoiler:", "Spoiler alert:", "POV:", "Hot take:", "Real talk:", "Here's the deal:", "Pro tip:", "TL;DR:", "Newsflash:" — they signal lazy writing on a card.
+- Stand-alone — the reader sees this on a card with no context and decides whether to click.
+
+EXAMPLES of hooks we want (wit anchored in real content, single precise word doing the work):
+- "Your chatbot has a 9.8 satisfaction score. Your customers do not."
+- "Your AI has a brand voice. It's 'tired marketing intern at 4pm'."
+- "Boolean strings still hire better than your AI thinks they do."
+- "Your AI writes in your voice. Sort of. The 11pm version of your voice."`
+
+// Standalone hook-only generation, used by scripts/backfill-hooks.mjs.
+// Returns just the hook string (already cleaned of quotes/whitespace).
+//
+// content is the post body (markdown). The caller should pass enough of it
+// for the LLM to find the real angles — first ~2000 chars is usually enough
+// to capture the lede + framing + 2-3 main arguments without ballooning tokens.
+// If content is omitted, the hook falls back to title+brief only (lower quality).
+//
+// options.preferredProviderName lets callers override which model goes first
+// (e.g. 'claude-sonnet' for sharper editorial work on a one-off backfill).
+export async function generateHookOnly(title, brief, content = '', options = {}) {
+  const trimmedContent = content
+    ? `\n\nPost content (use this to find the real angle — quote specifics from here, never invent them):\n${content.slice(0, 2000)}${content.length > 2000 ? '\n\n[…content continues, but you have enough to find the angle]' : ''}`
+    : ''
+
+  const userPrompt = `Generate ONE punchy hook for this blog post's carousel card.
+
+Title: "${title}"
+Summary: ${brief}${trimmedContent}
+
+${HOOK_PROMPT_SECTION}
+
+Return ONLY the hook text, no quotes, no labels, no JSON, no preamble.`
+
+  const result = await callWithFailover(
+    'You write witty hooks for blog carousel cards, anchored in the post\'s actual content. Return only the hook text — no quotes, no labels, no other text.',
+    userPrompt,
+    200,
+    { preferredProviderName: options.preferredProviderName }
+  )
+
+  // Strip wrapping quotes or labels the LLM might still emit
+  let hook = result.text.trim()
+  hook = hook.replace(/^["'`]+|["'`]+$/g, '').trim()
+  hook = hook.replace(/^(hook|HOOK)[:\s]+/i, '').trim()
+  return { hook, ...result }
+}
+
 async function generateSocialSnippets(title, brief, slug) {
   const postUrl = `https://www.klinchapp.com/blog/${slug}`
 
@@ -513,17 +582,7 @@ EXAMPLES of the Twitter voice we want:
 - "Your AI sounds like every other AI's AI. Here's how to make it sound like you. #ContentAI"
 - "AI sourcing tools beat Boolean strings. Except when they don't. Here's when each wins. #Recruiting"
 
-HOOK (60-100 chars — Klinchapp's own punchy lead text for blog cards on klinchapp.com/blog):
-- Even tighter than the Twitter snippet. Same voice (declarative, specific, conversational, humor when fitting), no setup questions, no clichés.
-- NO hashtags
-- NO emojis (they render unpredictably across card sizes)
-- Stand-alone — the reader sees this on a card and decides whether to click
-
-EXAMPLES of hooks we want:
-- "Your AI hiring tool just rejected the perfect candidate. You'll find out in 6 months."
-- "Most small businesses are using AI wrong. Here are the 5 mistakes that hurt you most."
-- "AI sourcing tools beat Boolean strings. Except when they don't."
-- "Your AI sounds like every other AI's AI. Here's how to make it sound like you."
+${HOOK_PROMPT_SECTION}
 
 LINKEDIN (4-5 short paragraphs, ~1000-1500 chars):
 - Professional but human — write like a thoughtful peer, not a press release
@@ -956,37 +1015,44 @@ function log(msg) {
 }
 
 // ─── Main ───────────────────────────────────────────────────
+// Only run the CLI when this file is invoked directly (node scripts/blog-pipeline.mjs ...).
+// When imported as a module (e.g. by scripts/backfill-hooks.mjs to reuse HOOK_PROMPT_SECTION
+// and generateHookOnly), skip the CLI so the importer isn't forced to provide argv.
 
-const stage = process.argv[2]
+const isMainModule = process.argv[1] && process.argv[1] === fileURLToPath(import.meta.url)
 
-if (!stage || !['prepare', 'publish'].includes(stage)) {
-  console.error('Usage: node scripts/blog-pipeline.mjs <prepare|publish>')
-  process.exit(1)
-}
+if (isMainModule) {
+  const stage = process.argv[2]
 
-try {
-  if (stage === 'prepare') {
-    await stagePrepare()
-  } else {
-    await stagePublish()
+  if (!stage || !['prepare', 'publish'].includes(stage)) {
+    console.error('Usage: node scripts/blog-pipeline.mjs <prepare|publish>')
+    process.exit(1)
   }
-  log('🎉 Pipeline complete.')
-} catch (err) {
-  log(`💥 Pipeline failed: ${err.message}`)
-  console.error(err)
 
-  // Log the failure
-  appendLog({
-    date: new Date().toISOString(),
-    stage,
-    status: 'failed',
-    error: err.message,
-  })
+  try {
+    if (stage === 'prepare') {
+      await stagePrepare()
+    } else {
+      await stagePublish()
+    }
+    log('🎉 Pipeline complete.')
+  } catch (err) {
+    log(`💥 Pipeline failed: ${err.message}`)
+    console.error(err)
 
-  // Send failure alert
-  await sendFailureAlert(stage, err.message)
+    // Log the failure
+    appendLog({
+      date: new Date().toISOString(),
+      stage,
+      status: 'failed',
+      error: err.message,
+    })
 
-  process.exit(1)
+    // Send failure alert
+    await sendFailureAlert(stage, err.message)
+
+    process.exit(1)
+  }
 }
 
 async function sendFailureAlert(stage, errorMessage) {
