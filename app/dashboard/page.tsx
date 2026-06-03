@@ -170,6 +170,7 @@ export default function Dashboard() {
   const [remainingPosts, setRemainingPosts] = useState<number | null>(null)
   const [postHistory, setPostHistory] = useState<any[]>([])
   const [showPlatformWarning, setShowPlatformWarning] = useState(false)
+  const [avatarError, setAvatarError] = useState(false)
 
   const features: Record<string, string[]> = {
     footwear: ['Comfort', 'Style', 'Durability', 'Breathability', 'Lightweight', 'Versatility'],
@@ -284,17 +285,6 @@ export default function Dashboard() {
       const data = await response.json()
       if (!response.ok) { setError(data.message || 'Failed to generate'); setIsGenerating(false); return }
       setGeneratedContent(data.content); setGeneratedLanguage(language); setRemainingPosts(data.remainingPosts); setOriginalPlatform(platform)
-      const { data: updatedProfile } = await supabase.from('profiles').select('*').eq('id', user.id).single()
-      if (updatedProfile) {
-        setProfile(updatedProfile)
-        // Re-derive from posts table (source of truth) rather than the stale posts_this_month field
-        const { count: monthCount } = await supabase
-          .from('posts')
-          .select('*', { count: 'exact', head: true })
-          .eq('user_id', user.id)
-          .gte('created_at', getMonthStartISO())
-        setRemainingPosts((updatedProfile.posts_limit || 60) - (monthCount || 0))
-      }
       const { data: posts } = await supabase.from('posts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).limit(10)
       if (posts) setPostHistory(posts)
     } catch (err: any) { setError(err.message || 'Something went wrong') } finally { setIsGenerating(false) }
@@ -337,7 +327,19 @@ export default function Dashboard() {
             <button onClick={() => setShowHistory(!showHistory)} className={`p-2.5 rounded-lg transition-all ${showHistory ? 'bg-[#6B2C6B] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="History"><ClockIcon /></button>
             <button onClick={() => setShowSettings(!showSettings)} className={`p-2.5 rounded-lg transition-all ${showSettings ? 'bg-[#6B2C6B] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Settings"><CogIcon /></button>
             <div className="flex items-center gap-2 pl-3 border-l border-gray-200">
-              <img src={user?.user_metadata?.avatar_url || `https://ui-avatars.com/api/?name=${user?.email}&background=6B2C6B&color=fff`} alt="Profile" className="w-8 h-8 rounded-full" />
+              {user?.user_metadata?.avatar_url && !avatarError ? (
+                <img
+                  src={user.user_metadata.avatar_url}
+                  alt="Profile"
+                  className="w-8 h-8 rounded-full"
+                  onError={() => setAvatarError(true)}
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-[#6B2C6B] text-white flex items-center justify-center text-sm font-bold uppercase">
+                  {(user?.email?.[0] || '?').toUpperCase()}
+                </div>
+              )}
               <button onClick={signOut} className="p-2.5 text-gray-600 hover:bg-gray-100 rounded-lg transition-all" title="Sign Out"><LogOutIcon /></button>
             </div>
           </div>
@@ -442,7 +444,7 @@ export default function Dashboard() {
               ) : (
                 <>
                   <div className="mb-4"><label className="block text-sm font-semibold text-gray-700 mb-2">Type</label><select value={category} onChange={(e) => handleCategoryChange(e.target.value)} className="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-[#6B2C6B] outline-none"><option value="">Select</option>{textCategories.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}</select></div>
-                  <div className="mb-4"><label className="block text-sm font-semibold text-gray-700 mb-2">Content <span className="text-[#6B2C6B]">*</span></label><textarea value={textPrompt} onChange={(e) => setTextPrompt(e.target.value)} placeholder="Describe what you want to post..." rows={4} className="w-full p-3 border-2 border-gray-200 rounded-xl resize-none" /></div>
+                  <div className="mb-4"><label className="block text-sm font-semibold text-gray-700 mb-2">Content <span className="text-[#6B2C6B]">*</span></label><textarea value={textPrompt} onChange={(e) => setTextPrompt(e.target.value)} placeholder="Describe what you want to post..." rows={4} className="w-full p-3 border-2 border-gray-200 rounded-xl [field-sizing:content] min-h-[6rem]" /></div>
                 </>
               )}
               <div className="grid grid-cols-2 gap-4 mb-4">
