@@ -1,11 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase-browser'
 import Link from 'next/link'
 import SiteHeader from './components/site-header'
 import SiteFooter from './components/site-footer'
+import StartCreatingCTA from './components/start-creating-cta'
 
 /* ===== Platform icons (mirroring app/home-client.tsx so visual identity stays consistent) ===== */
 const InstagramIcon = ({ className = 'w-5 h-5 text-[#6B2C6B]' }: { className?: string }) => (
@@ -44,15 +42,6 @@ function ProductCard({
 }
 
 export default function HomeClient() {
-  const router = useRouter()
-  const supabase = createClient()
-
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) router.push('/dashboard')
-    })
-  }, [router, supabase])
-
   const softwareAppJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -96,9 +85,9 @@ export default function HomeClient() {
           Drop a product image — or describe it in text. Klinchapp generates captions tuned to where you&apos;re posting, who you&apos;re talking to, and how you want to sound — in seconds.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-3">
-          <Link href="/login" className="px-8 py-4 bg-[#6B2C6B] text-white rounded-xl font-bold text-lg hover:bg-[#8B3A8B] transition-all shadow-xl shadow-[#6B2C6B]/30">
-            Start Creating Free →
-          </Link>
+          <StartCreatingCTA
+            className="px-8 py-4 bg-[#6B2C6B] text-white rounded-xl font-bold text-lg hover:bg-[#8B3A8B] transition-all shadow-xl shadow-[#6B2C6B]/30"
+          />
           <a href="#how" className="px-8 py-4 bg-white text-[#6B2C6B] rounded-xl font-bold text-lg border-2 border-[#6B2C6B] hover:bg-[#F3E8FF] transition-all">
             See how it works
           </a>
@@ -665,9 +654,9 @@ export default function HomeClient() {
         <div className="bg-gradient-to-r from-[#6B2C6B] to-[#8B3A8B] rounded-3xl p-12 text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Social Media?</h2>
           <p className="text-lg opacity-90 mb-8">Free plan · 60 posts/month · No credit card required.</p>
-          <Link href="/login" className="inline-block px-8 py-4 bg-white text-[#6B2C6B] rounded-xl font-bold text-lg hover:bg-gray-100 transition-all">
-            Get Started Free →
-          </Link>
+          <StartCreatingCTA
+            className="inline-block px-8 py-4 bg-white text-[#6B2C6B] rounded-xl font-bold text-lg hover:bg-gray-100 transition-all"
+          />
         </div>
       </section>
 

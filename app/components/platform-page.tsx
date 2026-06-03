@@ -10,6 +10,7 @@ import type {
 } from '@/lib/platforms/types'
 import SiteHeader from './site-header'
 import SiteFooter from './site-footer'
+import StartCreatingCTA from './start-creating-cta'
 
 /* ===== Platform icons (mirroring app/home-client.tsx) ===== */
 const InstagramIcon = ({ className = 'w-5 h-5 text-[#6B2C6B]' }: { className?: string }) => (
@@ -327,9 +328,9 @@ export function PlatformPage({ config }: { config: PlatformConfig }) {
           </span>
         </h1>
         <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-8">{config.hero.sub}</p>
-        <Link href="/login" className="inline-block px-8 py-4 bg-[#6B2C6B] text-white rounded-xl font-bold text-lg hover:bg-[#8B3A8B] transition-all shadow-xl shadow-[#6B2C6B]/30">
-          {config.hero.ctaLabel} →
-        </Link>
+        <StartCreatingCTA
+          className="inline-block px-8 py-4 bg-[#6B2C6B] text-white rounded-xl font-bold text-lg hover:bg-[#8B3A8B] transition-all shadow-xl shadow-[#6B2C6B]/30"
+        />
         <p className="text-xs text-gray-500 mt-4">Free plan · 60 posts/month · No credit card required</p>
       </section>
 
@@ -481,9 +482,9 @@ export function PlatformPage({ config }: { config: PlatformConfig }) {
           <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
             Drop a product image. Pick a voice. Klinchapp does the rest.
           </p>
-          <Link href="/login" className="inline-block px-8 py-4 bg-white text-[#6B2C6B] rounded-xl font-bold text-lg hover:bg-gray-100 transition-all shadow-xl">
-            {config.hero.ctaLabel} →
-          </Link>
+          <StartCreatingCTA
+            className="inline-block px-8 py-4 bg-white text-[#6B2C6B] rounded-xl font-bold text-lg hover:bg-gray-100 transition-all shadow-xl"
+          />
           <p className="text-xs opacity-80 mt-4">Free plan · 60 posts/month · No credit card required.</p>
         </div>
       </section>
