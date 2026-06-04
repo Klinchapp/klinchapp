@@ -1282,5 +1282,105 @@
     "stage": "publish",
     "file": "ai-candidate-sourcing-vs-boolean.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-06-04T12:20:04.360Z",
+    "stage": "prepare",
+    "series": "ai-recruitment",
+    "post": "ai-tools-recruiters-linkedin-posts",
+    "title": "AI Tools That Help Recruiters Write Better LinkedIn Posts (Without Sounding Like Job-Board Copy)",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 33839,
+        "tokens_in": 3421,
+        "tokens_out": 2897
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 31102,
+        "tokens_in": 3069,
+        "tokens_out": 2546
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 26642,
+        "tokens_in": 2798,
+        "tokens_out": 2561
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 859,
+        "tokens_in": 2719,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 31592,
+        "tokens_in": 3421,
+        "tokens_out": 2808
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 25575,
+        "tokens_in": 2980,
+        "tokens_out": 2284
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24181,
+        "tokens_in": 2536,
+        "tokens_out": 2318
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 3401,
+        "tokens_in": 2476,
+        "tokens_out": 256
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8842,
+        "tokens_in": 1908,
+        "tokens_out": 782
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 967,
+        "tokens_in": 287,
+        "tokens_out": 33
+      }
+    ]
   }
 ]
