@@ -499,6 +499,84 @@ ${content}`
   }
 }
 
+// ─── Platform Internal Linking ───────────────────────────────
+// Rule-based post-processing that adds first-occurrence platform links
+// from blog body text → /ai-X-post-generator pages. Closes the Tier-1 SEO
+// gap flagged in every external audit (43 platform mentions, 0 links in
+// the platform-guide post alone).
+//
+// Used by the live pipeline (called from finalizeContent) AND by
+// scripts/backfill-platform-links.mjs for existing posts.
+//
+// Rules:
+//   - Only the FIRST plain-text occurrence per platform URL gets linked
+//     (linking every mention reads as gamed).
+//   - Skip headings (lines starting with #) and code fences (```).
+//   - Skip text already inside a markdown link (bracket-counting heuristic).
+//   - Case-sensitive — matches "Instagram" not "instagram.com" inside a URL.
+//   - "X" and "Twitter" both point at /ai-twitter-post-generator (same target,
+//     either alias wins the single first-occurrence slot).
+//
+// Full spec: scripts/PLATFORM_LINKS_GUIDE.md
+export const PLATFORM_LINKS = [
+  { aliases: ['Instagram'], url: '/ai-instagram-post-generator' },
+  { aliases: ['LinkedIn'], url: '/ai-linkedin-post-generator' },
+  { aliases: ['X', 'Twitter'], url: '/ai-twitter-post-generator' },
+  { aliases: ['Facebook'], url: '/ai-facebook-post-generator' },
+  { aliases: ['TikTok'], url: '/ai-tiktok-caption-generator' },
+]
+
+export function addPlatformLinks(content) {
+  const linked = new Set() // URLs already linked once in this document
+  const lines = content.split('\n')
+  let insideCodeBlock = false
+
+  const out = lines.map(line => {
+    // Toggle code-fence state
+    if (line.trim().startsWith('```')) {
+      insideCodeBlock = !insideCodeBlock
+      return line
+    }
+    if (insideCodeBlock) return line
+    // Skip any heading line (handles # through ######)
+    if (/^\s*#{1,6}\s/.test(line)) return line
+
+    let result = line
+    for (const { aliases, url } of PLATFORM_LINKS) {
+      if (linked.has(url)) continue
+
+      for (const alias of aliases) {
+        const pattern = new RegExp(`\\b${alias}\\b`)
+        const match = pattern.exec(result)
+        if (!match) continue
+
+        // Bracket-balance check: count [ and ] before the match to detect
+        // "we're inside an existing markdown link's display text".
+        const before = result.slice(0, match.index)
+        let openBrackets = 0
+        for (const ch of before) {
+          if (ch === '[') openBrackets++
+          else if (ch === ']' && openBrackets > 0) openBrackets--
+        }
+        if (openBrackets > 0) continue
+
+        // Also skip if the match is directly followed by ]( or ] (would mean
+        // we matched display text immediately inside an existing link).
+        const after = result.slice(match.index + alias.length)
+        if (after.startsWith('](') || after.startsWith(']')) continue
+
+        // Safe to replace
+        result = `${before}[${alias}](${url})${after}`
+        linked.add(url)
+        break // done with this platform — move to next platform
+      }
+    }
+    return result
+  })
+
+  return out.join('\n')
+}
+
 // ─── Hook Prompt Spec ────────────────────────────────────────
 // Single source of truth for the Recent Highlights carousel-card hook.
 // Used by generateSocialSnippets() during pipeline runs AND by
@@ -798,8 +876,12 @@ async function stagePrepare() {
   allAttempts.push(...metaResult.attempts)
   const metaDescription = metaResult.description
 
+  // Add platform internal links (first-occurrence per platform → /ai-X-post-generator)
+  // Rule-based, deterministic. See scripts/PLATFORM_LINKS_GUIDE.md for the spec.
+  const linkedContent = addPlatformLinks(finalContent)
+
   // Assemble MDX
-  const mdxContent = assembleMdx(topic, finalContent, scores, snippets, metaDescription, status)
+  const mdxContent = assembleMdx(topic, linkedContent, scores, snippets, metaDescription, status)
   const mdxPath = path.join(BLOG_DIR, `${topic.post.targetSlug}.mdx`)
 
   // Ensure content/blog directory exists

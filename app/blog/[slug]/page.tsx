@@ -1,6 +1,26 @@
 import type { Metadata } from 'next'
+import type { AnchorHTMLAttributes } from 'react'
 import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+
+// Custom MDX components — anchor smart-target rule:
+//   - Internal links (start with "/" or "#") → same tab (default navigation flow)
+//   - External links (anything else, typically http(s)://) → new tab + rel="noopener noreferrer"
+// Applied to every blog post automatically via the components prop on MDXRemote.
+// Existing posts and future Kira-generated posts both inherit this behaviour at render.
+const mdxComponents = {
+  a: ({ href, children, ...rest }: AnchorHTMLAttributes<HTMLAnchorElement>) => {
+    const isInternal = !!href && (href.startsWith('/') || href.startsWith('#'))
+    if (isInternal) {
+      return <a href={href} {...rest}>{children}</a>
+    }
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>
+        {children}
+      </a>
+    )
+  },
+}
 import { getAllPosts, getPostBySlug, getPostsBySeries, getSeriesBySlug } from '@/lib/blog'
 import { BLOG_PERSONA } from '@/lib/blog-persona'
 import { getHeroVariant, getHeroTextColor } from '@/lib/blog-hero-variants'
@@ -165,7 +185,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           {/* Content */}
           <div className="blog-content prose prose-gray max-w-none prose-headings:text-gray-900 prose-h2:text-xl prose-h2:font-semibold prose-h2:mt-8 prose-h2:mb-4 prose-p:text-gray-600 prose-p:mb-4 prose-a:text-[#6B2C6B] prose-a:font-medium prose-strong:text-gray-900 prose-li:text-gray-600 prose-blockquote:border-[#6B2C6B] prose-blockquote:text-gray-500">
-            <MDXRemote source={post.content} />
+            <MDXRemote source={post.content} components={mdxComponents} />
           </div>
 
           {/* Tags */}
