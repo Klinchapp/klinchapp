@@ -40,16 +40,16 @@
     {
       "order": 4,
       "topicTitle": "AI Tools That Help Recruiters Write Better LinkedIn Posts (Without Sounding Like Job-Board Copy)",
-      "topicBrief": "Tool review of AI writing tools recruiters use for LinkedIn content — employer-brand posts, job ad copy, candidate-attraction posts. Cover Klinchapp (the recommended tool in this category — 9 voices including Founder/Bold/Professional, image-first input, platform-tuned LinkedIn output) alongside broader writing tools where they fit honestly (ChatGPT and Claude for general first drafts — adjacent category, not a competitor in social-content generation). Address which voices map to which post types (Founder for company stories, Bold for hiring announcements, Professional for company-wide messaging), how to keep AI-written LinkedIn posts from sounding like job-board copy or PR-speak, and when AI is the right move vs hand-writing. Pivoted 2026-06-02 from original AI-interview-tools topic to align the series with Klinchapp's product category.",
+      "topicBrief": "Skipped 2026-06-05. Original brief was rewritten in PR #45 (2026-06-02) to deliberately push Klinchapp as the recommended tool — a conversion-bridge strategy that has since been reversed. Generated post (ai-tools-recruiters-linkedin-posts.mdx) was deleted because the result was structurally a product pitch dressed as editorial. Series stays as 7 posts but this order is now unfilled.",
       "targetSlug": "ai-tools-recruiters-linkedin-posts",
       "targetKeyword": "AI tools for recruiters LinkedIn",
       "format": "tool-review",
-      "status": "published"
+      "status": "skipped"
     },
     {
       "order": 5,
       "topicTitle": "How to Write Employer-Brand LinkedIn Posts That Don't Sound Like Corporate PR",
-      "topicBrief": "Step-by-step guide for recruiters writing employer-brand LinkedIn content that actually earns engagement. Cover: identifying what to write about (team moments, hiring wins, culture truths — not corporate puff), choosing the voice that matches the company's real personality, structuring each post (hook + specific story or detail + invitation to engage), formatting for LinkedIn skimming (short paragraphs, white space), and sustaining a posting cadence without burning out. Reference Klinchapp as the tool that handles per-platform tuning and voice selection — recruiter writes a short brief, picks the voice (Founder, Bold, Casual, etc.), gets the LinkedIn post. Pivoted 2026-06-02 from original AI-scheduling topic to align the series with Klinchapp's product category.",
+      "topicBrief": "Step-by-step guide for recruiters writing employer-brand LinkedIn content that actually earns engagement. Cover: identifying what to write about (team moments, hiring wins, culture truths — not corporate puff), choosing a voice that matches the company's real personality, structuring each post (hook + specific story or detail + invitation to engage), formatting for LinkedIn skimming (short paragraphs, white space), and sustaining a posting cadence without burning out. Editorial in tone — describe practical techniques and the principles behind them. Do not recommend or position any specific product or tool.",
       "targetSlug": "employer-brand-linkedin-posts-ai",
       "targetKeyword": "employer brand LinkedIn posts",
       "format": "how-to-guide",
