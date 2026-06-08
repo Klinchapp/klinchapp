@@ -33,11 +33,42 @@ function check(name, fn) {
 
 console.log(`fetching ${url} ...`)
 const headers = {}
-if (process.env.VERCEL_PROTECTION_BYPASS) {
-  headers['x-vercel-protection-bypass'] = process.env.VERCEL_PROTECTION_BYPASS
-  headers['x-vercel-set-bypass-cookie'] = 'true'
+const bypass = process.env.VERCEL_PROTECTION_BYPASS
+if (bypass) {
+  headers['x-vercel-protection-bypass'] = bypass
+  // 'samesitenone' is required for server-side fetches that follow redirects —
+  // 'true' produces a SameSite=Lax cookie which can be dropped on the redirect
+  // chain in non-browser contexts.
+  headers['x-vercel-set-bypass-cookie'] = 'samesitenone'
+  console.log(`  bypass token present (${bypass.length} chars)`)
+} else {
+  console.log(`  bypass token NOT SET (env VERCEL_PROTECTION_BYPASS is empty)`)
 }
-const res = await fetch(url, { redirect: 'follow', headers })
+
+let res
+try {
+  res = await fetch(url, { redirect: 'follow', headers })
+} catch (err) {
+  // Replay with redirect:'manual' so the redirect chain is visible.
+  console.log(`\nfetch failed: ${err.message}`)
+  if (err.cause) console.log(`cause: ${err.cause.message}`)
+  console.log(`\nDIAGNOSTIC: replaying with redirect:'manual' to show the chain...`)
+  let currentUrl = url
+  for (let hop = 1; hop <= 10; hop++) {
+    const r = await fetch(currentUrl, { redirect: 'manual', headers })
+    const loc = r.headers.get('location')
+    console.log(`  hop ${hop}: ${currentUrl}`)
+    console.log(`         → status=${r.status} ${loc ? `location=${loc}` : '(no redirect)'}`)
+    if (r.status < 300 || r.status >= 400) {
+      const body = await r.text()
+      console.log(`         body excerpt: ${body.slice(0, 200).replace(/\s+/g, ' ')}`)
+      break
+    }
+    if (!loc) break
+    currentUrl = new URL(loc, currentUrl).toString()
+  }
+  process.exit(1)
+}
 const html = await res.text()
 const finalUrl = res.url
 
