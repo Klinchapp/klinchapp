@@ -15,9 +15,28 @@
  * Exits non-zero on any failed check, with a per-check pass/fail summary.
  */
 
-const url = process.argv[2]
+let url = process.argv[2]
 if (!url) {
   console.error('usage: node scripts/check-homepage.mjs <url>')
+  process.exit(2)
+}
+
+// Trim whitespace — trailing spaces from copy-paste cause redirect loops on Vercel.
+url = url.trim()
+
+// Normalize: prepend https:// if no protocol given (matters for workflow_dispatch
+// inputs where users often paste bare hostnames).
+if (!/^https?:\/\//.test(url)) {
+  console.log(`  note: prepending https:// to bare URL`)
+  url = `https://${url}`
+}
+
+// Validate parseability upfront so we fail with a clean message rather than
+// crashing inside undici's URL constructor.
+try {
+  new URL(url)
+} catch {
+  console.error(`error: not a valid URL: ${url}`)
   process.exit(2)
 }
 
@@ -32,14 +51,83 @@ function check(name, fn) {
 }
 
 console.log(`fetching ${url} ...`)
-const headers = {}
-if (process.env.VERCEL_PROTECTION_BYPASS) {
-  headers['x-vercel-protection-bypass'] = process.env.VERCEL_PROTECTION_BYPASS
-  headers['x-vercel-set-bypass-cookie'] = 'true'
+const baseHeaders = {}
+const bypass = process.env.VERCEL_PROTECTION_BYPASS
+if (bypass) {
+  baseHeaders['x-vercel-protection-bypass'] = bypass
+  // 'samesitenone' tells Vercel's bypass endpoint to set the cookie in the
+  // response. We then capture and resend it on the next hop — without this jar,
+  // Node fetch drops the cookie and we get stuck in the same Vercel redirect
+  // forever.
+  baseHeaders['x-vercel-set-bypass-cookie'] = 'samesitenone'
+  console.log(`  bypass token present (${bypass.length} chars)`)
+} else {
+  console.log(`  bypass token NOT SET (env VERCEL_PROTECTION_BYPASS is empty)`)
 }
-const res = await fetch(url, { redirect: 'follow', headers })
-const html = await res.text()
-const finalUrl = res.url
+
+// Manual redirect-following with a cookie jar. Node fetch has no cookie support
+// by default, so server-side flows that depend on Set-Cookie (like Vercel's
+// Deployment Protection bypass) deadlock on a redirect-to-self until the script
+// times out. Capturing Set-Cookie and resending it on the next request breaks
+// the loop the way a browser naturally would.
+let res
+let html
+let finalUrl
+{
+  let currentUrl = url
+  const cookies = new Map()
+  const maxHops = 10
+  for (let hop = 1; hop <= maxHops; hop++) {
+    const reqHeaders = { ...baseHeaders }
+    if (cookies.size > 0) {
+      reqHeaders['cookie'] = [...cookies.entries()]
+        .map(([k, v]) => `${k}=${v}`)
+        .join('; ')
+    }
+    res = await fetch(currentUrl, { redirect: 'manual', headers: reqHeaders })
+
+    // Capture any Set-Cookie headers from the response. undici 18+ has
+    // getSetCookie(); older fallback uses the raw header (single-cookie only).
+    const setCookies = typeof res.headers.getSetCookie === 'function'
+      ? res.headers.getSetCookie()
+      : (res.headers.get('set-cookie') ? [res.headers.get('set-cookie')] : [])
+    for (const sc of setCookies) {
+      const m = sc.match(/^([^=]+)=([^;]+)/)
+      if (m) cookies.set(m[1].trim(), m[2].trim())
+    }
+
+    if (res.status < 300 || res.status >= 400) {
+      finalUrl = currentUrl
+      html = await res.text()
+      if (hop > 1) {
+        console.log(`  resolved after ${hop} hop(s) — final status=${res.status}, captured ${cookies.size} cookie(s) along the way`)
+      }
+      break
+    }
+
+    // 3xx redirect — log it and continue
+    const loc = res.headers.get('location')
+    console.log(`  hop ${hop}: ${currentUrl}`)
+    console.log(`         → status=${res.status}${loc ? ` location=${loc}` : ' (no location header)'}${setCookies.length ? ` (+${setCookies.length} cookie)` : ''}`)
+    if (!loc) {
+      finalUrl = currentUrl
+      html = await res.text()
+      break
+    }
+    const newUrl = new URL(loc, currentUrl).toString()
+    if (newUrl === currentUrl && setCookies.length === 0) {
+      console.log(`         → same URL with no new cookies, breaking to avoid infinite loop`)
+      finalUrl = currentUrl
+      html = await res.text()
+      break
+    }
+    currentUrl = newUrl
+  }
+  if (!html) {
+    console.error(`  exceeded ${maxHops} redirect hops without resolving — Vercel bypass cookie likely not honoured`)
+    process.exit(1)
+  }
+}
 
 check('1. status 200', () => {
   if (res.status !== 200) throw new Error(`got ${res.status}`)
