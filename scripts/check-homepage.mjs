@@ -15,9 +15,25 @@
  * Exits non-zero on any failed check, with a per-check pass/fail summary.
  */
 
-const url = process.argv[2]
+let url = process.argv[2]
 if (!url) {
   console.error('usage: node scripts/check-homepage.mjs <url>')
+  process.exit(2)
+}
+
+// Normalize: prepend https:// if no protocol given (matters for workflow_dispatch
+// inputs where users often paste bare hostnames).
+if (!/^https?:\/\//.test(url)) {
+  console.log(`  note: prepending https:// to bare URL`)
+  url = `https://${url}`
+}
+
+// Validate parseability upfront so we fail with a clean message rather than
+// crashing inside undici's URL constructor.
+try {
+  new URL(url)
+} catch {
+  console.error(`error: not a valid URL: ${url}`)
   process.exit(2)
 }
 
