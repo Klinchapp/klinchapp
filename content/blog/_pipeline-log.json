@@ -1388,5 +1388,73 @@
     "stage": "publish",
     "file": "ai-tools-recruiters-linkedin-posts.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-06-08T13:17:50.254Z",
+    "stage": "prepare",
+    "series": "ai-recruitment",
+    "post": "employer-brand-linkedin-posts-ai",
+    "title": "How to Write Employer-Brand LinkedIn Posts That Don't Sound Like Corporate PR",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24259,
+        "tokens_in": 3232,
+        "tokens_out": 1980
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15833,
+        "tokens_in": 2152,
+        "tokens_out": 1724
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18285,
+        "tokens_in": 1976,
+        "tokens_out": 1748
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 910,
+        "tokens_in": 1906,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10813,
+        "tokens_in": 1831,
+        "tokens_out": 810
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1055,
+        "tokens_in": 272,
+        "tokens_out": 29
+      }
+    ]
   }
 ]
