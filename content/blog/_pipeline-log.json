@@ -1462,5 +1462,73 @@
     "stage": "publish",
     "file": "employer-brand-linkedin-posts-ai.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-06-11T12:56:30.530Z",
+    "stage": "prepare",
+    "series": "ai-recruitment",
+    "post": "ai-resume-builders-beat-ats",
+    "title": "AI Resume Builders That Actually Beat ATS in 2026",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 7,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 36780,
+        "tokens_in": 3610,
+        "tokens_out": 3303
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 29482,
+        "tokens_in": 3475,
+        "tokens_out": 2842
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 34403,
+        "tokens_in": 3094,
+        "tokens_out": 2880
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 3879,
+        "tokens_in": 3038,
+        "tokens_out": 256
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11190,
+        "tokens_in": 1871,
+        "tokens_out": 924
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1525,
+        "tokens_in": 287,
+        "tokens_out": 29
+      }
+    ]
   }
 ]
