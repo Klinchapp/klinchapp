@@ -286,9 +286,9 @@ export function PlatformPage({ config }: { config: PlatformConfig }) {
 
   const softwareAppJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
+    '@type': 'WebApplication',
     name: `Klinchapp — AI ${config.name} Post Generator`,
-    applicationCategory: 'SocialMediaMarketingApplication',
+    applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     description: config.metaDescription,
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free plan: 60 AI-generated posts per month' },

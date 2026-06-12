@@ -97,6 +97,16 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     mainEntityOfPage: `https://www.klinchapp.com/blog/${post.slug}`,
   }
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Klinchapp', item: 'https://www.klinchapp.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.klinchapp.com/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.klinchapp.com/blog/${post.slug}` },
+    ],
+  }
+
   // Detect FAQ and HowTo blocks Kira may have written, emit matching schema.
   // Detection is conservative — when nothing qualifies, no extra schema is emitted.
   const faq = detectFAQ(post.content)
@@ -126,6 +136,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {faqJsonLd && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       )}
