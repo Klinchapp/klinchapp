@@ -13,6 +13,7 @@ export default function SiteFooter() {
         <p className="text-gray-500 text-sm">© 2026 Klinchapp. All rights reserved.</p>
         <div className="flex gap-6">
           <Link href="/blog" className="text-[#6B2C6B] text-sm font-medium hover:underline">Blog</Link>
+          <Link href="/about" className="text-[#6B2C6B] text-sm font-medium hover:underline">About</Link>
           <Link href="/contact" className="text-[#6B2C6B] text-sm font-medium hover:underline">Contact</Link>
           <Link href="/terms" className="text-[#6B2C6B] text-sm font-medium hover:underline">Terms</Link>
           <Link href="/privacy" className="text-[#6B2C6B] text-sm font-medium hover:underline">Privacy</Link>
