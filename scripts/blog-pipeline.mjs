@@ -16,7 +16,7 @@
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { getFormatInstruction } from './blog-format-definitions.mjs'
+import { getFormatInstruction, getMaxWords } from './blog-format-definitions.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -38,10 +38,13 @@ export const PERSONA_SYSTEM_PROMPT = `You are Kira, an AI content specialist wri
 - End every post with a clear takeaway or actionable next step
 - You openly acknowledge being an AI and find it an interesting perspective to write from
 
-BLOG POST LENGTH (tightened — tight beats long):
-- Informational formats (how-to-guide, tool-review, research-breakdown, roundup): 600-800 words
-- Heavier formats (deep-analysis, opinion): 800-1000 words
-- Cut every sentence that doesn't earn its place. Long-form filler doesn't earn rankings any more.
+BLOG POST LENGTH — THIS IS A HARD CEILING, NOT A TARGET:
+- Informational formats (how-to-guide, tool-review, research-breakdown, roundup): 600 words MAXIMUM
+- Heavier formats (deep-analysis, opinion): 800 words MAXIMUM
+- Going over the ceiling is a failure, not a feature. The reader scrolls past long posts; AI engines extract from short ones.
+- If you find yourself at 500 words and still have three sections to write, you need to cut entire sections — not shorten sentences. Tightening prose won't save a post that's structurally too long.
+- Count your words as you write. If you're over the ceiling, delete the weakest section entirely. Repeat until you're under. Re-counting after you finish doesn't fix a too-long post; you have to plan short from the start.
+- Long posts that "comprehensively cover the topic" are exactly what reads as AI slop in 2026. The discipline is what makes you not slop.
 
 STRUCTURE FOR AI EXTRACTION (AI Overviews / SGE) — important for ranking in 2026:
 - Lead every post with a direct, declarative answer to the post's implied question in the first paragraph (1-2 sentences max). Then expand.
@@ -328,6 +331,7 @@ async function generateContent(topic, researchBrief) {
 
   const formatType = post.format || 'deep-analysis'
   const formatInstruction = getFormatInstruction(formatType)
+  const maxWords = getMaxWords(formatType)
 
   const researchContext = researchBrief
     ? `\n\nRESEARCH BRIEF (use this data and these sources in your post):\n${researchBrief}`
@@ -345,10 +349,12 @@ ${previousContext}
 ${researchContext}
 
 Requirements:
-- Honour the length target and structural-block requirement for the "${formatType}" format above.
+- HARD WORD CAP: ${maxWords} words MAXIMUM for the "${formatType}" format. This is a ceiling, not a target. Going over is a failure. If you find yourself approaching the ceiling with sections left to write, CUT WHOLE SECTIONS — do not just tighten prose. Count your words as you finish each section.
+- Honour the structural-block requirement for the "${formatType}" format above.
 - Open with the SGE-friendly opening specified for this format — a direct, declarative answer in the first 1-2 sentences, no narrative warm-up.
 - Open EACH ## section with a bolded 45-60 word answer block stating that section's core point. The body of the section then expands, qualifies, and gives examples. (Exceptions: ## FAQ uses ### questions + answers directly; ## References is a link list; HowTo step lists open with the numbered list directly under the heading — no lead block before step 1.)
 - Use ## for section headings phrased as conversational queries a real reader would type or speak (e.g., "Why direct translation fails in Arabic" — not "Translation issues"). Include relevant search terms naturally inside the question framing. Never use one-or-two-word noun-phrase headings.
+- BANNED ## HEADINGS: never use "TL;DR", "Summary", "Overview", "Introduction", "Conclusion", "The Takeaway", or any other meta-label as a section heading. These are reader-instruction labels, not content. Write the actual question or declarative point the section answers — e.g. "Which AI tool wins for SMB use cases?" not "TL;DR".
 - Use ### for FAQ questions (each ending with a question mark) when the format requires a FAQ block.
 - Use numbered lists (1. **Action** ...) for HowTo steps when the format requires a HowTo block.
 - Include at least 3-5 data points with specific numbers (definitive, not hedged).
