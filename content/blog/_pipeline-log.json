@@ -1530,5 +1530,11 @@
         "tokens_out": 29
       }
     ]
+  },
+  {
+    "date": "2026-06-12T12:32:34.177Z",
+    "stage": "publish",
+    "file": "ai-resume-builders-beat-ats.mdx",
+    "status": "published"
   }
 ]
