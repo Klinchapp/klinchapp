@@ -10,6 +10,7 @@
  *   lengthWords     — target word count
  *   sgeOpening      — required opening structure (for AI Overviews / SGE citation)
  *   structuralBlock — whether the post must include a FAQ or HowTo block (for FAQPage / HowTo schema)
+ *   titleShape      — how titles for this format should be phrased (for AI-citation queries)
  *
  * Adding or modifying a format here is the editorial governance lever:
  * Kira chooses freely from the formats listed, but the format she chose
@@ -25,6 +26,8 @@ export const BLOG_FORMATS = {
       'First paragraph: state the conclusion of your analysis in 1-2 sentences declaratively. Then build the narrative around it.',
     structuralBlock:
       'Optional FAQ block — include 3-5 Q&A pairs (each ### question ending with "?") covering common sub-questions if they fit naturally. Skip if forced.',
+    titleShape:
+      'Thesis-framed — declarative title stating your conclusion or central argument (e.g. "AI content scales — quality doesn\'t"). Avoid question-framed titles for analysis pieces; the title should signal the take, not ask one.',
   },
   'opinion': {
     description:
@@ -34,6 +37,8 @@ export const BLOG_FORMATS = {
       'Declare your stance in sentence one, definitively. Build the case after.',
     structuralBlock:
       'NONE — opinion pieces argue a stance; structured Q&A would weaken the voice. Skip both FAQ and HowTo blocks.',
+    titleShape:
+      'Stance-framed — declarative, opinionated, contrarian where honest (e.g. "Why most AI marketing advice is wrong"). Don\'t hedge in the title; don\'t pose as a question. The reader should know your position before they click.',
   },
   'how-to-guide': {
     description:
@@ -43,6 +48,8 @@ export const BLOG_FORMATS = {
       'Open with: "Here is how to [accomplish the task] in [N] steps:" — no narrative warm-up before the steps.',
     structuralBlock:
       'REQUIRED HowTo block — a numbered list of 5-8 clearly-actioned steps. Each step starts with a bold action verb (e.g. "**Open** ..." / "**Configure** ..."). This is the core deliverable; it must be present.',
+    titleShape:
+      'Question-framed where natural — "How do I X?" / "How to X in N steps" / "What is the best way to Y?". Conversational, the way someone would type the query into ChatGPT or Google.',
   },
   'tool-review': {
     description:
@@ -52,6 +59,8 @@ export const BLOG_FORMATS = {
       'Open with a 1-paragraph TL;DR recommendation: which tool wins for which use case, named explicitly.',
     structuralBlock:
       'REQUIRED FAQ block (3-5 Q&A pairs near the end, each ### question ending with "?") AND a TL;DR comparison table near the top. The FAQ should cover: "Which tool is best for X?", "Does Y support Z?", "What is the free tier?", and similar.',
+    titleShape:
+      'Comparison- or recommendation-framed — "What is the best AI X for Y?" / "X vs Y: which wins for Z?" / "The best AI X tools for Y in 2026". Real users phrase tool questions as comparisons or best-of queries; the title should match.',
   },
   'research-breakdown': {
     description:
@@ -61,6 +70,8 @@ export const BLOG_FORMATS = {
       'Lead with the key finding as a citable factual statement in the first sentence, then explain the context.',
     structuralBlock:
       'REQUIRED FAQ block — 3-5 Q&A pairs (each ### question ending with "?") addressing common reader questions about the research findings.',
+    titleShape:
+      'Findings-framed — lead with the headline data point ("67% of marketers do X — and what it means") OR question-framed if the research clearly answers a specific user question ("What percentage of X actually Y?"). Either shape is good; pick the one that better signals the citable fact.',
   },
   'roundup': {
     description:
@@ -70,6 +81,8 @@ export const BLOG_FORMATS = {
       'Open with a 1-paragraph framing of why these developments matter together — not as separate news items.',
     structuralBlock:
       'Optional FAQ block — include if there are clear reader questions about the developments covered; skip if the roundup itself answers them.',
+    titleShape:
+      'List-framed and time-anchored — "5 AI X developments to watch in Q3 2026" / "What\'s changing in AI Y this quarter". The number and the time anchor are what makes a roundup citable.',
   },
 }
 
@@ -85,7 +98,8 @@ export function formatDefinitionsForPrompt() {
   ${def.description}
   Length: ${def.lengthWords} words.
   Opening (SGE): ${def.sgeOpening}
-  Structural block: ${def.structuralBlock}`
+  Structural block: ${def.structuralBlock}
+  Title shape: ${def.titleShape}`
     })
     .join('\n\n')
 }
