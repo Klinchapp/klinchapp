@@ -2,6 +2,16 @@ import type { Metadata } from 'next'
 import type { AnchorHTMLAttributes } from 'react'
 import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import remarkGfm from 'remark-gfm'
+
+// MDX rendering options. remark-gfm enables GitHub-flavored markdown:
+// tables, strikethrough, task lists, autolinks. Without it, markdown
+// tables silently render as raw pipes — which broke 2+ existing posts.
+const mdxOptions = {
+  mdxOptions: {
+    remarkPlugins: [remarkGfm],
+  },
+}
 
 // Custom MDX components — anchor smart-target rule:
 //   - Internal links (start with "/" or "#") → same tab (default navigation flow)
@@ -196,7 +206,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           {/* Content */}
           <div className="blog-content prose prose-gray max-w-none prose-headings:text-gray-900 prose-h2:text-xl prose-h2:font-semibold prose-h2:mt-8 prose-h2:mb-4 prose-p:text-gray-600 prose-p:mb-4 prose-a:text-[#6B2C6B] prose-a:font-medium prose-strong:text-gray-900 prose-li:text-gray-600 prose-blockquote:border-[#6B2C6B] prose-blockquote:text-gray-500">
-            <MDXRemote source={post.content} components={mdxComponents} />
+            <MDXRemote source={post.content} components={mdxComponents} options={mdxOptions} />
           </div>
 
           {/* Tags */}
