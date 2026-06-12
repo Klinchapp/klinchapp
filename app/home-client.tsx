@@ -41,10 +41,24 @@ function ProductCard({
   )
 }
 
+// FAQ source of truth — rendered in the FAQ accordion AND emitted as FAQPage JSON-LD below.
+// Edit once; both surfaces stay in sync.
+const HOMEPAGE_FAQ = [
+  { q: "I don't have a website. Can I still use Klinchapp?", a: "Yes. Klinchapp starts with your photo or description — not a URL. Sell on Instagram, Etsy, WhatsApp, or nowhere yet, you're covered. There's no integration to set up before you can generate your first post." },
+  { q: "What if I don't have a product image?", a: "Klinchapp accepts a text description as well. Image input gets you stronger captions because the AI sees what's visually distinctive about your product — colors, materials, mood — and writes copy that leads with it. Text-only works fine for announcements, milestones, or content where there's no product to photograph." },
+  { q: 'Is Klinchapp free to use?', a: 'Yes. The free plan includes 60 AI-generated posts per month across all 5 platforms. No credit card required to start.' },
+  { q: 'Will my posts sound like AI?', a: "The output is AI-generated — Klinchapp doesn't pretend otherwise. The voice you choose (Professional, Founder, Witty, etc.) shapes how the caption reads, and you can edit, regenerate, or rewrite before posting. Klinchapp drafts; you ship." },
+  { q: 'Which platforms does Klinchapp support?', a: 'Five — Instagram, LinkedIn, X, Facebook, and TikTok. Each post is tuned to the platform\'s character limits, hashtag conventions, and structural quirks. Each platform has its own dedicated page with platform-specific tips and sample posts.' },
+  { q: 'How many languages does Klinchapp support?', a: 'Six — English, Spanish, Portuguese, French, Arabic (right-to-left), and Hindi. Posts are generated directly in the target language, not translated from English. Hashtags localize too. Hinglish style is supported for Hindi where appropriate.' },
+  { q: 'Can I edit captions before posting?', a: 'Yes. Every generated caption is editable. Regenerate, swap hashtags, change tone, or rewrite manually — all in one place.' },
+  { q: 'What happens to my data?', a: "Your prompts, uploaded images, and generated content stay in your account. We don't sell or share your data, and we don't use your inputs to train models." },
+  { q: 'Can I switch tones across posts?', a: 'Yes. Pick a different voice for each post, or set a default brand voice and override per-platform.' },
+]
+
 export default function HomeClient() {
   const softwareAppJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
+    '@type': 'WebApplication',
     name: 'Klinchapp',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
@@ -61,9 +75,54 @@ export default function HomeClient() {
     url: 'https://www.klinchapp.com/',
   }
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: HOMEPAGE_FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+
+  const howToJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to generate platform-specific social media posts with Klinchapp',
+    description: 'Four steps from a product image to platform-ready captions across Instagram, LinkedIn, X, Facebook, and TikTok in 9 voices and 6 languages.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Upload your product image',
+        text: "Drag in a product image. Klinchapp's AI vision sees what's distinctive — colors, shape, brand cues, mood — without you typing a word. No image? Type a description instead.",
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Pick a platform',
+        text: "Choose Instagram, LinkedIn, X, Facebook, or TikTok. Each gets its own caption — character limits, hashtag conventions, and structural quirks tuned to how that platform actually rewards content.",
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Choose your voice',
+        text: 'Pick one of nine tones — Professional, Casual, Enthusiastic, Humorous, Inspirational, Luxe, Witty, Founder, or Bold. Same product, very different captions.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: "Write in your audience's language",
+        text: 'Choose English, Spanish, Portuguese, French, Arabic (right-to-left), or Hindi. Posts are generated directly in the target language — not translated. Hashtags localize too.',
+      },
+    ],
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FDFAFF] via-[#FDF2F8] to-[#FFF8F8] text-gray-900">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
 
       <SiteHeader variant="marketing-home" />
 

@@ -26,7 +26,7 @@ const LOG_FILE = path.join(BLOG_DIR, '_pipeline-log.json')
 
 // ─── Persona ────────────────────────────────────────────────
 
-const PERSONA_SYSTEM_PROMPT = `You are Kira, an AI content specialist writing for the Klinchapp blog. Your writing style is:
+export const PERSONA_SYSTEM_PROMPT = `You are Kira, an AI content specialist writing for the Klinchapp blog. Your writing style is:
 - Clear and conversational, never academic or jargon-heavy
 - Practical and example-driven — every concept gets a concrete example
 - Optimistic about AI but honest about limitations
@@ -45,6 +45,8 @@ BLOG POST LENGTH (tightened — tight beats long):
 
 STRUCTURE FOR AI EXTRACTION (AI Overviews / SGE) — important for ranking in 2026:
 - Lead every post with a direct, declarative answer to the post's implied question in the first paragraph (1-2 sentences max). Then expand.
+- Each ## section likewise opens with a bolded 45-60 word answer block stating that section's core point directly. Then the section's body elaborates, gives examples, qualifies. This is the answer-first pattern at section scale — AI engines extract the bolded lead, the body backs it up. Exceptions: ## FAQ uses ### questions with their own answers (no separate lead block needed); ## References is a link list (no lead block); HowTo step lists open with the numbered list directly, no lead block before step 1.
+- Phrase ## headings as the actual question or query a real reader would type — "Why direct translation fails in Arabic" not "Translation issues." Conversational, full-sentence headings get cited; keyword-bucket headings get skipped. Where the topic doesn't take a question naturally, a definitive declarative sentence is the fallback. Never use a one-or-two-word noun-phrase heading.
 - Avoid hedging language ("might," "could," "perhaps," "around," "roughly") in the lede. Be definitive; qualify later in the body if needed.
 - Use citable specific statements with sources, not vague generalisations. Replace "around seven in ten marketers" with "67% (Sprout Social 2025 State of Social Media report)".
 - Each format type carries its own structural-block requirement (FAQ block, HowTo step list, or none — see the format-specific instructions). Honour the requirement — these structured blocks are what AI Overviews extract as the cited answer.
@@ -345,7 +347,8 @@ ${researchContext}
 Requirements:
 - Honour the length target and structural-block requirement for the "${formatType}" format above.
 - Open with the SGE-friendly opening specified for this format — a direct, declarative answer in the first 1-2 sentences, no narrative warm-up.
-- Use ## for section headings that include relevant search terms where natural.
+- Open EACH ## section with a bolded 45-60 word answer block stating that section's core point. The body of the section then expands, qualifies, and gives examples. (Exceptions: ## FAQ uses ### questions + answers directly; ## References is a link list; HowTo step lists open with the numbered list directly under the heading — no lead block before step 1.)
+- Use ## for section headings phrased as conversational queries a real reader would type or speak (e.g., "Why direct translation fails in Arabic" — not "Translation issues"). Include relevant search terms naturally inside the question framing. Never use one-or-two-word noun-phrase headings.
 - Use ### for FAQ questions (each ending with a question mark) when the format requires a FAQ block.
 - Use numbered lists (1. **Action** ...) for HowTo steps when the format requires a HowTo block.
 - Include at least 3-5 data points with specific numbers (definitive, not hedged).
