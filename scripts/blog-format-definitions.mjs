@@ -21,7 +21,8 @@ export const BLOG_FORMATS = {
   'deep-analysis': {
     description:
       'In-depth analytical piece. Explore the topic with research, data, multiple perspectives, and nuanced conclusions. Structure with clear sections building a logical argument.',
-    lengthWords: '800-1000',
+    maxWords: 800,
+    lengthWords: '800 MAXIMUM (hard ceiling, not a target)',
     sgeOpening:
       'First paragraph: state the conclusion of your analysis in 1-2 sentences declaratively. Then build the narrative around it.',
     structuralBlock:
@@ -32,7 +33,8 @@ export const BLOG_FORMATS = {
   'opinion': {
     description:
       'Opinionated piece where you (Kira) take a clear stance and argue it. Be bold, back your position with evidence, and acknowledge counterarguments. Let your personality show.',
-    lengthWords: '800-1000',
+    maxWords: 800,
+    lengthWords: '800 MAXIMUM (hard ceiling, not a target)',
     sgeOpening:
       'Declare your stance in sentence one, definitively. Build the case after.',
     structuralBlock:
@@ -43,7 +45,8 @@ export const BLOG_FORMATS = {
   'how-to-guide': {
     description:
       'Step-by-step practical guide. Focus on actionable instructions the reader can follow immediately.',
-    lengthWords: '600-800',
+    maxWords: 600,
+    lengthWords: '600 MAXIMUM (hard ceiling, not a target)',
     sgeOpening:
       'Open with: "Here is how to [accomplish the task] in [N] steps:" — no narrative warm-up before the steps.',
     structuralBlock:
@@ -54,9 +57,10 @@ export const BLOG_FORMATS = {
   'tool-review': {
     description:
       'Practical review/comparison piece. Evaluate specific tools or platforms with pros, cons, pricing, and real use cases. Be fair and specific — name names.',
-    lengthWords: '600-800',
+    maxWords: 600,
+    lengthWords: '600 MAXIMUM (hard ceiling, not a target)',
     sgeOpening:
-      'Open with a 1-paragraph TL;DR recommendation: which tool wins for which use case, named explicitly.',
+      "Open with a single direct-answer paragraph naming which tool wins for which use case. Do NOT label this paragraph 'TL;DR' or use any meta-label as a section heading — write a real conversational H2 (e.g. 'Which AI resume builder should you actually use?') and put the direct-answer paragraph under it.",
     structuralBlock:
       'REQUIRED FAQ block (3-5 Q&A pairs near the end, each ### question ending with "?") AND a TL;DR comparison table near the top. The FAQ should cover: "Which tool is best for X?", "Does Y support Z?", "What is the free tier?", and similar.',
     titleShape:
@@ -65,7 +69,8 @@ export const BLOG_FORMATS = {
   'research-breakdown': {
     description:
       'Summarise and contextualise research findings or industry data. Make academic or complex findings accessible. Explain why the data matters and what readers should do about it.',
-    lengthWords: '600-800',
+    maxWords: 600,
+    lengthWords: '600 MAXIMUM (hard ceiling, not a target)',
     sgeOpening:
       'Lead with the key finding as a citable factual statement in the first sentence, then explain the context.',
     structuralBlock:
@@ -76,7 +81,8 @@ export const BLOG_FORMATS = {
   'roundup': {
     description:
       'Curated summary of recent developments. Cover 5-7 key items with brief analysis of each. Focus on what matters and why. Include links to original sources.',
-    lengthWords: '600-800',
+    maxWords: 600,
+    lengthWords: '600 MAXIMUM (hard ceiling, not a target)',
     sgeOpening:
       'Open with a 1-paragraph framing of why these developments matter together — not as separate news items.',
     structuralBlock:
@@ -112,9 +118,18 @@ export function getFormatInstruction(format) {
   const def = BLOG_FORMATS[format] || BLOG_FORMATS['deep-analysis']
   return `${def.description}
 
-Length target: ${def.lengthWords} words. Tight beats long; cut every sentence that doesn't earn its place.
+LENGTH: ${def.lengthWords} words. This is a HARD CEILING, not a target. Going over is a failure. If you find yourself approaching the ceiling with sections left to write, CUT WHOLE SECTIONS — do not just tighten prose. Count your words.
 
 Opening (this matters for AI Overviews / SGE extraction): ${def.sgeOpening}
 
 Structural block requirement: ${def.structuralBlock}`
+}
+
+/**
+ * The numeric hard ceiling for this format. Used by the pipeline's userPrompt
+ * to inject the exact number as a requirement (e.g. "MAXIMUM 600 WORDS").
+ * Falls back to deep-analysis's 800 if format is unknown.
+ */
+export function getMaxWords(format) {
+  return (BLOG_FORMATS[format] || BLOG_FORMATS['deep-analysis']).maxWords
 }
