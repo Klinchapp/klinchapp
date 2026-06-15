@@ -1536,5 +1536,73 @@
     "stage": "publish",
     "file": "ai-resume-builders-beat-ats.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-06-15T15:25:48.973Z",
+    "stage": "prepare",
+    "series": "ai-recruitment",
+    "post": "will-ai-replace-recruiters",
+    "title": "Will AI Replace Recruiters? An Honest Analysis",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 7,
+      "engagement": 8,
+      "accuracy": 5,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17235,
+        "tokens_in": 4116,
+        "tokens_out": 1334
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9395,
+        "tokens_in": 1506,
+        "tokens_out": 1009
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12167,
+        "tokens_in": 1261,
+        "tokens_out": 1119
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1502,
+        "tokens_in": 1277,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10221,
+        "tokens_in": 1854,
+        "tokens_out": 844
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1378,
+        "tokens_in": 262,
+        "tokens_out": 32
+      }
+    ]
   }
 ]
