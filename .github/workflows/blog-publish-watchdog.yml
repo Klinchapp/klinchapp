@@ -11,7 +11,8 @@ name: Blog Publish Watchdog
 # Each watchdog fire is idempotent — if publish already succeeded today, or
 # is currently in flight, the watchdog exits cleanly without action.
 #
-# See scripts/watchdog-blog-publish.mjs for the decision logic.
+# Decision logic: scripts/watchdog-blog-publish.mjs
+# Full operational guide: scripts/BLOG_PUBLISH_WATCHDOG.md
 
 on:
   schedule:

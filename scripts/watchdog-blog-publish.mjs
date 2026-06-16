@@ -27,6 +27,8 @@
  *   - gh CLI (preinstalled on GHA runners)
  *   - GH_TOKEN / GITHUB_TOKEN in env (for gh CLI auth)
  *   - RESEND_API_KEY in env (for the failure alert email)
+ *
+ * Full operational guide: scripts/BLOG_PUBLISH_WATCHDOG.md
  */
 
 import fs from 'fs'
