@@ -3,7 +3,11 @@
   "title": "Understanding AI: From Zero to Informed",
   "description": "A foundational series that explains artificial intelligence from the ground up. No technical background needed — just curiosity.",
   "totalPosts": 6,
-  "tags": ["ai-fundamentals", "explainer", "beginners"],
+  "tags": [
+    "ai-fundamentals",
+    "explainer",
+    "beginners"
+  ],
   "posts": [
     {
       "order": 1,
@@ -12,7 +16,7 @@
       "targetSlug": "what-is-ai-really",
       "targetKeyword": "what is artificial intelligence",
       "format": "deep-analysis",
-      "status": "pending"
+      "status": "published"
     },
     {
       "order": 2,

@@ -1610,5 +1610,111 @@
     "stage": "publish",
     "file": "will-ai-replace-recruiters.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-06-16T14:30:19.301Z",
+    "stage": "prepare",
+    "series": "understanding-ai",
+    "post": "what-is-ai-really",
+    "title": "What Is AI, Really? A No-Nonsense Explainer",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 6,
+      "engagement": 8,
+      "accuracy": 7,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 28280,
+        "tokens_in": 3861,
+        "tokens_out": 1960
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15830,
+        "tokens_in": 2132,
+        "tokens_out": 1825
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17005,
+        "tokens_in": 2077,
+        "tokens_out": 1888
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1097,
+        "tokens_in": 1802,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 28866,
+        "tokens_in": 3861,
+        "tokens_out": 2491
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23147,
+        "tokens_in": 2663,
+        "tokens_out": 1977
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 21199,
+        "tokens_in": 2229,
+        "tokens_out": 2002
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 949,
+        "tokens_in": 2126,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8516,
+        "tokens_in": 1757,
+        "tokens_out": 697
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1030,
+        "tokens_in": 267,
+        "tokens_out": 37
+      }
+    ]
+  },
+  {
+    "date": "2026-06-16T14:30:19.303Z",
+    "stage": "publish",
+    "file": "what-is-ai-really.mdx",
+    "status": "published"
   }
 ]
