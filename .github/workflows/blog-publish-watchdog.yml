@@ -1,0 +1,53 @@
+name: Blog Publish Watchdog
+
+# Recovers from skipped blog-publish.yml cron runs.
+#
+# Background: GitHub Actions scheduled crons can be silently skipped during
+# high-load periods. blog-publish.yml runs at 09:17 UTC on Tue/Fri but has
+# skipped at least once (2026-06-16). This watchdog fires every 2 hours on
+# publish days and retries the publish if a scheduled post is sitting
+# unpublished. After 20:00 UTC, if still unpublished, an alert email goes out.
+#
+# Each watchdog fire is idempotent — if publish already succeeded today, or
+# is currently in flight, the watchdog exits cleanly without action.
+#
+# See scripts/watchdog-blog-publish.mjs for the decision logic.
+
+on:
+  schedule:
+    # Every 2 hours from 11:23 to 21:23 UTC on Tuesday (2) and Friday (5).
+    # Off-the-hour minute mirrors blog-publish.yml's :17 — avoids
+    # top-of-hour GHA cron contention.
+    - cron: '23 11-21/2 * * 2,5'
+  workflow_dispatch: {}
+
+concurrency:
+  group: blog-publish-watchdog
+  cancel-in-progress: false
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write    # needed to trigger blog-publish.yml via gh workflow run
+      contents: read    # needed to read content/blog/*.mdx
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run watchdog
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: node scripts/watchdog-blog-publish.mjs
