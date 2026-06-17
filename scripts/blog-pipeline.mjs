@@ -816,6 +816,25 @@ function appendLog(entry) {
   fs.writeFileSync(LOG_FILE, JSON.stringify(log, null, 2) + '\n')
 }
 
+// Returns true if _pipeline-log.json contains a `stage: "publish"` entry with
+// today's UTC date. Used by stagePublish to short-circuit the prepare+publish
+// fallback when a publish has already happened today — prevents the race
+// condition that produced two posts on 2026-06-16 (a manual publish at 13:38
+// followed by the original scheduled cron firing late at 14:26, which found
+// no scheduled posts and fell back to generating+publishing a new post).
+function publishedToday() {
+  if (!fs.existsSync(LOG_FILE)) return false
+  let entries = []
+  try {
+    entries = JSON.parse(fs.readFileSync(LOG_FILE, 'utf-8'))
+  } catch {
+    return false
+  }
+  const now = new Date()
+  const todayUtc = `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, '0')}-${String(now.getUTCDate()).padStart(2, '0')}`
+  return entries.some(e => e.stage === 'publish' && typeof e.date === 'string' && e.date.startsWith(todayUtc))
+}
+
 // ─── Stage 1: Prepare ───────────────────────────────────────
 
 async function stagePrepare() {
@@ -936,6 +955,17 @@ async function stagePublish() {
 
   if (!scheduled) {
     log('No scheduled posts found.')
+
+    // Guard: if a publish has already happened today, do NOT run the
+    // prepare+publish fallback. This prevents the 2026-06-16 race where
+    // a manual or watchdog-triggered publish succeeds, then the original
+    // scheduled cron fires late, finds nothing scheduled, and falls back to
+    // generating+publishing a second post on the same day.
+    if (publishedToday()) {
+      log('✅ A publish has already been logged for today. Skipping fallback to avoid double-publish.')
+      return
+    }
+
     log('Running fallback: prepare + publish in one go...')
 
     // Fallback: run prepare, then try to publish whatever was created

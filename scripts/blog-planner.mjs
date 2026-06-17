@@ -229,35 +229,144 @@ function saveBlueprint(blueprint) {
   return true
 }
 
-async function sendNotification(blueprints) {
+// Returns all pending topics across every series, in the order the blog
+// pipeline will consume them (series file alphabetical, then post.order).
+// Used by sendMonthlyDigest to show the full upcoming queue.
+function getAllPendingTopics() {
+  if (!fs.existsSync(SERIES_DIR)) return []
+  const files = fs.readdirSync(SERIES_DIR).filter(f => f.endsWith('.json')).sort()
+  const out = []
+  for (const file of files) {
+    const series = JSON.parse(fs.readFileSync(path.join(SERIES_DIR, file), 'utf-8'))
+    const pending = series.posts.filter(p => p.status === 'pending').sort((a, b) => a.order - b.order)
+    for (const post of pending) {
+      out.push({ series, post })
+    }
+  }
+  return out
+}
+
+// Returns the next n publish dates after `from` (UTC), using the publish
+// cadence Tuesday(2) and Friday(5). Used to project when each pending topic
+// will go live.
+function nextPublishDates(from, n) {
+  const dates = []
+  const cursor = new Date(from)
+  while (dates.length < n) {
+    cursor.setUTCDate(cursor.getUTCDate() + 1)
+    const d = cursor.getUTCDay()
+    if (d === 2 || d === 5) dates.push(new Date(cursor))
+  }
+  return dates
+}
+
+function fmtDate(d) {
+  const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getUTCDay()]
+  return `${dayName} ${d.toISOString().slice(0, 10)}`
+}
+
+const escapeHtml = (s) =>
+  String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+
+// Monthly digest email — always sent at the end of every planner run.
+// Lists every pending topic with brief, format, target keyword, and the
+// projected publish date based on the Tue/Fri cadence. If new series were
+// generated this month, they get a short "new this month" callout at the top.
+//
+// User-facing purpose: give the operator a single monthly view of what Kira
+// is about to write, so any title/brief edits can happen BEFORE generation
+// rather than after publish.
+async function sendMonthlyDigest({ newSeries, pendingTopics }) {
   const apiKey = process.env.RESEND_API_KEY
-  if (!apiKey) return
+  if (!apiKey) {
+    log('  ⚠️ No RESEND_API_KEY — skipping monthly digest email')
+    return
+  }
+
+  const totalPending = pendingTopics.length
+  const publishDates = nextPublishDates(new Date(), totalPending)
+
+  let body = ''
+
+  if (newSeries.length > 0) {
+    const newSeriesList = newSeries.map(b =>
+      `<li style="margin-bottom: 6px;"><strong>${escapeHtml(b.title)}</strong> (${b.posts.length} posts) — <em style="color: #666;">${escapeHtml(b.description)}</em></li>`
+    ).join('')
+    body += `
+      <div style="background: #F3E8FF; padding: 14px 16px; border-radius: 8px; margin: 16px 0;">
+        <p style="font-weight: 600; margin: 0 0 8px; color: #6B2C6B;">${newSeries.length} new series added this month</p>
+        <ul style="margin: 0; padding-left: 20px; color: #333;">${newSeriesList}</ul>
+      </div>
+    `
+  } else {
+    body += `
+      <p style="color: #555; margin: 16px 0;"><em>No new series were generated this month — the queue already has enough pending topics. Here's what's still coming:</em></p>
+    `
+  }
+
+  if (totalPending === 0) {
+    body += `
+      <div style="background: #FEF2F2; padding: 14px 16px; border-radius: 8px; margin: 16px 0; border-left: 4px solid #DC2626;">
+        <p style="font-weight: 600; margin: 0; color: #DC2626;">⚠️ Queue is empty.</p>
+        <p style="margin: 6px 0 0; color: #555;">No posts will publish until the planner generates new series. To force a new planner run now: <code>gh workflow run blog-planner.yml --field force=true</code>.</p>
+      </div>
+    `
+  } else {
+    const weeks = Math.ceil(totalPending / 2)
+    body += `<h3 style="color: #333; margin-top: 24px; padding-bottom: 8px; border-bottom: 2px solid #F3E8FF;">📅 ${totalPending} topics in queue (~${weeks} week${weeks === 1 ? '' : 's'} of content)</h3>`
+
+    // Group pending topics by series for readability.
+    const bySeries = new Map()
+    for (let i = 0; i < pendingTopics.length; i++) {
+      const { series, post } = pendingTopics[i]
+      if (!bySeries.has(series.slug)) bySeries.set(series.slug, { series, items: [] })
+      bySeries.get(series.slug).items.push({ post, projectedDate: publishDates[i] })
+    }
+
+    for (const { series, items } of bySeries.values()) {
+      body += `<h4 style="color: #6B2C6B; margin: 18px 0 8px;">${escapeHtml(series.title)}</h4>`
+      body += `<p style="color: #888; font-size: 13px; margin: 0 0 10px;">${items.length} of ${series.totalPosts} topics pending</p>`
+      for (const { post, projectedDate } of items) {
+        body += `
+          <div style="border-left: 3px solid #F3E8FF; padding: 8px 12px; margin: 10px 0;">
+            <p style="margin: 0; font-weight: 600; color: #1a1a1a;">Part ${post.order}: ${escapeHtml(post.topicTitle)}</p>
+            <p style="margin: 4px 0; color: #888; font-size: 12px;">${escapeHtml(post.format)} · projected publish: ${escapeHtml(fmtDate(projectedDate))}${post.targetKeyword ? ' · keyword: ' + escapeHtml(post.targetKeyword) : ''}</p>
+            <p style="margin: 4px 0 0; color: #555; font-size: 13px;">${escapeHtml(post.topicBrief)}</p>
+          </div>
+        `
+      }
+    }
+  }
+
+  body += `
+    <p style="color: #666; font-size: 13px; margin-top: 24px; padding-top: 12px; border-top: 1px solid #eee;">
+      <strong>To change anything before Kira writes it:</strong> edit the relevant <code>content/series/&lt;slug&gt;.json</code>, commit, push. Change the title, brief, format, or <code>targetKeyword</code> — Kira reads those fields when she writes the post. To skip a topic, set its <code>status</code> to <code>"skipped"</code>.
+    </p>
+    <p style="color: #999; font-size: 13px;">— Kira, Klinchapp Blog Planner</p>
+  `
 
   try {
     const { Resend } = await import('resend')
     const resend = new Resend(apiKey)
-
-    const seriesList = blueprints.map(b =>
-      `<li><strong>${b.title}</strong> (${b.posts.length} posts)<br/><em>${b.description}</em></li>`
-    ).join('')
-
     await resend.emails.send({
       from: 'Kira <kira@klinchapp.com>',
       to: ['klinchapp.info@gmail.com'],
-      subject: `📋 New blog series planned: ${blueprints.length} series added`,
+      subject: `📋 Klinchapp blog — ${totalPending} topic${totalPending === 1 ? '' : 's'} in queue${newSeries.length > 0 ? `, ${newSeries.length} new series this month` : ''}`,
       html: `
-        <div style="font-family: sans-serif; max-width: 500px;">
-          <h2 style="color: #6B2C6B; margin-bottom: 4px;">New series blueprints generated</h2>
-          <p style="color: #666; margin-top: 0;">The blog planner has created new content series.</p>
-          <ul style="color: #333; line-height: 1.8;">${seriesList}</ul>
-          <p style="color: #999; font-size: 13px;">These will be picked up automatically by the blog pipeline.</p>
-          <p style="color: #999; font-size: 13px;">— Kira, Klinchapp Blog Planner</p>
+        <div style="font-family: sans-serif; max-width: 640px;">
+          <h2 style="color: #6B2C6B; margin-bottom: 4px;">Klinchapp blog — what's coming</h2>
+          <p style="color: #666; margin-top: 0;">Monthly digest from the planner.</p>
+          ${body}
         </div>
       `,
     })
-    log(`📧 Notification sent`)
+    log(`📧 Monthly digest sent (${totalPending} pending topics, ${newSeries.length} new series)`)
   } catch (err) {
-    log(`  ⚠️ Email notification failed: ${err.message}`)
+    log(`  ⚠️ Monthly digest email failed: ${err.message}`)
   }
 }
 
@@ -268,48 +377,50 @@ try {
   log('  BLOG SERIES PLANNER')
   log('═══════════════════════════════════════')
 
-  // Check if we still have enough pending topics
   const pendingCount = getPendingCount()
   log(`📊 Current pending topics: ${pendingCount}`)
 
   const forceRun = process.argv.includes('--force')
-  if (pendingCount > 10 && !forceRun) {
-    log(`✅ Still have ${pendingCount} pending topics. No new blueprints needed yet.`)
-    log('   Use --force to override.')
-    process.exit(0)
-  }
+  const skipResearch = pendingCount > 10 && !forceRun
 
-  log(`⚠️ Only ${pendingCount} pending topics remaining. Generating new series...`)
+  let saved = []
 
-  // Get existing content to avoid duplicates
-  const existingContent = getExistingContent()
-  log(`📚 Existing: ${existingContent.series.length} series, ${existingContent.topics.length} topics`)
-
-  // Research trends
-  const trendResearch = await researchTrends()
-
-  // Generate blueprints
-  const blueprints = await generateBlueprints(trendResearch, existingContent)
-
-  // Validate and save
-  const saved = []
-  for (const blueprint of blueprints) {
-    const error = validateBlueprint(blueprint)
-    if (error) {
-      log(`  ⚠️ Invalid blueprint "${blueprint.title}": ${error}`)
-      continue
-    }
-    if (saveBlueprint(blueprint)) {
-      saved.push(blueprint)
-    }
-  }
-
-  if (saved.length > 0) {
-    log(`✅ Saved ${saved.length} new series blueprints`)
-    await sendNotification(saved)
+  if (skipResearch) {
+    log(`✅ Still have ${pendingCount} pending topics. Skipping trend research + series generation this month.`)
+    log('   The monthly digest email will still be sent so you see what is coming.')
   } else {
-    log('⚠️ No new blueprints were saved')
+    log(`⚠️ Only ${pendingCount} pending topics remaining. Generating new series...`)
+
+    const existingContent = getExistingContent()
+    log(`📚 Existing: ${existingContent.series.length} series, ${existingContent.topics.length} topics`)
+
+    const trendResearch = await researchTrends()
+    const blueprints = await generateBlueprints(trendResearch, existingContent)
+
+    for (const blueprint of blueprints) {
+      const error = validateBlueprint(blueprint)
+      if (error) {
+        log(`  ⚠️ Invalid blueprint "${blueprint.title}": ${error}`)
+        continue
+      }
+      if (saveBlueprint(blueprint)) {
+        saved.push(blueprint)
+      }
+    }
+
+    if (saved.length > 0) {
+      log(`✅ Saved ${saved.length} new series blueprints`)
+    } else {
+      log('⚠️ No new blueprints were saved')
+    }
   }
+
+  // Always send the monthly digest at the end, regardless of whether new
+  // series were generated. This gives the operator a regular monthly view
+  // of what's coming, with enough lead time to edit briefs or skip topics
+  // before Kira writes them.
+  const pendingTopics = getAllPendingTopics()
+  await sendMonthlyDigest({ newSeries: saved, pendingTopics })
 
   log('🎉 Planner complete.')
 } catch (err) {
