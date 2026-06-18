@@ -1716,5 +1716,73 @@
     "stage": "publish",
     "file": "what-is-ai-really.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-06-18T12:32:46.035Z",
+    "stage": "prepare",
+    "series": "understanding-ai",
+    "post": "chatgpt-claude-gemini-compared",
+    "title": "ChatGPT, Claude, Gemini: What's the Difference and Which Should You Use?",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 7,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15965,
+        "tokens_in": 3984,
+        "tokens_out": 1305
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9730,
+        "tokens_in": 1477,
+        "tokens_out": 1060
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9867,
+        "tokens_in": 1312,
+        "tokens_out": 1166
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 3427,
+        "tokens_in": 1324,
+        "tokens_out": 256
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10529,
+        "tokens_in": 1764,
+        "tokens_out": 815
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 791,
+        "tokens_in": 293,
+        "tokens_out": 35
+      }
+    ]
   }
 ]
