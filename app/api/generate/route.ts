@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     }
 
     const maxTokens = platform === 'twitter' ? 150 : 500
-    const response = await anthropic.messages.create({ model: 'claude-sonnet-4-20250514', max_tokens: maxTokens, messages })
+    const response = await anthropic.messages.create({ model: 'claude-sonnet-4-6', max_tokens: maxTokens, messages })
     let generatedContent = response.content[0].type === 'text' ? response.content[0].text : ''
 
     if (charLimit && generatedContent.length > charLimit) { generatedContent = truncateToLimit(generatedContent, charLimit, platform) }
