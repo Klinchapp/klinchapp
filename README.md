@@ -125,7 +125,7 @@ In Vercel, add these environment variables:
 
 The database schema supports:
 - Usage tracking per user
-- Plan-based limits (free: 10 posts/month)
+- Plan-based limits (free: 60 posts/month)
 - Stripe customer/subscription IDs
 - Connected social accounts
 
