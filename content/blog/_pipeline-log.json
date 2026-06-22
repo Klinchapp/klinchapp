@@ -1790,5 +1790,73 @@
     "stage": "publish",
     "file": "chatgpt-claude-gemini-compared.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-06-22T14:51:17.329Z",
+    "stage": "prepare",
+    "series": "understanding-ai",
+    "post": "how-ai-learns-simple",
+    "title": "How AI Actually Learns: The Simple Version",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 6,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17622,
+        "tokens_in": 3996,
+        "tokens_out": 1622
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11576,
+        "tokens_in": 1794,
+        "tokens_out": 1381
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13058,
+        "tokens_in": 1633,
+        "tokens_out": 1385
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1047,
+        "tokens_in": 1357,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9494,
+        "tokens_in": 1753,
+        "tokens_out": 888
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1918,
+        "tokens_in": 264,
+        "tokens_out": 32
+      }
+    ]
   }
 ]
