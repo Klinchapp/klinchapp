@@ -310,10 +310,20 @@ async function main() {
   log(`Latest post: ${data.slug} (${data.publishedAt})`)
 
   const docRecord = buildDocRecord(data, content, ATPROTO_PUBLICATION_URI)
+  const docPath = `/blog/${data.slug}`
 
-  log('Creating site.standard.document record...')
-  const result = await createRecord(session, 'site.standard.document', docRecord)
-  log(`Document created: ${result.uri}`)
+  log('Checking for existing record...')
+  const existingRecords = await getAllDocumentRecords(session)
+  const existingRec = existingRecords.find(r => r.value?.path === docPath)
+
+  if (existingRec) {
+    const rkey = existingRec.uri.split('/').pop()
+    await putRecord(session, 'site.standard.document', rkey, docRecord)
+    log(`Document updated: ${existingRec.uri}`)
+  } else {
+    const result = await createRecord(session, 'site.standard.document', docRecord)
+    log(`Document created: ${result.uri}`)
+  }
 }
 
 async function sendFailureAlert(errorMessage) {
