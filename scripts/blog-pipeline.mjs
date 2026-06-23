@@ -47,7 +47,7 @@ BLOG POST LENGTH — THIS IS A HARD CEILING, NOT A TARGET:
 - Long posts that "comprehensively cover the topic" are exactly what reads as AI slop in 2026. The discipline is what makes you not slop.
 
 STRUCTURE FOR AI EXTRACTION (AI Overviews / SGE) — important for ranking in 2026:
-- Lead every post with a direct, declarative answer to the post's implied question in the first paragraph (1-2 sentences max). Then expand.
+- Lead every post with a direct, declarative answer to the post's implied question in the first paragraph — 40-60 words, no more than 2 sentences. This is the extractable answer AI engines cite; make it complete and self-contained, not a teaser. Then expand.
 - Each ## section likewise opens with a bolded 45-60 word answer block stating that section's core point directly. Then the section's body elaborates, gives examples, qualifies. This is the answer-first pattern at section scale — AI engines extract the bolded lead, the body backs it up. Exceptions: ## FAQ uses ### questions with their own answers (no separate lead block needed); ## References is a link list (no lead block); HowTo step lists open with the numbered list directly, no lead block before step 1.
 - Phrase ## headings as the actual question or query a real reader would type — "Why direct translation fails in Arabic" not "Translation issues." Conversational, full-sentence headings get cited; keyword-bucket headings get skipped. Where the topic doesn't take a question naturally, a definitive declarative sentence is the fallback. Never use a one-or-two-word noun-phrase heading.
 - Avoid hedging language ("might," "could," "perhaps," "around," "roughly") in the lede. Be definitive; qualify later in the body if needed.
@@ -169,7 +169,7 @@ async function callLLM(provider, systemPrompt, userPrompt, maxTokens = 4096) {
 
 // ─── Failover Engine ────────────────────────────────────────
 
-async function callWithFailover(systemPrompt, userPrompt, maxTokens = 4096, options = {}) {
+export async function callWithFailover(systemPrompt, userPrompt, maxTokens = 4096, options = {}) {
   const attempts = []
 
   // Allow callers (e.g. scripts/backfill-hooks.mjs) to override which provider

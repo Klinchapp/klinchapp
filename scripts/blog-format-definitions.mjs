@@ -26,7 +26,7 @@ export const BLOG_FORMATS = {
     sgeOpening:
       'First paragraph: state the conclusion of your analysis in 1-2 sentences declaratively. Then build the narrative around it.',
     structuralBlock:
-      'Optional FAQ block — include 3-5 Q&A pairs (each ### question ending with "?") covering common sub-questions if they fit naturally. Skip if forced.',
+      'Optional FAQ block — include 3-5 Q&A pairs (each ### question ending with "?") covering common sub-questions if they fit naturally. Each answer 40-80 words — complete, self-contained, citable. Skip if forced.',
     titleShape:
       'Thesis-framed — declarative title stating your conclusion or central argument (e.g. "AI content scales — quality doesn\'t"). Avoid question-framed titles for analysis pieces; the title should signal the take, not ask one.',
   },
@@ -62,7 +62,7 @@ export const BLOG_FORMATS = {
     sgeOpening:
       "Open with a single direct-answer paragraph naming which tool wins for which use case. Do NOT label this paragraph 'TL;DR' or use any meta-label as a section heading — write a real conversational H2 (e.g. 'Which AI resume builder should you actually use?') and put the direct-answer paragraph under it.",
     structuralBlock:
-      'REQUIRED FAQ block (3-5 Q&A pairs near the end, each ### question ending with "?") AND a TL;DR comparison table near the top. The FAQ should cover: "Which tool is best for X?", "Does Y support Z?", "What is the free tier?", and similar.',
+      'REQUIRED FAQ block (3-5 Q&A pairs near the end, each ### question ending with "?") AND a TL;DR comparison table near the top. The FAQ should cover: "Which tool is best for X?", "Does Y support Z?", "What is the free tier?", and similar. Each answer 40-80 words — complete, self-contained, citable.',
     titleShape:
       'Comparison- or recommendation-framed — "What is the best AI X for Y?" / "X vs Y: which wins for Z?" / "The best AI X tools for Y in 2026". Real users phrase tool questions as comparisons or best-of queries; the title should match.',
   },
@@ -74,7 +74,7 @@ export const BLOG_FORMATS = {
     sgeOpening:
       'Lead with the key finding as a citable factual statement in the first sentence, then explain the context.',
     structuralBlock:
-      'REQUIRED FAQ block — 3-5 Q&A pairs (each ### question ending with "?") addressing common reader questions about the research findings.',
+      'REQUIRED FAQ block — 3-5 Q&A pairs (each ### question ending with "?") addressing common reader questions about the research findings. Each answer 40-80 words — complete, self-contained, citable.',
     titleShape:
       'Findings-framed — lead with the headline data point ("67% of marketers do X — and what it means") OR question-framed if the research clearly answers a specific user question ("What percentage of X actually Y?"). Either shape is good; pick the one that better signals the citable fact.',
   },
@@ -86,7 +86,7 @@ export const BLOG_FORMATS = {
     sgeOpening:
       'Open with a 1-paragraph framing of why these developments matter together — not as separate news items.',
     structuralBlock:
-      'Optional FAQ block — include if there are clear reader questions about the developments covered; skip if the roundup itself answers them.',
+      'Optional FAQ block — include if there are clear reader questions about the developments covered; skip if the roundup itself answers them. Each answer 40-80 words — complete, self-contained, citable.',
     titleShape:
       'List-framed and time-anchored — "5 AI X developments to watch in Q3 2026" / "What\'s changing in AI Y this quarter". The number and the time anchor are what makes a roundup citable.',
   },

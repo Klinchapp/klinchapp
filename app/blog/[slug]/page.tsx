@@ -102,8 +102,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     headline: post.title,
     description: post.description,
     datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    image: `https://www.klinchapp.com/blog/${post.slug}/opengraph-image`,
     author: { '@type': 'Person', name: post.author, url: 'https://www.klinchapp.com/blog/author/kira' },
-    publisher: { '@type': 'Organization', name: 'Klinchapp', url: 'https://www.klinchapp.com' },
+    publisher: { '@id': 'https://www.klinchapp.com/#organization' },
     mainEntityOfPage: `https://www.klinchapp.com/blog/${post.slug}`,
   }
 
