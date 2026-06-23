@@ -13,6 +13,16 @@
 - [#19 - Tighter Kira blog posts (700-900 words) + smaller italicized References](https://github.com/Klinchapp/klinchapp/pull/19) (merged 2026-05-12)
 - [#20 - AI for Recruitment series blueprint (7 posts)](https://github.com/Klinchapp/klinchapp/pull/20) (merged 2026-05-12)
 - [#21 - Stronger social snippet prompts (engagement CTAs, value-in-caption, mixed hashtags)](https://github.com/Klinchapp/klinchapp/pull/21) (merged 2026-05-12)
+- [#55 - AEO Phase 0: schema sweep + pipeline prompt (section answer-first, conversational H2s, per-format titleShape)](https://github.com/Klinchapp/klinchapp/pull/55) (merged 2026-06-12)
+- [#56 - AEO Phase 1: /about + /blog/author/kira E-E-A-T anchor pages](https://github.com/Klinchapp/klinchapp/pull/56) (merged 2026-06-12)
+- [#62 - Fix deprecated Sonnet model ID in live caption + image APIs](https://github.com/Klinchapp/klinchapp/pull/62) (merged 2026-06-19)
+- [#65 - Auto-syndicate to Leaflet.pub via AT Protocol site.standard.document](https://github.com/Klinchapp/klinchapp/pull/65) (merged 2026-06-23)
+- [#66 - Auto-syndicate to Bluesky (22 posts backfilled)](https://github.com/Klinchapp/klinchapp/pull/66) (merged 2026-06-23)
+- [#67 - AEO strategy doc alignment: Organisation/Article schema, Kira intro, meta descriptions, Leaflet structured content](https://github.com/Klinchapp/klinchapp/pull/67) (merged 2026-06-23)
+- [#68 - Blog index Kira hero rewrite (correct surface) + Leaflet dedup fix](https://github.com/Klinchapp/klinchapp/pull/68) (merged 2026-06-23)
+- [#69 - Answer-first paragraphs for 3 posts](https://github.com/Klinchapp/klinchapp/pull/69) (merged 2026-06-23)
+- [#70 - deep-analysis format: FAQ block REQUIRED (FAQPage schema forward coverage)](https://github.com/Klinchapp/klinchapp/pull/70) (merged 2026-06-23)
+- [#71 - Mobile hamburger menu for homepage section anchors](https://github.com/Klinchapp/klinchapp/pull/71) (merged 2026-06-23)
 
 ---
 
@@ -231,6 +241,15 @@ GitHub Actions Cron
             • Same teaser + canonical link-back as Blogger
             • Long-lived Bearer token → POST to WordPress.com REST API v1.1
             • continue-on-error: true (cannot break publish or Blogger step)
+        → Syndicate to Leaflet.pub (NEW 2026-06-23)
+            • AT Protocol site.standard.document record via bsky.social PDS
+            • Structured content: answer-first + 4 H2 sections + FAQ block + canonical link
+            • Dedup: checks existing records before create/put
+            • continue-on-error: true
+        → Syndicate to Bluesky (NEW 2026-06-23)
+            • Post card with title + description + canonical URL
+            • 22 historical posts backfilled at launch
+            • continue-on-error: true
 ```
 
 **LLM Failover Chain (3 attempts each: immediate → 5 min → 10 min):**
@@ -244,13 +263,13 @@ GitHub Actions Cron
 
 ## Series Blueprints
 
-| Series | Posts | Topics | Status (as of 2026-05-13) |
+| Series | Posts | Topics | Status (as of 2026-06-23) |
 |--------|-------|--------|--------|
 | AI Content Creation: The Complete Playbook | 6 | Quality vs quantity, training AI on your style, blog writing workflow, social media platforms, ethics, future of AI content | All 6 published |
-| AI for Small Business: A Practical Guide | 8 | Where to start, 5 tools, prompts, chatbots, social media, costs, mistakes, 30-day plan | 4 published, 4 pending |
-| AI for Recruitment: What's Actually Changing | 7 | Recruiter stack, AI resume screening, candidate sourcing, interview tools, scheduling, AI resume builders for candidates, AI-replacing-recruiters debate | All pending — runs after Small Business series (~2026-05-26 onwards) |
-| Understanding AI: From Zero to Informed | 6 | What is AI, ChatGPT vs Claude vs Gemini, how AI learns, hallucinations, ethics, AI literacy | All pending |
-| **Total** | **27** | | **10 published, 17 pending** |
+| AI for Small Business: A Practical Guide | 8 | Where to start, 5 tools, prompts, chatbots, social media, costs, mistakes, 30-day plan | All 8 published |
+| AI for Recruitment: What's Actually Changing | 7 | Recruiter stack, AI resume screening, candidate sourcing, interview tools, scheduling, AI resume builders for candidates, AI-replacing-recruiters debate | All 7 published |
+| Understanding AI: From Zero to Informed | 6 | What is AI, ChatGPT vs Claude vs Gemini, how AI learns, hallucinations, ethics, AI literacy | In progress — 2 published (what-is-ai-really, chatgpt-claude-gemini-compared), 4 pending |
+| **Total** | **27** | | **23 published, 4 pending** |
 
 ---
 
@@ -383,13 +402,74 @@ GitHub Actions Cron
 |------|-------------|------------------|
 | Featured images (DALL-E) | AI-generated hero image per post (~$0.50/mo) | After 10+ posts live |
 | "Week in AI" roundup | Monthly standalone roundup post | Add blueprint entry when ready |
-| Health check alerts | Alert if no post published for 5+ days | Add GitHub Action |
-| Backfill existing Kira posts to Blogger + WordPress | One-off script to POST the already-published MDX posts to both destinations so it's not just future posts | Low priority — new posts are what matter for backlink momentum |
-| Bump GitHub Actions runner versions | `actions/checkout@v4` and `actions/setup-node@v4` warned as Node 20 deprecated (forced to Node 24 from June 2026, removed Sep 2026) | Before June 2026 |
-| Third backlink destination (Tumblr?) | Same pattern as Blogger/WP. Skipped initially — only add if Blogger+WP underperform on Search Console after a few weeks. | Only if needed |
-| Social API automation | Auto-post to X, LinkedIn via Buffer/X API | When manual copy-paste is tedious. Note: blog-to-Blogger + blog-to-WordPress syndication shipped 2026-05-10 to 2026-05-12 (separate from social platforms) |
-| WordPress.com auto-syndication | Mirror of Blogger syndication for a second free backlink source | Done — see Phase 7 |
 | Analytics feedback loop | GA4 data into topic selection | After 1,000+ monthly visitors |
 | Social listening | Monitor mentions, AI-generated replies | After social presence established |
-| Monthly auto-planning | Auto-generate new series blueprints from AI news trends | After current 20 topics used (~10 weeks) |
+| Monthly auto-planning | Auto-generate new series blueprints from AI news trends | After current 27 topics used |
 | AI Content Engine as Product | Multi-tenant pipeline for other businesses | After proving on klinchapp.com |
+| Image-first landing page | `/ai-caption-from-image` page targeting image-input keyword cluster | Tier 1 SEO — next priority |
+| Leaflet.pub 404 resolution | Posts returning "post not found" — path format issue; awaiting @leaflet.pub DM response | Blocked on external response |
+| Leaflet duplicate record cleanup | One duplicate `chatgpt-claude-gemini-compared` record created during path-format PoC; one-off deleteRecord script needed | After path format confirmed |
+
+---
+
+### Phase 9: Blog Quality + Pipeline Hardening — COMPLETE 2026-06-12
+
+Goal: fix recurring post-quality failures surfaced by live production posts, and prevent them from recurring.
+
+- [x] **9.1** Hard word cap enforced numerically in pipeline — per-format `maxWords` field + `getMaxWords()` export. Format `lengthWords` reframed as "N MAXIMUM (hard ceiling, not a target)." Explicit numeric cap injected at top of userPrompt Requirements list. Eliminated 1790-word posts (3× over target). (PR #55 partial)
+- [x] **9.2** Banned headings list — TL;DR, Summary, Overview, Introduction, Conclusion, The Takeaway. Prevents meta-label section headings that AI engines treat as low-signal noise. (PR #55 partial)
+- [x] **9.3** `remark-gfm` added to MDXRemote — markdown tables now render as real `<table>` HTML instead of raw pipes. Two posts had silently broken tables. (PR subset, 2026-06-12)
+- [x] **9.4** Blog-publish watchdog (`scripts/watchdog-blog-publish.mjs` + `.github/workflows/blog-publish-watchdog.yml`) — fires every 2h on Tue/Fri, triggers publish if the primary cron was skipped. 7 independent chances per publish day = effectively zero missed publishes. Resend failure email if all attempts fail. (2026-06-16)
+- [x] **9.5** Double-publish prevention — `publishedToday()` helper checks `_pipeline-log.json` before running the fallback prepare+publish path. Prevents a late cron + already-published race from generating a second post the same day. (2026-06-17)
+- [x] **9.6** Monthly digest email — `sendMonthlyDigest` in `scripts/blog-planner.mjs` lists every pending topic across all series with projected publish dates. Sends every planning run (not just new-series months). Email-only delivery (not a file). (2026-06-17)
+- [x] **9.7** Section-level answer-first blocks + conversational H2 framing added to pipeline persona prompt. Every non-exception `##` section opens with a 45-60 word bolded answer block. H2s phrased as conversational queries for AI Overview extraction. (PR #55)
+- [x] **9.8** `ai-resume-builders-beat-ats.mdx` rewritten end-to-end under new prompt (1790 → ~600 words, TL;DR heading removed, comparison table added, FAQ preserved). (PR #55)
+- [x] **9.9** Fixed deprecated `claude-sonnet-4-20250514` model ID in `app/api/generate/route.ts` and `app/api/check-image/route.ts` — both were returning 404 in production. Changed to `claude-sonnet-4-6` alias. (PR #62)
+- [x] **9.10** Deleted 4 dead backup files (`app/170125layout.tsx`, `app/privacy/170125page.tsx`, `app/terms/170125page.tsx`, `app/page - Copy.tsx`) and fixed README free-tier limit (10 → 60 posts/month). (PR #62 partial)
+
+---
+
+### Phase 10: SEO / AEO Foundation — COMPLETE 2026-06-12
+
+Goal: build the schema + E-E-A-T infrastructure required for AI Overview citation and Google trust signals.
+
+- [x] **10.1** `scripts/blog-format-definitions.mjs` created — single source of truth for 6 format types (deep-analysis, opinion, how-to-guide, tool-review, research-breakdown, roundup). Each format carries description, max word count, SGE opening rule, structural block requirement, title shape. (PR #44 earlier; extended PR #55)
+- [x] **10.2** `lib/blog-schema-detection.ts` — `detectFAQ` (3+ `###` questions ending `?`) and `detectHowTo` (5+ numbered steps). Auto-emits FAQPage + HowTo JSON-LD alongside Article schema on every post page. (PR #44)
+- [x] **10.3** Homepage FAQPage + HowTo JSON-LD added. FAQ data extracted to `HOMEPAGE_FAQ` constant — single source drives both the visible FAQ section and the schema. (PR #55)
+- [x] **10.4** Blog post BreadcrumbList JSON-LD added to `app/blog/[slug]/page.tsx`. (PR #55)
+- [x] **10.5** Schema `@type` changed from `SoftwareApplication` → `WebApplication` on homepage + all 5 platform pages. `applicationCategory: BusinessApplication` preserved. (PR #55)
+- [x] **10.6** Organisation schema in `app/layout.tsx` — added `description`, `knowsAbout` (8 topics), `sameAs` (Blogger + WordPress + Bluesky). (PR #67)
+- [x] **10.7** Article schema `app/blog/[slug]/page.tsx` — author changed from Person/Kira to Organization/Klinchapp per AEO strategy doc spec; added `inLanguage`, typed `ImageObject`, typed `mainEntityOfPage`. (PR #67)
+- [x] **10.8** `/about` page built — brand statement, entity disambiguation (Klinchapp vs Klinch.app vs Clinch), founder note, Kira methodology cross-link. AboutPage + Person schemas. (PR #56)
+- [x] **10.9** `/blog/author/kira` page built — first-person Kira hero, 7-stage pipeline transparency, 4-model failover chain, full author-archive list. ProfilePage + Person + BreadcrumbList schemas. `Article author.url` retargeted to this page. (PR #56)
+- [x] **10.10** Kira blog index hero rewritten per AEO strategy doc — `app/blog/page.tsx`. Replaced "no human editors / no safety net / living proof" copy with Klinchapp brand-entity framing ("I research, write, and publish this blog. All of it. Not as an experiment. As a standard."). (PR #68)
+- [x] **10.11** Blog + post meta descriptions updated per AEO strategy doc (3 posts + blog index). (PR #67)
+- [x] **10.12** Answer-first paragraphs applied to 3 posts per AEO strategy doc Section 2B exact wording. (PR #69)
+- [x] **10.13** `deep-analysis` format FAQ block changed from optional to REQUIRED — ensures all new deep-analysis posts emit FAQPage schema automatically. (PR #70)
+
+---
+
+### Phase 11: External Syndication — Leaflet.pub + Bluesky — COMPLETE 2026-06-23
+
+Goal: extend auto-syndication to AT Protocol destinations (Leaflet.pub and Bluesky) for decentralised content distribution.
+
+- [x] **11.1** `scripts/syndicate-to-leaflet.mjs` built — authenticates to bsky.social PDS, creates/updates `site.standard.document` records for each post. Structured content format: answer-first paragraph + 4 key H2 sections + FAQ block (first 3 pairs) + canonical link. (PR #65)
+- [x] **11.2** Publication record setup (`--setup` flag) + `ATPROTO_PUBLICATION_URI` env var. (PR #65)
+- [x] **11.3** `--update-all` mode — idempotently updates all 22 published posts using `putRecord` for existing, `createRecord` for new. (PR #65)
+- [x] **11.4** Dedup fix for normal mode — checks `getAllDocumentRecords` before create/put decision. Prevents duplicate records on re-runs. (PR #68)
+- [x] **11.5** `scripts/syndicate-to-bluesky.mjs` built — posts title + description + canonical URL as a Bluesky post card. (PR #66)
+- [x] **11.6** 22 historical posts backfilled to Bluesky at launch. (PR #66)
+- [x] **11.7** Both scripts wired into `.github/workflows/blog-publish.yml` with `continue-on-error: true`. (PRs #65, #66)
+- [ ] **11.8** Leaflet 404 resolution — posts return "Sorry, post not found!" from Leaflet's own router. Path format under investigation (`/blog/{slug}` vs `/{slug}`). DM sent to @leaflet.pub. Blocked on external response.
+- [ ] **11.9** Duplicate Leaflet record cleanup — one duplicate `chatgpt-claude-gemini-compared` record created during path-format PoC. Needs one-off `deleteRecord` script once path format is confirmed.
+
+---
+
+### Phase 12: Mobile UX + FAQPage Coverage — COMPLETE 2026-06-23
+
+Goal: fix mobile navigation gap and lock FAQPage schema forward coverage.
+
+- [x] **12.1** `app/components/site-header.tsx` converted from server to client component. Hamburger icon + close icon added (inline SVGs, no external dependency). Mobile dropdown with all 5 section anchors — closes on link tap or click outside. Only renders on `variant="marketing-home"`. (PR #71)
+- [x] **12.2** `NAV_LINKS` array extracted to single source — shared between desktop `CenterNav` and mobile dropdown. Desktop behaviour unchanged. (PR #71)
+- [x] **12.3** FAQPage auto-generation confirmed live — `detectFAQ` already wired into post page. 11 of 21 published posts qualify today. Forward-only approach: no backfill of existing posts. (discovery, no code change)
+- [x] **12.4** `deep-analysis` FAQ block changed from optional to REQUIRED in `scripts/blog-format-definitions.mjs`. Closes the format-level gap. (PR #70, also counted in Phase 10.13)
