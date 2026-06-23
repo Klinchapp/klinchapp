@@ -101,12 +101,26 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     '@type': 'Article',
     headline: post.title,
     description: post.description,
+    url: `https://www.klinchapp.com/blog/${post.slug}`,
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
-    image: `https://www.klinchapp.com/blog/${post.slug}/opengraph-image`,
-    author: { '@type': 'Person', name: post.author, url: 'https://www.klinchapp.com/blog/author/kira' },
+    inLanguage: 'en',
+    image: {
+      '@type': 'ImageObject',
+      url: `https://www.klinchapp.com/blog/${post.slug}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'Klinchapp',
+      url: 'https://www.klinchapp.com',
+    },
     publisher: { '@id': 'https://www.klinchapp.com/#organization' },
-    mainEntityOfPage: `https://www.klinchapp.com/blog/${post.slug}`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.klinchapp.com/blog/${post.slug}`,
+    },
   }
 
   const breadcrumbJsonLd = {
