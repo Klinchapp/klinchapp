@@ -61,6 +61,18 @@ export default function RootLayout({
                   url: 'https://www.klinchapp.com/logo.jpg',
                 },
                 description: 'AI social media post generator for Instagram, LinkedIn, X, Facebook & TikTok. Generate scroll-stopping captions in seconds.',
+                knowsAbout: [
+                  'AI social media content creation',
+                  'AI-generated captions for Instagram',
+                  'AI content for LinkedIn',
+                  'AI posts for X and Twitter',
+                  'AI Facebook content',
+                  'AI TikTok captions',
+                  'social media automation',
+                  'AI tools for small business',
+                  'AI writing assistants',
+                  'content marketing with AI',
+                ],
                 sameAs: [
                   'https://klinchapp.blogspot.com',
                   'https://kirasaiblog.wordpress.com',
