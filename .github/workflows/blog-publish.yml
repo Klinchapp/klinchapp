@@ -71,3 +71,12 @@ jobs:
           WORDPRESS_SITE_ID: ${{ secrets.WORDPRESS_SITE_ID }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: node scripts/syndicate-to-wordpress.mjs
+
+      - name: Syndicate to Leaflet
+        if: steps.commit.outputs.published == 'true'
+        continue-on-error: true
+        env:
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          ATPROTO_PUBLICATION_URI: ${{ secrets.ATPROTO_PUBLICATION_URI }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: node scripts/syndicate-to-leaflet.mjs
