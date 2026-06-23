@@ -8,19 +8,19 @@ import RecentHighlightsCarousel from './recent-carousel'
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'AI insights, analysis, and opinions on the technology, the tools, the industry shifts, and the ethical questions. Written by Kira.',
+  description: 'AI content strategy, tools, and industry analysis — produced by Klinchapp. Direct, opinionated, research-backed. No filler.',
   alternates: {
     canonical: 'https://www.klinchapp.com/blog',
   },
   openGraph: {
     title: 'Blog | Klinchapp',
-    description: 'AI insights, analysis, and opinions on the technology, the tools, the industry shifts, and the ethical questions. Written by Kira.',
+    description: 'AI content strategy, tools, and industry analysis — produced by Klinchapp. Direct, opinionated, research-backed. No filler.',
     url: 'https://www.klinchapp.com/blog',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Blog | Klinchapp',
-    description: 'AI insights, analysis, and opinions on the technology, the tools, the industry shifts, and the ethical questions. Written by Kira.',
+    description: 'AI content strategy, tools, and industry analysis — produced by Klinchapp. Direct, opinionated, research-backed. No filler.',
     images: ['/og-image.png'],
   },
 }
