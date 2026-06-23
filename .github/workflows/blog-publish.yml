@@ -80,3 +80,12 @@ jobs:
           ATPROTO_PUBLICATION_URI: ${{ secrets.ATPROTO_PUBLICATION_URI }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: node scripts/syndicate-to-leaflet.mjs
+
+      - name: Syndicate to Bluesky
+        if: steps.commit.outputs.published == 'true'
+        continue-on-error: true
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: node scripts/syndicate-to-bluesky.mjs
