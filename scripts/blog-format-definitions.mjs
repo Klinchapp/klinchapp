@@ -26,7 +26,7 @@ export const BLOG_FORMATS = {
     sgeOpening:
       'First paragraph: state the conclusion of your analysis in 1-2 sentences declaratively. Then build the narrative around it.',
     structuralBlock:
-      'Optional FAQ block — include 3-5 Q&A pairs (each ### question ending with "?") covering common sub-questions if they fit naturally. Each answer 40-80 words — complete, self-contained, citable. Skip if forced.',
+      'REQUIRED FAQ block — 3-5 Q&A pairs (each ### question ending with "?") covering the most common sub-questions on this topic. Each answer 40-80 words — complete, self-contained, citable. This is not optional; include it even when the rest of the post is analytical.',
     titleShape:
       'Thesis-framed — declarative title stating your conclusion or central argument (e.g. "AI content scales — quality doesn\'t"). Avoid question-framed titles for analysis pieces; the title should signal the take, not ask one.',
   },
