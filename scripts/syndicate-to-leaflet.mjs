@@ -237,7 +237,7 @@ async function setup(session) {
   const result = await createRecord(session, 'site.standard.publication', {
     $type: 'site.standard.publication',
     name: 'Klinchapp Blog',
-    url: `${SITE_URL}/blog`,
+    url: SITE_URL,
     description: "AI content strategy, tools, and industry analysis — produced by Klinchapp. Direct, opinionated, research-backed.",
   })
   log(`Publication created: ${result.uri}`)
