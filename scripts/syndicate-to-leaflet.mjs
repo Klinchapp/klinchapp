@@ -9,8 +9,8 @@
  *   4. Link to full post on klinchapp.com
  *
  * Usage:
- *   node scripts/syndicate-to-leaflet.mjs             # post latest published post
- *   node scripts/syndicate-to-leaflet.mjs --setup     # create publication record
+ *   node scripts/syndicate-to-leaflet.mjs              # post latest published post
+ *   node scripts/syndicate-to-leaflet.mjs --setup      # create publication record
  *   node scripts/syndicate-to-leaflet.mjs --update-all # re-push all published posts
  *
  * Env vars required:
