@@ -155,7 +155,11 @@ async function postOne(session, data, postedSlugs) {
       const mimeType = imgRes.headers.get('content-type') || 'image/png'
       thumb = await uploadBlob(session, imgBuffer, mimeType)
     }
-  } catch {}
+  } catch (e) {
+    // Only swallow network/fetch errors for the OG image — auth errors should surface
+    if (e.message && (e.message.includes('ExpiredToken') || e.message.includes('AuthRequired'))) throw e
+    log(`  ⚠ OG image fetch skipped: ${e.message}`)
+  }
 
   const embed = {
     $type: 'app.bsky.embed.external',
@@ -212,12 +216,13 @@ async function main() {
     log(`\nBackfilling ${posts.length} published posts (oldest first)...\n`)
     let posted = 0
     for (const post of posts) {
-      await postOne(session, post.data, postedSlugs)
+      // Fresh session per post — avoids 2-hour accessJwt expiry during long runs
+      const freshSession = await createSession(HANDLE, BLUESKY_APP_PASSWORD)
+      await postOne(freshSession, post.data, postedSlugs)
       posted++
-      // 15 minute gap between posts so they trickle naturally into feeds
       if (posted < posts.length) {
-        log(`  ⏳ waiting 15 minutes before next post...`)
-        await new Promise(r => setTimeout(r, 15 * 60 * 1000))
+        log(`  ⏳ waiting 1 minute before next post...`)
+        await new Promise(r => setTimeout(r, 60 * 1000))
       }
     }
     log(`\nBackfill complete — ${posts.length} posts processed`)
