@@ -1932,5 +1932,11 @@
         "tokens_out": 29
       }
     ]
+  },
+  {
+    "date": "2026-06-26T11:50:06.965Z",
+    "stage": "publish",
+    "file": "ai-hallucinations-why-ai-lies.mdx",
+    "status": "published"
   }
 ]
