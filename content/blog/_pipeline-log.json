@@ -1938,5 +1938,105 @@
     "stage": "publish",
     "file": "ai-hallucinations-why-ai-lies.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-06-29T13:17:18.805Z",
+    "stage": "prepare",
+    "series": "understanding-ai",
+    "post": "ai-ethics-what-to-worry-about",
+    "title": "The AI Ethics Debate: What You Should Actually Worry About",
+    "status": "draft",
+    "qualityScore": 6,
+    "scores": {
+      "clarity": 8,
+      "actionability": 6,
+      "engagement": 8,
+      "accuracy": 5,
+      "overall": 6
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23027,
+        "tokens_in": 4048,
+        "tokens_out": 1713
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14324,
+        "tokens_in": 1885,
+        "tokens_out": 1300
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9473,
+        "tokens_in": 1552,
+        "tokens_out": 1296
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1085,
+        "tokens_in": 1454,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 25492,
+        "tokens_in": 4048,
+        "tokens_out": 2063
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19454,
+        "tokens_in": 2235,
+        "tokens_out": 1614
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13683,
+        "tokens_in": 1866,
+        "tokens_out": 1648
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1145,
+        "tokens_in": 1583,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9969,
+        "tokens_in": 1759,
+        "tokens_out": 875
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1001,
+        "tokens_in": 261,
+        "tokens_out": 35
+      }
+    ]
   }
 ]
