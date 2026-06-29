@@ -209,6 +209,100 @@ function buildStructuredContent(content, slug) {
   return parts.join('\n\n')
 }
 
+function buildLeafletContent(content, slug) {
+  const lines = content.split('\n')
+  const blocks = []
+
+  const mkText = (plaintext) => ({ block: { $type: 'pub.leaflet.blocks.text', plaintext } })
+  const mkHeader = (plaintext, level) => ({ block: { $type: 'pub.leaflet.blocks.header', level, plaintext } })
+
+  // 1. Answer-first paragraph — first non-empty paragraph after H1
+  const h1Idx = lines.findIndex(l => /^#\s+/.test(l))
+  const startIdx = h1Idx !== -1 ? h1Idx + 1 : 0
+  let i = startIdx
+  while (i < lines.length && lines[i].trim() === '') i++
+  const answerLines = []
+  while (i < lines.length && lines[i].trim() !== '') {
+    answerLines.push(lines[i].trim())
+    i++
+  }
+  if (answerLines.length) blocks.push(mkText(answerLines.join(' ')))
+
+  // 2. 3-4 key H2 sections (skip FAQ, References, Tags)
+  const SKIP = /^##\s+(frequently asked questions|faq|references|tags)/i
+  const sections = []
+  let currentHeading = null
+  let collecting = false
+  const paraLines = []
+
+  for (const line of lines) {
+    if (/^##\s+/.test(line) && !/^###/.test(line)) {
+      if (currentHeading && paraLines.length) {
+        sections.push({ heading: currentHeading, para: paraLines.join(' ').trim() })
+        paraLines.length = 0
+      }
+      if (SKIP.test(line)) {
+        currentHeading = null
+        collecting = false
+      } else {
+        currentHeading = line.replace(/^##\s+/, '').trim()
+        collecting = true
+      }
+    } else if (collecting && currentHeading) {
+      if (paraLines.length === 0 && line.trim() === '') {
+        // skip leading blank
+      } else if (line.trim() === '' && paraLines.length > 0) {
+        collecting = false
+      } else if (line.trim()) {
+        paraLines.push(line.trim())
+      }
+    }
+  }
+  if (currentHeading && paraLines.length) {
+    sections.push({ heading: currentHeading, para: paraLines.join(' ').trim() })
+  }
+
+  for (const s of sections.slice(0, 4)) {
+    blocks.push(mkHeader(s.heading, 2))
+    blocks.push(mkText(s.para))
+  }
+
+  // 3. FAQ block — first 3 Q&A pairs
+  const faqStart = lines.findIndex(l => /^##\s+(frequently asked questions|faq)/i.test(l))
+  if (faqStart !== -1) {
+    const pairs = []
+    let q = null
+    const aLines = []
+    for (let j = faqStart + 1; j < lines.length; j++) {
+      const line = lines[j]
+      if (/^##\s+/.test(line) && !/^###/.test(line)) break
+      if (/^###\s+/.test(line)) {
+        if (q && aLines.length) pairs.push({ q, a: aLines.join(' ').trim() })
+        q = line.replace(/^###\s+/, '').trim()
+        aLines.length = 0
+      } else if (q && line.trim()) {
+        aLines.push(line.trim())
+      }
+    }
+    if (q && aLines.length) pairs.push({ q, a: aLines.join(' ').trim() })
+    if (pairs.length) {
+      blocks.push(mkHeader('Frequently Asked Questions', 2))
+      for (const p of pairs.slice(0, 3)) {
+        blocks.push(mkHeader(p.q, 3))
+        blocks.push(mkText(p.a))
+      }
+    }
+  }
+
+  // 4. Link to full post
+  blocks.push(mkText(`Read the full post: ${SITE_URL}/blog/${slug}`))
+
+  return {
+    $type: 'pub.leaflet.content',
+    pages: [{ $type: 'pub.leaflet.pages.linearDocument', blocks }],
+  }
+}
+
 function buildDocRecord(data, content, publicationUri) {
   return {
     $type: 'site.standard.document',
@@ -219,6 +313,7 @@ function buildDocRecord(data, content, publicationUri) {
     description: data.description || '',
     tags: data.tags || [],
     textContent: buildStructuredContent(content, data.slug),
+    content: buildLeafletContent(content, data.slug),
   }
 }
 
@@ -237,7 +332,7 @@ async function setup(session) {
   const result = await createRecord(session, 'site.standard.publication', {
     $type: 'site.standard.publication',
     name: 'Klinchapp Blog',
-    url: `${SITE_URL}/blog`,
+    url: SITE_URL,
     description: "AI content strategy, tools, and industry analysis — produced by Klinchapp. Direct, opinionated, research-backed.",
   })
   log(`Publication created: ${result.uri}`)
@@ -285,7 +380,8 @@ async function main() {
     for (const { data, content } of posts) {
       const docPath = `/blog/${data.slug}`
       const docRecord = buildDocRecord(data, content, ATPROTO_PUBLICATION_URI)
-      const existingRkey = pathToRkey[docPath]
+      // fallback to /<slug> in case a record was manually set to that path
+      const existingRkey = pathToRkey[docPath] || pathToRkey[`/${data.slug}`]
 
       if (existingRkey) {
         await putRecord(session, 'site.standard.document', existingRkey, docRecord)
