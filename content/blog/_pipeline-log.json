@@ -2038,5 +2038,79 @@
         "tokens_out": 35
       }
     ]
+  },
+  {
+    "date": "2026-06-30T11:52:43.721Z",
+    "stage": "prepare",
+    "series": "understanding-ai",
+    "post": "ai-literacy-checklist-2026",
+    "title": "Your AI Literacy Checklist: What Every Person Should Know in 2026",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16230,
+        "tokens_in": 4068,
+        "tokens_out": 1256
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 7261,
+        "tokens_in": 1428,
+        "tokens_out": 1191
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9401,
+        "tokens_in": 1443,
+        "tokens_out": 1241
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 910,
+        "tokens_in": 1334,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9152,
+        "tokens_in": 1767,
+        "tokens_out": 732
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 909,
+        "tokens_in": 304,
+        "tokens_out": 35
+      }
+    ]
+  },
+  {
+    "date": "2026-06-30T11:52:43.723Z",
+    "stage": "publish",
+    "file": "ai-literacy-checklist-2026.mdx",
+    "status": "published"
   }
 ]
