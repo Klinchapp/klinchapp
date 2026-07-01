@@ -1,0 +1,80 @@
+{
+  "slug": "ai-creative-collaboration",
+  "title": "AI and Creativity: Will AI Replace Creators? (Spoiler: It's Complicated)",
+  "description": "A series for writers, designers, musicians, and artists wrestling with AI's impact on their craft. Balances the legitimate threats (copyright theft, undercutting, job competition) against real opportunities (creative enhancement, speed, new possibilities). Offers strategies for creators to thrive with AI rather than be replaced by it.",
+  "totalPosts": 7,
+  "tags": [
+    "AI creativity",
+    "creative work",
+    "copyright",
+    "music generation",
+    "video generation",
+    "designers",
+    "writers"
+  ],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "AI as Creative Tool vs. AI as Replacement: The Real Difference",
+      "topicBrief": "Analyze where AI genuinely enhances creative work (iteration, brainstorming, mundane tasks) versus where it threatens it (undercutting, copyright theft, commodification). Use concrete examples from different creative fields. Acknowledge both the legitimate creator anxiety and the real opportunities. Set up the nuance for the series.",
+      "targetSlug": "ai-creative-tool-vs-replacement",
+      "targetKeyword": "AI replacing creative jobs",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "Design with AI: When It Speeds You Up (And When It Slows You Down)",
+      "topicBrief": "Practical guide for designers using AI tools: where they add real value (background generation, layout iterations, stock image replacement) and where they introduce problems (style inconsistency, client confusion, over-reliance). Include specific tools and honest assessment of when to use vs. avoid them.",
+      "targetSlug": "ai-design-tools-when-to-use",
+      "targetKeyword": "AI design tools for designers",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "Professional Video Generation in 2026: Sora 2, Veo 3.1, and What Actually Works",
+      "topicBrief": "Review and compare current video generation tools with realistic assessment of capabilities and limitations. Include production quality, editing control, audio integration, and cost. Test claims about 'professional-grade' output. Address the gap between demos and real usability. Compare to traditional video production workflows.",
+      "targetSlug": "video-generation-tools-2026",
+      "targetKeyword": "best AI video generation tools 2026",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "AI Music: Composition Assistance, Not Replacement (Yet)",
+      "topicBrief": "Explore AI's role in music production: composition assistance, chord progression generation, arrangement ideas, and mixing support. Discuss where musicians find real value and where AI falls short (originality, emotional intention, client collaboration). Include tools used by real producers. Address the copyright concern around training data.",
+      "targetSlug": "ai-music-production-tools",
+      "targetKeyword": "AI music composition tools",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "The Copyright and Royalty Question: Who Owns AI-Generated Content?",
+      "topicBrief": "Break down the legal and ethical questions: Do creators whose work trained the model deserve compensation? Can you copyright AI-generated art? What about transformative uses? Include perspectives from affected creators (SZA, Kenneth Blume cases). Discuss current legal outcomes and proposed solutions.",
+      "targetSlug": "ai-copyright-royalty-creators",
+      "targetKeyword": "AI copyright royalties creators",
+      "format": "research-breakdown",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "Build a Creative Business That Actually Thrives with AI",
+      "topicBrief": "Shift from defense to offense: strategies for creators to use AI as a competitive advantage. Cover niche positioning (AI can't replicate your authentic voice), efficiency gains (using AI to handle client revisions faster), scale without quality loss, and new revenue models AI enables. Include strategies for writers, designers, musicians, and visual artists.",
+      "targetSlug": "creative-business-ai-advantage",
+      "targetKeyword": "how creators use AI to grow business",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 7,
+      "topicTitle": "The Future of Creativity: Collaboration, Not Obsolescence",
+      "topicBrief": "Take the informed-optimist stance: AI won't replace creators, but it will change what 'being a creator' means. Discuss how creative skills evolve (prompt engineering, AI curation, human-AI collaboration becoming the baseline). Address the real short-term disruption alongside longer-term adaptation. Avoid both techno-utopianism and panic.",
+      "targetSlug": "future-of-creativity-ai-collaboration",
+      "targetKeyword": "future of creative jobs AI",
+      "format": "opinion",
+      "status": "pending"
+    }
+  ]
+}

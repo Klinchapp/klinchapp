@@ -1,0 +1,79 @@
+{
+  "slug": "ai-agents-small-teams",
+  "title": "AI Agents: Your Digital Coworkers",
+  "description": "A practical series for solopreneurs and small business owners exploring how AI agents can handle repetitive work, scale operations without hiring, and integrate into real workflows. Covers what agents actually do, how to implement them safely, and real ROI for small teams.",
+  "totalPosts": 7,
+  "tags": [
+    "AI agents",
+    "automation",
+    "small business",
+    "solopreneurs",
+    "workflow",
+    "productivity"
+  ],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "What AI Agents Actually Are (And Why They're Not Chatbots)",
+      "topicBrief": "Define AI agents clearly by contrasting them with chatbots and traditional AI tools. Explain the key difference: agents operate autonomously across multiple environments (browsers, email, apps) without constant human instruction. Use concrete examples of agents handling customer support, data entry, or research tasks to show the practical difference.",
+      "targetSlug": "ai-agents-vs-chatbots",
+      "targetKeyword": "what are AI agents",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "How to Set Up Your First AI Agent Workflow in 30 Minutes",
+      "topicBrief": "Walk through a beginner-friendly setup for one specific use case (e.g., email triage, customer inquiry routing, or lead research). Choose a mainstream platform or combination of tools. Provide exact steps including configuration, guardrails, and testing. Make it completable without technical expertise.",
+      "targetSlug": "setup-first-ai-agent-workflow",
+      "targetKeyword": "how to set up AI agent",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "AI Agents for Customer Support: When Automation Actually Works",
+      "topicBrief": "Analyze the specific use case of agents handling customer service: what problems they solve, where they fail, and how to implement them without damaging customer relationships. Include real data on resolution rates, escalation patterns, and cost savings. Address the human anxiety around agent interactions.",
+      "targetSlug": "ai-agents-customer-support",
+      "targetKeyword": "AI agents customer service",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "Multi-Agent Systems: When Multiple Agents Work Together",
+      "topicBrief": "Explain how multiple specialized agents coordinate on complex tasks (e.g., one researches competitors, another analyzes data, a third drafts recommendations). Discuss orchestration, handoff protocols, and where this creates real value. Acknowledge the complexity jump and when teams actually need this.",
+      "targetSlug": "multi-agent-systems-explained",
+      "targetKeyword": "multi-agent AI systems",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "Safety Guardrails: Keeping Your AI Agents from Causing Problems",
+      "topicBrief": "Address the legitimate risks of autonomous agents: making unauthorized decisions, accessing sensitive data, or damaging brand reputation. Cover practical guardrails: approval workflows, action limits, role-based permissions, and auditing. Emphasize that guardrails aren't optional—they're business critical.",
+      "targetSlug": "ai-agent-safety-guardrails",
+      "targetKeyword": "AI agent safety controls",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "Measuring Real ROI: Does This AI Agent Actually Pay for Itself?",
+      "topicBrief": "Provide a framework for calculating agent ROI: hours saved per week, error reduction, speed improvements, and cost per transaction handled. Include realistic numbers for different use cases. Warn against common mistakes: ignoring implementation time, overestimating adoption, and not accounting for maintenance.",
+      "targetSlug": "ai-agent-roi-measurement",
+      "targetKeyword": "AI agent ROI calculation",
+      "format": "research-breakdown",
+      "status": "pending"
+    },
+    {
+      "order": 7,
+      "topicTitle": "Small Teams, Big Impact: Real Stories of Agents in Action",
+      "topicBrief": "Profile 3-4 realistic case studies of small businesses or solopreneurs using agents effectively. Include specifics: what the agent does, how many hours it saves weekly, challenges they faced, and what they'd do differently. Mix industries and team sizes to show versatility.",
+      "targetSlug": "ai-agents-case-studies-small-business",
+      "targetKeyword": "AI agents case studies small business",
+      "format": "roundup",
+      "status": "pending"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "slug": "ai-safety-deepfakes-ethics",
+  "title": "The AI Safety Crisis: What You Need to Know (And Do)",
+  "description": "A series for parents, creators, and concerned citizens navigating the real harms of uncontrolled AI: deepfakes, non-consensual imagery, copyright theft, and child safety risks. Combines education about the technical realities with practical protective strategies and honest discussion of regulatory momentum.",
+  "totalPosts": 8,
+  "tags": [
+    "AI safety",
+    "deepfakes",
+    "ethics",
+    "child safety",
+    "privacy",
+    "regulation",
+    "creators"
+  ],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "How Deepfakes Actually Work (And Why You Should Care)",
+      "topicBrief": "Demystify deepfake technology without being alarmist. Explain the technical basics: neural networks, training data, and why certain faces/voices are easier targets. Discuss the speed of tool improvement and accessibility. Anchor discussion in recent real-world harms (non-consensual imagery surge, political deepfakes) to explain why this matters now.",
+      "targetSlug": "how-deepfakes-work",
+      "targetKeyword": "how do deepfakes work",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "Spot the Fake: Tools and Techniques to Identify AI-Generated Images",
+      "topicBrief": "Provide practical, up-to-date methods for detecting AI-generated images: pixel artifacts, metadata analysis, reverse image search, and AI detection tools (with honest assessment of their reliability). Include specific tools to use and step-by-step instructions. Acknowledge that detection is an arms race and no method is foolproof.",
+      "targetSlug": "detect-ai-generated-images",
+      "targetKeyword": "how to detect AI generated images",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "Protect Your Image: Defending Yourself Against Deepfakes and Nonconsensual AI",
+      "topicBrief": "Shift to defensive strategies: personal brand monitoring, image watermarking, legal remedies, and platform reporting. Include specific tools (reverse image search, Google Alerts, specialized monitoring services). Address the emotional reality and practical steps for victims of non-consensual imagery. Cover emerging legal protections by region.",
+      "targetSlug": "protect-yourself-deepfakes",
+      "targetKeyword": "how to protect yourself from deepfakes",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "The Sexual Image Generation Crisis: What Happened and Why It Matters",
+      "topicBrief": "Analyze the 2026 scandal of Grok generating 6,700+ non-consensual sexual images per hour, including of minors. Discuss how this happened (lax guardrails, business model incentives), the victims' impact, and the policy/platform response. Be direct about the harm without graphic details. This post sets up the urgency for remaining posts.",
+      "targetSlug": "sexual-image-generation-crisis",
+      "targetKeyword": "non-consensual AI sexual images",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "AI and Child Safety: What Parents and Educators Actually Need to Know",
+      "topicBrief": "Cover the specific risks children face: deepfakes, sextortion, non-consensual imagery, exposure to adult content via generative AI, and predator-enabling tools. Explain the risks in clear language without fearmongering. Provide practical protective steps: monitoring, privacy settings, education, and when to escalate to authorities.",
+      "targetSlug": "ai-child-safety-parents",
+      "targetKeyword": "AI safety for children parents",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "Copyright Wars: Artists, Musicians, and Writers Fighting Back Against AI",
+      "topicBrief": "Analyze the copyright conflict: companies training models on copyrighted work without consent or compensation. Include SZA, Kenneth Blume, and other creator lawsuits. Discuss fair use debates, the creator perspective, and current legal outcomes. Explain what creators can do to protect their work and influence policy.",
+      "targetSlug": "copyright-ai-creators-fight-back",
+      "targetKeyword": "AI copyright artists creators lawsuit",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 7,
+      "topicTitle": "What AI Regulation Is Actually Happening (And What's Still Missing)",
+      "topicBrief": "Summarize real regulatory developments: EU AI Act implementation, U.S. state-level laws, platform policies, and proposed federal legislation. Report on what's protecting people (age verification for image generation, consent requirements) and critical gaps (liability, deepfake disclosure). Make technical regulation accessible.",
+      "targetSlug": "ai-regulation-happening-2026",
+      "targetKeyword": "AI regulation laws 2026",
+      "format": "roundup",
+      "status": "pending"
+    },
+    {
+      "order": 8,
+      "topicTitle": "Why AI Transparency Isn't Optional—And How to Demand It",
+      "topicBrief": "Take the stance that user consent and transparency are non-negotiable; platforms hiding AI use or training practices are making choices that hurt people. Discuss why transparency matters (informed choice, accountability, safety) and why companies resist it (cost, liability). Call out specific platforms and describe how users can pressure change.",
+      "targetSlug": "ai-transparency-consent-demand",
+      "targetKeyword": "AI transparency consent requirements",
+      "format": "opinion",
+      "status": "pending"
+    }
+  ]
+}
