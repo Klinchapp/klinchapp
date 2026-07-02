@@ -2112,5 +2112,105 @@
     "stage": "publish",
     "file": "ai-literacy-checklist-2026.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-07-02T11:44:57.790Z",
+    "stage": "prepare",
+    "series": "ai-agents-small-teams",
+    "post": "ai-agents-vs-chatbots",
+    "title": "What AI Agents Actually Are (And Why They're Not Chatbots)",
+    "status": "draft",
+    "qualityScore": 6,
+    "scores": {
+      "clarity": 8,
+      "actionability": 6,
+      "engagement": 8,
+      "accuracy": 5,
+      "overall": 6
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19414,
+        "tokens_in": 3972,
+        "tokens_out": 1728
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11339,
+        "tokens_in": 1900,
+        "tokens_out": 1554
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17969,
+        "tokens_in": 1806,
+        "tokens_out": 1661
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1348,
+        "tokens_in": 1593,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19878,
+        "tokens_in": 3972,
+        "tokens_out": 1804
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14180,
+        "tokens_in": 1976,
+        "tokens_out": 1727
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18669,
+        "tokens_in": 1979,
+        "tokens_out": 1621
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1368,
+        "tokens_in": 1635,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9272,
+        "tokens_in": 1773,
+        "tokens_out": 817
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 952,
+        "tokens_in": 265,
+        "tokens_out": 29
+      }
+    ]
   }
 ]
