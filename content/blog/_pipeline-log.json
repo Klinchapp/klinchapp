@@ -2212,5 +2212,79 @@
         "tokens_out": 29
       }
     ]
+  },
+  {
+    "date": "2026-07-03T11:43:17.737Z",
+    "stage": "prepare",
+    "series": "ai-agents-small-teams",
+    "post": "setup-first-ai-agent-workflow",
+    "title": "How to Set Up Your First AI Agent Workflow in 30 Minutes",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16963,
+        "tokens_in": 3947,
+        "tokens_out": 1415
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9789,
+        "tokens_in": 1587,
+        "tokens_out": 1142
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6497,
+        "tokens_in": 1394,
+        "tokens_out": 1125
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1730,
+        "tokens_in": 1283,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9496,
+        "tokens_in": 1770,
+        "tokens_out": 797
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 817,
+        "tokens_in": 279,
+        "tokens_out": 33
+      }
+    ]
+  },
+  {
+    "date": "2026-07-03T11:43:17.740Z",
+    "stage": "publish",
+    "file": "setup-first-ai-agent-workflow.mdx",
+    "status": "published"
   }
 ]
