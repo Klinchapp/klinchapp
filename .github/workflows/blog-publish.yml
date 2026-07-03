@@ -81,6 +81,13 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: node scripts/syndicate-to-leaflet.mjs
 
+      - name: Wait for Vercel deployment
+        if: steps.commit.outputs.published == 'true'
+        # OG image route serves a "Klinchapp" fallback for unknown slugs — if we hit it
+        # before the new deployment is live we upload the fallback as the card thumbnail.
+        # Previous syndication steps take ~30s; this sleep brings the total to ~3 min post-push.
+        run: sleep 150
+
       - name: Syndicate to Bluesky
         if: steps.commit.outputs.published == 'true'
         continue-on-error: true
@@ -89,3 +96,4 @@ jobs:
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: node scripts/syndicate-to-bluesky.mjs
+

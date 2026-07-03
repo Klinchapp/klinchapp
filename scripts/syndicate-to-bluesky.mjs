@@ -81,6 +81,18 @@ async function getRecentPosts(session, limit = 20) {
   return res.json()
 }
 
+async function deletePost(session, rkey) {
+  const res = await fetch(`${PDS_HOST}/xrpc/com.atproto.repo.deleteRecord`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${session.accessJwt}`,
+    },
+    body: JSON.stringify({ repo: session.did, collection: 'app.bsky.feed.post', rkey }),
+  })
+  if (!res.ok) fail(`deleteRecord failed: ${res.status} ${await res.text()}`)
+}
+
 // ─── Content helpers ──────────────────────────────────────────────────────────
 
 function getLatestPublishedPost() {
@@ -192,6 +204,8 @@ async function main() {
   if (!BLUESKY_APP_PASSWORD) fail('Missing env var: BLUESKY_APP_PASSWORD')
 
   const isBackfill = process.argv.includes('--backfill')
+  const reskeetIdx = process.argv.indexOf('--reskeet')
+  const reskeetSlug = reskeetIdx !== -1 ? process.argv[reskeetIdx + 1] : null
 
   log(`Authenticating as @${HANDLE}...`)
   const session = await createSession(HANDLE, BLUESKY_APP_PASSWORD)
@@ -210,6 +224,28 @@ async function main() {
       .filter(Boolean)
   )
   log(`${postedSlugs.size} slugs already posted`)
+
+  if (reskeetSlug) {
+    // Delete existing Bluesky post for this slug, then re-post with fresh OG image.
+    // Use when the wrong OG image was uploaded (e.g. Vercel wasn't deployed yet).
+    log(`Reskeet mode: ${reskeetSlug}`)
+    const rec = existing.records.find(r => {
+      const uri = r.value?.embed?.external?.uri || ''
+      return uri.includes(`/blog/${reskeetSlug}`)
+    })
+    if (rec) {
+      const rkey = rec.uri.split('/').pop()
+      await deletePost(session, rkey)
+      log(`Deleted existing post (rkey: ${rkey})`)
+    } else {
+      log(`No existing post found for ${reskeetSlug} — will create fresh`)
+    }
+    const post = getAllPublishedPosts().find(p => p.data.slug === reskeetSlug)
+    if (!post) fail(`No published post found with slug: ${reskeetSlug}`)
+    const freshSession = await createSession(HANDLE, BLUESKY_APP_PASSWORD)
+    await postOne(freshSession, post.data, new Set()) // empty set bypasses dedup
+    return
+  }
 
   if (isBackfill) {
     const posts = getAllPublishedPosts()
