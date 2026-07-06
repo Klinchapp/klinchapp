@@ -2286,5 +2286,105 @@
     "stage": "publish",
     "file": "setup-first-ai-agent-workflow.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-07-06T13:00:56.070Z",
+    "stage": "prepare",
+    "series": "ai-agents-small-teams",
+    "post": "ai-agents-customer-support",
+    "title": "AI Agents for Customer Support: When Automation Actually Works",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 28583,
+        "tokens_in": 3997,
+        "tokens_out": 2198
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19728,
+        "tokens_in": 2370,
+        "tokens_out": 1884
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24290,
+        "tokens_in": 2136,
+        "tokens_out": 1991
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1243,
+        "tokens_in": 2149,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 28103,
+        "tokens_in": 3997,
+        "tokens_out": 2033
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20956,
+        "tokens_in": 2205,
+        "tokens_out": 1978
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 28542,
+        "tokens_in": 2230,
+        "tokens_out": 2001
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6377,
+        "tokens_in": 2159,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13292,
+        "tokens_in": 1759,
+        "tokens_out": 697
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1359,
+        "tokens_in": 255,
+        "tokens_out": 32
+      }
+    ]
   }
 ]
