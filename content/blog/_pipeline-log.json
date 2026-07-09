@@ -2392,5 +2392,73 @@
     "stage": "publish",
     "file": "ai-agents-customer-support.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-07-09T12:21:01.761Z",
+    "stage": "prepare",
+    "series": "ai-agents-small-teams",
+    "post": "multi-agent-systems-explained",
+    "title": "Multi-Agent Systems: When Multiple Agents Work Together",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 7,
+      "engagement": 8,
+      "accuracy": 5,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 21499,
+        "tokens_in": 4033,
+        "tokens_out": 1824
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14903,
+        "tokens_in": 1996,
+        "tokens_out": 1617
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13586,
+        "tokens_in": 1869,
+        "tokens_out": 1577
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 890,
+        "tokens_in": 1735,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9956,
+        "tokens_in": 1762,
+        "tokens_out": 803
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1024,
+        "tokens_in": 253,
+        "tokens_out": 34
+      }
+    ]
   }
 ]
