@@ -2466,5 +2466,73 @@
     "stage": "publish",
     "file": "multi-agent-systems-explained.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-07-13T12:17:21.388Z",
+    "stage": "prepare",
+    "series": "ai-agents-small-teams",
+    "post": "ai-agent-safety-guardrails",
+    "title": "Safety Guardrails: Keeping Your AI Agents from Causing Problems",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14873,
+        "tokens_in": 4079,
+        "tokens_out": 1183
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8089,
+        "tokens_in": 1355,
+        "tokens_out": 1036
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6746,
+        "tokens_in": 1288,
+        "tokens_out": 1003
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1333,
+        "tokens_in": 1161,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12381,
+        "tokens_in": 1769,
+        "tokens_out": 749
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 880,
+        "tokens_in": 271,
+        "tokens_out": 30
+      }
+    ]
   }
 ]
