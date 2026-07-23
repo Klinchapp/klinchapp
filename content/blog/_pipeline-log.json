@@ -2752,5 +2752,105 @@
     "stage": "publish",
     "file": "ai-agents-case-studies-small-business.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-07-23T11:20:36.211Z",
+    "stage": "prepare",
+    "series": "ai-creative-collaboration",
+    "post": "ai-creative-tool-vs-replacement",
+    "title": "AI as Creative Tool vs. AI as Replacement: The Real Difference",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 7,
+      "engagement": 8,
+      "accuracy": 5,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16395,
+        "tokens_in": 3879,
+        "tokens_out": 1214
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8087,
+        "tokens_in": 1386,
+        "tokens_out": 1005
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8255,
+        "tokens_in": 1257,
+        "tokens_out": 1068
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 913,
+        "tokens_in": 1226,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22796,
+        "tokens_in": 3879,
+        "tokens_out": 1909
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13653,
+        "tokens_in": 2081,
+        "tokens_out": 1474
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11119,
+        "tokens_in": 1726,
+        "tokens_out": 1473
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1405,
+        "tokens_in": 1485,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9343,
+        "tokens_in": 1777,
+        "tokens_out": 813
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 2546,
+        "tokens_in": 262,
+        "tokens_out": 31
+      }
+    ]
   }
 ]
