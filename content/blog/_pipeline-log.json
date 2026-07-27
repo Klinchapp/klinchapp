@@ -2858,5 +2858,73 @@
     "stage": "publish",
     "file": "ai-creative-tool-vs-replacement.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-07-27T12:36:43.903Z",
+    "stage": "prepare",
+    "series": "ai-creative-collaboration",
+    "post": "ai-design-tools-when-to-use",
+    "title": "Design with AI: When It Speeds You Up (And When It Slows You Down)",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17623,
+        "tokens_in": 4042,
+        "tokens_out": 1317
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9230,
+        "tokens_in": 1489,
+        "tokens_out": 1064
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10868,
+        "tokens_in": 1316,
+        "tokens_out": 1007
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 915,
+        "tokens_in": 1165,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10707,
+        "tokens_in": 1774,
+        "tokens_out": 772
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 949,
+        "tokens_in": 262,
+        "tokens_out": 33
+      }
+    ]
   }
 ]
