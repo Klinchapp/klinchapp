@@ -2926,5 +2926,11 @@
         "tokens_out": 33
       }
     ]
+  },
+  {
+    "date": "2026-07-28T11:28:02.405Z",
+    "stage": "publish",
+    "file": "ai-design-tools-when-to-use.mdx",
+    "status": "published"
   }
 ]
