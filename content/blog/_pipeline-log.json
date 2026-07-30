@@ -2932,5 +2932,105 @@
     "stage": "publish",
     "file": "ai-design-tools-when-to-use.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-07-30T11:21:28.306Z",
+    "stage": "prepare",
+    "series": "ai-creative-collaboration",
+    "post": "video-generation-tools-2026",
+    "title": "Professional Video Generation in 2026: Sora 2, Veo 3.1, and What Actually Works",
+    "status": "draft",
+    "qualityScore": 6,
+    "scores": {
+      "clarity": 7,
+      "actionability": 8,
+      "engagement": 6,
+      "accuracy": 5,
+      "overall": 6
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20103,
+        "tokens_in": 4170,
+        "tokens_out": 1853
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11207,
+        "tokens_in": 2025,
+        "tokens_out": 1150
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13397,
+        "tokens_in": 1402,
+        "tokens_out": 1218
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1005,
+        "tokens_in": 1376,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24991,
+        "tokens_in": 4170,
+        "tokens_out": 2131
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16200,
+        "tokens_in": 2303,
+        "tokens_out": 1543
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19751,
+        "tokens_in": 1795,
+        "tokens_out": 1646
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1238,
+        "tokens_in": 1804,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10712,
+        "tokens_in": 1775,
+        "tokens_out": 816
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 2568,
+        "tokens_in": 288,
+        "tokens_out": 45
+      }
+    ]
   }
 ]
