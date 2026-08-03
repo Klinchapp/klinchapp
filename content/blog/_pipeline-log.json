@@ -3106,5 +3106,73 @@
     "stage": "publish",
     "file": "ai-music-production-tools.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-08-03T12:36:32.166Z",
+    "stage": "prepare",
+    "series": "ai-creative-collaboration",
+    "post": "ai-copyright-royalty-creators",
+    "title": "The Copyright and Royalty Question: Who Owns AI-Generated Content?",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 8,
+      "actionability": 7,
+      "engagement": 7,
+      "accuracy": 8,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20503,
+        "tokens_in": 4115,
+        "tokens_out": 1417
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17950,
+        "tokens_in": 1589,
+        "tokens_out": 1072
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 7793,
+        "tokens_in": 1324,
+        "tokens_out": 1099
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1311,
+        "tokens_in": 1257,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10438,
+        "tokens_in": 1765,
+        "tokens_out": 846
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 989,
+        "tokens_in": 262,
+        "tokens_out": 29
+      }
+    ]
   }
 ]
