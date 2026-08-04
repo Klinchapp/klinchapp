@@ -3174,5 +3174,11 @@
         "tokens_out": 29
       }
     ]
+  },
+  {
+    "date": "2026-08-04T11:33:47.679Z",
+    "stage": "publish",
+    "file": "ai-copyright-royalty-creators.mdx",
+    "status": "published"
   }
 ]
