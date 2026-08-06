@@ -3180,5 +3180,73 @@
     "stage": "publish",
     "file": "ai-copyright-royalty-creators.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-08-06T11:32:18.565Z",
+    "stage": "prepare",
+    "series": "ai-creative-collaboration",
+    "post": "creative-business-ai-advantage",
+    "title": "Build a Creative Business That Actually Thrives with AI",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 5,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14504,
+        "tokens_in": 4050,
+        "tokens_out": 1157
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 5873,
+        "tokens_in": 1329,
+        "tokens_out": 942
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 5059,
+        "tokens_in": 1194,
+        "tokens_out": 921
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1748,
+        "tokens_in": 1014,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11061,
+        "tokens_in": 1772,
+        "tokens_out": 868
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 756,
+        "tokens_in": 278,
+        "tokens_out": 27
+      }
+    ]
   }
 ]
