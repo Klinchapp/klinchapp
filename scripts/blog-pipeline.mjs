@@ -892,7 +892,7 @@ async function stagePrepare() {
     }
   }
 
-  const status = qualityPassed ? 'scheduled' : 'draft'
+  const status = qualityPassed ? 'scheduled' : 'rejected'
   log(`📋 Post status: ${status}${!qualityPassed ? ' (held for review — quality below threshold)' : ''}`)
 
   // Generate social snippets
@@ -922,7 +922,7 @@ async function stagePrepare() {
   log(`📄 Written: ${mdxPath}`)
 
   // Update series blueprint
-  updateSeriesBlueprint(topic.series.slug, topic.post.targetSlug, status === 'scheduled' ? 'published' : 'draft')
+  updateSeriesBlueprint(topic.series.slug, topic.post.targetSlug, status === 'scheduled' ? 'published' : 'rejected')
   log(`📘 Updated blueprint: ${topic.series.slug}`)
 
   // Log
@@ -968,12 +968,40 @@ async function stagePublish() {
 
     log('Running fallback: prepare + publish in one go...')
 
-    // Fallback: run prepare, then try to publish whatever was created
-    await stagePrepare()
+    // Fallback: run prepare, retrying with a fresh topic if the previous one
+    // was rejected on quality. Each rejected topic is marked "rejected" in
+    // its series blueprint (see updateSeriesBlueprint), so findNextTopic()
+    // naturally moves on to a different topic each attempt — this never
+    // retries the same rejected content.
+    //
+    // Bounded on two sides so it can never turn into a runaway loop:
+    //   1. Hard cap of MAX_FALLBACK_ATTEMPTS regardless of anything else.
+    //   2. Breaks immediately once the topic queue runs dry (findNextTopic
+    //      returns null), instead of burning through remaining attempts.
+    // If every attempt is rejected, we skip publishing for this run rather
+    // than force something through — missing a slot beats getting stuck.
+    const MAX_FALLBACK_ATTEMPTS = 3
+    let retryScheduled = null
 
-    const retryScheduled = findScheduledPost()
+    for (let attempt = 1; attempt <= MAX_FALLBACK_ATTEMPTS; attempt++) {
+      if (!findNextTopic()) {
+        log('No pending topics left to try. Ending fallback.')
+        break
+      }
+
+      log(`Fallback attempt ${attempt}/${MAX_FALLBACK_ATTEMPTS}...`)
+      await stagePrepare()
+
+      retryScheduled = findScheduledPost()
+      if (retryScheduled) break
+
+      if (attempt < MAX_FALLBACK_ATTEMPTS) {
+        log(`  ⚠️ Attempt ${attempt} was rejected on quality. Trying another topic...`)
+      }
+    }
+
     if (!retryScheduled) {
-      log('⚠️ Fallback prepare did not produce a publishable post. Skipping.')
+      log(`⚠️ Fallback exhausted without a publishable post (${MAX_FALLBACK_ATTEMPTS} attempts or topic queue empty). Skipping today — next scheduled run will try again.`)
       return
     }
 

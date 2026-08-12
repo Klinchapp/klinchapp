@@ -41,7 +41,7 @@ export interface SeriesBlueprintPost {
   topicTitle: string
   topicBrief: string
   targetSlug: string
-  status: 'pending' | 'published' | 'skipped'
+  status: 'pending' | 'published' | 'skipped' | 'rejected'
 }
 
 export interface SeriesBlueprint {
