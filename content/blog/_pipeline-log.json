@@ -3454,5 +3454,73 @@
         "tokens_out": 34
       }
     ]
+  },
+  {
+    "date": "2026-08-13T10:21:28.972Z",
+    "stage": "prepare",
+    "series": "ai-safety-deepfakes-ethics",
+    "post": "detect-ai-generated-images",
+    "title": "Spot the Fake: Tools and Techniques to Identify AI-Generated Images",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 7,
+      "accuracy": 7,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19693,
+        "tokens_in": 3897,
+        "tokens_out": 1611
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12084,
+        "tokens_in": 1783,
+        "tokens_out": 1329
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14812,
+        "tokens_in": 1581,
+        "tokens_out": 1356
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 894,
+        "tokens_in": 1446,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10114,
+        "tokens_in": 1777,
+        "tokens_out": 834
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 799,
+        "tokens_in": 261,
+        "tokens_out": 34
+      }
+    ]
   }
 ]
