@@ -3522,5 +3522,11 @@
         "tokens_out": 34
       }
     ]
+  },
+  {
+    "date": "2026-08-14T10:17:34.181Z",
+    "stage": "publish",
+    "file": "detect-ai-generated-images.mdx",
+    "status": "published"
   }
 ]
