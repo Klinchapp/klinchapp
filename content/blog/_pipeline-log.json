@@ -3528,5 +3528,73 @@
     "stage": "publish",
     "file": "detect-ai-generated-images.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-08-17T09:55:56.833Z",
+    "stage": "prepare",
+    "series": "ai-safety-deepfakes-ethics",
+    "post": "protect-yourself-deepfakes",
+    "title": "Protect Your Image: Defending Yourself Against Deepfakes and Nonconsensual AI",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15788,
+        "tokens_in": 3990,
+        "tokens_out": 1379
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10158,
+        "tokens_in": 1551,
+        "tokens_out": 1396
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14091,
+        "tokens_in": 1648,
+        "tokens_out": 1149
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1280,
+        "tokens_in": 1307,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9192,
+        "tokens_in": 1777,
+        "tokens_out": 756
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 905,
+        "tokens_in": 277,
+        "tokens_out": 36
+      }
+    ]
   }
 ]
