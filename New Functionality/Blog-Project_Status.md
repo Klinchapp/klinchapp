@@ -1,5 +1,6 @@
 # Klinchapp Autonomous AI Blog Engine - Project Status
 
+**Last Updated:** 2026-08-12 (Phase 13 — missed-slot fix + rejected-post hygiene)
 **Project:** Autonomous AI Blog Engine for klinchapp.com
 **PRD:** [klinchapp_ai_blog_prd.pdf](./klinchapp_ai_blog_prd.pdf)
 **Start Date:** 2026-04-16
@@ -23,6 +24,7 @@
 - [#69 - Answer-first paragraphs for 3 posts](https://github.com/Klinchapp/klinchapp/pull/69) (merged 2026-06-23)
 - [#70 - deep-analysis format: FAQ block REQUIRED (FAQPage schema forward coverage)](https://github.com/Klinchapp/klinchapp/pull/70) (merged 2026-06-23)
 - [#71 - Mobile hamburger menu for homepage section anchors](https://github.com/Klinchapp/klinchapp/pull/71) (merged 2026-06-23)
+- [#75 - Retry fallback on quality rejection, add rejected status](https://github.com/Klinchapp/klinchapp/pull/75) (merged 2026-08-12)
 
 ---
 
@@ -473,3 +475,29 @@ Goal: fix mobile navigation gap and lock FAQPage schema forward coverage.
 - [x] **12.2** `NAV_LINKS` array extracted to single source — shared between desktop `CenterNav` and mobile dropdown. Desktop behaviour unchanged. (PR #71)
 - [x] **12.3** FAQPage auto-generation confirmed live — `detectFAQ` already wired into post page. 11 of 21 published posts qualify today. Forward-only approach: no backfill of existing posts. (discovery, no code change)
 - [x] **12.4** `deep-analysis` FAQ block changed from optional to REQUIRED in `scripts/blog-format-definitions.mjs`. Closes the format-level gap. (PR #70, also counted in Phase 10.13)
+
+---
+
+### Phase 13: Missed-Slot Fix + Rejected-Post Hygiene — COMPLETE 2026-08-12
+
+Goal: fix the 2026-08-11 missed publish slot and give quality-gate failures a clear, reviewable state instead of an ambiguous dead end.
+
+**Trigger:** Tue 2026-08-11's publish slot produced nothing. Root cause traced via GitHub Actions run logs (`blog-prepare.yml` run 2026-08-10, `blog-publish.yml` run 2026-08-11): the same-day fallback in `stagePublish()` (triggered when nothing has `status: "scheduled"`) tried exactly **one** replacement topic. That topic also missed the quality gate (`overall: 6` twice; threshold is 7, not 6 as earlier docs assumed), and the run gave up rather than trying another topic — despite 20+ pending topics existing across the series queue at the time.
+
+- [x] **13.1** `stagePublish()` fallback now retries up to 3 distinct topics before giving up for the day, instead of 1. Bounded on two sides so it can never spin: hard cap of 3 attempts, and an early break the moment the topic queue runs dry (`findNextTopic()` → null). Each rejected topic is already excluded from re-selection via its own blueprint entry (see 13.2), so the loop never retries the same rejected content. Verified in isolation before merge — 5 mock scenarios (immediate success, success within cap, cap exhausted, queue exhausted before cap, zero topics available), all pass, no infinite-loop path exists. (PR #75)
+- [x] **13.2** Quality-gate failures now get `status: "rejected"` instead of the ambiguous `"draft"` (which also collided with an unrelated `"draft"` status used by `app/api/generate/route.ts`'s social-post generator — different feature, same string). Explicit decision: rejected posts are **kept, not deleted** — "at least we would know what has not been published." They were already invisible to the public site before this change (`lib/blog.ts`: `status !== 'published'` → not rendered) and still are; confirmed via a full production build showing the rejected slugs absent from generated static pages. (PR #75)
+- [x] **13.3** Migrated 3 posts already sitting in the old ambiguous state to `rejected`, plus their series blueprint entries: `video-generation-tools-2026` (rejected 2026-07-30 — had been silently sitting for two weeks before this investigation surfaced it), `future-of-creativity-ai-collaboration` (2026-08-10), `how-deepfakes-work` (2026-08-11). (PR #75)
+- [x] **13.4** `lib/blog.ts` — `SeriesBlueprintPost.status` type now declares `'rejected'` in its union (was silently accepting `'draft'` at runtime without it being typed — pre-existing type/reality drift, unrelated bug fixed in passing). (PR #75)
+- [x] **13.5** Corrected this document's own drift: quality threshold is `overall ≥ 7`, not `< 6` as a prior status entry implied — see the Automated Schedule table above, which already had the correct Mon/Thu prepare + Tue/Fri publish days (an assistant memory note had drifted to Sun/Wed; this doc was right all along).
+
+**Investigated and explicitly rejected — recorded so the same dead ends aren't re-walked:**
+- *Skip link-strip on `403` responses* — rejected. We can't verify from CI that a real visitor wouldn't also hit the same block, and shipping an unverified link is a reader-trust risk not worth taking. Never implemented.
+- *Retry link validation with a browser-like User-Agent / fall back HEAD→GET* — rejected, disproven by direct testing. Hitting the two real URLs that failed on 2026-08-10 (weforum.org, pwc.com) from this environment with a browser UA changed nothing for weforum.org (403 regardless of UA/method) and only changed pwc.com from 403→404 (still not live). The failure looks IP/network-level (datacenter-range blocking), not UA-sniffing — no header change fixes that, and deliberately working to defeat a site's bot-blocking isn't a direction worth pursuing anyway.
+- *Score content before stripping dead links, strip only afterward* — proposed, then retracted before implementation. Would let a post pass the quality gate on the strength of a citation that later turns out to be genuinely dead (404/410), shipping content graded on a better-sourced version than what actually publishes. Rejected in favor of leaving the score/strip order untouched.
+- *Decouple the accuracy score from citation/link survival generally* — retracted after checking the actual saved content of both 2026-08-10/11 rejected posts. The link-strip regex (`blog-pipeline.mjs:432`, matches markdown syntax `[text](url)` only) never touched either post's final saved draft — both had gone through a second, regenerated attempt that link validation logged as "no URLs found." Reading the saved text directly showed the real problem: genuinely vague, unattributed claims ("Recent employment data shows...", "Major consulting firms analyzing labor market signals have found...") with reference lists disconnected from specific claims, one of them not even a real citation ("Deepfake detection research and best practices from academic and industry sources"). The quality gate scored these correctly. **No fix was needed here — the scorer is working as designed.**
+
+**Not yet built — proposed, on hold pending the next scheduled cycle's results:**
+- Add a `reasoning` field to the quality-scoring JSON schema (currently the prompt explicitly instructs `"Return ONLY a valid JSON object, nothing else"` — five numbers, no rationale, nothing logged anywhere). Purpose isn't to second-guess the scorer; it's to stop guessing *why* a score landed where it did, for every future investigation.
+- Feed that reasoning into the same-topic regeneration attempt (`qualityAttempt` loop, `blog-pipeline.mjs:862`) so a rejected draft's second try gets targeted direction ("your sourcing is too vague — name specific studies/data inline") instead of a blind retry. Current behavior: the regenerated attempt has no visibility into what specifically failed, which is the more likely explanation for why second attempts came back vaguer, not better, in both 2026-08-10 and 2026-08-11.
+
+**Decision 2026-08-12:** hold here. Next Prepare run is Thu 2026-08-13, next Publish is Fri 2026-08-15 — watch what actually happens under the new retry loop before building anything further on top of it.
