@@ -3596,5 +3596,11 @@
         "tokens_out": 36
       }
     ]
+  },
+  {
+    "date": "2026-08-18T09:49:45.422Z",
+    "stage": "publish",
+    "file": "protect-yourself-deepfakes.mdx",
+    "status": "published"
   }
 ]
