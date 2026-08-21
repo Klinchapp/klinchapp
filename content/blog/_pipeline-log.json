@@ -3702,5 +3702,79 @@
         "tokens_out": 39
       }
     ]
+  },
+  {
+    "date": "2026-08-21T09:54:34.563Z",
+    "stage": "prepare",
+    "series": "ai-safety-deepfakes-ethics",
+    "post": "ai-child-safety-parents",
+    "title": "AI and Child Safety: What Parents and Educators Actually Need to Know",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 9,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 7,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 28351,
+        "tokens_in": 4329,
+        "tokens_out": 2325
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18072,
+        "tokens_in": 2497,
+        "tokens_out": 1773
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14833,
+        "tokens_in": 2025,
+        "tokens_out": 1771
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 885,
+        "tokens_in": 1929,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10473,
+        "tokens_in": 1777,
+        "tokens_out": 844
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 770,
+        "tokens_in": 271,
+        "tokens_out": 30
+      }
+    ]
+  },
+  {
+    "date": "2026-08-21T09:54:34.565Z",
+    "stage": "publish",
+    "file": "ai-child-safety-parents.mdx",
+    "status": "published"
   }
 ]
