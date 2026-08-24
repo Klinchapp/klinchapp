@@ -3776,5 +3776,73 @@
     "stage": "publish",
     "file": "ai-child-safety-parents.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-08-24T10:02:09.135Z",
+    "stage": "prepare",
+    "series": "ai-safety-deepfakes-ethics",
+    "post": "copyright-ai-creators-fight-back",
+    "title": "Copyright Wars: Artists, Musicians, and Writers Fighting Back Against AI",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 7,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 27910,
+        "tokens_in": 4200,
+        "tokens_out": 2107
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19726,
+        "tokens_in": 2279,
+        "tokens_out": 1481
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19668,
+        "tokens_in": 1733,
+        "tokens_out": 1642
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 838,
+        "tokens_in": 1800,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13365,
+        "tokens_in": 1772,
+        "tokens_out": 825
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 897,
+        "tokens_in": 260,
+        "tokens_out": 35
+      }
+    ]
   }
 ]
