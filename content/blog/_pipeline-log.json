@@ -3844,5 +3844,11 @@
         "tokens_out": 35
       }
     ]
+  },
+  {
+    "date": "2026-08-25T09:52:15.903Z",
+    "stage": "publish",
+    "file": "copyright-ai-creators-fight-back.mdx",
+    "status": "published"
   }
 ]
