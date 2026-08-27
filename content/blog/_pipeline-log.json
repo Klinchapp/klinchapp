@@ -3850,5 +3850,105 @@
     "stage": "publish",
     "file": "copyright-ai-creators-fight-back.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-08-27T19:50:58.364Z",
+    "stage": "prepare",
+    "series": "ai-safety-deepfakes-ethics",
+    "post": "ai-regulation-happening-2026",
+    "title": "What AI Regulation Is Actually Happening (And What's Still Missing)",
+    "status": "rejected",
+    "qualityScore": 6,
+    "scores": {
+      "clarity": 7,
+      "actionability": 6,
+      "engagement": 7,
+      "accuracy": 5,
+      "overall": 6
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13581,
+        "tokens_in": 4184,
+        "tokens_out": 1137
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 5064,
+        "tokens_in": 1309,
+        "tokens_out": 960
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13356,
+        "tokens_in": 1212,
+        "tokens_out": 1112
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1014,
+        "tokens_in": 1270,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 25429,
+        "tokens_in": 4184,
+        "tokens_out": 1146
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 5666,
+        "tokens_in": 1318,
+        "tokens_out": 962
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13431,
+        "tokens_in": 1214,
+        "tokens_out": 1085
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1017,
+        "tokens_in": 1217,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8762,
+        "tokens_in": 1768,
+        "tokens_out": 759
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 993,
+        "tokens_in": 270,
+        "tokens_out": 34
+      }
+    ]
   }
 ]
