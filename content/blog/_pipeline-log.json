@@ -3950,5 +3950,79 @@
         "tokens_out": 34
       }
     ]
+  },
+  {
+    "date": "2026-08-28T20:57:25.049Z",
+    "stage": "prepare",
+    "series": "ai-safety-deepfakes-ethics",
+    "post": "ai-transparency-consent-demand",
+    "title": "Why AI Transparency Isn't Optional—And How to Demand It",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19865,
+        "tokens_in": 4096,
+        "tokens_out": 1497
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13869,
+        "tokens_in": 1669,
+        "tokens_out": 1125
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18149,
+        "tokens_in": 1377,
+        "tokens_out": 1274
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 928,
+        "tokens_in": 1432,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9206,
+        "tokens_in": 1770,
+        "tokens_out": 707
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 903,
+        "tokens_in": 256,
+        "tokens_out": 30
+      }
+    ]
+  },
+  {
+    "date": "2026-08-28T20:57:25.053Z",
+    "stage": "publish",
+    "file": "ai-transparency-consent-demand.mdx",
+    "status": "published"
   }
 ]
