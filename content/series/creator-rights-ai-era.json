@@ -1,0 +1,70 @@
+{
+  "slug": "creator-rights-ai-era",
+  "title": "Creator Rights in the AI Era: Artists Fighting Back",
+  "description": "A six-part series exploring how artists, musicians, and writers are confronting AI training without consent, what legal battles are underway, and what creators need to know to protect their work in 2026. From understanding the problem to practical protection strategies, this series examines one of the most consequential debates for creators today.",
+  "totalPosts": 6,
+  "tags": [
+    "creator-rights",
+    "ai-ethics",
+    "copyright",
+    "artists",
+    "musicians",
+    "ai-regulation"
+  ],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "Your Work Without Permission: How AI Training Scraped Creator Content",
+      "topicBrief": "Explain how AI systems were trained on creator work without consent—the scope of the problem, which datasets included creator content, and why this happened. Use the SZA and Kenneth Blume cases as anchors. Make clear this is about consent and transparency, not just compensation.",
+      "targetSlug": "how-ai-trained-on-creator-work",
+      "targetKeyword": "AI training without creator consent",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "The Money Question: Who Profits When AI Uses Your Art?",
+      "topicBrief": "Analyze the economics of AI-generated content competing with creator work. Break down: what happens when AI music uses training data from musicians who earn nothing, what licensing models exist (or should exist), and why compensation structures are still undefined. Include data on creator income impact.",
+      "targetSlug": "ai-generated-content-creator-compensation",
+      "targetKeyword": "AI compensation for artists musicians",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "Why Current Copyright Law Wasn't Built for This Problem",
+      "topicBrief": "Explain how copyright law handles traditional reproduction vs. machine learning training—they're fundamentally different, and law hasn't caught up. Cover fair use debates, the specific legal arguments artists are making, and why 'transformative use' doesn't clearly apply to AI. Keep it accessible without legal jargon.",
+      "targetSlug": "copyright-law-ai-training-gap",
+      "targetKeyword": "copyright law AI training",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "Right Now: Which Creators Are Winning Legal Cases and What Changed?",
+      "topicBrief": "Roundup of active legal battles and settlements in 2025-2026 (New York Times v. OpenAI, artist class actions, musician licensing disputes). Explain what each case is about, which ones have preliminary rulings, and what the outcomes mean for creators. Be factual and current.",
+      "targetSlug": "creator-ai-legal-cases-2026",
+      "targetKeyword": "artist lawsuits AI companies 2026",
+      "format": "roundup",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "3 Tools and Tactics Creators Can Use Today to Protect Their Work",
+      "topicBrief": "Practical guide for creators: how to use metadata and digital signatures to mark work, opt-out mechanisms that exist now (from some AI platforms), and how to monitor AI for unauthorized use of your content. Include real tools like metadata standards and the mechanics of how opt-out works.",
+      "targetSlug": "protect-your-work-from-ai-training",
+      "targetKeyword": "how to protect artwork from AI training",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "Should You Use AI to Create? An Honest Framework for Creators in 2026",
+      "topicBrief": "Take a clear stance on whether creators should use generative AI tools given the training data issues they're fighting. Acknowledge both sides: AI as a tool vs. the ethical contradiction of using tools trained on unconsented work. Propose a framework for creators deciding whether and how to use AI while maintaining integrity.",
+      "targetSlug": "should-creators-use-generative-ai",
+      "targetKeyword": "should artists use AI tools",
+      "format": "opinion",
+      "status": "pending"
+    }
+  ]
+}

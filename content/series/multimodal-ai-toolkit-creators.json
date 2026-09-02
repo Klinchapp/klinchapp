@@ -1,0 +1,80 @@
+{
+  "slug": "multimodal-ai-toolkit-creators",
+  "title": "Multimodal AI for Creators: Build Your Complete Content Stack",
+  "description": "A practical series for content creators, solopreneurs, and small studios learning to combine text, voice, video, and image AI tools into a cohesive workflow. Each post tackles one layer of a complete multimodal stack, with real examples of how to integrate tools without losing creative control or brand voice.",
+  "totalPosts": 7,
+  "tags": [
+    "multimodal-ai",
+    "content-creation",
+    "creator-tools",
+    "ai-workflow",
+    "solopreneurs",
+    "video-generation",
+    "voice-synthesis"
+  ],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "Multimodal AI Explained: Why Text + Voice + Video Matters for Creators",
+      "topicBrief": "Define multimodal AI in plain language and explain why it's fundamentally different from single-mode tools. Show creators why combining modalities (text prompts generating video, video analysis feeding copy, voice cloning for consistency) creates efficiency gains that single tools can't. Include real workflow examples: blogger who uses text AI to ideate, video AI to produce, voice AI for voiceovers.",
+      "targetSlug": "multimodal-ai-creators-explained",
+      "targetKeyword": "multimodal AI for content creators",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "Text-to-Video in 2026: When Veo, Sora, and RunwayML Actually Save Time",
+      "topicBrief": "Review the current state of AI video generation tools (Veo, Sora 2, RunwayML) with honest assessment of when they genuinely speed up production vs. when they require heavy manual editing. Compare output quality, prompt control, pricing, and integration with other tools. Include specific use cases: social media shorts, product demos, YouTube thumbnails animated. Be clear about current limitations (consistency, length, fine detail).",
+      "targetSlug": "text-to-video-ai-tools-2026",
+      "targetKeyword": "best AI video generation tools 2026",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "AI Voice Cloning Without the Robotic Sound: ElevenLabs, Descript, and Natural Alternatives",
+      "topicBrief": "Explain how modern voice synthesis (ElevenLabs, Descript) now captures breath, pauses, and intonation to avoid the robotic effect creators fear. Compare tools for different needs: long-form narration, video voiceovers, character voices for animated content, audio ads. Include pricing, learning curve, and integration with video/editing tools. Address the practical question: when is voice cloning worth it vs. recording yourself?",
+      "targetSlug": "ai-voice-cloning-creators-2026",
+      "targetKeyword": "best AI voice generator for creators",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "How to Integrate Multimodal Tools Without Losing Your Brand Voice",
+      "topicBrief": "Practical guide on maintaining creative consistency across multimodal outputs. Cover: training text AI on your writing style before video/voice generation, using consistent prompts and brand guidelines across tools, reviewing outputs before publishing, and knowing when to override AI decisions. Include a case study of a creator (YouTuber, podcaster, or newsletter writer) who built a recognizable multimodal brand. Address the real fear: does using AI tools make my content feel generic?",
+      "targetSlug": "multimodal-ai-brand-voice",
+      "targetKeyword": "how to maintain brand voice with AI content tools",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "Building Your Multimodal Workflow: Text → Video → Voice → Distribution",
+      "topicBrief": "Walk through a complete workflow from ideation to distribution using multiple AI modalities. Start with text AI (ChatGPT/Claude) for script/copy, move to video generation (Veo/Sora) for visuals, add voice synthesis (ElevenLabs) for narration, then integrate with editing tools (Descript) for final assembly. Include concrete step-by-step instructions, time estimates per stage, and tool integration points. Show how one blog post idea becomes a video, podcast snippet, and social carousel.",
+      "targetSlug": "multimodal-content-workflow",
+      "targetKeyword": "AI content workflow text video voice",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "The Multimodal Myth: What AI Can't Do (And Why Humans Still Matter)",
+      "topicBrief": "Take a hard stance: multimodal AI is powerful but creates a false promise of fully automated content production. Identify specific areas where AI consistently underperforms or needs human judgment: conceptual originality, emotional resonance, brand strategy decisions, audience connection, and knowing when a piece should be different. Use real examples of multimodal-generated content that feels hollow vs. creator-driven content that engages. Argue that the creators winning in 2026 use AI to accelerate execution, not replace thinking.",
+      "targetSlug": "multimodal-ai-limitations-humans-still-matter",
+      "targetKeyword": "AI content generation limitations what AI can't do",
+      "format": "opinion",
+      "status": "pending"
+    },
+    {
+      "order": 7,
+      "topicTitle": "Multimodal AI Tools Price Comparison: ROI for Solo Creators vs. Teams",
+      "topicBrief": "Analyze the actual costs of building a multimodal stack (text AI subscriptions, video generation credits, voice synthesis, editing software) and calculate ROI for different creator profiles: solo blogger, YouTube channel, podcast producer, social media manager. Break down free tiers vs. paid plans and when paid actually becomes necessary. Include hidden costs (time spent on prompt engineering, output review/editing) and compare against outsourcing the same work (freelance video editor, voiceover artist, copywriter). Answer: at what point does a multimodal stack pay for itself?",
+      "targetSlug": "multimodal-ai-pricing-roi-creators",
+      "targetKeyword": "AI content creation tools pricing cost comparison",
+      "format": "research-breakdown",
+      "status": "pending"
+    }
+  ]
+}

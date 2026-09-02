@@ -1,0 +1,79 @@
+{
+  "slug": "ai-workplace-transformation-2026",
+  "title": "AI in Your Workplace: What's Actually Changing in 2026",
+  "description": "A practical series for employees and managers navigating real workplace AI adoption. This series moves beyond hype to show what AI actually does on the job, how to stay competitive without burnout, and why the speed of change matters. Covers the honest skills gap, cognitive offloading risks, the tools winning in real offices, and how to prepare for a hybrid human-AI workplace without anxiety.",
+  "totalPosts": 7,
+  "tags": [
+    "workplace",
+    "ai-adoption",
+    "skills",
+    "productivity",
+    "career",
+    "management"
+  ],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "The AI Acceleration Nobody's Talking About: Why 2026 Speed Matters",
+      "topicBrief": "Unpack Matt Schumer's viral 80-million-view post and the central debate it sparked: are we underestimating how fast AI is transforming actual work? This post establishes the premise that AI adoption speed is now a business and career risk factor, not just a trend. Use real examples of how fast deployments happened in 2025-2026 and why waiting isn't neutral.",
+      "targetSlug": "ai-acceleration-speed-2026",
+      "targetKeyword": "AI transforming workplace 2026",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "The Skills Gap Is Real: What Employers Actually Expect in 2026",
+      "topicBrief": "Research and analyze the emerging skills gap between what workplaces now expect and what employees can deliver. Cover: which job functions are most affected, what 'AI literacy' actually means in hiring, real data on salary premiums for AI-adjacent skills, and honest gaps in college/training pipelines. Include perspectives from both employers and workers.",
+      "targetSlug": "workplace-skills-gap-ai",
+      "targetKeyword": "AI skills gap employment 2026",
+      "format": "research-breakdown",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "Cognitive Offloading: When AI Helps Your Brain, and When It Hurts It",
+      "topicBrief": "Address the critical thinking concern head-on: what does research actually say about outsourcing thinking to ChatGPT, Claude, or Gemini? Explore the difference between using AI as a thinking tool vs. skipping the thinking altogether. Include real workplace examples (coding, writing, analysis) where offloading helps vs. where it creates blind spots. Target anxious knowledge workers and managers.",
+      "targetSlug": "cognitive-offloading-ai-thinking",
+      "targetKeyword": "cognitive offloading AI critical thinking",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "The AI Tools Actually Winning in Your Office Right Now",
+      "topicBrief": "Move past hype to cover what's actually deployed and working in real workplaces in 2026. Review Notion AI (integrated workflow layer), Claude/ChatGPT/Perplexity for knowledge work, Cursor for coding, and emerging AI browsers (Comet, Atlas). Include pricing, learning curve, integration friction, and honest use cases. Skip the tools that got hyped but didn't stick.",
+      "targetSlug": "best-ai-tools-workplace-2026",
+      "targetKeyword": "best AI tools for work 2026",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "How to Actually Use AI Without Burning Out (Or Getting Caught Behind)",
+      "topicBrief": "Practical guide for employees and managers navigating adoption pressure. Cover: how to pick 1-2 AI tools to master first without cognitive overload, how to spot when AI integration is good for your team vs. management theater, how to push back on bad implementations, and how to keep learning without exhaustion. Target middle managers and individual contributors who feel pressure but also skepticism.",
+      "targetSlug": "using-ai-workplace-without-burnout",
+      "targetKeyword": "how to use AI at work productivity",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "AI Agents Are Coming to Your Job: What That Actually Means",
+      "topicBrief": "Connect workplace AI adoption to the agentic AI trend (Gartner: 40% of enterprise apps by 2026). Explain what task-specific AI agents do differently than traditional automation, where they're being deployed now, what jobs/roles are most affected first, and honest assessment of displacement vs. augmentation. Ground in real examples (customer support, data analysis, content workflows).",
+      "targetSlug": "ai-agents-workplace-impact",
+      "targetKeyword": "AI agents autonomous workplace 2026",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 7,
+      "topicTitle": "Your Workplace AI Readiness: A 30-Day Audit for Employees and Managers",
+      "topicBrief": "Actionable checklist-style guide for assessing your role, team, or department's readiness for AI adoption in 2026. Cover: what questions to ask leadership, how to audit which tasks could be automated or augmented, how to identify skill gaps in your team, how to pilot tools safely, and what signals mean your org is moving too fast or too slow. Empower both individual contributors and managers with concrete steps.",
+      "targetSlug": "workplace-ai-readiness-audit",
+      "targetKeyword": "AI adoption readiness checklist workplace",
+      "format": "how-to-guide",
+      "status": "pending"
+    }
+  ]
+}
