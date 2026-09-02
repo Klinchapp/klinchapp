@@ -3,7 +3,14 @@
  *
  * Runs monthly to auto-generate new series blueprints.
  * Researches current AI trends, reviews existing content,
- * and creates 2-3 new series with 6-8 topics each.
+ * and creates up to 3 new series with 6-8 topics each.
+ *
+ * Each series is generated in its own API call (not batched into one big
+ * JSON array) so a single response can't grow large enough to get cut off
+ * by the token limit, and one failed series can't take the other two down
+ * with it (see 2026-09-01 incident: a batched 2-3 series request got
+ * truncated mid-JSON and the whole run aborted before any series saved and
+ * before the "queue is empty" digest email could send).
  *
  * Usage:
  *   node scripts/blog-planner.mjs
@@ -92,103 +99,122 @@ Return a structured summary with topic areas and why they're trending.`
   return research
 }
 
-async function generateBlueprints(trendResearch, existingContent) {
-  const apiKey = process.env.ANTHROPIC_API_KEY
-  if (!apiKey) throw new Error('Missing ANTHROPIC_API_KEY')
-
-  log('📝 Step 2: Generating new series blueprints...')
-
-  const Anthropic = (await import('@anthropic-ai/sdk')).default
-  const client = new Anthropic({ apiKey })
-
-  const existingSummary = existingContent.series.length > 0
-    ? `\n\nEXISTING SERIES (do NOT duplicate these topics):\n${existingContent.series.map(s => `- ${s.title} (${s.totalPosts} posts)`).join('\n')}\n\nEXISTING TOPICS:\n${existingContent.topics.map(t => `- ${t}`).join('\n')}`
-    : ''
-
+// Calls Haiku once and reports whether the response was cut off by the
+// token limit (stop_reason === 'max_tokens') vs. finishing naturally. That
+// distinction matters: a truncated response needs more room, not a "please
+// fix your syntax" nudge — asking the model to fix a JSON blob that was cut
+// off mid-value just reproduces the same truncation (this is exactly what
+// happened on 2026-09-01: the repair call had the same token cap and failed
+// the same way).
+async function callPlannerModel(client, promptText, maxTokens) {
   const response = await client.messages.create({
     model: 'claude-haiku-4-5-20251001',
-    max_tokens: 4096,
-    messages: [{
-      role: 'user',
-      content: `Based on this research about current AI trends, generate 2-3 new blog series blueprints.
+    max_tokens: maxTokens,
+    messages: [{ role: 'user', content: promptText }],
+  })
+  const text = response.content[0]?.type === 'text' ? response.content[0].text : ''
+  return { text, truncated: response.stop_reason === 'max_tokens' }
+}
+
+function parseBlueprintJson(raw) {
+  const jsonMatch = raw.match(/\{[\s\S]*\}/)
+  if (!jsonMatch) throw new Error('No JSON object found in response')
+  // Clean common JSON issues from LLM output
+  const cleaned = jsonMatch[0]
+    .replace(/,\s*}/g, '}')       // trailing commas before }
+    .replace(/,\s*\]/g, ']')      // trailing commas before ]
+    .replace(/[\x00-\x1F\x7F]/g, (ch) => ch === '\n' || ch === '\t' ? ch : '') // remove control chars except newline/tab
+  return JSON.parse(cleaned)
+}
+
+// Generates exactly ONE series blueprint per call, rather than 2-3 at once.
+// A single series's JSON is roughly a third the size of a batched request,
+// which keeps it well clear of the token ceiling even as the "existing
+// topics, don't duplicate" list keeps growing month over month. Returns
+// null (never throws for a generation/parse failure) so the caller can
+// skip this series and keep going instead of losing the whole run.
+async function generateOneSeriesBlueprint(client, trendResearch, existingContent, generatedThisRun, seriesNum) {
+  const priorSeries = existingContent.series.map(s => `${s.title} (${s.totalPosts} posts)`)
+    .concat(generatedThisRun.map(b => `${b.title} (${b.posts.length} posts) [already planned this run]`))
+  const priorTopics = existingContent.topics
+    .concat(generatedThisRun.flatMap(b => b.posts.map(p => p.topicTitle)))
+
+  const existingSummary = priorSeries.length > 0
+    ? `\n\nEXISTING SERIES (do NOT duplicate these topics):\n${priorSeries.map(t => `- ${t}`).join('\n')}\n\nEXISTING TOPICS:\n${priorTopics.map(t => `- ${t}`).join('\n')}`
+    : ''
+
+  const prompt = `Based on this research about current AI trends, generate ONE new blog series blueprint — just one, not multiple.
 
 TREND RESEARCH:
 ${trendResearch}
 ${existingSummary}
 
 REQUIREMENTS:
-- Each series should have 6-8 posts
+- The series should have 6-8 posts
 - Topics should be accessible to non-technical readers (small business owners, creators, general audience)
-- Each series needs a clear narrative arc (earlier posts set up later ones)
+- The series needs a clear narrative arc (earlier posts set up later ones)
 - Mix of formats — pick the format that genuinely fits each topic. Each format carries a structural contract (length, opening, required structured blocks). Available formats and what each requires:
 
 ${formatDefinitionsForPrompt()}
 
 - Each post needs a target SEO keyword (something people actually search for)
 - Slugs must be URL-friendly (lowercase, hyphens, no special chars)
-- Do NOT overlap with existing series listed above
+- Do NOT overlap with existing series or topics listed above
 
 RETURN FORMAT:
-Return ONLY a valid JSON array of series objects. No commentary, no code blocks, no markdown. Just the raw JSON array.
+Return ONLY a single valid JSON object for the series. No commentary, no code blocks, no markdown, no surrounding array — just the raw JSON object.
 
-Each series object must follow this exact structure:
-[
-  {
-    "slug": "series-slug-here",
-    "title": "Series Title Here",
-    "description": "One paragraph description of the series.",
-    "totalPosts": 6,
-    "tags": ["tag1", "tag2", "tag3"],
-    "posts": [
-      {
-        "order": 1,
-        "topicTitle": "Post Title Here",
-        "topicBrief": "2-3 sentence brief explaining what this post should cover, what angle to take, and what specific examples or data to include.",
-        "targetSlug": "post-slug-here",
-        "targetKeyword": "seo keyword phrase",
-        "format": "deep-analysis",
-        "status": "pending"
-      }
-    ]
+{
+  "slug": "series-slug-here",
+  "title": "Series Title Here",
+  "description": "One paragraph description of the series.",
+  "totalPosts": 6,
+  "tags": ["tag1", "tag2", "tag3"],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "Post Title Here",
+      "topicBrief": "2-3 sentence brief explaining what this post should cover, what angle to take, and what specific examples or data to include.",
+      "targetSlug": "post-slug-here",
+      "targetKeyword": "seo keyword phrase",
+      "format": "deep-analysis",
+      "status": "pending"
+    }
+  ]
+}`
+
+  let { text, truncated } = await callPlannerModel(client, prompt, 4096)
+
+  if (truncated) {
+    log(`  ⚠️ Series ${seriesNum} response hit the token limit — retrying with more headroom...`)
+    ;({ text, truncated } = await callPlannerModel(client, prompt, 8192))
   }
-]`
-    }],
-  })
-
-  const text = response.content[0].type === 'text' ? response.content[0].text : ''
 
   try {
-    const jsonMatch = text.match(/\[[\s\S]*\]/)
-    if (!jsonMatch) throw new Error('No JSON array found in response')
-    // Clean common JSON issues from LLM output
-    let cleaned = jsonMatch[0]
-      .replace(/,\s*}/g, '}')       // trailing commas before }
-      .replace(/,\s*\]/g, ']')      // trailing commas before ]
-      .replace(/[\x00-\x1F\x7F]/g, (ch) => ch === '\n' || ch === '\t' ? ch : '') // remove control chars except newline/tab
-    const blueprints = JSON.parse(cleaned)
-    log(`  ✅ Generated ${blueprints.length} series blueprints`)
-    return blueprints
+    const blueprint = parseBlueprintJson(text)
+    log(`  ✅ Series ${seriesNum} generated: "${blueprint.title}"`)
+    return blueprint
   } catch (firstErr) {
-    // Retry: ask the LLM to fix its own JSON
-    log(`  ⚠️ JSON parse failed, asking LLM to fix...`)
-    const fixResponse = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 4096,
-      messages: [{
-        role: 'user',
-        content: `The following JSON has a syntax error. Fix it and return ONLY the corrected JSON array, nothing else:\n\n${text}`
-      }],
-    })
-    const fixText = fixResponse.content[0].type === 'text' ? fixResponse.content[0].text : ''
+    if (truncated) {
+      // Still cut off after doubling the budget — this is a size problem,
+      // not a syntax slip. Asking the model to "fix" it would just hit the
+      // same wall again, so skip this series instead of looping forever.
+      log(`  ❌ Series ${seriesNum} still truncated after retry. Skipping this series.`)
+      return null
+    }
+    log(`  ⚠️ Series ${seriesNum} JSON parse failed (${firstErr.message}), asking the model to fix it...`)
     try {
-      const fixMatch = fixText.match(/\[[\s\S]*\]/)
-      if (!fixMatch) throw new Error('No JSON in fix response')
-      const blueprints = JSON.parse(fixMatch[0])
-      log(`  ✅ Generated ${blueprints.length} series blueprints (after JSON fix)`)
-      return blueprints
+      const { text: fixText } = await callPlannerModel(
+        client,
+        `The following JSON has a syntax error. Fix it and return ONLY the corrected JSON object, nothing else:\n\n${text}`,
+        8192
+      )
+      const blueprint = parseBlueprintJson(fixText)
+      log(`  ✅ Series ${seriesNum} generated (after JSON fix): "${blueprint.title}"`)
+      return blueprint
     } catch (secondErr) {
-      log(`  ❌ Failed to parse blueprints even after fix: ${secondErr.message}`)
-      throw secondErr
+      log(`  ❌ Series ${seriesNum} failed to parse even after fix: ${secondErr.message}`)
+      return null
     }
   }
 }
@@ -280,7 +306,7 @@ const escapeHtml = (s) =>
 // User-facing purpose: give the operator a single monthly view of what Kira
 // is about to write, so any title/brief edits can happen BEFORE generation
 // rather than after publish.
-async function sendMonthlyDigest({ newSeries, pendingTopics }) {
+async function sendMonthlyDigest({ newSeries, pendingTopics, genFailures = 0 }) {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) {
     log('  ⚠️ No RESEND_API_KEY — skipping monthly digest email')
@@ -291,6 +317,15 @@ async function sendMonthlyDigest({ newSeries, pendingTopics }) {
   const publishDates = nextPublishDates(new Date(), totalPending)
 
   let body = ''
+
+  if (genFailures > 0) {
+    body += `
+      <div style="background: #FFFBEB; padding: 14px 16px; border-radius: 8px; margin: 16px 0; border-left: 4px solid #D97706;">
+        <p style="font-weight: 600; margin: 0; color: #B45309;">⚠️ ${genFailures} series failed to generate this run.</p>
+        <p style="margin: 6px 0 0; color: #555;">Kira tried and skipped ${genFailures === 1 ? 'it' : 'them'} rather than losing the whole run — check the <code>Blog Pipeline - Planner</code> GitHub Actions log for details. Re-run manually if the queue below still looks thin: <code>gh workflow run blog-planner.yml --field force=true</code>.</p>
+      </div>
+    `
+  }
 
   if (newSeries.length > 0) {
     const newSeriesList = newSeries.map(b =>
@@ -355,7 +390,7 @@ async function sendMonthlyDigest({ newSeries, pendingTopics }) {
     await resend.emails.send({
       from: 'Kira <kira@klinchapp.com>',
       to: ['klinchapp.info@gmail.com'],
-      subject: `📋 Klinchapp blog — ${totalPending} topic${totalPending === 1 ? '' : 's'} in queue${newSeries.length > 0 ? `, ${newSeries.length} new series this month` : ''}`,
+      subject: `${genFailures > 0 ? '⚠️' : '📋'} Klinchapp blog — ${totalPending} topic${totalPending === 1 ? '' : 's'} in queue${newSeries.length > 0 ? `, ${newSeries.length} new series this month` : ''}${genFailures > 0 ? `, ${genFailures} series failed` : ''}`,
       html: `
         <div style="font-family: sans-serif; max-width: 640px;">
           <h2 style="color: #6B2C6B; margin-bottom: 4px;">Klinchapp blog — what's coming</h2>
@@ -364,13 +399,15 @@ async function sendMonthlyDigest({ newSeries, pendingTopics }) {
         </div>
       `,
     })
-    log(`📧 Monthly digest sent (${totalPending} pending topics, ${newSeries.length} new series)`)
+    log(`📧 Monthly digest sent (${totalPending} pending topics, ${newSeries.length} new series, ${genFailures} generation failures)`)
   } catch (err) {
     log(`  ⚠️ Monthly digest email failed: ${err.message}`)
   }
 }
 
 // ─── Main ───────────────────────────────────────────────────
+
+const NUM_SERIES_TO_GENERATE = 3
 
 try {
   log('═══════════════════════════════════════')
@@ -384,47 +421,91 @@ try {
   const skipResearch = pendingCount > 10 && !forceRun
 
   let saved = []
+  let genFailures = 0
 
   if (skipResearch) {
     log(`✅ Still have ${pendingCount} pending topics. Skipping trend research + series generation this month.`)
     log('   The monthly digest email will still be sent so you see what is coming.')
   } else {
-    log(`⚠️ Only ${pendingCount} pending topics remaining. Generating new series...`)
+    // Generation runs in its own try/catch so a failure here (a bad API
+    // response, a network error, whatever) can never prevent the digest
+    // email below from sending — that's the exact gap that made the
+    // 2026-09-01 failure silent. Whatever happens above, the operator
+    // finds out either way.
+    try {
+      log(`⚠️ Only ${pendingCount} pending topics remaining. Generating new series...`)
 
-    const existingContent = getExistingContent()
-    log(`📚 Existing: ${existingContent.series.length} series, ${existingContent.topics.length} topics`)
+      const existingContent = getExistingContent()
+      log(`📚 Existing: ${existingContent.series.length} series, ${existingContent.topics.length} topics`)
 
-    const trendResearch = await researchTrends()
-    const blueprints = await generateBlueprints(trendResearch, existingContent)
+      const trendResearch = await researchTrends()
 
-    for (const blueprint of blueprints) {
-      const error = validateBlueprint(blueprint)
-      if (error) {
-        log(`  ⚠️ Invalid blueprint "${blueprint.title}": ${error}`)
-        continue
+      const apiKey = process.env.ANTHROPIC_API_KEY
+      if (!apiKey) throw new Error('Missing ANTHROPIC_API_KEY')
+      const Anthropic = (await import('@anthropic-ai/sdk')).default
+      const client = new Anthropic({ apiKey })
+
+      log(`📝 Step 2: Generating up to ${NUM_SERIES_TO_GENERATE} new series, one at a time...`)
+      for (let i = 1; i <= NUM_SERIES_TO_GENERATE; i++) {
+        let blueprint = null
+        try {
+          blueprint = await generateOneSeriesBlueprint(client, trendResearch, existingContent, saved, i)
+        } catch (err) {
+          log(`  ❌ Series ${i} generation threw: ${err.message}`)
+        }
+
+        if (!blueprint) {
+          genFailures++
+          continue
+        }
+
+        const error = validateBlueprint(blueprint)
+        if (error) {
+          log(`  ⚠️ Invalid blueprint "${blueprint.title}": ${error}`)
+          genFailures++
+          continue
+        }
+
+        if (saveBlueprint(blueprint)) {
+          saved.push(blueprint)
+        }
       }
-      if (saveBlueprint(blueprint)) {
-        saved.push(blueprint)
-      }
-    }
 
-    if (saved.length > 0) {
-      log(`✅ Saved ${saved.length} new series blueprints`)
-    } else {
-      log('⚠️ No new blueprints were saved')
+      if (saved.length > 0) {
+        log(`✅ Saved ${saved.length}/${NUM_SERIES_TO_GENERATE} new series blueprints`)
+      } else {
+        log('⚠️ No new blueprints were saved')
+      }
+      if (genFailures > 0) {
+        log(`⚠️ ${genFailures} series failed to generate this run — continuing to digest anyway`)
+      }
+    } catch (err) {
+      log(`💥 Series generation step failed: ${err.message}`)
+      console.error(err)
+      genFailures++
     }
   }
 
   // Always send the monthly digest at the end, regardless of whether new
-  // series were generated. This gives the operator a regular monthly view
-  // of what's coming, with enough lead time to edit briefs or skip topics
-  // before Kira writes them.
+  // series were generated or generation partly/fully failed. This gives
+  // the operator a regular monthly view of what's coming, with enough lead
+  // time to edit briefs or skip topics before Kira writes them — and it's
+  // the only place the "queue is empty" / "generation failed" alerts live,
+  // so it must run no matter what happened above.
   const pendingTopics = getAllPendingTopics()
-  await sendMonthlyDigest({ newSeries: saved, pendingTopics })
+  await sendMonthlyDigest({ newSeries: saved, pendingTopics, genFailures })
 
-  log('🎉 Planner complete.')
+  if (genFailures > 0) {
+    log(`⚠️ Planner completed with ${genFailures} failure(s). Digest sent — see above for details.`)
+    process.exitCode = 1 // mark the run visibly failed in GitHub Actions without skipping anything queued after this line
+  } else {
+    log('🎉 Planner complete.')
+  }
 } catch (err) {
+  // Only truly unexpected failures land here (e.g. SERIES_DIR unreadable) —
+  // anything from research/generation is already caught above so the
+  // digest still gets a chance to send.
   log(`💥 Planner failed: ${err.message}`)
   console.error(err)
-  process.exit(1)
+  process.exitCode = 1
 }
