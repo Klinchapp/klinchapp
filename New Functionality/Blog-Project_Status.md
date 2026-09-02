@@ -1,6 +1,6 @@
 # Klinchapp Autonomous AI Blog Engine - Project Status
 
-**Last Updated:** 2026-08-12 (Phase 13 — missed-slot fix + rejected-post hygiene)
+**Last Updated:** 2026-09-02 (Phase 14 — planner truncation fix + unpublished-post URL exposure fix)
 **Project:** Autonomous AI Blog Engine for klinchapp.com
 **PRD:** [klinchapp_ai_blog_prd.pdf](./klinchapp_ai_blog_prd.pdf)
 **Start Date:** 2026-04-16
@@ -25,6 +25,8 @@
 - [#70 - deep-analysis format: FAQ block REQUIRED (FAQPage schema forward coverage)](https://github.com/Klinchapp/klinchapp/pull/70) (merged 2026-06-23)
 - [#71 - Mobile hamburger menu for homepage section anchors](https://github.com/Klinchapp/klinchapp/pull/71) (merged 2026-06-23)
 - [#75 - Retry fallback on quality rejection, add rejected status](https://github.com/Klinchapp/klinchapp/pull/75) (merged 2026-08-12)
+- [#77 - Close direct-URL exposure for unpublished posts; reject stale draft](https://github.com/Klinchapp/klinchapp/pull/77) (merged 2026-09-02)
+- [#79 - Generate series one at a time to stop planner truncation](https://github.com/Klinchapp/klinchapp/pull/79) (merged 2026-09-02)
 
 ---
 
@@ -84,7 +86,7 @@
 | Social API auto-posting | Deferred | After manual copy-paste gets tedious |
 | GA4 analytics feedback loop | Deferred | After 1,000+ visitors |
 | Social listening + AI replies | Deferred | After social presence |
-| Monthly auto-planning of new series | Deferred | After current 20 topics are used |
+| Monthly auto-planning of new series | Done | Live since 2026-04-21; hardened against truncation failures Phase 14 (2026-09-02) |
 | AI Content Engine as Product | Deferred | Phase 2 of business |
 
 ---
@@ -265,13 +267,19 @@ GitHub Actions Cron
 
 ## Series Blueprints
 
-| Series | Posts | Topics | Status (as of 2026-06-23) |
-|--------|-------|--------|--------|
-| AI Content Creation: The Complete Playbook | 6 | Quality vs quantity, training AI on your style, blog writing workflow, social media platforms, ethics, future of AI content | All 6 published |
-| AI for Small Business: A Practical Guide | 8 | Where to start, 5 tools, prompts, chatbots, social media, costs, mistakes, 30-day plan | All 8 published |
-| AI for Recruitment: What's Actually Changing | 7 | Recruiter stack, AI resume screening, candidate sourcing, interview tools, scheduling, AI resume builders for candidates, AI-replacing-recruiters debate | All 7 published |
-| Understanding AI: From Zero to Informed | 6 | What is AI, ChatGPT vs Claude vs Gemini, how AI learns, hallucinations, ethics, AI literacy | In progress — 2 published (what-is-ai-really, chatgpt-claude-gemini-compared), 4 pending |
-| **Total** | **27** | | **23 published, 4 pending** |
+| Series | Posts | Status (as of 2026-09-02) |
+|--------|-------|--------|
+| AI Content Creation: The Complete Playbook | 6 | All 6 published |
+| AI for Small Business: A Practical Guide | 8 | All 8 published |
+| AI for Recruitment: What's Actually Changing | 7 | 6 published, 1 skipped |
+| Understanding AI: From Zero to Informed | 6 | 5 published, 1 stuck in `draft` (quality-gate miss, never migrated — see Phase 14) |
+| AI Agents: Your Digital Coworkers | 7 | 6 published, 1 rejected |
+| AI Safety, Deepfakes & Ethics | 8 | 5 published, 3 rejected |
+| AI Creative Collaboration | 7 | 5 published, 2 rejected |
+| Creator Rights in the AI Era: Artists Fighting Back | 6 | 6 pending — new, generated 2026-09-02 |
+| AI in Your Workplace: What's Actually Changing in 2026 | 7 | 7 pending — new, generated 2026-09-02 |
+| Multimodal AI for Creators: Build Your Complete Content Stack | 7 | 7 pending — new, generated 2026-09-02 |
+| **Total** | **69** | **41 published, 20 pending, 6 rejected, 1 skipped, 1 draft** |
 
 ---
 
@@ -406,11 +414,12 @@ GitHub Actions Cron
 | "Week in AI" roundup | Monthly standalone roundup post | Add blueprint entry when ready |
 | Analytics feedback loop | GA4 data into topic selection | After 1,000+ monthly visitors |
 | Social listening | Monitor mentions, AI-generated replies | After social presence established |
-| Monthly auto-planning | Auto-generate new series blueprints from AI news trends | After current 27 topics used |
 | AI Content Engine as Product | Multi-tenant pipeline for other businesses | After proving on klinchapp.com |
 | Image-first landing page | `/ai-caption-from-image` page targeting image-input keyword cluster | Tier 1 SEO — next priority |
 | Leaflet.pub 404 resolution | Posts returning "post not found" — path format issue; awaiting @leaflet.pub DM response | Blocked on external response |
 | Leaflet duplicate record cleanup | One duplicate `chatgpt-claude-gemini-compared` record created during path-format PoC; one-off deleteRecord script needed | After path format confirmed |
+| `blog-planner.yml` manual `--force` trigger | Digest email tells the operator to run `gh workflow run blog-planner.yml --field force=true`, but `workflow_dispatch: {}` takes no inputs (errors on that exact command) and the workflow's `Run planner` step never passes `--force` through in any path. Found 2026-09-02, not yet fixed — a plain `workflow_dispatch` happens to work when pending count is already low, so it hasn't blocked anything so far. | Next time `--force` is actually needed with pending count > 10 |
+| Orphaned quality-gate-failed posts audit | `understanding-ai.json` post 5 (`ai-ethics-what-to-worry-about`) still carries the old ambiguous `"draft"` status (pre-PR #75) and was missed by that migration too, same as the `ai-agents-vs-chatbots` one fixed in Phase 14 — worth a full sweep for any other `"draft"` stragglers rather than fixing one at a time as they're noticed. | Next content-hygiene pass |
 
 ---
 
@@ -501,3 +510,31 @@ Goal: fix the 2026-08-11 missed publish slot and give quality-gate failures a cl
 - Feed that reasoning into the same-topic regeneration attempt (`qualityAttempt` loop, `blog-pipeline.mjs:862`) so a rejected draft's second try gets targeted direction ("your sourcing is too vague — name specific studies/data inline") instead of a blind retry. Current behavior: the regenerated attempt has no visibility into what specifically failed, which is the more likely explanation for why second attempts came back vaguer, not better, in both 2026-08-10 and 2026-08-11.
 
 **Decision 2026-08-12:** hold here. Next Prepare run is Thu 2026-08-13, next Publish is Fri 2026-08-15 — watch what actually happens under the new retry loop before building anything further on top of it.
+
+---
+
+### Phase 14: Planner Truncation Fix + Unpublished-Post URL Exposure Fix — COMPLETE 2026-09-02
+
+Goal: root-cause the 2026-09-01 empty-queue incident (no post would have gone out this week), fix it, and close a real content-exposure bug found while verifying an unrelated cleanup.
+
+**Trigger:** User reported the 2026-09-01 `blog-planner.yml` run failed (red run in GitHub Actions) and asked why.
+
+**Root cause, traced via GitHub Actions logs:** `generateBlueprints()` in `scripts/blog-planner.mjs` asked Haiku for 2-3 new series (6-8 posts each) in a single JSON array response, capped at `max_tokens: 4096`. The "existing series/topics — don't duplicate" list fed into that same prompt had grown from ~27 topics (2026-07-01, when this last ran successfully) to 49 (2026-09-01), pushing the response size up until it got cut off mid-value — `SyntaxError: Expected ',' or '}' after property value ... position 12478`. The built-in repair retry (ask the LLM to fix its own JSON) re-sent the same oversized ask with the same 4096-token cap and failed identically. The uncaught error then skipped `sendMonthlyDigest()` entirely — it sat *after* generation in the same `try` block — so the "queue is empty" warning email never sent either; the failure was silent apart from a red Actions run. Net effect: the topic queue sat at 0 pending with nothing to prepare for Thu 2026-09-03 or publish for Fri 2026-09-04.
+
+- [x] **14.1** `generateOneSeriesBlueprint()` replaces `generateBlueprints()` in `scripts/blog-planner.mjs` — one series generated per API call instead of 2-3 batched together. Each response is roughly a third the size, well clear of the token ceiling as the "don't duplicate" list keeps growing month over month. Later calls in the same run see the series already generated so far (in addition to existing content) so the 3 series can't duplicate each other. (PR #79)
+- [x] **14.2** `callPlannerModel()` checks the API's `stop_reason`. A response truncated by the token limit (`stop_reason === 'max_tokens'`) gets a bigger-budget retry (4096 → 8192), not a "please fix your JSON" repair pass — repairing a value cut off mid-write just reproduces the same truncation, which is exactly what happened on 2026-09-01. (PR #79)
+- [x] **14.3** Main loop generates up to 3 series individually now; one series failing (throws, returns `null`, or fails `validateBlueprint`) is logged and skipped, not fatal to the run — the other series still get generated and saved. (PR #79)
+- [x] **14.4** Generation now runs in its own try/catch so it can no longer prevent `sendMonthlyDigest()` from running. The digest — including its "queue is empty" alert — always sends now, plus a new alert (in the email body and subject line) when N series failed to generate this run. Job still exits non-zero on failure for GitHub Actions visibility, but only after the digest has already gone out. (PR #79)
+- [x] **14.5** Verified without spending real API credit or sending a real test email (RESEND_API_KEY is set locally, so the real function would have sent an actual email): unit-tested `parseBlueprintJson()` directly (valid JSON, trailing-comma cleanup, prose-wrapped JSON, truncated/unterminated JSON simulating the actual cutoff — 5/5 passed); mirrored the main loop's control-flow shape with stubbed calls, same isolation style as PR #75's own verification (9/9 scenarios passed, including "all 3 series fail but the digest still fires with the failure count" — the actual bug this closes); dry-ran the new digest HTML/subject-line generation with mock data.
+- [x] **14.6** Manually triggered the fixed planner (`gh workflow run blog-planner.yml`, no args — `workflow_dispatch` takes none) after merging PR #79. Ran clean: 3/3 series generated, 0 failures, 20 new pending topics saved and committed to `main`, digest email sent and confirmed received. New series: **Creator Rights in the AI Era** (6 posts), **AI in Your Workplace: What's Actually Changing in 2026** (7 posts), **Multimodal AI for Creators: Build Your Complete Content Stack** (7 posts). This unblocks Thu 2026-09-03 prepare and Fri 2026-09-04 publish, which would otherwise have been silent no-ops (`findNextTopic()` → `null` → "No pending topics found. All series are complete.", not a failure, just nothing produced).
+
+**Found and fixed incidentally, while investigating the above:**
+
+- [x] **14.7** `content/blog/ai-agents-vs-chatbots.mdx` (series `ai-agents-small-teams`, part 1) had been sitting at the old ambiguous `"draft"` status since 2026-07-02 — scored 6/10 on the quality gate and was missed by the PR #75 migration (which only covered 3 posts it found at the time). The "agents vs chatbots" framing it would have covered is already live in part 2's intro (published 2026-07-03), so the topic was redundant, not just administratively stuck. Migrated to `"rejected"` (post + blueprint), matching the PR #75 convention: kept, not deleted. (PR #77)
+- [x] **14.8** Real bug found while verifying 14.7 on a clean local dev server (killed a stray already-running dev process first — its cached response gave a false pass on the first check): `lib/blog.ts` `getPostBySlug()` — which powers the actual `/blog/[slug]` page — had no `status === 'published'` / publish-date check, unlike `getAllPosts()`/`parseMdxFile()`. Listings, RSS, and the sitemap correctly hid non-published posts, but any draft/rejected/scheduled post was fully renderable (HTTP 200, real title/description/OG metadata) at its direct URL despite being invisible everywhere else. Added the same gate `parseMdxFile()` already has. Verified on a fresh `next dev` run (cache cleared) against all 7 non-published posts site-wide, not just the one from 14.7 — all now 404; spot-checked published posts and blog index/series/sitemap unaffected. (PR #77)
+
+**Found, documented, not yet fixed** (see Deferred Items table above):
+- `blog-planner.yml`'s manual `--force` trigger path is non-functional — `workflow_dispatch: {}` takes no inputs and the workflow step never passes `--force` through regardless. Didn't block 14.6 (pending count was already low enough to trigger generation without it) but will need fixing before it's ever actually needed.
+- `understanding-ai.json` post 5 (`ai-ethics-what-to-worry-about`) has the same old `"draft"` status as 14.7 — same root cause, not yet migrated. Worth a full sweep rather than fixing one at a time as they're noticed.
+
+**Not part of this PR:** none of the residual root-cause work parked at the end of Phase 13 (scorer `reasoning` field, feeding it into regeneration) was touched this session — unrelated to the planner/exposure bugs fixed here.
