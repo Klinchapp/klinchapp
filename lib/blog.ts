@@ -109,6 +109,13 @@ export function getPostBySlug(slug: string): BlogPost | null {
   const { data, content } = matter(raw)
   const stats = readingTime(content)
 
+  // Same gate as parseMdxFile()/getAllPosts(): draft/rejected/scheduled posts
+  // must not be directly viewable by URL just because the file exists.
+  if (data.status !== 'published') return null
+
+  const publishDate = new Date(data.publishedAt)
+  if (publishDate > new Date()) return null
+
   return {
     slug: data.slug || slug,
     title: data.title,
