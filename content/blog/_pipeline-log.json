@@ -4024,5 +4024,105 @@
     "stage": "publish",
     "file": "ai-transparency-consent-demand.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-09-03T13:34:58.544Z",
+    "stage": "prepare",
+    "series": "ai-workplace-transformation-2026",
+    "post": "ai-acceleration-speed-2026",
+    "title": "The AI Acceleration Nobody's Talking About: Why 2026 Speed Matters",
+    "status": "rejected",
+    "qualityScore": 4,
+    "scores": {
+      "clarity": 7,
+      "actionability": 5,
+      "engagement": 6,
+      "accuracy": 3,
+      "overall": 4
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20628,
+        "tokens_in": 4078,
+        "tokens_out": 1883
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15397,
+        "tokens_in": 2055,
+        "tokens_out": 1268
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17036,
+        "tokens_in": 1520,
+        "tokens_out": 1269
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1070,
+        "tokens_in": 1427,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20213,
+        "tokens_in": 4078,
+        "tokens_out": 1649
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15385,
+        "tokens_in": 1821,
+        "tokens_out": 1199
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17092,
+        "tokens_in": 1451,
+        "tokens_out": 1274
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1139,
+        "tokens_in": 1432,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13636,
+        "tokens_in": 1797,
+        "tokens_out": 714
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1028,
+        "tokens_in": 261,
+        "tokens_out": 37
+      }
+    ]
   }
 ]
