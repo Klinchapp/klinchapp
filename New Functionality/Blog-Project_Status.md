@@ -1,6 +1,6 @@
 # Klinchapp Autonomous AI Blog Engine - Project Status
 
-**Last Updated:** 2026-09-02 (Phase 14 — planner truncation fix + unpublished-post URL exposure fix)
+**Last Updated:** 2026-09-04 (Phase 15 — WordPress syndication blocked + social-snippet repair-retry & no-fabrication fix)
 **Project:** Autonomous AI Blog Engine for klinchapp.com
 **PRD:** [klinchapp_ai_blog_prd.pdf](./klinchapp_ai_blog_prd.pdf)
 **Start Date:** 2026-04-16
@@ -27,6 +27,9 @@
 - [#75 - Retry fallback on quality rejection, add rejected status](https://github.com/Klinchapp/klinchapp/pull/75) (merged 2026-08-12)
 - [#77 - Close direct-URL exposure for unpublished posts; reject stale draft](https://github.com/Klinchapp/klinchapp/pull/77) (merged 2026-09-02)
 - [#79 - Generate series one at a time to stop planner truncation](https://github.com/Klinchapp/klinchapp/pull/79) (merged 2026-09-02)
+- [#81 - Deactivate WordPress syndication (account blocked for spamming)](https://github.com/Klinchapp/klinchapp/pull/81) (merged 2026-09-04)
+- [#82 - Regenerate degenerate social snippets for best-ai-tools-workplace-2026](https://github.com/Klinchapp/klinchapp/pull/82) (merged 2026-09-04)
+- [#83 - Repair-retry + no-fabrication rule for social snippets](https://github.com/Klinchapp/klinchapp/pull/83) (merged 2026-09-04)
 
 ---
 
@@ -400,9 +403,9 @@ GitHub Actions Cron
 | Day | Time (UTC) | Action | Status |
 |-----|-----------|--------|--------|
 | Monday | 9:00 AM | Prepare post (research + write + verify) | Automated |
-| Tuesday | 9:00 AM | Publish post (go live + email notification + syndicate to Blogger + WordPress.com) | Automated |
+| Tuesday | 9:00 AM | Publish post (go live + email notification + syndicate to Blogger, Leaflet, Bluesky — ~~WordPress.com~~ deactivated 2026-09-04, see Phase 15) | Automated |
 | Thursday | 9:00 AM | Prepare post (research + write + verify) | Automated |
-| Friday | 9:00 AM | Publish post (go live + email notification + syndicate to Blogger + WordPress.com) | Automated |
+| Friday | 9:00 AM | Publish post (go live + email notification + syndicate to Blogger, Leaflet, Bluesky — ~~WordPress.com~~ deactivated 2026-09-04, see Phase 15) | Automated |
 
 ---
 
@@ -538,3 +541,28 @@ Goal: root-cause the 2026-09-01 empty-queue incident (no post would have gone ou
 - `understanding-ai.json` post 5 (`ai-ethics-what-to-worry-about`) has the same old `"draft"` status as 14.7 — same root cause, not yet migrated. Worth a full sweep rather than fixing one at a time as they're noticed.
 
 **Not part of this PR:** none of the residual root-cause work parked at the end of Phase 13 (scorer `reasoning` field, feeding it into regeneration) was touched this session — unrelated to the planner/exposure bugs fixed here.
+
+---
+
+### Phase 15: WordPress Syndication Blocked + Social-Snippet Repair-Retry & No-Fabrication Fix — COMPLETE 2026-09-04
+
+Goal: respond to WordPress.com blocking the syndication account, and root-cause + fix a live post whose social media snippets had silently degraded to generic filler text.
+
+**Trigger:** User received the publish confirmation email for `best-ai-tools-workplace-2026` (published via the normal Tue/Fri cadence, later than usual — see the GitHub Actions scheduling-delay investigation below) and separately noticed a WordPress failure-alert email, then flagged that the post's social snippets looked wrong — identical text across LinkedIn/Instagram/Facebook, nothing real for X or TikTok.
+
+**WordPress.com block:**
+- [x] **15.1** Confirmed via the publish run's own log: `Syndicate to WordPress` failed with `403 {"error":"unauthorized","message":"API calls to this endpoint have been disabled."}` — not a token expiry or rate limit, a deliberate disablement. User confirmed directly: WordPress.com blocked the account for spamming. Confirmed new, not a slow-building issue — 2026-08-28's publish synced to WordPress cleanly.
+- [x] **15.2** Deactivated the `Syndicate to WordPress` step in `.github/workflows/blog-publish.yml` via `if: false` rather than deleting it — the step was still firing on every publish against a permanently-blocked endpoint, wasting a failure-alert email each time for no benefit. Re-enabling later (if the block is ever resolved directly with WordPress.com) is a one-line revert. **Not touched further — no attempt made to work around or restore access; that's a WordPress.com relationship matter, not an engineering one.** (PR #81)
+
+**GitHub Actions scheduling delay, investigated and resolved as "not our bug":**
+- [x] **15.3** Both the 2026-09-03 prepare and 2026-09-04 publish cron runs fired ~4.2-4.4 hours late (09:13/09:17 UTC configured, actually ran ~13:31-13:32 UTC). Checked whether this was blog-pipeline-specific: it wasn't — the two *other* scheduled workflows in the repo (Homepage Check, Regression) showed the same ~4.5h delay on the same two days, regardless of their own configured times. Checked GitHub's official status incident history directly (not just a summary page) — no declared "Incident with Actions" covers those two days specifically, so this couldn't be stated as an officially-confirmed platform incident. Corroborating (not proving) evidence: multiple current GitHub Community discussions independently describe the same shape of problem — "scheduled workflow drift reaching 4+ hours," described as a recent, worsening trend, persisting even after changing the cron minute (the existing off-the-hour mitigation in these workflows addresses a different, smaller, older version of this problem). **No fix applied** — the existing pipeline resilience (retry-fallback from PR #75, watchdog) absorbed the delay without missing the publish slot, and the user separately vetoed introducing the general fix-pattern discussed (external cron trigger service) after a first exploratory suggestion — not revisited this session.
+
+**Social-snippet degradation, root-caused and fixed:**
+- [x] **15.4** Confirmed via the 2026-09-04 publish run's actual log: `generateSocialSnippets()` (in `scripts/blog-pipeline.mjs`) got a malformed JSON response from the model — `Expected ',' or '}' after property value in JSON at position 2757`. **Precisely diagnosed as a different failure class than the Phase 14 planner truncation bug**, despite the superficial similarity — position 2757 is far short of the 2048-token/~6-8k-character ceiling, so this was a mid-response formatting slip, not the model running out of room. The function had zero repair-retry, so one bad response fell straight to a hardcoded fallback template dating to the blog engine's first commit (2026-04-17, confirmed via `git blame`) — Twitter/TikTok got just the bare title, LinkedIn/Instagram/Facebook all got the same raw `topicBrief` text pasted in verbatim with only the wrapper line differing.
+- [x] **15.5** Exported `generateSocialSnippets()` (was module-private) so it's reusable outside a full pipeline run, matching the existing pattern for `generateHookOnly()`/`HOOK_PROMPT_SECTION`. Built `scripts/backfill-social-snippets.mjs` — a targeted fix-up tool (`--only=slug`, no blanket regenerate-all mode) that sources `brief` from the matching series blueprint's `topicBrief` field, matching exactly what the live pipeline passes, not the post's meta description. Ran it for `best-ai-tools-workplace-2026`. (PR #82)
+- [x] **15.6** The raw regenerated output required a manual correction before being written: LinkedIn, Instagram, and Facebook all opened with fabricated primary-research framing — "I spent time with teams actually using AI," "We talked to real teams," "We checked in with teams" — none of which happened (Kira has no research/interview capability; the function only ever sees title + topicBrief). Caught before writing per [[feedback_no_fabrication]] discipline; substance kept, framing rewritten to not claim research that didn't occur. This also surfaced that the social-snippet prompt has no equivalent of `HOOK_PROMPT_SECTION`'s explicit FRESH CANVAS no-fabrication rule — the hook field for the same post, generated under that stricter rule, did not fabricate anything. (PR #82)
+- [x] **15.7** Closed both underlying gaps directly, not just the one post: added a repair-retry to `generateSocialSnippets()` (ask the model to fix its own broken JSON once before falling back — same pattern as the Phase 14 planner fix) and logs the first 500 characters of the raw response on a final failure (previously nothing was logged beyond the parse-error message, which is exactly why 15.4's actual broken JSON couldn't be inspected after the fact). Added an explicit DO NOT FABRICATE block to the prompt, adapted from `HOOK_PROMPT_SECTION`'s language. Verified two ways: a real re-generation for the same post checked against a fabrication-phrase wordlist (clean across all 6 fields, vs. 3/6 flagged pre-fix), and an isolated control-flow test with no real API calls (4 scenarios — valid-first-call, broken-then-repaired, both-broken-falls-back-cleanly, no-JSON-at-all — 5/5 passed), same verification style as the Phase 14 planner fix. (PR #83)
+
+**Verification discipline note:** localhost verification for 15.5/15.6 followed the same clean-server protocol established in Phase 14 (14.8) — checked for and would have killed any stray already-running `next dev` process, cleared `.next`, confirmed the regenerated content actually rendered correctly on the post page and the blog index carousel before committing.
+
+**Not part of this phase:** no attempt made to restore WordPress.com access, no general fix applied for the GitHub Actions scheduling delay (see 15.3), and the `--force` workflow flag / `understanding-ai.json` orphaned draft from Phase 14's deferred list remain untouched.
