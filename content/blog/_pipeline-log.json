@@ -4124,5 +4124,279 @@
         "tokens_out": 37
       }
     ]
+  },
+  {
+    "date": "2026-09-04T13:35:17.558Z",
+    "stage": "prepare",
+    "series": "ai-workplace-transformation-2026",
+    "post": "workplace-skills-gap-ai",
+    "title": "The Skills Gap Is Real: What Employers Actually Expect in 2026",
+    "status": "rejected",
+    "qualityScore": 6,
+    "scores": {
+      "clarity": 8,
+      "actionability": 7,
+      "engagement": 8,
+      "accuracy": 5,
+      "overall": 6
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15903,
+        "tokens_in": 3952,
+        "tokens_out": 1324
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10331,
+        "tokens_in": 1496,
+        "tokens_out": 1105
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 7851,
+        "tokens_in": 1357,
+        "tokens_out": 1150
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1094,
+        "tokens_in": 1308,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15770,
+        "tokens_in": 3952,
+        "tokens_out": 1450
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10565,
+        "tokens_in": 1622,
+        "tokens_out": 1312
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15649,
+        "tokens_in": 1564,
+        "tokens_out": 1401
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 983,
+        "tokens_in": 1336,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9562,
+        "tokens_in": 1778,
+        "tokens_out": 842
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 980,
+        "tokens_in": 270,
+        "tokens_out": 33
+      }
+    ]
+  },
+  {
+    "date": "2026-09-04T13:37:54.264Z",
+    "stage": "prepare",
+    "series": "ai-workplace-transformation-2026",
+    "post": "cognitive-offloading-ai-thinking",
+    "title": "Cognitive Offloading: When AI Helps Your Brain, and When It Hurts It",
+    "status": "rejected",
+    "qualityScore": 6,
+    "scores": {
+      "clarity": 7,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 4,
+      "overall": 6
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24874,
+        "tokens_in": 4139,
+        "tokens_out": 2093
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14369,
+        "tokens_in": 2265,
+        "tokens_out": 1523
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19480,
+        "tokens_in": 1775,
+        "tokens_out": 1599
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 877,
+        "tokens_in": 1739,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 21138,
+        "tokens_in": 4139,
+        "tokens_out": 1702
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15826,
+        "tokens_in": 1874,
+        "tokens_out": 1471
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16666,
+        "tokens_in": 1723,
+        "tokens_out": 1515
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 4148,
+        "tokens_in": 1673,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11130,
+        "tokens_in": 1798,
+        "tokens_out": 843
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 988,
+        "tokens_in": 280,
+        "tokens_out": 37
+      }
+    ]
+  },
+  {
+    "date": "2026-09-04T13:39:57.376Z",
+    "stage": "prepare",
+    "series": "ai-workplace-transformation-2026",
+    "post": "best-ai-tools-workplace-2026",
+    "title": "The AI Tools Actually Winning in Your Office Right Now",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24823,
+        "tokens_in": 4149,
+        "tokens_out": 2142
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20899,
+        "tokens_in": 2314,
+        "tokens_out": 1772
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24500,
+        "tokens_in": 2024,
+        "tokens_out": 1954
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1176,
+        "tokens_in": 2073,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11095,
+        "tokens_in": 1795,
+        "tokens_out": 834
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 988,
+        "tokens_in": 272,
+        "tokens_out": 38
+      }
+    ]
+  },
+  {
+    "date": "2026-09-04T13:39:57.379Z",
+    "stage": "publish",
+    "file": "best-ai-tools-workplace-2026.mdx",
+    "status": "published"
   }
 ]
