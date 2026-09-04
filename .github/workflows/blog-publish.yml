@@ -64,7 +64,12 @@ jobs:
         run: node scripts/syndicate-to-blogger.mjs
 
       - name: Syndicate to WordPress
-        if: steps.commit.outputs.published == 'true'
+        # Deactivated 2026-09-04 — WordPress.com has blocked the account for
+        # spamming, endpoint returns 403 "API calls to this endpoint have
+        # been disabled." Re-enable by restoring the condition to
+        # `steps.commit.outputs.published == 'true'` once resolved with
+        # WordPress.com directly.
+        if: false
         continue-on-error: true
         env:
           WORDPRESS_ACCESS_TOKEN: ${{ secrets.WORDPRESS_ACCESS_TOKEN }}
