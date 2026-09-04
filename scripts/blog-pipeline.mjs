@@ -645,7 +645,7 @@ Return ONLY the hook text, no quotes, no labels, no JSON, no preamble.`
   return { hook, ...result }
 }
 
-async function generateSocialSnippets(title, brief, slug) {
+export async function generateSocialSnippets(title, brief, slug) {
   const postUrl = `https://www.klinchapp.com/blog/${slug}`
 
   const userPrompt = `Generate social media snippets to promote this blog post:
