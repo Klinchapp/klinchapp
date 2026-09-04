@@ -654,6 +654,8 @@ Title: "${title}"
 Summary: ${brief}
 URL: ${postUrl}
 
+DO NOT FABRICATE: base every snippet ONLY on the title and summary above — you have not read the full post. Never claim or imply first-hand research you didn't do ("I spent time with teams...", "We talked to real teams...", "We checked in with...", "Our research shows...") unless the summary explicitly says so. Never invent a specific statistic, dollar figure, percentage, date, or quote that isn't stated in the summary above, even as a plausible-sounding example. If a snippet needs a reason something matters, frame it as commentary on the topic, not as a claim of original research or a fact you're not certain of.
+
 Generate a snippet for EACH platform. Follow these rules strictly:
 
 X/TWITTER (80-130 chars total — short enough to fit a blog card AND optimised for engagement; tweets under ~100 chars outperform longer ones in 2026):
@@ -711,23 +713,47 @@ Return ONLY a valid JSON object with this exact structure, no other text:
     2048
   )
 
-  try {
-    const jsonMatch = result.text.match(/\{[\s\S]*\}/)
+  const tryParseSnippets = (raw) => {
+    const jsonMatch = raw.match(/\{[\s\S]*\}/)
     if (!jsonMatch) throw new Error('No JSON found')
-    const snippets = JSON.parse(jsonMatch[0])
+    return JSON.parse(jsonMatch[0])
+  }
+
+  try {
+    const snippets = tryParseSnippets(result.text)
     return { snippets, ...result }
-  } catch (err) {
-    log(`  ⚠️ Failed to parse social snippets: ${err.message}`)
-    return {
-      snippets: {
-        twitter: `New post: ${title}`,
-        hook: title.length <= 100 ? title : title.substring(0, 97) + '…',
-        linkedin: `New post on the Klinchapp blog: ${title}\n\n${brief}`,
-        instagram: `New post 📝 ${title}\n\n${brief}\n\nLink in bio`,
-        facebook: `New on the Klinchapp blog: ${title}\n\n${brief}`,
-        tiktok: `${title} ✨ Link in bio`,
-      },
-      ...result,
+  } catch (firstErr) {
+    // Retry once: ask the model to fix its own broken JSON before giving up.
+    // Most parse failures here are a formatting slip mid-response, not a
+    // token-budget truncation (that class of bug lives in the planner and
+    // was fixed separately) — a same-size repair call is appropriate.
+    log(`  ⚠️ Failed to parse social snippets: ${firstErr.message}, asking the model to fix it...`)
+    try {
+      const fixResult = await callWithFailover(
+        'You are a social media content specialist. Return only valid JSON.',
+        `The following JSON has a syntax error. Fix it and return ONLY the corrected JSON object, nothing else:\n\n${result.text}`,
+        2560
+      )
+      const snippets = tryParseSnippets(fixResult.text)
+      log(`  ✅ Social snippets recovered after JSON fix`)
+      return { snippets, ...fixResult }
+    } catch (secondErr) {
+      // Log the raw response so a future failure is diagnosable instead of
+      // a mystery — this is exactly the gap that made the 2026-09-04
+      // incident hard to root-cause after the fact.
+      log(`  ❌ Social snippets failed even after fix attempt: ${secondErr.message}`)
+      log(`  Raw response (first 500 chars): ${result.text.slice(0, 500)}`)
+      return {
+        snippets: {
+          twitter: `New post: ${title}`,
+          hook: title.length <= 100 ? title : title.substring(0, 97) + '…',
+          linkedin: `New post on the Klinchapp blog: ${title}\n\n${brief}`,
+          instagram: `New post 📝 ${title}\n\n${brief}\n\nLink in bio`,
+          facebook: `New on the Klinchapp blog: ${title}\n\n${brief}`,
+          tiktok: `${title} ✨ Link in bio`,
+        },
+        ...result,
+      }
     }
   }
 }
