@@ -4398,5 +4398,73 @@
     "stage": "publish",
     "file": "best-ai-tools-workplace-2026.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-09-07T15:03:26.973Z",
+    "stage": "prepare",
+    "series": "ai-workplace-transformation-2026",
+    "post": "using-ai-workplace-without-burnout",
+    "title": "How to Actually Use AI Without Burning Out (Or Getting Caught Behind)",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 5,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15504,
+        "tokens_in": 4053,
+        "tokens_out": 1193
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9330,
+        "tokens_in": 1365,
+        "tokens_out": 1040
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14368,
+        "tokens_in": 1292,
+        "tokens_out": 1034
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1093,
+        "tokens_in": 1119,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10439,
+        "tokens_in": 1935,
+        "tokens_out": 810
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1030,
+        "tokens_in": 277,
+        "tokens_out": 39
+      }
+    ]
   }
 ]
