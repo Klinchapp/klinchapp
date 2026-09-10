@@ -4472,5 +4472,105 @@
     "stage": "publish",
     "file": "using-ai-workplace-without-burnout.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-09-10T13:36:52.973Z",
+    "stage": "prepare",
+    "series": "ai-workplace-transformation-2026",
+    "post": "ai-agents-workplace-impact",
+    "title": "AI Agents Are Coming to Your Job: What That Actually Means",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 7,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22929,
+        "tokens_in": 4164,
+        "tokens_out": 1742
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16998,
+        "tokens_in": 1914,
+        "tokens_out": 1440
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 21212,
+        "tokens_in": 1692,
+        "tokens_out": 1444
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1039,
+        "tokens_in": 1602,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 30421,
+        "tokens_in": 4164,
+        "tokens_out": 2597
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24297,
+        "tokens_in": 2769,
+        "tokens_out": 2074
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16799,
+        "tokens_in": 2326,
+        "tokens_out": 1859
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1008,
+        "tokens_in": 1743,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10967,
+        "tokens_in": 1934,
+        "tokens_out": 905
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1051,
+        "tokens_in": 265,
+        "tokens_out": 37
+      }
+    ]
   }
 ]
