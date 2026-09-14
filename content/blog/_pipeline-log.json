@@ -4578,5 +4578,73 @@
     "stage": "publish",
     "file": "ai-agents-workplace-impact.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-09-14T15:53:45.056Z",
+    "stage": "prepare",
+    "series": "ai-workplace-transformation-2026",
+    "post": "workplace-ai-readiness-audit",
+    "title": "Your Workplace AI Readiness: A 30-Day Audit for Employees and Managers",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 7,
+      "accuracy": 5,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18672,
+        "tokens_in": 4047,
+        "tokens_out": 1453
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12275,
+        "tokens_in": 1625,
+        "tokens_out": 1235
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12388,
+        "tokens_in": 1487,
+        "tokens_out": 1196
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 972,
+        "tokens_in": 1270,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10629,
+        "tokens_in": 1950,
+        "tokens_out": 852
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 861,
+        "tokens_in": 280,
+        "tokens_out": 39
+      }
+    ]
   }
 ]
