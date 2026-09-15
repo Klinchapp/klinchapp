@@ -4646,5 +4646,11 @@
         "tokens_out": 39
       }
     ]
+  },
+  {
+    "date": "2026-09-15T14:20:41.232Z",
+    "stage": "publish",
+    "file": "workplace-ai-readiness-audit.mdx",
+    "status": "published"
   }
 ]
