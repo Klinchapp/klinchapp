@@ -4652,5 +4652,73 @@
     "stage": "publish",
     "file": "workplace-ai-readiness-audit.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-09-17T14:17:54.844Z",
+    "stage": "prepare",
+    "series": "creator-rights-ai-era",
+    "post": "how-ai-trained-on-creator-work",
+    "title": "Your Work Without Permission: How AI Training Scraped Creator Content",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 6,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 27109,
+        "tokens_in": 4030,
+        "tokens_out": 2165
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18276,
+        "tokens_in": 2337,
+        "tokens_out": 1744
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17861,
+        "tokens_in": 1996,
+        "tokens_out": 1663
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 700,
+        "tokens_in": 1718,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8949,
+        "tokens_in": 1913,
+        "tokens_out": 763
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1392,
+        "tokens_in": 257,
+        "tokens_out": 35
+      }
+    ]
   }
 ]
