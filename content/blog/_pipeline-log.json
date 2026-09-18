@@ -4720,5 +4720,11 @@
         "tokens_out": 35
       }
     ]
+  },
+  {
+    "date": "2026-09-18T13:37:10.235Z",
+    "stage": "publish",
+    "file": "how-ai-trained-on-creator-work.mdx",
+    "status": "published"
   }
 ]
