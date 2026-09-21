@@ -4726,5 +4726,105 @@
     "stage": "publish",
     "file": "how-ai-trained-on-creator-work.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-09-21T15:55:08.521Z",
+    "stage": "prepare",
+    "series": "creator-rights-ai-era",
+    "post": "ai-generated-content-creator-compensation",
+    "title": "The Money Question: Who Profits When AI Uses Your Art?",
+    "status": "rejected",
+    "qualityScore": 6,
+    "scores": {
+      "clarity": 7,
+      "actionability": 5,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 6
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22302,
+        "tokens_in": 4023,
+        "tokens_out": 1755
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16198,
+        "tokens_in": 1927,
+        "tokens_out": 1352
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15961,
+        "tokens_in": 1604,
+        "tokens_out": 1391
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 826,
+        "tokens_in": 1549,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 21080,
+        "tokens_in": 4023,
+        "tokens_out": 1766
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17993,
+        "tokens_in": 1938,
+        "tokens_out": 1481
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22535,
+        "tokens_in": 1733,
+        "tokens_out": 1825
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 3201,
+        "tokens_in": 1983,
+        "tokens_out": 256
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10151,
+        "tokens_in": 1907,
+        "tokens_out": 843
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 841,
+        "tokens_in": 253,
+        "tokens_out": 29
+      }
+    ]
   }
 ]
