@@ -4826,5 +4826,179 @@
         "tokens_out": 29
       }
     ]
+  },
+  {
+    "date": "2026-09-22T14:05:54.254Z",
+    "stage": "prepare",
+    "series": "creator-rights-ai-era",
+    "post": "copyright-law-ai-training-gap",
+    "title": "Why Current Copyright Law Wasn't Built for This Problem",
+    "status": "rejected",
+    "qualityScore": 6,
+    "scores": {
+      "clarity": 7,
+      "actionability": 5,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 6
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 22250,
+        "tokens_in": 4198,
+        "tokens_out": 1886
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16598,
+        "tokens_in": 2058,
+        "tokens_out": 1424
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15063,
+        "tokens_in": 1676,
+        "tokens_out": 1427
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 766,
+        "tokens_in": 1565,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 25339,
+        "tokens_in": 4198,
+        "tokens_out": 2133
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15887,
+        "tokens_in": 2305,
+        "tokens_out": 1616
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20964,
+        "tokens_in": 1868,
+        "tokens_out": 1724
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 869,
+        "tokens_in": 1882,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10912,
+        "tokens_in": 1915,
+        "tokens_out": 848
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 854,
+        "tokens_in": 251,
+        "tokens_out": 26
+      }
+    ]
+  },
+  {
+    "date": "2026-09-22T14:06:56.370Z",
+    "stage": "prepare",
+    "series": "creator-rights-ai-era",
+    "post": "creator-ai-legal-cases-2026",
+    "title": "Right Now: Which Creators Are Winning Legal Cases and What Changed?",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 5,
+      "engagement": 8,
+      "accuracy": 7,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14537,
+        "tokens_in": 4108,
+        "tokens_out": 1162
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6060,
+        "tokens_in": 1334,
+        "tokens_out": 832
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6075,
+        "tokens_in": 1084,
+        "tokens_out": 875
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 656,
+        "tokens_in": 1033,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8171,
+        "tokens_in": 1919,
+        "tokens_out": 708
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 940,
+        "tokens_in": 260,
+        "tokens_out": 37
+      }
+    ]
+  },
+  {
+    "date": "2026-09-22T14:06:56.373Z",
+    "stage": "publish",
+    "file": "creator-ai-legal-cases-2026.mdx",
+    "status": "published"
   }
 ]
