@@ -5000,5 +5000,73 @@
     "stage": "publish",
     "file": "creator-ai-legal-cases-2026.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-09-24T14:12:13.515Z",
+    "stage": "prepare",
+    "series": "creator-rights-ai-era",
+    "post": "protect-your-work-from-ai-training",
+    "title": "3 Tools and Tactics Creators Can Use Today to Protect Their Work",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 7,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14287,
+        "tokens_in": 4103,
+        "tokens_out": 1147
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 7126,
+        "tokens_in": 1319,
+        "tokens_out": 1076
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 6708,
+        "tokens_in": 1328,
+        "tokens_out": 1100
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1074,
+        "tokens_in": 1185,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 7970,
+        "tokens_in": 1916,
+        "tokens_out": 685
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 698,
+        "tokens_in": 281,
+        "tokens_out": 33
+      }
+    ]
   }
 ]
