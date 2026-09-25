@@ -5068,5 +5068,11 @@
         "tokens_out": 33
       }
     ]
+  },
+  {
+    "date": "2026-09-25T14:37:28.761Z",
+    "stage": "publish",
+    "file": "protect-your-work-from-ai-training.mdx",
+    "status": "published"
   }
 ]
