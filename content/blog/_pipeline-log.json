@@ -5074,5 +5074,73 @@
     "stage": "publish",
     "file": "protect-your-work-from-ai-training.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-09-28T17:38:43.537Z",
+    "stage": "prepare",
+    "series": "creator-rights-ai-era",
+    "post": "should-creators-use-generative-ai",
+    "title": "Should You Use AI to Create? An Honest Framework for Creators in 2026",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17755,
+        "tokens_in": 4080,
+        "tokens_out": 1342
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11557,
+        "tokens_in": 1514,
+        "tokens_out": 1062
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12259,
+        "tokens_in": 1314,
+        "tokens_out": 1087
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 923,
+        "tokens_in": 1245,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8959,
+        "tokens_in": 1922,
+        "tokens_out": 706
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 857,
+        "tokens_in": 266,
+        "tokens_out": 28
+      }
+    ]
   }
 ]
