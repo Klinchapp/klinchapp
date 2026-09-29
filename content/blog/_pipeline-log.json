@@ -5142,5 +5142,11 @@
         "tokens_out": 28
       }
     ]
+  },
+  {
+    "date": "2026-09-29T15:54:28.822Z",
+    "stage": "publish",
+    "file": "should-creators-use-generative-ai.mdx",
+    "status": "published"
   }
 ]
