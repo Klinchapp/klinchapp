@@ -5148,5 +5148,73 @@
     "stage": "publish",
     "file": "should-creators-use-generative-ai.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-10-01T16:25:13.901Z",
+    "stage": "prepare",
+    "series": "multimodal-ai-toolkit-creators",
+    "post": "multimodal-ai-creators-explained",
+    "title": "Multimodal AI Explained: Why Text + Voice + Video Matters for Creators",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 8,
+      "accuracy": 7,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 25330,
+        "tokens_in": 4038,
+        "tokens_out": 2276
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19893,
+        "tokens_in": 2448,
+        "tokens_out": 2211
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 27644,
+        "tokens_in": 2463,
+        "tokens_out": 2471
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1108,
+        "tokens_in": 2583,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10131,
+        "tokens_in": 1941,
+        "tokens_out": 838
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 846,
+        "tokens_in": 257,
+        "tokens_out": 34
+      }
+    ]
   }
 ]
