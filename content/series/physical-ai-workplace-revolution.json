@@ -1,0 +1,80 @@
+{
+  "slug": "physical-ai-workplace-revolution",
+  "title": "Physical AI and Robotics: Your Industry's Next Workforce Transformation",
+  "description": "This series explores how AI-powered robots and physical automation systems are entering real-world industries right now—not in some distant future. For business owners, managers, and workers, we break down what humanoid robots actually do, how they're changing manufacturing and logistics, what they cost, and most importantly: what it means for your job, your team, and your business decisions in 2026.",
+  "totalPosts": 7,
+  "tags": [
+    "physical-ai",
+    "robotics",
+    "automation",
+    "workplace-change",
+    "small-business",
+    "manufacturing",
+    "logistics"
+  ],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "Physical AI Explained: What Happens When AI Leaves the Computer",
+      "topicBrief": "Introduce physical AI as the bridge between digital intelligence and real-world action. Explain the difference between digital AI (chatbots, coding tools) and physical AI (robots, autonomous systems). Use concrete examples: Boston Dynamics Atlas, Tesla Optimus, warehouse sorting robots. This foundational piece sets up the series by making clear why physical AI is fundamentally different from what readers already know about ChatGPT or AI agents.",
+      "targetSlug": "what-is-physical-ai-explained",
+      "targetKeyword": "what is physical AI",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "Humanoid Robots Are Already Working: Here's What They Actually Do",
+      "topicBrief": "Move beyond hype to what humanoid robots are doing right now in manufacturing, logistics, and warehouses. Focus on real deployments: Tesla Optimus in factories, Boston Dynamics Stretch in warehouses, Sanctuary Cabot in manufacturing. Include costs (rough pricing), cycle times, and what tasks they handle well vs. tasks humans still do better. Use this post to show that this isn't coming—it's here, and companies are already making ROI calculations.",
+      "targetSlug": "humanoid-robots-real-work-2026",
+      "targetKeyword": "humanoid robots manufacturing 2026",
+      "format": "research-breakdown",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "Autonomous Delivery and Warehouse Automation: The Supply Chain You'll Actually See",
+      "topicBrief": "Cover the physical AI systems already reshaping logistics: autonomous delivery robots (Waymo for goods, Amazon Scout), warehouse sorting robots (Ocado, Symbotic), autonomous forklifts, and last-mile delivery drones. Explain what's in pilot, what's scaling, and where regulations are actually blocking vs. enabling. This is the physical AI most small business owners and employees will interact with first—make it concrete and local.",
+      "targetSlug": "autonomous-delivery-warehouse-robots",
+      "targetKeyword": "autonomous delivery robots warehouses",
+      "format": "roundup",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "Physical AI in Healthcare and Hazardous Work: Where Robots Solve Real Problems",
+      "topicBrief": "Shift tone to show where physical AI isn't replacing workers—it's solving dangerous or physically impossible tasks. Cover surgical robots (da Vinci, newer AI-assisted systems), disinfection robots in hospitals, bomb-disposal robots, nuclear facility robots, and deep-sea inspection systems. This post neutralizes the 'robots are taking our jobs' anxiety by showing domains where physical AI is actually extending human capability and reducing harm. Include real ROI examples.",
+      "targetSlug": "robots-healthcare-dangerous-work",
+      "targetKeyword": "medical robots healthcare surgery",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "The Real Cost of Robot Deployment: Will It Actually Pay for Your Business?",
+      "topicBrief": "Get specific on total cost of ownership: hardware, installation, integration, training, maintenance, downtime, and software licensing. Compare costs for different business sizes and use cases (small manufacturing vs. large warehouses). Include ROI calculators and break-even timelines. Address the hidden costs nobody talks about: space reconfiguration, workforce retraining, insurance, and integration with existing systems. Make this practical enough that a small business owner or operations manager can estimate whether physical AI makes sense for their operation.",
+      "targetSlug": "robot-deployment-cost-roi",
+      "targetKeyword": "cost of industrial robots ROI",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "What Physical AI Actually Means for Your Job: Honest Questions Answered",
+      "topicBrief": "Address the core anxiety directly and honestly: will physical AI eliminate my job, what roles are actually at risk, which are safer, and how do I prepare? Cover which job categories are most affected (warehouse logistics, manufacturing assembly, dangerous tasks) and which are enhanced rather than replaced (technicians, supervisors, maintenance). Include honest data on job displacement timelines and transition strategies. Acknowledge the disruption while being realistic about what's actually happening vs. hype.",
+      "targetSlug": "physical-ai-jobs-workplace-impact",
+      "targetKeyword": "will robots replace jobs 2026",
+      "format": "opinion",
+      "status": "pending"
+    },
+    {
+      "order": 7,
+      "topicTitle": "Planning for Physical AI in Your Workplace: A 90-Day Action Plan for Managers",
+      "topicBrief": "Give managers and business owners a practical roadmap: how to audit current operations for physical AI readiness, how to pilot a system responsibly, how to communicate with your team, and how to plan workforce transitions. Include checklists for assessing robot-ready tasks, cost-benefit frameworks, and steps for securing buy-in from leadership and employees. This concludes the series with actionable next steps for someone who's been informed through the previous posts.",
+      "targetSlug": "physical-ai-implementation-plan",
+      "targetKeyword": "how to implement robots in business",
+      "format": "how-to-guide",
+      "status": "pending"
+    }
+  ]
+}

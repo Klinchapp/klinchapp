@@ -1,0 +1,79 @@
+{
+  "slug": "ai-coding-tools-developers",
+  "title": "AI Coding Tools: From Assistant to Full Developer",
+  "description": "A practical series for developers and technical founders evaluating AI coding tools in 2026. This series cuts through the hype to compare real tools (GitHub Copilot, Cursor, Claude, DeepSeek), explain when AI-assisted coding actually saves time versus when it slows you down, explore the ethical questions around AI-generated code ownership, and help you build sustainable workflows that leverage AI without replacing human judgment.",
+  "totalPosts": 7,
+  "tags": [
+    "AI tools",
+    "software development",
+    "coding",
+    "productivity",
+    "developer tools",
+    "technical"
+  ],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "GitHub Copilot vs. Cursor vs. Claude: Which AI Coding Tool Wins in 2026",
+      "topicBrief": "Compare the three dominant AI coding assistants head-to-head: pricing, codebase awareness, speed, and real-world use cases. Include specific examples of when Cursor's codebase context beats Copilot's speed, when Claude excels at architecture decisions, and how DeepSeek's open-source alternative fits budget-conscious teams. Lead with a direct answer paragraph naming which tool wins for which developer profile.",
+      "targetSlug": "ai-coding-tools-comparison-2026",
+      "targetKeyword": "best AI coding tools 2026",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "Setting Up Your First AI Coding Workflow: A 30-Minute Guide",
+      "topicBrief": "Step-by-step practical setup for a developer new to AI assistance. Cover installation, configuration for a real project, setting guardrails (disabling suggestions in security-critical code), and the first workflow loop (prompting, reviewing, committing). Use a simple real project as the example (e.g., a Node API or React component). Make it actionable enough that someone can follow along in their IDE.",
+      "targetSlug": "setup-ai-coding-workflow-30-minutes",
+      "targetKeyword": "how to set up AI coding tools",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "The Code Quality Question: When AI Speeds You Up (And When It Doesn't)",
+      "topicBrief": "Analyze the real productivity gains and tradeoffs from AI coding. Present data on time savings for boilerplate/scaffolding vs. time costs for review/refactoring. Argue that AI-generated code is faster to write but requires skilled review—less experienced developers may ship bugs faster. Include honest assessment of AI hallucinations in code, naming specific failure modes (incorrect API calls, deprecated methods, security oversights). Conclude that AI coding works best for experienced developers who can catch mistakes.",
+      "targetSlug": "ai-coding-quality-tradeoffs",
+      "targetKeyword": "does AI coding actually improve code quality",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "Who Owns AI-Generated Code? The Legal and Ethical Reality",
+      "topicBrief": "Explore the murky copyright and licensing landscape for code written with AI assistance. Cover: GitHub Copilot's legal indemnification vs. open-source concerns, license contamination (when AI training data includes GPL code), contractual liability if AI-generated code infringes, and practical guidance (document your prompts, use tools with indemnification, avoid copy-pasting snippets from training data). Take a clear stance: developers must understand their liability, and teams should have a policy. This is not just legal—it's an ethics issue.",
+      "targetSlug": "ai-generated-code-ownership-liability",
+      "targetKeyword": "AI generated code copyright ownership",
+      "format": "opinion",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "AI Agents Are Coding Now: What It Means for Developers in 2026",
+      "topicBrief": "Analyze the shift from copilot (human writes, AI assists) to autonomous agents (AI writes, human reviews). Reference Devin, Cognition, and similar full-stack coding agents. Present research on enterprise adoption (Gartner, McKinsey predictions). Discuss the real threat: not that AI replaces developers, but that skill gaps widen—developers who can't evaluate/review AI code become obsolete, while those who can supervise agents become 10x more valuable. Conclude: coding as a skill is shifting from writing syntax to architectural thinking and AI oversight.",
+      "targetSlug": "ai-coding-agents-developer-future",
+      "targetKeyword": "AI coding agents impact on developers",
+      "format": "research-breakdown",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "The Real ROI of AI Coding Tools: Costs, Time Saved, and Team Velocity",
+      "topicBrief": "Build a practical ROI calculator for teams evaluating AI coding tools. Include: subscription costs ($10-200/month per developer), implementation time (onboarding, policy, guardrails), time saved per developer (studies show 35-55% on average, but highly variable), and hidden costs (code review time, refactoring, security audits). Walk through realistic scenarios: solo freelancer (fast payback), startup team (depends on experience level), enterprise (compliance overhead). Conclude with a decision framework: who should adopt, when, and how to measure.",
+      "targetSlug": "ai-coding-tools-roi-calculator",
+      "targetKeyword": "ROI of AI coding tools",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 7,
+      "topicTitle": "Non-Developers: Learning to Code Faster with AI in 2026",
+      "topicBrief": "Shift the conversation: AI coding tools aren't just for experienced developers—they're making it possible for founders, data analysts, and product managers to write functional code faster. Cover: which tools are friendliest for beginners (Claude, Cursor with plain-English prompts), how non-developers should approach AI-assisted learning (scaffolding projects, using AI as a tutor not a replacement), common pitfalls (blindly copying AI output, not understanding what you deploy), and realistic expectations (AI accelerates learning, doesn't replace it). Include a real example: a non-technical founder building an MVP with AI assistance.",
+      "targetSlug": "learning-to-code-with-ai-non-developers",
+      "targetKeyword": "learn coding with AI tools",
+      "format": "deep-analysis",
+      "status": "pending"
+    }
+  ]
+}

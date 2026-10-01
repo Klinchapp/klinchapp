@@ -1,0 +1,80 @@
+{
+  "slug": "ai-search-replacing-google",
+  "title": "AI Search Is Replacing Google: What It Means for How You Find Information",
+  "description": "Half of US teenagers now use AI chatbots as their primary search engine instead of Google. This series explores how search behavior is fundamentally shifting, what tools are winning, how it changes SEO and content strategy, privacy implications, and what this means for creators and businesses who relied on traditional search traffic.",
+  "totalPosts": 7,
+  "tags": [
+    "AI search",
+    "Perplexity",
+    "ChatGPT Search",
+    "search behavior",
+    "SEO changes",
+    "content strategy",
+    "privacy"
+  ],
+  "posts": [
+    {
+      "order": 1,
+      "topicTitle": "Why Half of Teenagers Now Skip Google for AI",
+      "topicBrief": "Research shows 50% of US teens use chatbots as primary search, signaling a massive behavioral shift. Explain why—speed, conversation, cited answers, personality. Include data on search volume migration and why traditional search feels outdated to younger users. Set up the series by establishing this isn't a niche trend; it's mainstream.",
+      "targetSlug": "teenagers-skip-google-ai-search",
+      "targetKeyword": "teenagers using AI instead of Google search",
+      "format": "research-breakdown",
+      "status": "pending"
+    },
+    {
+      "order": 2,
+      "topicTitle": "ChatGPT Search vs. Perplexity vs. Google: The Honest Comparison",
+      "topicBrief": "Direct feature and experience comparison. ChatGPT Search (conversational, integrates OpenAI ecosystem), Perplexity (research-focused, cited sources), Google (comprehensive index, visual results). Cover pricing, speed, source quality, and when each actually wins. Include a practical table and address common questions about accuracy and citations.",
+      "targetSlug": "chatgpt-search-perplexity-google-comparison",
+      "targetKeyword": "ChatGPT Search vs Perplexity vs Google",
+      "format": "tool-review",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "topicTitle": "How to Actually Use AI Search for Research Without Losing Your Mind",
+      "topicBrief": "Practical workflow for researchers, content creators, and knowledge workers. Step-by-step on how to use Perplexity or ChatGPT Search effectively—formulating queries, evaluating sources, cross-checking facts, organizing results. Include tips on when to verify AI findings and how to cite AI-found sources properly.",
+      "targetSlug": "how-to-use-ai-search-tools",
+      "targetKeyword": "how to use AI search tools for research",
+      "format": "how-to-guide",
+      "status": "pending"
+    },
+    {
+      "order": 4,
+      "topicTitle": "SEO Is Dead—Here's What Replaces It",
+      "topicBrief": "Take a bold stance: traditional keyword-stuffing SEO optimized for Google's algorithm is obsolete because AI search doesn't rank pages the same way. Conversational AI surfaces information differently. Explain what matters now: E-E-A-T (experience, expertise, authority, trustworthiness), being cited by AI systems, appearing in training data, and building authority through original research. Acknowledge nuance—Google still matters, but the game has changed.",
+      "targetSlug": "seo-dead-ai-search",
+      "targetKeyword": "SEO dead AI search replaces Google",
+      "format": "opinion",
+      "status": "pending"
+    },
+    {
+      "order": 5,
+      "topicTitle": "For Content Creators: How AI Search Changes Your Traffic Strategy",
+      "topicBrief": "Practical implications for bloggers, journalists, creators, and small publishers. AI search pulls content into summaries without driving clicks. Explain the problem—visibility without traffic. Cover strategies: building direct audience relationships, creating content AI tools actively cite, optimizing for being in training data, partnering with platforms, and rethinking monetization beyond search traffic.",
+      "targetSlug": "content-creators-ai-search-traffic",
+      "targetKeyword": "AI search impact on content creators traffic",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "topicTitle": "Private Search vs. AI Search: The Privacy Trade-Off Nobody's Talking About",
+      "topicBrief": "AI search requires sharing your query with third parties (OpenAI, Perplexity, Google) for processing. Compare privacy implications: traditional Google knows what you search; AI systems know what you ask in conversational context. Include options (DuckDuckGo, Brave, private modes) and explain the reality—there's no truly private AI search yet. Help readers make informed choices.",
+      "targetSlug": "ai-search-privacy-tradeoff",
+      "targetKeyword": "AI search privacy vs Google search privacy",
+      "format": "deep-analysis",
+      "status": "pending"
+    },
+    {
+      "order": 7,
+      "topicTitle": "What AI Search Means for Your Business's Visibility in 2026",
+      "topicBrief": "Strategic implications for small business owners, B2B companies, and e-commerce. AI search changes discoverability—not through ranking pages, but through being synthesized into answers. Cover: being indexed by AI training systems, creating content AI tools want to cite, visibility strategies for local and niche businesses, and measuring success when search traffic shifts. Practical next steps.",
+      "targetSlug": "business-visibility-ai-search-2026",
+      "targetKeyword": "how to get visibility in AI search for business",
+      "format": "how-to-guide",
+      "status": "pending"
+    }
+  ]
+}
