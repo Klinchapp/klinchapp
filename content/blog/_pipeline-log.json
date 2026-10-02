@@ -5216,5 +5216,11 @@
         "tokens_out": 34
       }
     ]
+  },
+  {
+    "date": "2026-10-02T15:50:45.320Z",
+    "stage": "publish",
+    "file": "multimodal-ai-creators-explained.mdx",
+    "status": "published"
   }
 ]
