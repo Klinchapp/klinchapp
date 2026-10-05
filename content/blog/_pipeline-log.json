@@ -5222,5 +5222,73 @@
     "stage": "publish",
     "file": "multimodal-ai-creators-explained.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-10-05T18:23:48.660Z",
+    "stage": "prepare",
+    "series": "ai-coding-tools-developers",
+    "post": "ai-coding-tools-comparison-2026",
+    "title": "GitHub Copilot vs. Cursor vs. Claude: Which AI Coding Tool Wins in 2026",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20411,
+        "tokens_in": 4054,
+        "tokens_out": 1665
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12445,
+        "tokens_in": 1837,
+        "tokens_out": 1504
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17947,
+        "tokens_in": 1756,
+        "tokens_out": 1699
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 873,
+        "tokens_in": 1857,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9704,
+        "tokens_in": 1955,
+        "tokens_out": 789
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 804,
+        "tokens_in": 299,
+        "tokens_out": 38
+      }
+    ]
   }
 ]
