@@ -5296,5 +5296,73 @@
     "stage": "publish",
     "file": "ai-coding-tools-comparison-2026.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-10-08T16:26:59.663Z",
+    "stage": "prepare",
+    "series": "ai-coding-tools-developers",
+    "post": "setup-ai-coding-workflow-30-minutes",
+    "title": "Setting Up Your First AI Coding Workflow: A 30-Minute Guide",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 9,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 7,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14070,
+        "tokens_in": 4089,
+        "tokens_out": 1175
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8079,
+        "tokens_in": 1347,
+        "tokens_out": 970
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11603,
+        "tokens_in": 1222,
+        "tokens_out": 1063
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 877,
+        "tokens_in": 1221,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 7631,
+        "tokens_in": 1945,
+        "tokens_out": 618
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 682,
+        "tokens_in": 275,
+        "tokens_out": 37
+      }
+    ]
   }
 ]
