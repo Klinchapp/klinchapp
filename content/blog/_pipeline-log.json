@@ -5364,5 +5364,11 @@
         "tokens_out": 37
       }
     ]
+  },
+  {
+    "date": "2026-10-09T16:15:13.807Z",
+    "stage": "publish",
+    "file": "setup-ai-coding-workflow-30-minutes.mdx",
+    "status": "published"
   }
 ]
