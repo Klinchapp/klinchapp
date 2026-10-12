@@ -5370,5 +5370,73 @@
     "stage": "publish",
     "file": "setup-ai-coding-workflow-30-minutes.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-10-12T19:00:07.797Z",
+    "stage": "prepare",
+    "series": "ai-coding-tools-developers",
+    "post": "ai-coding-quality-tradeoffs",
+    "title": "The Code Quality Question: When AI Speeds You Up (And When It Doesn't)",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 7,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24116,
+        "tokens_in": 4143,
+        "tokens_out": 1965
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18123,
+        "tokens_in": 2137,
+        "tokens_out": 1777
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24068,
+        "tokens_in": 2029,
+        "tokens_out": 1847
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 845,
+        "tokens_in": 1924,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9496,
+        "tokens_in": 1962,
+        "tokens_out": 788
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 808,
+        "tokens_in": 262,
+        "tokens_out": 37
+      }
+    ]
   }
 ]
