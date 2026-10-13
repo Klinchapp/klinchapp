@@ -5438,5 +5438,11 @@
         "tokens_out": 37
       }
     ]
+  },
+  {
+    "date": "2026-10-13T16:57:54.344Z",
+    "stage": "publish",
+    "file": "ai-coding-quality-tradeoffs.mdx",
+    "status": "published"
   }
 ]
