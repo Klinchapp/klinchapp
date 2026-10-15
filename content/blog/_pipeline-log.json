@@ -5444,5 +5444,73 @@
     "stage": "publish",
     "file": "ai-coding-quality-tradeoffs.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-10-15T14:09:45.402Z",
+    "stage": "prepare",
+    "series": "ai-coding-tools-developers",
+    "post": "ai-generated-code-ownership-liability",
+    "title": "Who Owns AI-Generated Code? The Legal and Ethical Reality",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 7,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 21422,
+        "tokens_in": 4179,
+        "tokens_out": 1713
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16124,
+        "tokens_in": 1885,
+        "tokens_out": 1364
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15065,
+        "tokens_in": 1616,
+        "tokens_out": 1391
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 847,
+        "tokens_in": 1422,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10674,
+        "tokens_in": 1970,
+        "tokens_out": 875
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 793,
+        "tokens_in": 261,
+        "tokens_out": 29
+      }
+    ]
   }
 ]
