@@ -5586,5 +5586,11 @@
         "tokens_out": 36
       }
     ]
+  },
+  {
+    "date": "2026-10-20T14:19:29.287Z",
+    "stage": "publish",
+    "file": "ai-coding-agents-developer-future.mdx",
+    "status": "published"
   }
 ]
