@@ -52,6 +52,15 @@ jobs:
             echo "published=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Trigger Vercel deployment
+        if: steps.commit.outputs.published == 'true'
+        # GitHub's push webhook to Vercel occasionally drops silently with no error
+        # on either side (found 2026-10-21: a published post sat 404 for a day because
+        # no deployment was ever created for its commit). This Deploy Hook guarantees
+        # a build fires regardless of webhook delivery.
+        continue-on-error: true
+        run: curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
+
       - name: Syndicate to Blogger
         if: steps.commit.outputs.published == 'true'
         continue-on-error: true
