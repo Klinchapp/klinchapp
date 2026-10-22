@@ -5592,5 +5592,73 @@
     "stage": "publish",
     "file": "ai-coding-agents-developer-future.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-10-22T14:30:50.186Z",
+    "stage": "prepare",
+    "series": "ai-coding-tools-developers",
+    "post": "ai-coding-tools-roi-calculator",
+    "title": "The Real ROI of AI Coding Tools: Costs, Time Saved, and Team Velocity",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20282,
+        "tokens_in": 4317,
+        "tokens_out": 1563
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13753,
+        "tokens_in": 1735,
+        "tokens_out": 1310
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18310,
+        "tokens_in": 1562,
+        "tokens_out": 1444
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 818,
+        "tokens_in": 1568,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9923,
+        "tokens_in": 1980,
+        "tokens_out": 795
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 830,
+        "tokens_in": 264,
+        "tokens_out": 36
+      }
+    ]
   }
 ]
