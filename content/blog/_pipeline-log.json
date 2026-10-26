@@ -5666,5 +5666,73 @@
     "stage": "publish",
     "file": "ai-coding-tools-roi-calculator.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-10-26T16:06:38.878Z",
+    "stage": "prepare",
+    "series": "ai-coding-tools-developers",
+    "post": "learning-to-code-with-ai-non-developers",
+    "title": "Non-Developers: Learning to Code Faster with AI in 2026",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23022,
+        "tokens_in": 4229,
+        "tokens_out": 1880
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18535,
+        "tokens_in": 2052,
+        "tokens_out": 1697
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18957,
+        "tokens_in": 1949,
+        "tokens_out": 1728
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 1436,
+        "tokens_in": 1886,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9669,
+        "tokens_in": 1992,
+        "tokens_out": 787
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 644,
+        "tokens_in": 268,
+        "tokens_out": 32
+      }
+    ]
   }
 ]
