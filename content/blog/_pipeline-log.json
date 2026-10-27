@@ -5734,5 +5734,11 @@
         "tokens_out": 32
       }
     ]
+  },
+  {
+    "date": "2026-10-27T15:22:44.118Z",
+    "stage": "publish",
+    "file": "learning-to-code-with-ai-non-developers.mdx",
+    "status": "published"
   }
 ]
