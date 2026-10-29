@@ -5740,5 +5740,105 @@
     "stage": "publish",
     "file": "learning-to-code-with-ai-non-developers.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-10-29T16:05:25.452Z",
+    "stage": "prepare",
+    "series": "ai-search-replacing-google",
+    "post": "teenagers-skip-google-ai-search",
+    "title": "Why Half of Teenagers Now Skip Google for AI",
+    "status": "rejected",
+    "qualityScore": 6,
+    "scores": {
+      "clarity": 7,
+      "actionability": 5,
+      "engagement": 6,
+      "accuracy": 6,
+      "overall": 6
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17514,
+        "tokens_in": 3944,
+        "tokens_out": 1551
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12742,
+        "tokens_in": 1723,
+        "tokens_out": 1096
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11525,
+        "tokens_in": 1348,
+        "tokens_out": 885
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 749,
+        "tokens_in": 1043,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17891,
+        "tokens_in": 3944,
+        "tokens_out": 1651
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13660,
+        "tokens_in": 1823,
+        "tokens_out": 1162
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14820,
+        "tokens_in": 1414,
+        "tokens_out": 1268
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 807,
+        "tokens_in": 1282,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8544,
+        "tokens_in": 1921,
+        "tokens_out": 707
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 912,
+        "tokens_in": 249,
+        "tokens_out": 39
+      }
+    ]
   }
 ]
