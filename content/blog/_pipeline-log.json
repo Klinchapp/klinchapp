@@ -5840,5 +5840,79 @@
         "tokens_out": 39
       }
     ]
+  },
+  {
+    "date": "2026-10-30T15:58:48.052Z",
+    "stage": "prepare",
+    "series": "ai-search-replacing-google",
+    "post": "chatgpt-search-perplexity-google-comparison",
+    "title": "ChatGPT Search vs. Perplexity vs. Google: The Honest Comparison",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 21690,
+        "tokens_in": 3956,
+        "tokens_out": 1855
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15115,
+        "tokens_in": 2027,
+        "tokens_out": 1763
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 20496,
+        "tokens_in": 2015,
+        "tokens_out": 1813
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 889,
+        "tokens_in": 1971,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8774,
+        "tokens_in": 1936,
+        "tokens_out": 745
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 680,
+        "tokens_in": 285,
+        "tokens_out": 36
+      }
+    ]
+  },
+  {
+    "date": "2026-10-30T15:58:48.056Z",
+    "stage": "publish",
+    "file": "chatgpt-search-perplexity-google-comparison.mdx",
+    "status": "published"
   }
 ]
