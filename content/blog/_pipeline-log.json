@@ -5914,5 +5914,73 @@
     "stage": "publish",
     "file": "chatgpt-search-perplexity-google-comparison.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-11-02T19:27:51.329Z",
+    "stage": "prepare",
+    "series": "ai-search-replacing-google",
+    "post": "how-to-use-ai-search-tools",
+    "title": "How to Actually Use AI Search for Research Without Losing Your Mind",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15017,
+        "tokens_in": 4044,
+        "tokens_out": 1151
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8342,
+        "tokens_in": 1323,
+        "tokens_out": 994
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9057,
+        "tokens_in": 1246,
+        "tokens_out": 1021
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 821,
+        "tokens_in": 1179,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 5592,
+        "tokens_in": 871,
+        "tokens_out": 830
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 743,
+        "tokens_in": 273,
+        "tokens_out": 36
+      }
+    ]
   }
 ]
