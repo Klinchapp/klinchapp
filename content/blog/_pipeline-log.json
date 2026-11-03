@@ -5982,5 +5982,11 @@
         "tokens_out": 36
       }
     ]
+  },
+  {
+    "date": "2026-11-03T17:05:09.253Z",
+    "stage": "publish",
+    "file": "how-to-use-ai-search-tools.mdx",
+    "status": "published"
   }
 ]
