@@ -5988,5 +5988,73 @@
     "stage": "publish",
     "file": "how-to-use-ai-search-tools.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-11-05T17:22:14.734Z",
+    "stage": "prepare",
+    "series": "ai-search-replacing-google",
+    "post": "seo-dead-ai-search",
+    "title": "SEO Is Dead—Here's What Replaces It",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 6,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23586,
+        "tokens_in": 4110,
+        "tokens_out": 1946
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18288,
+        "tokens_in": 2118,
+        "tokens_out": 1549
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15126,
+        "tokens_in": 1801,
+        "tokens_out": 1549
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 898,
+        "tokens_in": 1695,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8948,
+        "tokens_in": 1949,
+        "tokens_out": 790
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 662,
+        "tokens_in": 262,
+        "tokens_out": 36
+      }
+    ]
   }
 ]
