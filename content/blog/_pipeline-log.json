@@ -6162,5 +6162,179 @@
         "tokens_out": 33
       }
     ]
+  },
+  {
+    "date": "2026-11-10T17:06:32.608Z",
+    "stage": "prepare",
+    "series": "ai-search-replacing-google",
+    "post": "ai-search-privacy-tradeoff",
+    "title": "Private Search vs. AI Search: The Privacy Trade-Off Nobody's Talking About",
+    "status": "rejected",
+    "qualityScore": 5,
+    "scores": {
+      "clarity": 5,
+      "actionability": 6,
+      "engagement": 5,
+      "accuracy": 4,
+      "overall": 5
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23292,
+        "tokens_in": 4194,
+        "tokens_out": 1870
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17015,
+        "tokens_in": 2042,
+        "tokens_out": 1522
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15157,
+        "tokens_in": 1774,
+        "tokens_out": 1553
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 850,
+        "tokens_in": 1711,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23469,
+        "tokens_in": 4194,
+        "tokens_out": 1800
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18755,
+        "tokens_in": 1972,
+        "tokens_out": 1692
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 23831,
+        "tokens_in": 1944,
+        "tokens_out": 1746
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 912,
+        "tokens_in": 1904,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9625,
+        "tokens_in": 1940,
+        "tokens_out": 789
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 809,
+        "tokens_in": 263,
+        "tokens_out": 34
+      }
+    ]
+  },
+  {
+    "date": "2026-11-10T17:07:51.880Z",
+    "stage": "prepare",
+    "series": "ai-search-replacing-google",
+    "post": "business-visibility-ai-search-2026",
+    "title": "What AI Search Means for Your Business's Visibility in 2026",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15175,
+        "tokens_in": 4077,
+        "tokens_out": 1233
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9269,
+        "tokens_in": 1405,
+        "tokens_out": 1097
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12367,
+        "tokens_in": 1349,
+        "tokens_out": 1080
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 783,
+        "tokens_in": 1172,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 10193,
+        "tokens_in": 1932,
+        "tokens_out": 842
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 794,
+        "tokens_in": 263,
+        "tokens_out": 41
+      }
+    ]
+  },
+  {
+    "date": "2026-11-10T17:07:51.885Z",
+    "stage": "publish",
+    "file": "business-visibility-ai-search-2026.mdx",
+    "status": "published"
   }
 ]

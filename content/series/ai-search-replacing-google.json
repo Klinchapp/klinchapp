@@ -65,7 +65,7 @@
       "targetSlug": "ai-search-privacy-tradeoff",
       "targetKeyword": "AI search privacy vs Google search privacy",
       "format": "deep-analysis",
-      "status": "pending"
+      "status": "rejected"
     },
     {
       "order": 7,
@@ -74,7 +74,7 @@
       "targetSlug": "business-visibility-ai-search-2026",
       "targetKeyword": "how to get visibility in AI search for business",
       "format": "how-to-guide",
-      "status": "pending"
+      "status": "published"
     }
   ]
 }
