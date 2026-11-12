@@ -6336,5 +6336,105 @@
     "stage": "publish",
     "file": "business-visibility-ai-search-2026.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-11-12T17:34:20.323Z",
+    "stage": "prepare",
+    "series": "multimodal-ai-toolkit-creators",
+    "post": "text-to-video-ai-tools-2026",
+    "title": "Text-to-Video in 2026: When Veo, Sora, and RunwayML Actually Save Time",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 8,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17073,
+        "tokens_in": 4146,
+        "tokens_out": 1461
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9419,
+        "tokens_in": 1633,
+        "tokens_out": 986
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11139,
+        "tokens_in": 1238,
+        "tokens_out": 1005
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 947,
+        "tokens_in": 1163,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 24397,
+        "tokens_in": 4146,
+        "tokens_out": 2003
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14951,
+        "tokens_in": 2175,
+        "tokens_out": 1370
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 17318,
+        "tokens_in": 1622,
+        "tokens_out": 1442
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 859,
+        "tokens_in": 1564,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9475,
+        "tokens_in": 1960,
+        "tokens_out": 738
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 739,
+        "tokens_in": 285,
+        "tokens_out": 35
+      }
+    ]
   }
 ]
