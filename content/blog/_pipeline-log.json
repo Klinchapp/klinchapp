@@ -6442,5 +6442,73 @@
     "stage": "publish",
     "file": "text-to-video-ai-tools-2026.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-11-16T19:32:59.531Z",
+    "stage": "prepare",
+    "series": "multimodal-ai-toolkit-creators",
+    "post": "ai-voice-cloning-creators-2026",
+    "title": "AI Voice Cloning Without the Robotic Sound: ElevenLabs, Descript, and Natural Alternatives",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 7,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15468,
+        "tokens_in": 4159,
+        "tokens_out": 1325
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8425,
+        "tokens_in": 1497,
+        "tokens_out": 1131
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12133,
+        "tokens_in": 1383,
+        "tokens_out": 1215
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 846,
+        "tokens_in": 1373,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9976,
+        "tokens_in": 1963,
+        "tokens_out": 893
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 778,
+        "tokens_in": 282,
+        "tokens_out": 36
+      }
+    ]
   }
 ]
