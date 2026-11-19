@@ -6516,5 +6516,73 @@
     "stage": "publish",
     "file": "ai-voice-cloning-creators-2026.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-11-19T18:13:44.509Z",
+    "stage": "prepare",
+    "series": "multimodal-ai-toolkit-creators",
+    "post": "multimodal-ai-brand-voice",
+    "title": "How to Integrate Multimodal Tools Without Losing Your Brand Voice",
+    "status": "scheduled",
+    "qualityScore": 8,
+    "scores": {
+      "clarity": 9,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 7,
+      "overall": 8
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15072,
+        "tokens_in": 4077,
+        "tokens_out": 1214
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11266,
+        "tokens_in": 1386,
+        "tokens_out": 1118
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8819,
+        "tokens_in": 1370,
+        "tokens_out": 1129
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 815,
+        "tokens_in": 1275,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8602,
+        "tokens_in": 1950,
+        "tokens_out": 808
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 638,
+        "tokens_in": 292,
+        "tokens_out": 32
+      }
+    ]
   }
 ]
