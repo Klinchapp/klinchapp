@@ -6590,5 +6590,73 @@
     "stage": "publish",
     "file": "multimodal-ai-brand-voice.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-11-23T21:17:00.146Z",
+    "stage": "prepare",
+    "series": "multimodal-ai-toolkit-creators",
+    "post": "multimodal-content-workflow",
+    "title": "Building Your Multimodal Workflow: Text → Video → Voice → Distribution",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 7,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16169,
+        "tokens_in": 4121,
+        "tokens_out": 1315
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 11277,
+        "tokens_in": 1487,
+        "tokens_out": 1078
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12443,
+        "tokens_in": 1330,
+        "tokens_out": 1235
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 671,
+        "tokens_in": 1393,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 8881,
+        "tokens_in": 1968,
+        "tokens_out": 772
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 535,
+        "tokens_in": 278,
+        "tokens_out": 30
+      }
+    ]
   }
 ]
