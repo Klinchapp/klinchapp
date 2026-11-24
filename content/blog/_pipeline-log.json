@@ -6658,5 +6658,11 @@
         "tokens_out": 30
       }
     ]
+  },
+  {
+    "date": "2026-11-24T20:10:33.042Z",
+    "stage": "publish",
+    "file": "multimodal-content-workflow.mdx",
+    "status": "published"
   }
 ]
