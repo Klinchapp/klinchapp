@@ -4,6 +4,7 @@ Auto-generated. Most recent first. New reports prepend.
 
 | Date (UTC) | Trigger | Commit | Status | Duration | Report |
 |---|---|---|---|---|---|
+| 2026-11-25 13:16 | scheduled | `2d25057` | PASS | 34s | [view](2026-11-25T13-16-29Z_2d25057.md) |
 | 2026-11-24 20:11 | post-merge | `7a9bcb0` | PASS | 27s | [view](2026-11-24T20-11-22Z_7a9bcb0.md) |
 | 2026-11-24 14:01 | scheduled | `ebe841d` | PASS | 38s | [view](2026-11-24T14-01-59Z_ebe841d.md) |
 | 2026-11-23 21:18 | post-merge | `44f34d8` | PASS | 43s | [view](2026-11-23T21-18-07Z_44f34d8.md) |
