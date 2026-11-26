@@ -6664,5 +6664,105 @@
     "stage": "publish",
     "file": "multimodal-content-workflow.mdx",
     "status": "published"
+  },
+  {
+    "date": "2026-11-26T19:00:03.916Z",
+    "stage": "prepare",
+    "series": "multimodal-ai-toolkit-creators",
+    "post": "multimodal-ai-limitations-humans-still-matter",
+    "title": "The Multimodal Myth: What AI Can't Do (And Why Humans Still Matter)",
+    "status": "rejected",
+    "qualityScore": 4,
+    "scores": {
+      "clarity": 7,
+      "actionability": 6,
+      "engagement": 7,
+      "accuracy": 2,
+      "overall": 4
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 10,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18867,
+        "tokens_in": 4293,
+        "tokens_out": 1488
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12905,
+        "tokens_in": 1660,
+        "tokens_out": 1240
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 13383,
+        "tokens_in": 1492,
+        "tokens_out": 1305
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 870,
+        "tokens_in": 1463,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 18111,
+        "tokens_in": 4293,
+        "tokens_out": 1439
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 12873,
+        "tokens_in": 1611,
+        "tokens_out": 1164
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 15864,
+        "tokens_in": 1416,
+        "tokens_out": 1246
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 912,
+        "tokens_in": 1404,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9118,
+        "tokens_in": 1971,
+        "tokens_out": 749
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 922,
+        "tokens_in": 279,
+        "tokens_out": 36
+      }
+    ]
   }
 ]
