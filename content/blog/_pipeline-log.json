@@ -6764,5 +6764,79 @@
         "tokens_out": 36
       }
     ]
+  },
+  {
+    "date": "2026-11-27T19:02:07.322Z",
+    "stage": "prepare",
+    "series": "multimodal-ai-toolkit-creators",
+    "post": "multimodal-ai-pricing-roi-creators",
+    "title": "Multimodal AI Tools Price Comparison: ROI for Solo Creators vs. Teams",
+    "status": "scheduled",
+    "qualityScore": 7,
+    "scores": {
+      "clarity": 8,
+      "actionability": 9,
+      "engagement": 8,
+      "accuracy": 6,
+      "overall": 7
+    },
+    "final_provider": "claude-haiku",
+    "total_attempts": 6,
+    "attempts": [
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 19852,
+        "tokens_in": 4171,
+        "tokens_out": 1660
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 14355,
+        "tokens_in": 1832,
+        "tokens_out": 1577
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 16965,
+        "tokens_in": 1829,
+        "tokens_out": 1607
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 721,
+        "tokens_in": 1741,
+        "tokens_out": 51
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 9289,
+        "tokens_in": 1980,
+        "tokens_out": 783
+      },
+      {
+        "provider": "claude-haiku",
+        "attempt": 1,
+        "status": "success",
+        "latency_ms": 788,
+        "tokens_in": 297,
+        "tokens_out": 45
+      }
+    ]
+  },
+  {
+    "date": "2026-11-27T19:02:07.329Z",
+    "stage": "publish",
+    "file": "multimodal-ai-pricing-roi-creators.mdx",
+    "status": "published"
   }
 ]
